@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Operator", "Operator\Operator.vcproj", "{C9B3748A-07ED-469C-88EB-D5B57B118E8A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Raptor", "Raptor\Raptor.vcproj", "{9ACB5F7B-E30D-4A3F-8D4E-6C5538EFF2C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9B3748A-07ED-469C-88EB-D5B57B118E8A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C9B3748A-07ED-469C-88EB-D5B57B118E8A}.Debug|Win32.Build.0 = Debug|Win32
+		{C9B3748A-07ED-469C-88EB-D5B57B118E8A}.Release|Win32.ActiveCfg = Release|Win32
+		{C9B3748A-07ED-469C-88EB-D5B57B118E8A}.Release|Win32.Build.0 = Release|Win32
+		{9ACB5F7B-E30D-4A3F-8D4E-6C5538EFF2C7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9ACB5F7B-E30D-4A3F-8D4E-6C5538EFF2C7}.Debug|Win32.Build.0 = Debug|Win32
+		{9ACB5F7B-E30D-4A3F-8D4E-6C5538EFF2C7}.Release|Win32.ActiveCfg = Release|Win32
+		{9ACB5F7B-E30D-4A3F-8D4E-6C5538EFF2C7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
