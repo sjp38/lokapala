@@ -225,7 +225,15 @@
 				Name="DCM"
 				>
 				<File
-					RelativePath=".\DataAdminSD.cpp"
+					RelativePath=".\DCCommunicationSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DCDataAdminSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DCLogSD.cpp"
 					>
 				</File>
 				<File
@@ -245,6 +253,14 @@
 				Name="CCM"
 				>
 				<File
+					RelativePath=".\CCDecisionSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CCMessengerSD.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\CommunicationFacade.cpp"
 					>
 				</File>
@@ -254,6 +270,14 @@
 				>
 				<File
 					RelativePath=".\MessengerFacade.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MSCommunicationSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MSLogSD.cpp"
 					>
 				</File>
 			</Filter>
@@ -307,7 +331,15 @@
 				Name="DCM_Header"
 				>
 				<File
-					RelativePath=".\DataAdminSD.h"
+					RelativePath=".\DCCommunicationSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DCDataAdminSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DCLogSD.h"
 					>
 				</File>
 				<File
@@ -335,6 +367,14 @@
 				Name="CCM_Header"
 				>
 				<File
+					RelativePath=".\CCDecisionSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\CCMessengerSD.h"
+					>
+				</File>
+				<File
 					RelativePath=".\CommunicationBI.h"
 					>
 				</File>
@@ -352,6 +392,14 @@
 				</File>
 				<File
 					RelativePath=".\MessengerFacade.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MSCommunicationSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MSLogSD.h"
 					>
 				</File>
 			</Filter>
@@ -382,6 +430,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\mainpage.dox"
+			>
+		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>

@@ -5,6 +5,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Operator", "Operator\Operat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Raptor", "Raptor\Raptor.vcproj", "{9ACB5F7B-E30D-4A3F-8D4E-6C5538EFF2C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4872B3E-01C3-4D1C-B851-5F78B3D10106}"
+	ProjectSection(SolutionItems) = preProject
+		mainpage.dox = mainpage.dox
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
