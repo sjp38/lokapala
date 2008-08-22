@@ -9,11 +9,21 @@
  */
 #include "CBFMediator.h"
 #include "DataAdminFacade.h"
+
 #include "DecisionFacade.h"
-#include "DataAdminSD.h"
+#include "DCDataAdminSD.h"
+#include "DCLogSD.h"
+#include "DCCommunicationSD.h"
+
 #include "LogFacade.h"
+
 #include "CommunicationFacade.h"
+#include "CCDecisionSD.h"
+#include "CCMessengerSD.h"
+
 #include "MessengerFacade.h"
+#include "MSCommunicationSD.h"
+#include "MSLogSD.h"
 
 //CBFMediator
 CCBFMediator *CCBFMediator::m_instance = NULL;
@@ -26,4 +36,12 @@ CCommunicationFacade *CCommunicationFacade::m_instance = NULL;
 CMessengerFacade *CMessengerFacade::m_instance = NULL;
 
 //Service Delegate
-CDataAdminSD *CDataAdminSD::m_instance = NULL;
+CDCDataAdminSD *CDCDataAdminSD::m_instance = NULL;
+CDCCommunicationSD *CDCCommunicationSD::m_instance = NULL;
+CDCLogSD *CDCLogSD::m_instance = NULL;
+
+CCCDecisionSD *CCCDecisionSD::m_instance = NULL;
+CCCMessengerSD *CCCMessengerSD::m_instance = NULL;
+
+CMSLogSD *CMSLogSD::m_instance = NULL;
+CMSCommunicationSD *CMSCommunicationSD::m_instance = NULL;

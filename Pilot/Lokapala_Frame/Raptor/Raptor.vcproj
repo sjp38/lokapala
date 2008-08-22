@@ -216,38 +216,118 @@
 			<Filter
 				Name="DAM"
 				>
+				<File
+					RelativePath=".\DataAdminFacade.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="DCM"
 				>
+				<File
+					RelativePath=".\DCCommunicationSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DCControlSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DCDataAdminSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DCLogSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DCNeverDieSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DecisionFacade.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="LGM"
 				>
+				<File
+					RelativePath=".\LogFacade.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="CCM"
 				>
+				<File
+					RelativePath=".\CCDecisionSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CCMessengerSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CommunicationFacade.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="MSM"
 				>
+				<File
+					RelativePath=".\MessengerFacade.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MSCommunicationSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MSLogSD.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="NDM"
 				>
+				<File
+					RelativePath=".\NDDecisionSD.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\NeverDieFacade.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="CTM"
 				>
+				<File
+					RelativePath=".\ControlFacade.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="OSM"
 				>
+				<File
+					RelativePath=".\ObserveFacade.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\OSDecisionSD.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="CBFMediator"
 				>
+				<File
+					RelativePath=".\CBFMediator.cpp"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -278,38 +358,150 @@
 			<Filter
 				Name="DAM_Header"
 				>
+				<File
+					RelativePath=".\DataAdminBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DataAdminFacade.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="DCM_Header"
 				>
+				<File
+					RelativePath=".\DCCommunicationSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DCControlSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DCDataAdminSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DCLogSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DCNeverDieSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DecisionBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\DecisionFacade.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="LGM_Header"
 				>
+				<File
+					RelativePath=".\LogBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\LogFacade.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="MSM_Header"
 				>
+				<File
+					RelativePath=".\MessengerBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MessengerFacade.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MSCommunicationSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MSLogSD.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="NDM_Header"
 				>
+				<File
+					RelativePath=".\NDDecisionSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\NeverDieBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\NeverDieFacade.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="CTM_Header"
 				>
+				<File
+					RelativePath=".\ControlBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ControlFacade.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="OSM_Header"
 				>
+				<File
+					RelativePath=".\ObserveBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ObserveFacade.h"
+					>
+				</File>
+				<File
+					RelativePath=".\OSDecisionSD.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="CCM_Header"
 				>
+				<File
+					RelativePath=".\CCDecisionSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\CCMessengerSD.h"
+					>
+				</File>
+				<File
+					RelativePath=".\CommunicationBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\CommunicationFacade.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="CBF_Header"
 				>
+				<File
+					RelativePath=".\CBFMediator.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -330,6 +522,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\mainpage.dox"
+			>
+		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>
