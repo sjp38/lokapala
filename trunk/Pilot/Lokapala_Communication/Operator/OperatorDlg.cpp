@@ -62,6 +62,7 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_BUTTONTEST, &COperatorDlg::OnBnClickedButtontest)
 END_MESSAGE_MAP()
 
 
@@ -95,6 +96,8 @@ BOOL COperatorDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+	CCBFMediator::Instance()->SetMainDlg(this);
+	CCBFMediator::Instance()->InitiallizeCommunication();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -148,3 +151,11 @@ HCURSOR COperatorDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+void COperatorDlg::OnBnClickedButtontest()
+{
+	// TODO: Add your control notification handler code here
+	CString buffer;
+	this->GetDlgItemTextW(IDC_EDITTEST, buffer);
+	CCBFMediator::Instance()->SendTextMessage(buffer);
+}

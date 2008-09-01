@@ -30,6 +30,7 @@ public :
 	}
 
 	virtual void Initiallize();
+	virtual void SendTextMessage(CString a_message);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCommunicationFacade(){}

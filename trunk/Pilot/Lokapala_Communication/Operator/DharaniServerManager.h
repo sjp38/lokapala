@@ -29,16 +29,24 @@ public :
 		return m_instance;
 	}
 	void Initiallize();
+	void BroadcastTextMessage(char *a_message);
 protected :
 	/**@brief	생성자	*/
-	CDharaniServerManager(){}
+	CDharaniServerManager(){m_socketCount = 0;}
 	/**@brief	소멸자	*/
 	~CDharaniServerManager(){}
+
+	void RemoveFromClientSockets(SOCKET a_socket);
+	void AddToClientSockets(PTR_SOCKET_DATA a_socketData);
 private :
 	/**@brief	completion port kernel object	*/
 	HANDLE	m_hCompletionPort;
 	SOCKET	m_hListenSocket;
 	SOCKET_DATA m_clientSockets[MAXCLIENT];	//클라이언트 소켓들
+	int m_socketCount;
+
+	HANDLE m_hMutex;		//뮤텍스 핸들
+
 	
 	static unsigned int WINAPI CompletionThread(LPVOID a_hCompletionPort);
 	static unsigned int WINAPI AcceptorThread(LPVOID a_hCompletionPort);

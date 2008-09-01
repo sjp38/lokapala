@@ -65,12 +65,3 @@ CMSLogSD *CMSLogSD::m_instance = NULL;
 CNDDecisionSD *CNDDecisionSD::m_instance = NULL;
 
 COSDecisionSD *COSDecisionSD::m_instance = NULL;
-
-
-
-//Dharani
-#include "DharaniServerManager.h"
-#include "DharaniClientManager.h"
-
-CDharaniServerManager *CDharaniServerManager::m_instance = NULL;
-CDharaniClientManager *CDharaniClientManager::m_instance = NULL;

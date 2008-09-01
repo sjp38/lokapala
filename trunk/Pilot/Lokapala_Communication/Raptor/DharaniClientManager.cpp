@@ -4,7 +4,9 @@
  */
 
 #include "stdafx.h"
+#include <process.h>
 #include "Dharani.h"
+#include "DharaniExternSD.h"
 #include "DharaniClientManager.h"
 
 void CDharaniClientManager::Initiallize()
@@ -14,7 +16,8 @@ void CDharaniClientManager::Initiallize()
 	{
 		AfxMessageBox(_T("WSAStartup() error!"));
 	}
-	m_socket = WSASocket(PF_INET, SOCK_STREAM,0,NULL,0,WSA_FLAG_OVERLAPPED);
+
+	m_serverSocket = WSASocket(PF_INET, SOCK_STREAM,0,NULL,0,WSA_FLAG_OVERLAPPED);
 
 	SOCKADDR_IN serverAddr;
 	memset(&serverAddr, 0, sizeof(serverAddr));
@@ -22,16 +25,49 @@ void CDharaniClientManager::Initiallize()
 	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 	serverAddr.sin_port = htons(SERVER_PORT);
 	
-	if(connect(m_socket, (SOCKADDR *)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
+	if(connect(m_serverSocket, (SOCKADDR *)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
 	{
 		AfxMessageBox(_T("connect() error!"));
 	}
 
-	WSABUF dataBuf;
-	char message[]="sample message";
-	dataBuf.len = strlen(message);
-	dataBuf.buf = message;
+	_beginthreadex(NULL,0,&CDharaniClientManager::ReceiverThread,(LPVOID)m_serverSocket, 0, NULL);
+}
 
-	WSASend(m_socket, &dataBuf, 1, NULL, 0, NULL, NULL);
+/**@brief	쓰레드로 돌며 소켓으로 들어오는 값을 받는다.
+ */
+unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
+{
+	SOCKET serverSocket = (SOCKET)a_serverSocket;
+	char buffer[BUFSIZE];
+	int receivedBytes;
 
+	while(1)
+	{
+		receivedBytes = recv(serverSocket, buffer, BUFSIZE, 0);
+		if(receivedBytes == SOCKET_ERROR)
+		{
+			AfxMessageBox(_T("receive failed!"));
+			closesocket(serverSocket);
+			WSACleanup();
+			return 0;
+		}
+		if(receivedBytes == 0)
+		{
+			AfxMessageBox(_T("server connect failed!"));
+			closesocket(serverSocket);
+			WSACleanup();
+			return 0;
+		}
+
+		buffer[receivedBytes]='\0';
+		CDharaniExternSD::Instance()->NotifyReceived(buffer);
+	}
+	return 0;
+}
+
+/**@brief	메세지를 서버에게 날린다.
+ */
+void CDharaniClientManager::SendTextMessage(char *a_message)
+{
+	send(m_serverSocket, a_message, strlen(a_message), 0);
 }

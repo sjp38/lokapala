@@ -291,6 +291,10 @@
 						RelativePath=".\DharaniServerManager.cpp"
 						>
 					</File>
+					<File
+						RelativePath=".\SingletonInitiallize.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -584,5 +588,9 @@
 		</File>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="Raptor.rc"
+		/>
 	</Globals>
 </VisualStudioProject>

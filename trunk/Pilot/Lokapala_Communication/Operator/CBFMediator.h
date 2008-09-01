@@ -4,7 +4,6 @@
  */
 
 
-
 #ifndef CBF_MEDIATOR_H
 #define CBF_MEDIATOR_H
 
@@ -18,6 +17,7 @@
 #include "CommunicationFacade.h"
 #include "MessengerBI.h"
 #include "MessengerFacade.h"
+
 
 /**@ingroup GroupMediator
  * @class	CCBFMediator
@@ -46,6 +46,11 @@ public :
 
 	//CCM
 	void InitiallizeCommunication();
+	void SendTextMessage(CString a_message);
+
+
+	void SetMainDlg(CDialog *a_pDlg);
+	CDialog *GetMainDlg();
 
 protected :
 	/**@breif	생성자	*/
@@ -55,6 +60,8 @@ protected :
 private :
 	/**@brief	singleton. 언제나 단 하나만 존재한다.	*/
 	static CCBFMediator *m_instance;
+
+	CDialog *m_mainDlg;
 };
 
 #endif

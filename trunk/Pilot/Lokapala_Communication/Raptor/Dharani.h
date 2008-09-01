@@ -11,11 +11,19 @@
 #define SERVER_PORT 9987
 #define MAXCLIENT 128
 
-typedef struct
+class SOCKET_DATA
 {
+public :
 	SOCKET descriptor;
 	SOCKADDR_IN addr;
-} SOCKET_DATA, *PTR_SOCKET_DATA;
+
+	void operator =(const SOCKET_DATA &operand)
+	{
+		descriptor = operand.descriptor;
+	}
+};
+#define PTR_SOCKET_DATA SOCKET_DATA *
+
 
 typedef struct
 {

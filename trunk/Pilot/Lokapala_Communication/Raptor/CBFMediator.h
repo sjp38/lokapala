@@ -46,12 +46,15 @@ public :
 		}
 		return m_instance;
 	}
+	CDialog *GetMainDlg();
+	void SetMainDlg(CDialog *a_pDlg);
 
 	//DCM
 	void ReadDAM();
 
 	//CCM
 	void InitiallizeCommunication();
+	void SendTextMessage(CString a_message);
 
 protected :
 	/**@breif	생성자	*/
@@ -61,6 +64,7 @@ protected :
 private :
 	/**@brief	singleton. 언제나 단 하나만 존재한다.	*/
 	static CCBFMediator *m_instance;
+	CDialog *m_mainDlg;
 };
 
 #endif

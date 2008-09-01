@@ -20,7 +20,8 @@ public :
 	 * @param	a_targetAddress	보내고자 하는 대상의 ip 주소(문자열 형태)
 	 * @return	void
 	 */
-	virtual void DharaniSend(CDharaniDTO *a_sendData) = 0;
+	virtual void DharaniBroadcastText(CDharaniDTO *a_sendData) = 0;
+	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData) = 0;
 
 	/**@brief	초기화. tcp 기반으로 리슨 소켓을 만들고 IOCP 모델링 방식에 맞게 모든 초기화 부분을 수행한다.
 	 * @return	void

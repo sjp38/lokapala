@@ -22,7 +22,16 @@ void CDharaniFacade::DharaniClientInitiallize()
 	CDharaniClientManager::Instance()->Initiallize();
 }
 
-
-void CDharaniFacade::DharaniSend(CDharaniDTO *a_sendData)
+/**@brief	클라이언트에게 메세지를 날린다.
+ */
+void CDharaniFacade::DharaniBroadcastText(CDharaniDTO *a_sendData)
 {
+	CDharaniServerManager::Instance()->BroadcastTextMessage(a_sendData->m_message);
+}
+
+/**@brief	서버에게 메세지를 날린다.
+ */
+void CDharaniFacade::DharaniSendTextToServer(CDharaniDTO *a_sendData)
+{
+	CDharaniClientManager::Instance()->SendTextMessage(a_sendData->m_message);
 }

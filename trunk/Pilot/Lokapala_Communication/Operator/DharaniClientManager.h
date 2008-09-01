@@ -28,6 +28,7 @@ public :
 	}
 
 	void Initiallize();
+	void SendTextMessage(char *a_message);
 
 protected :
 	/**@brief	생성자	*/
@@ -36,7 +37,10 @@ protected :
 	~CDharaniClientManager(){}
 
 private :
-	SOCKET m_socket;
+	/**@brief	completion port kernel object handle	*/
+	SOCKET m_serverSocket;	//서버 소켓 디스크립터
+	static unsigned int WINAPI ReceiverThread(LPVOID a_serverSocket);
+
 	/**@brief	싱글톤	*/
 	static CDharaniClientManager *m_instance;
 
