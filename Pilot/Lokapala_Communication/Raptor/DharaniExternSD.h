@@ -14,7 +14,25 @@
 class CDharaniExternSD
 {
 public :
-	void NotifyReceived(CString a_srcAddress, CString a_message);
+	static CDharaniExternSD *Instance()
+	{
+		if(!m_instance)
+		{
+			m_instance = new CDharaniExternSD();
+		}
+		return m_instance;
+	}
+	void NotifyAccepted();
+	void NotifyLeft();
+	void NotifyReceived(char *a_receivedMessage);	
+
+protected :
+	CDharaniExternSD(){};
+	~CDharaniExternSD(){};
+
+private :
+	static CDharaniExternSD *m_instance;
+
 };
 
 

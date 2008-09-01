@@ -16,7 +16,8 @@
 class CDharaniFacade : public CDharaniInterface
 {
 public :
-	virtual void DharaniSend(CDharaniDTO *a_sendData);
+	virtual void DharaniBroadcastText(CDharaniDTO *a_sendData);
+	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData);
 	virtual void DharaniServerInitiallize(void);
 	virtual void DharaniClientInitiallize(void);
 

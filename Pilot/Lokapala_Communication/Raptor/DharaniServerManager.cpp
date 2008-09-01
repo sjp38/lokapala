@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include <process.h>
+#include "DharaniExternSD.h"
 #include "DharaniServerManager.h"
 
 /**@brief	리슨 소켓. AcceptorThread와 공유하기 위해 사용되는 전역 변수. */
@@ -16,12 +17,15 @@ SOCKET hListenSocket;
  */
 void CDharaniServerManager::Initiallize()
 {
+	m_hMutex = CreateMutex(NULL, FALSE, NULL);
+
 	WSADATA wsaData;
 	if(WSAStartup(MAKEWORD(2,2), &wsaData) != 0)
 	{
 		AfxMessageBox(CString(_T("WSAStartup() error!")));
 	}
 
+	//completion port kernel object handle 생성, 연결할 쓰레드 생성
 	m_hCompletionPort = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, CONCURRENT_THREAD_NUM);
 
 	for(int i=0;i<CONCURRENT_THREAD_NUM;i++)
@@ -29,8 +33,10 @@ void CDharaniServerManager::Initiallize()
 		_beginthreadex(NULL,0,&CDharaniServerManager::CompletionThread,(LPVOID)m_hCompletionPort, 0, NULL);
 	}
 
+	//리슨 소켓 생성
 	hListenSocket = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
 
+	//바인드/리슨
 	SOCKADDR_IN servAddr;
 	servAddr.sin_family = AF_INET;
 	servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -39,10 +45,11 @@ void CDharaniServerManager::Initiallize()
 
 	listen(hListenSocket, 15);
 
+	//accept 과정과 소켓/completion port의 연결 과정은 쓰레드로 분립시킨다.
 	_beginthreadex(NULL,0,&CDharaniServerManager::AcceptorThread,(LPVOID)m_hCompletionPort, 0, NULL);
 }
 
-/**@brief	리슨 소켓을 가지고 클라이언트로부터의 연결 요청을 허락한다.
+/**@brief	리슨 소켓을 가지고 클라이언트로부터의 연결 요청을 허락하고 연결된 소켓을 completion port에 연결한다.
  */
 unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPort)
 {
@@ -56,12 +63,17 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		int addrLen = sizeof(clientAddress);
 
 		hClientSocket = accept(hListenSocket, (SOCKADDR *)&clientAddress, &addrLen);
-				
+		CDharaniExternSD::Instance()->NotifyAccepted();
+		
 		socketData = (PTR_SOCKET_DATA)malloc(sizeof(SOCKET_DATA));
 		socketData->descriptor = hClientSocket;
 		memcpy(&(socketData->addr), &clientAddress, addrLen);
+		//completion port에 소켓을 연결.
 		CreateIoCompletionPort((HANDLE)hClientSocket, (HANDLE)a_hCompletionPort, (DWORD)socketData, 0);
+		//클라이언트 소켓 목록에 소켓 정보를 추가(크리티컬 섹션).
+		CDharaniServerManager::Instance()->AddToClientSockets(socketData);
 
+		//매번 해당 소켓 전용 ioData를 동적 할당한다.
 		ioData = (PTR_IO_DATA)malloc(sizeof(IO_DATA));
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 		ioData->wsaBuf.len = BUFSIZE;
@@ -89,16 +101,18 @@ unsigned int WINAPI CDharaniServerManager::CompletionThread(void *a_hCompletionP
 	{
 		GetQueuedCompletionStatus( (HANDLE)a_hCompletionPort, &bytesTransferred, (LPDWORD)&socketData, (LPOVERLAPPED *)&ioData, INFINITE);
 
-		if(bytesTransferred == 0)	//EOF 전송
+		if(bytesTransferred == 0)	//EOF 전송(연결 끊어짐)
 		{
+			CDharaniServerManager::Instance()->RemoveFromClientSockets(socketData->descriptor);
+			CDharaniExternSD::Instance()->NotifyLeft();
 			closesocket(socketData->descriptor);
 			free(socketData);
 			free(ioData);
 			continue;
 		}
 
-		ioData->wsaBuf.len = bytesTransferred;
-		WSASend(socketData->descriptor, &(ioData->wsaBuf), 1, NULL, 0, NULL, NULL);
+		ioData->buffer[bytesTransferred] = '\0';
+		CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer);
 
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 		ioData->wsaBuf.len = BUFSIZE;
@@ -109,4 +123,46 @@ unsigned int WINAPI CDharaniServerManager::CompletionThread(void *a_hCompletionP
 	}
 
 	return 0;
+}
+
+/**@brief	클라이언트들에게 메세지를 뿌려준다.
+ */
+void CDharaniServerManager::BroadcastTextMessage(char *a_message)
+{
+	WSABUF wsaBuf;
+	wsaBuf.buf = a_message;
+	wsaBuf.len = sizeof(a_message);
+
+	for(int i=0 ;i<this->m_socketCount ; i++)
+	{
+		WSASend((m_clientSockets[i]).descriptor, &wsaBuf, 1, NULL, 0, NULL, NULL);
+	}
+}
+
+/**@brief	클라이언트 소켓 목록에 소켓 정보를 추가한다.
+ */
+void CDharaniServerManager::AddToClientSockets(PTR_SOCKET_DATA a_socketData)
+{
+	WaitForSingleObject(m_hMutex, INFINITE);
+	m_clientSockets[m_socketCount++] = *a_socketData;
+	ReleaseMutex(m_hMutex);
+}
+
+/**@brief	클라이언트 소켓 목록에서 특정 소켓을 제거한다.
+ */
+void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
+{
+	WaitForSingleObject(m_hMutex, INFINITE);
+	for(int i=0; i<m_socketCount; i++)
+	{
+		if(m_clientSockets[i].descriptor == a_socket)
+		{
+			m_socketCount--;
+			for(int j=i; j<m_socketCount; j++)
+			{
+				m_clientSockets[j] = m_clientSockets[j+1];
+			}
+		}
+	}
+	ReleaseMutex(m_hMutex);
 }

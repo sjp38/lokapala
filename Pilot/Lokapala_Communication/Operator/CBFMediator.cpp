@@ -24,3 +24,25 @@ void CCBFMediator::InitiallizeCommunication()
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
 	_interface->Initiallize();
 }
+
+void CCBFMediator::SendTextMessage(CString a_message)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendTextMessage(a_message);
+}
+
+
+/**@brief	메인 다이얼로그의 포인터를 저장한다.
+ */
+void CCBFMediator::SetMainDlg(CDialog *a_pDlg)
+{
+	m_mainDlg = a_pDlg;
+}
+
+
+/**@brief	메인 다이얼로그의 포인터를 리턴한다.
+ */
+CDialog *CCBFMediator::GetMainDlg()
+{
+	return m_mainDlg;
+}
