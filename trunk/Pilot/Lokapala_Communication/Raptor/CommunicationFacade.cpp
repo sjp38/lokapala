@@ -11,11 +11,11 @@
 
 /**@brief	소켓을 생성한 후, 오퍼레이터에게 connect 한다.
  */
-void CCommunicationFacade::Initiallize()
+void CCommunicationFacade::Initiallize(DWORD a_ServerAddress)
 {
 	CDharaniInterface *dharaniInterface;
 	dharaniInterface = new CDharaniFacade();
-	dharaniInterface->DharaniClientInitiallize();
+	dharaniInterface->DharaniClientInitiallize(a_ServerAddress);
 }
 
 

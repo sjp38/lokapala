@@ -29,7 +29,7 @@ public :
 		return m_instance;
 	}
 
-	virtual void Initiallize();
+	virtual void Initiallize(DWORD a_ServerAddress);
 	virtual void SendTextMessage(CString a_message);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

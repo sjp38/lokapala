@@ -97,7 +97,7 @@ BOOL COperatorDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 	CCBFMediator::Instance()->SetMainDlg(this);
-	CCBFMediator::Instance()->InitiallizeCommunication();
+	CCBFMediator::Instance()->BeginCommunication();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

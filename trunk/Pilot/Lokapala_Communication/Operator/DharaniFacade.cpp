@@ -17,9 +17,9 @@ void CDharaniFacade::DharaniServerInitiallize()
 
 /**@brief	dharani 컴포넌트의 클라이언트 모델 초기화.
  */
-void CDharaniFacade::DharaniClientInitiallize()
+void CDharaniFacade::DharaniClientInitiallize(DWORD a_ServerAddress)
 {
-	CDharaniClientManager::Instance()->Initiallize();
+	CDharaniClientManager::Instance()->Initiallize(a_ServerAddress);
 }
 
 /**@brief	클라이언트에게 메세지를 날린다.

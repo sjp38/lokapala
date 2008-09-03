@@ -19,7 +19,7 @@ void CCBFMediator::ReadDAM()
 /**@brief	CCM의 통신 초기화. 서버 구조를 구현하기 위해 리슨 소켓을 생성하고 랩터로부터의 연결 요청을 수락한다.
  * @remarks	다라니 컴포넌트 테스트 용.
  */
-void CCBFMediator::InitiallizeCommunication()
+void CCBFMediator::BeginCommunication()
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
 	_interface->Initiallize();

@@ -9,12 +9,13 @@
 #include "DharaniExternSD.h"
 #include "DharaniClientManager.h"
 
-void CDharaniClientManager::Initiallize()
+void CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 {
 	WSADATA wsaData;
 	if(WSAStartup(MAKEWORD(2,2), &wsaData) != 0)
 	{
 		AfxMessageBox(_T("WSAStartup() error!"));
+		return;
 	}
 
 	m_serverSocket = WSASocket(PF_INET, SOCK_STREAM,0,NULL,0,WSA_FLAG_OVERLAPPED);
@@ -22,13 +23,22 @@ void CDharaniClientManager::Initiallize()
 	SOCKADDR_IN serverAddr;
 	memset(&serverAddr, 0, sizeof(serverAddr));
 	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	serverAddr.sin_addr.s_addr = htonl(a_ServerAddress);
 	serverAddr.sin_port = htons(SERVER_PORT);
 	
 	if(connect(m_serverSocket, (SOCKADDR *)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
 	{
 		AfxMessageBox(_T("connect() error!"));
+		closesocket(m_serverSocket);
+		WSACleanup();
+		return;
 	}
+	
+	hostent *hostAddress = gethostbyname("");
+	memcpy(&m_selfAddress, hostAddress->h_addr_list[0], sizeof(m_selfAddress));
+	CDharaniExternSD::Instance()->NotifyReceived(inet_ntoa(m_selfAddress));	
+
+	send(m_serverSocket, (char *)((void *)&m_selfAddress), sizeof(m_selfAddress), 0);
 
 	_beginthreadex(NULL,0,&CDharaniClientManager::ReceiverThread,(LPVOID)m_serverSocket, 0, NULL);
 }

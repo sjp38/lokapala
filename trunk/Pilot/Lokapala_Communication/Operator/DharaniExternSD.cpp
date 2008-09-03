@@ -23,11 +23,20 @@ void CDharaniExternSD::NotifyReceived(char *a_receivedMessage)
 
 /**@brief	클라이언트로부터의 연결이 성사되었음을 알린다.
  */
-void CDharaniExternSD::NotifyAccepted()
+void CDharaniExternSD::NotifyAccepted(in_addr *a_clientIp, in_addr *a_localIp)
 {
+	USES_CONVERSION;
+	CString message = _T("accepted : ");
+	CString address = A2W(inet_ntoa(*a_clientIp));
+	address += _T("/");
+	address += A2W(inet_ntoa(*a_localIp));
+	message += address;
 	CDialog *pDlg = CCBFMediator::Instance()->GetMainDlg();
 	CListBox *pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_LISTTEST));
-	pListBox->AddString(_T("accepted"));
+	pListBox->AddString(message);
+
+	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_USERLIST));
+	pListBox->AddString(address);
 }
 
 void CDharaniExternSD::NotifyLeft()

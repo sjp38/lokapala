@@ -45,7 +45,7 @@ public :
 	void ReadDAM();
 
 	//CCM
-	void InitiallizeCommunication();
+	void BeginCommunication();
 	void SendTextMessage(CString a_message);
 
 

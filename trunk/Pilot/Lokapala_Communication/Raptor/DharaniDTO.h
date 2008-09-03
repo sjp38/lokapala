@@ -15,8 +15,11 @@ class CDharaniDTO
 {
 public :
 	char *m_message;
-	char *m_publicIp;
-	char *m_privateIp;
+	DWORD m_publicIp;
+	DWORD m_privateIp;
+
+	CDharaniDTO(){}
+	~CDharaniDTO(){}
 };
 
 #endif
