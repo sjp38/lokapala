@@ -27,7 +27,7 @@ public :
 		return m_instance;
 	}
 
-	void Initiallize();
+	void Initiallize(DWORD a_ServerAddress);
 	void SendTextMessage(char *a_message);
 
 protected :
@@ -39,6 +39,7 @@ protected :
 private :
 	/**@brief	completion port kernel object handle	*/
 	SOCKET m_serverSocket;	//서버 소켓 디스크립터
+	in_addr m_selfAddress;
 	static unsigned int WINAPI ReceiverThread(LPVOID a_serverSocket);
 
 	/**@brief	싱글톤	*/

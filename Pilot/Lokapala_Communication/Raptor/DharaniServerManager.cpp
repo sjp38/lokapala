@@ -30,19 +30,18 @@ void CDharaniServerManager::Initiallize()
 
 	for(int i=0;i<CONCURRENT_THREAD_NUM;i++)
 	{
-		_beginthreadex(NULL,0,&CDharaniServerManager::CompletionThread,(LPVOID)m_hCompletionPort, 0, NULL);
+		_beginthreadex(NULL,0,&CDharaniServerManager::ReceiverThread,(LPVOID)m_hCompletionPort, 0, NULL);
 	}
 
 	//리슨 소켓 생성
 	hListenSocket = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
 
-	//바인드/리슨
+	//바인드,리슨
 	SOCKADDR_IN servAddr;
 	servAddr.sin_family = AF_INET;
 	servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	servAddr.sin_port = htons(SERVER_PORT);
 	bind(hListenSocket, (SOCKADDR *)&servAddr, sizeof(servAddr));
-
 	listen(hListenSocket, 15);
 
 	//accept 과정과 소켓/completion port의 연결 과정은 쓰레드로 분립시킨다.
@@ -63,13 +62,21 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		int addrLen = sizeof(clientAddress);
 
 		hClientSocket = accept(hListenSocket, (SOCKADDR *)&clientAddress, &addrLen);
-		CDharaniExternSD::Instance()->NotifyAccepted();
+
+		//클라이언트의 로컬 ip 정보(private ip일 수 있다)를 받고 연결을 알린다.
+		in_addr clientLocalIp;
+		recv(hClientSocket, (char *)((void *)&clientLocalIp), sizeof(in_addr), 0);		
+		CDharaniExternSD::Instance()->NotifyAccepted(&clientAddress.sin_addr, (in_addr *)&clientLocalIp);
 		
+		//소켓 데이터 세팅
 		socketData = (PTR_SOCKET_DATA)malloc(sizeof(SOCKET_DATA));
 		socketData->descriptor = hClientSocket;
 		memcpy(&(socketData->addr), &clientAddress, addrLen);
+		socketData->localIp = (in_addr)clientLocalIp;
+		
 		//completion port에 소켓을 연결.
 		CreateIoCompletionPort((HANDLE)hClientSocket, (HANDLE)a_hCompletionPort, (DWORD)socketData, 0);
+		
 		//클라이언트 소켓 목록에 소켓 정보를 추가(크리티컬 섹션).
 		CDharaniServerManager::Instance()->AddToClientSockets(socketData);
 
@@ -90,7 +97,7 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
  *			completion port에 연결된 소켓에 입력된 데이터가 있을 때, SD를 통해 클라이언트 코드 측으로 데이터를 넘겨준다.
  *			이후, 계속해서 데이터 입력을 기다린다.
  */
-unsigned int WINAPI CDharaniServerManager::CompletionThread(void *a_hCompletionPort)
+unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPort)
 {
 	DWORD flags;
 	DWORD bytesTransferred;
@@ -131,7 +138,7 @@ void CDharaniServerManager::BroadcastTextMessage(char *a_message)
 {
 	WSABUF wsaBuf;
 	wsaBuf.buf = a_message;
-	wsaBuf.len = sizeof(a_message);
+	wsaBuf.len = strlen(a_message)*sizeof(char);
 
 	for(int i=0 ;i<this->m_socketCount ; i++)
 	{
@@ -157,7 +164,7 @@ void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
 	{
 		if(m_clientSockets[i].descriptor == a_socket)
 		{
-			m_socketCount--;
+			m_clientSockets[m_socketCount--] = m_clientSockets[i];
 			for(int j=i; j<m_socketCount; j++)
 			{
 				m_clientSockets[j] = m_clientSockets[j+1];

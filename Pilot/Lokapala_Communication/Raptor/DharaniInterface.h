@@ -27,7 +27,7 @@ public :
 	 * @return	void
 	 */
 	virtual void DharaniServerInitiallize() = 0;
-	virtual void DharaniClientInitiallize() = 0;
+	virtual void DharaniClientInitiallize(DWORD a_ServerAddress) = 0;
 };
 
 #endif

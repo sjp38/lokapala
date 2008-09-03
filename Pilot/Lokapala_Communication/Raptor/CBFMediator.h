@@ -53,7 +53,7 @@ public :
 	void ReadDAM();
 
 	//CCM
-	void InitiallizeCommunication();
+	void InitiallizeCommunication(DWORD a_ServerAddress);
 	void SendTextMessage(CString a_message);
 
 protected :

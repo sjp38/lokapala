@@ -18,10 +18,10 @@ void CCBFMediator::ReadDAM()
 /**@brief	CCM의 통신 초기화. 클라이언트 구조를 만들기 위해 소켓을 생성하고 오퍼레이터에게 connect 한다.
  * @remarks	다라니 컴포넌트 테스트 용.
  */
-void CCBFMediator::InitiallizeCommunication()
+void CCBFMediator::InitiallizeCommunication(DWORD a_ServerAddress)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->Initiallize();
+	_interface->Initiallize(a_ServerAddress);
 }
 
 /**@brief	특정 메세지를 오퍼레이터에게 전달한다.

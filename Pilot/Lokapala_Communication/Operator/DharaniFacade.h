@@ -19,7 +19,7 @@ public :
 	virtual void DharaniBroadcastText(CDharaniDTO *a_sendData);
 	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData);
 	virtual void DharaniServerInitiallize(void);
-	virtual void DharaniClientInitiallize(void);
+	virtual void DharaniClientInitiallize(DWORD a_ServerAddress);
 
 	CDharaniFacade(){}
 	~CDharaniFacade(){}

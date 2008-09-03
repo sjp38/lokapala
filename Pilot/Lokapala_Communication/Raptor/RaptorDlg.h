@@ -30,4 +30,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButtontest();
+	afx_msg void OnBnClickedConnectbutton();
 };

@@ -48,7 +48,7 @@ private :
 	HANDLE m_hMutex;		//뮤텍스 핸들
 
 	
-	static unsigned int WINAPI CompletionThread(LPVOID a_hCompletionPort);
+	static unsigned int WINAPI ReceiverThread(LPVOID a_hCompletionPort);
 	static unsigned int WINAPI AcceptorThread(LPVOID a_hCompletionPort);
 
 	/**@brief	singleton	*/

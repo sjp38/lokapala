@@ -63,6 +63,7 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_BUTTONTEST, &CRaptorDlg::OnBnClickedButtontest)
+	ON_BN_CLICKED(IDC_CONNECTBUTTON, &CRaptorDlg::OnBnClickedConnectbutton)
 END_MESSAGE_MAP()
 
 
@@ -97,7 +98,7 @@ BOOL CRaptorDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 	CCBFMediator::Instance()->SetMainDlg(this);
-	CCBFMediator::Instance()->InitiallizeCommunication();
+	//CCBFMediator::Instance()->InitiallizeCommunication();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -152,10 +153,23 @@ HCURSOR CRaptorDlg::OnQueryDragIcon()
 }
 
 
+/**@brief	테스트용 문자 전송 버튼 클릭
+ */
 void CRaptorDlg::OnBnClickedButtontest()
 {
 	// TODO: Add your control notification handler code here
 	CString message;
 	this->GetDlgItemTextW(IDC_EDITTEST,message);
 	CCBFMediator::Instance()->SendTextMessage(message);
+}
+
+/**@brief	오퍼레이터로 접속 버튼 클릭
+ */
+void CRaptorDlg::OnBnClickedConnectbutton()
+{
+	// TODO: Add your control notification handler code here
+	CIPAddressCtrl *pIpControl = (CIPAddressCtrl *)(this->GetDlgItem(IDC_SERVERIP));
+	DWORD serverIp;
+	pIpControl->GetAddress(serverIp);
+	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
 }
