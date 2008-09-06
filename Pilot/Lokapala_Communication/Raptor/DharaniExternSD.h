@@ -23,7 +23,7 @@ public :
 		return m_instance;
 	}
 	void NotifyAccepted(in_addr *a_clientIp, in_addr *a_localIp);
-	void NotifyLeft();
+	void NotifyLeft(in_addr *a_globalIP, in_addr *a_localIp);
 	void NotifyReceived(char *a_receivedMessage);	
 
 protected :

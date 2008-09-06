@@ -29,7 +29,9 @@ public :
 		return m_instance;
 	}
 	void Initiallize();
+	void SendMessageTo(SOCKET a_receiver, char *a_message);
 	void BroadcastTextMessage(char *a_message);
+	SOCKET GetSocketByAddress(DWORD a_globalIp, DWORD a_localIp);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDharaniServerManager(){m_socketCount = 0;}
@@ -37,7 +39,9 @@ protected :
 	~CDharaniServerManager(){}
 
 	void RemoveFromClientSockets(SOCKET a_socket);
-	void AddToClientSockets(PTR_SOCKET_DATA a_socketData);
+	void AddToClientSockets(PTR_SOCKET_DATA a_socketData);	
+	void AnalyzeReceived(char *a_receivedMessage, SOCKET a_sender); 
+	
 private :
 	/**@brief	completion port kernel object	*/
 	HANDLE	m_hCompletionPort;

@@ -16,7 +16,15 @@
 class CDharaniFacade : public CDharaniInterface
 {
 public :
-	virtual void DharaniBroadcastText(CDharaniDTO *a_sendData);
+	static CDharaniFacade *Instance()
+	{
+		if(!m_instance)
+		{
+			m_instance = new CDharaniFacade();
+		}
+		return m_instance;
+	}
+	virtual void DharaniSendTextMessageTo(CDharaniDTO *a_sendData);
 	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData);
 	virtual void DharaniServerInitiallize(void);
 	virtual void DharaniClientInitiallize(DWORD a_ServerAddress);
@@ -25,6 +33,8 @@ public :
 	~CDharaniFacade(){}
 
 protected :
+private :
+	static CDharaniFacade *m_instance;
 	
 };
 

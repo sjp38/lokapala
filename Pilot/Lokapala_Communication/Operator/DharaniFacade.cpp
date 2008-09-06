@@ -24,9 +24,17 @@ void CDharaniFacade::DharaniClientInitiallize(DWORD a_ServerAddress)
 
 /**@brief	클라이언트에게 메세지를 날린다.
  */
-void CDharaniFacade::DharaniBroadcastText(CDharaniDTO *a_sendData)
+void CDharaniFacade::DharaniSendTextMessageTo(CDharaniDTO *a_sendData)
 {
-	CDharaniServerManager::Instance()->BroadcastTextMessage(a_sendData->m_message);
+	if(a_sendData->m_globalIp == 0)
+	{
+		CDharaniServerManager::Instance()->BroadcastTextMessage(a_sendData->m_message);
+	}
+	else
+	{
+		SOCKET destiny = CDharaniServerManager::Instance()->GetSocketByAddress(a_sendData->m_globalIp, a_sendData->m_localIp);
+		CDharaniServerManager::Instance()->SendMessageTo(destiny, a_sendData->m_message);
+	}
 }
 
 /**@brief	서버에게 메세지를 날린다.
