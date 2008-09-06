@@ -41,7 +41,10 @@ void CDharaniServerManager::Initiallize()
 	servAddr.sin_family = AF_INET;
 	servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	servAddr.sin_port = htons(SERVER_PORT);
-	bind(hListenSocket, (SOCKADDR *)&servAddr, sizeof(servAddr));
+	if(-1 == bind(hListenSocket, (SOCKADDR *)&servAddr, sizeof(servAddr)) )
+	{
+		AfxMessageBox(_T("bind() Failed!"));
+	}
 	listen(hListenSocket, 15);
 
 	//accept 과정과 소켓/completion port의 연결 과정은 쓰레드로 분립시킨다.
@@ -80,7 +83,7 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		//클라이언트 소켓 목록에 소켓 정보를 추가(크리티컬 섹션).
 		CDharaniServerManager::Instance()->AddToClientSockets(socketData);
 
-		//매번 해당 소켓 전용 ioData를 동적 할당한다.
+		//해당 소켓 전용 ioData를 동적 할당한다.
 		ioData = (PTR_IO_DATA)malloc(sizeof(IO_DATA));
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 		ioData->wsaBuf.len = BUFSIZE;
@@ -111,14 +114,15 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 		if(bytesTransferred == 0)	//EOF 전송(연결 끊어짐)
 		{
 			CDharaniServerManager::Instance()->RemoveFromClientSockets(socketData->descriptor);
-			CDharaniExternSD::Instance()->NotifyLeft();
+			
 			closesocket(socketData->descriptor);
 			free(socketData);
 			free(ioData);
 			continue;
 		}
-
+		
 		ioData->buffer[bytesTransferred] = '\0';
+		//analyzeReceived(ioData->buffer, socketData->descriptor);
 		CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer);
 
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
@@ -130,6 +134,46 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 	}
 
 	return 0;
+}
+
+
+/**@brief	입력받은 메세지를 dharani 프로토콜에 맞게 해석한다.
+ * @param	a_receivedMessage	받은 메세지.
+ * @param	a_sender			메세지를 보낸 상대방으로의 소켓.
+ */
+void CDharaniServerManager::AnalyzeReceived(char *a_receivedMessage, SOCKET a_sender)
+{
+	char ackMessage;
+	switch(a_receivedMessage[0])
+	{
+	case HELLO :
+		ackMessage = ACK_HELLO;
+		SendMessageTo(a_sender, &ackMessage);
+		break;
+	case ACK_HELLO :
+		break;
+	case KEY :
+		break;
+	case ACK_KEY :
+		break;
+	case DATA :
+		break;
+	case ACK_DATA :
+		break;
+	}
+}
+
+/**@brief	특정 소켓에게 메세지를 보낸다.
+ * @param	a_receiver	상대방으로의 소켓
+ * @param	a_message	보낼 메세지
+ */
+void CDharaniServerManager::SendMessageTo(SOCKET a_receiver, char *a_message)
+{
+	WSABUF wsaBuf;
+	wsaBuf.buf = a_message;
+	wsaBuf.len = strlen(a_message)*sizeof(char);
+
+	WSASend(a_receiver, &wsaBuf, 1, NULL, 0, NULL, NULL);
 }
 
 /**@brief	클라이언트들에게 메세지를 뿌려준다.
@@ -155,7 +199,7 @@ void CDharaniServerManager::AddToClientSockets(PTR_SOCKET_DATA a_socketData)
 	ReleaseMutex(m_hMutex);
 }
 
-/**@brief	클라이언트 소켓 목록에서 특정 소켓을 제거한다.
+/**@brief	클라이언트 소켓 목록에서 특정 소켓을 제거하고, 제거 했음을 알린다.
  */
 void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
 {
@@ -163,7 +207,8 @@ void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
 	for(int i=0; i<m_socketCount; i++)
 	{
 		if(m_clientSockets[i].descriptor == a_socket)
-		{
+		{			
+			CDharaniExternSD::Instance()->NotifyLeft(&m_clientSockets[i].addr.sin_addr, &m_clientSockets[i].localIp);
 			m_clientSockets[m_socketCount--] = m_clientSockets[i];
 			for(int j=i; j<m_socketCount; j++)
 			{
@@ -172,4 +217,22 @@ void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
 		}
 	}
 	ReleaseMutex(m_hMutex);
+}
+
+
+/**@brief	글로벌, 로컬 아이피를 가지고 현재 연결된 클라이언트 목록에서 해당 클라이언트의 소켓을 찾아 디스크립터를 반환한다.
+ * @param	a_globalIp	찾고자 하는 클라이언트의 글로벌 아이피
+ * @param	a_localIp	찾고자 하는 클라이언트의 로컬 아이피
+ * @return	해당 클라이언트의 소켓 디스크립터. 찾지 못했을 경우 0
+ */
+SOCKET CDharaniServerManager::GetSocketByAddress(DWORD a_globalIp, DWORD a_localIp)
+{
+	for(int i=0; i<m_socketCount; i++)
+	{
+		if(m_clientSockets[i].addr.sin_addr.s_addr == a_globalIp && m_clientSockets[i].localIp.s_addr == a_localIp)
+		{
+			return m_clientSockets[i].descriptor;
+		}
+	}
+	return 0;
 }

@@ -11,6 +11,18 @@
 #define SERVER_PORT 9987
 #define MAXCLIENT 128
 
+
+//Çì´õ
+#define LOCAL_IP 7
+#define ACK_LOCAL_IP 8
+#define HELLO 1
+#define ACK_HELLO 2
+#define KEY 3
+#define ACK_KEY 4
+#define DATA 5
+#define ACK_DATA 6
+
+
 typedef struct 
 {
 	SOCKET descriptor;
