@@ -38,8 +38,8 @@ void CDharaniExternSD::NotifyAccepted(in_addr *a_globalIp, in_addr *a_localIp)
 	CListBox *pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_LISTTEST));
 	pListBox->AddString(message);
 
-//	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_USERLIST));
-//	pListBox->AddString(address);
+	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_USERLIST));
+	pListBox->AddString(address);
 }
 
 /**@brief	특정 클라이언트가 접속 해제 했음을 알린다.
@@ -54,12 +54,12 @@ void CDharaniExternSD::NotifyLeft(in_addr *a_globalIp, in_addr *a_localIp)
 	address += _T("/");
 	address += A2W(inet_ntoa(*a_localIp));
 
-//	CDialog *pDlg = CCBFMediator::Instance()->GetMainDlg();
-//	CListBox *pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_USERLIST));
-//	UINT index = 0;
-//	index = pListBox->FindString(index, address);
-//	pListBox->DeleteString(index);
+	CDialog *pDlg = CCBFMediator::Instance()->GetMainDlg();
+	CListBox *pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_USERLIST));
+	UINT index = 0;
+	index = pListBox->FindString(index, address);
+	pListBox->DeleteString(index);
 
-//	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_LISTTEST));
-//	pListBox->AddString(address+_T(" leaved"));
+	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_LISTTEST));
+	pListBox->AddString(address+_T(" leaved"));
 }

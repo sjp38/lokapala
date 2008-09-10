@@ -6,6 +6,11 @@
 #ifndef DHARANI_CLIENT_MANAGER_H
 #define DHARANI_CLIENT_MANAGER_H
 
+
+#include <openssl/rsa.h>
+#include <openssl/evp.h>
+#include <openssl/rc4.h>
+
 /**@ingroup GroupDharani
  * @class	CDharaniClientManager
  * @brief	Dharani 컴포넌트에서 클라이언트 역할을 담당한다.
@@ -37,10 +42,14 @@ protected :
 	~CDharaniClientManager(){}
 
 private :
+	static unsigned int WINAPI ReceiverThread(LPVOID a_serverSocket);
+	void Encrypt(char *a_plainText, char *a_cipherText);
+	void Decrypt(char *a_plainText, char *a_cipherText);
+
 	/**@brief	completion port kernel object handle	*/
 	SOCKET m_serverSocket;	//서버 소켓 디스크립터
-	in_addr m_selfAddress;
-	static unsigned int WINAPI ReceiverThread(LPVOID a_serverSocket);
+	int m_passwd;
+	in_addr m_selfAddress;	
 
 	/**@brief	싱글톤	*/
 	static CDharaniClientManager *m_instance;

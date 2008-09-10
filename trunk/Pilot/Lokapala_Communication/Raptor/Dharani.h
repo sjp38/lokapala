@@ -6,6 +6,10 @@
 #ifndef DHARANI_H
 #define DHARANI_H
 
+#include <openssl/rsa.h>
+#include <openssl/evp.h>
+#include <openssl/rc4.h>
+
 #define BUFSIZE	256
 #define CONCURRENT_THREAD_NUM 10
 #define SERVER_PORT 9987
@@ -22,12 +26,15 @@
 #define DATA 5
 #define ACK_DATA 6
 
+#define RC4PASSWD "RC4Pass!"
+
 
 typedef struct 
 {
 	SOCKET descriptor;
 	SOCKADDR_IN addr;
 	in_addr localIp;
+	int passwd;
 } SOCKET_DATA, *PTR_SOCKET_DATA;
 
 typedef struct
@@ -35,6 +42,7 @@ typedef struct
 	OVERLAPPED overlapped;
 	char buffer[BUFSIZE];
 	WSABUF wsaBuf;
+	unsigned short formerReceivedBytes;
 } IO_DATA, *PTR_IO_DATA;
 
 #endif
