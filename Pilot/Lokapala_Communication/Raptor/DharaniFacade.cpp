@@ -32,7 +32,7 @@ void CDharaniFacade::DharaniSendTextMessageTo(CDharaniDTO *a_sendData)
 	}
 	else
 	{
-		SOCKET destiny = CDharaniServerManager::Instance()->GetSocketByAddress(a_sendData->m_globalIp, a_sendData->m_localIp);
+		PTR_SOCKET_DATA destiny = CDharaniServerManager::Instance()->GetSocketByAddress(a_sendData->m_globalIp, a_sendData->m_localIp);
 		CDharaniServerManager::Instance()->SendMessageTo(destiny, a_sendData->m_message);
 	}
 }

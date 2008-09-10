@@ -39,6 +39,21 @@ void CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	CDharaniExternSD::Instance()->NotifyReceived(inet_ntoa(m_selfAddress));	
 
 	send(m_serverSocket, (char *)((void *)&m_selfAddress), sizeof(m_selfAddress), 0);
+	int totalReceived = 0;
+	while(1)
+	{
+		int received = recv(m_serverSocket, (char *)(&m_passwd+totalReceived), sizeof(m_passwd), 0);
+		totalReceived += received;
+		if(totalReceived==sizeof(m_passwd))
+		{
+			char keyNotify[BUFSIZE];
+			_itoa_s(m_passwd, keyNotify, 16);
+			CDharaniExternSD::Instance()->NotifyReceived("received cryption key is :");
+			CDharaniExternSD::Instance()->NotifyReceived(keyNotify);
+
+			break;
+		}
+	}
 
 	_beginthreadex(NULL,0,&CDharaniClientManager::ReceiverThread,(LPVOID)m_serverSocket, 0, NULL);
 }
@@ -49,35 +64,80 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 {
 	SOCKET serverSocket = (SOCKET)a_serverSocket;
 	char buffer[BUFSIZE];
-	int receivedBytes;
-
+	char decrypted[BUFSIZE];
+	
 	while(1)
 	{
-		receivedBytes = recv(serverSocket, buffer, BUFSIZE, 0);
-		if(receivedBytes == SOCKET_ERROR)
+		int totalReceived=0;
+		while(1)
 		{
-			AfxMessageBox(_T("receive failed!"));
-			closesocket(serverSocket);
-			WSACleanup();
-			return 0;
-		}
-		if(receivedBytes == 0)
-		{
-			AfxMessageBox(_T("server connect failed!"));
-			closesocket(serverSocket);
-			WSACleanup();
-			return 0;
-		}
+			int receivedBytes = recv(serverSocket, buffer+totalReceived, BUFSIZE, 0);
+			if(receivedBytes == SOCKET_ERROR)
+			{
+				AfxMessageBox(_T("receive failed!"));
+				closesocket(serverSocket);
+				WSACleanup();
+				return 0;
+			}			
+			if(receivedBytes == 0)
+			{
+				AfxMessageBox(_T("server connect failed!"));
+				closesocket(serverSocket);
+				WSACleanup();
+				return 0;
+			}
 
-		buffer[receivedBytes]='\0';
-		CDharaniExternSD::Instance()->NotifyReceived(buffer);
+			buffer[receivedBytes]='\0';
+
+			char size[3];
+			_itoa_s(buffer[0],size,16);
+			CDharaniExternSD::Instance()->NotifyReceived(size);
+			CDharaniExternSD::Instance()->NotifyReceived(buffer);	//테스트용.
+
+			CDharaniClientManager::Instance()->Decrypt(decrypted, buffer+1);
+			
+			totalReceived += receivedBytes;
+			if(totalReceived == buffer[0]+1)
+			{
+				decrypted[totalReceived]='\0';
+				break;
+			}
+		}
+		CDharaniExternSD::Instance()->NotifyReceived(decrypted);
 	}
 	return 0;
 }
 
 /**@brief	메세지를 서버에게 날린다.
+ * @param	a_message	보낼 메세지
  */
 void CDharaniClientManager::SendTextMessage(char *a_message)
 {
-	send(m_serverSocket, a_message, strlen(a_message), 0);
+	char encrypted[BUFSIZE];
+	encrypted[0] = (unsigned char)strlen(a_message);
+	this->Encrypt(a_message, encrypted+1);
+	send(m_serverSocket, encrypted, strlen(a_message)+1, 0);
+}
+
+
+/**@brief	특정 문자열을 암호화 한다. RC4 알고리즘을 사용한다.
+ * @param	a_plainText	암호화 될, 오리지널 문자열
+ * @param	a_cipherText	암호화 된 후의 문자열
+ */
+void CDharaniClientManager::Encrypt(char *a_plainText, char *a_cipherText)
+{
+	RC4_KEY rc4Key;
+	RC4_set_key(&rc4Key, strlen((char *)&m_passwd),(unsigned char *)&m_passwd);
+	RC4(&rc4Key, strlen(a_plainText), (unsigned char *)a_plainText, (unsigned char *)a_cipherText);
+}
+
+/**@brief	특정 문자열을 복호화 한다. RC4 알고리즘을 사용한다.
+ * @param	a_plainText	복호화 된 후의 문자열
+ * @param	a_cipherText	복호화 될 오리지널 암호문자열
+ */
+void CDharaniClientManager::Decrypt(char *a_plainText, char *a_cipherText)
+{
+	RC4_KEY rc4Key;
+	RC4_set_key(&rc4Key, strlen((char *)&m_passwd),(unsigned char *)&m_passwd);
+	RC4(&rc4Key, strlen(a_cipherText), (unsigned char *)a_cipherText, (unsigned char *)a_plainText);
 }
