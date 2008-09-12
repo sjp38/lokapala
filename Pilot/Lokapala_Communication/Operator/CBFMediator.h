@@ -46,7 +46,8 @@ public :
 
 	//CCM
 	void BeginCommunication();
-	void SendTextMessage(CString a_message);
+	void BroadcastTextMessage(CString a_message);
+	void SendTextMessageTo(CString a_targetAddress, CString a_message);
 
 
 	void SetMainDlg(CDialog *a_pDlg);

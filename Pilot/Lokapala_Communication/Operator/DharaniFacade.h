@@ -25,6 +25,7 @@ public :
 		return m_instance;
 	}
 	virtual void DharaniSendTextMessageTo(CDharaniDTO *a_sendData);
+	virtual void DharaniBroadcastTextMessage(CDharaniDTO *a_sendData);
 	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData);
 	virtual void DharaniServerInitiallize(void);
 	virtual void DharaniClientInitiallize(DWORD a_ServerAddress);
