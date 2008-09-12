@@ -14,8 +14,9 @@
 class CCommunicationBI
 {
 public :
-	virtual void Initiallize() = 0;
-	virtual void SendTextMessage(CString a_message) = 0;
+	virtual void InitiallizeAsServer() = 0;
+	virtual void SendTextMessageTo(CString a_targetAddress, CString a_message) = 0;
+	virtual void BroadcastTextMessage(CString a_message) = 0;
 };
 
 #endif

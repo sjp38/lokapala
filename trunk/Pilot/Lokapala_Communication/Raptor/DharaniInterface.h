@@ -16,11 +16,13 @@ class CDharaniInterface
 {
 public :
 	/**@brief	원하는 address로 원하는 메세지를 보낸다. non-blocking 된다.
-	 * @param	a_sendMessage	보내고자 하는 메세지(문자열 형태)
-	 * @param	a_targetAddress	보내고자 하는 대상의 ip 주소(문자열 형태)
-	 * @return	void
+	 * @param	a_sendData	보내고자 하는 데이터. CDharaniDTO 포인터로, 문자와 주소를 갖는다.
 	 */
 	virtual void DharaniSendTextMessageTo(CDharaniDTO *a_sendData) = 0;
+	/**@brief	연결된 모든 클라이언트에게 메세지를 보낸다.
+	 * @param a_sendData	보내고자 하는 데이터. CDharaniDTO 포인터로, 문자와 주소를 갖는다. 주소는 의미가 없다.
+	 */
+	virtual void DharaniBroadcastTextMessage(CDharaniDTO *a_sendData) = 0;
 	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData) = 0;
 
 	/**@brief	초기화. tcp 기반으로 리슨 소켓을 만들고 IOCP 모델링 방식에 맞게 모든 초기화 부분을 수행한다.

@@ -22,19 +22,21 @@ void CDharaniFacade::DharaniClientInitiallize(DWORD a_ServerAddress)
 	CDharaniClientManager::Instance()->Initiallize(a_ServerAddress);
 }
 
-/**@brief	클라이언트에게 메세지를 날린다.
+/**@brief	특정 클라이언트에게 메세지를 날린다.
+ * @param	a_sendData	보낼 메세지와 목적 클라이언트의 주소를 가지고 있다.
  */
 void CDharaniFacade::DharaniSendTextMessageTo(CDharaniDTO *a_sendData)
 {
-	if(a_sendData->m_globalIp == 0)
-	{
-		CDharaniServerManager::Instance()->BroadcastTextMessage(a_sendData->m_message);
-	}
-	else
-	{
-		PTR_SOCKET_DATA destiny = CDharaniServerManager::Instance()->GetSocketByAddress(a_sendData->m_globalIp, a_sendData->m_localIp);
-		CDharaniServerManager::Instance()->SendMessageTo(destiny, a_sendData->m_message);
-	}
+	PTR_SOCKET_DATA destiny = CDharaniServerManager::Instance()->GetSocketByAddress(a_sendData->m_globalIp, a_sendData->m_localIp);
+	CDharaniServerManager::Instance()->SendMessageTo(destiny, a_sendData->m_message);
+}
+
+/**@brief	연결되어 있는 모든 클라이언트에게 메세지를 날린다.
+ * @param	a_sendData	보낼 메세지를 가지고 있다.
+ */
+void CDharaniFacade::DharaniBroadcastTextMessage(CDharaniDTO *a_sendData)
+{
+	CDharaniServerManager::Instance()->BroadcastTextMessage(a_sendData->m_message);
 }
 
 /**@brief	서버에게 메세지를 날린다.

@@ -32,8 +32,9 @@ public :
 		return m_instance;
 	}
 
-	virtual void Initiallize();
-	virtual void SendTextMessage(CString a_message);
+	virtual void InitiallizeAsServer();
+	virtual void SendTextMessageTo(CString a_targetAddress, CString a_message);
+	virtual void BroadcastTextMessage(CString a_message);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCommunicationFacade(){}

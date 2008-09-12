@@ -22,13 +22,26 @@ void CCBFMediator::ReadDAM()
 void CCBFMediator::BeginCommunication()
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->Initiallize();
+	_interface->InitiallizeAsServer();
 }
 
-void CCBFMediator::SendTextMessage(CString a_message)
+/**@brief	CCM을 이용해 문자를 방송한다. 연결되어 있는 모든 raptor에게 문자를 전송한다.
+ * @param	a_message	방송할 문자.
+ */
+void CCBFMediator::BroadcastTextMessage(CString a_message)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->SendTextMessage(a_message);
+	_interface->BroadcastTextMessage(a_message);
+}
+
+/**@brief	CCM을 이용해서 문자를 전송한다.
+ * @param	a_targetAddress	문자를 전송할 위치의 ip 주소.
+ * @param	a_message	전송할 문자.
+ */
+void CCBFMediator::SendTextMessageTo(CString a_targetAddress, CString a_message)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendTextMessageTo(a_targetAddress, a_message);
 }
 
 

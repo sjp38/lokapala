@@ -155,7 +155,17 @@ HCURSOR COperatorDlg::OnQueryDragIcon()
 void COperatorDlg::OnBnClickedButtontest()
 {
 	// TODO: Add your control notification handler code here
-	CString buffer;
-	this->GetDlgItemTextW(IDC_EDITTEST, buffer);
-	CCBFMediator::Instance()->SendTextMessage(buffer);
+	CString message;
+	this->GetDlgItemTextW(IDC_EDITTEST, message);
+
+	CListBox *plistBox = (CListBox *)(this->GetDlgItem(IDC_LISTTEST));
+
+	CString address;
+	plistBox->GetText(plistBox->GetCurSel(), address);
+	if(address==_T(""))
+	{
+		CCBFMediator::Instance()->BroadcastTextMessage(message);
+		return;
+	}
+	CCBFMediator::Instance()->SendTextMessageTo(address, message);
 }

@@ -7,39 +7,45 @@
 #include <atlconv.h>
 #include "CommunicationFacade.h"
 
-/**@brief	통신을 위한 초기화를 한다.
+/**@brief	서버로써의 통신을 위한 초기화를 한다.
  */
-void CCommunicationFacade::Initiallize()
+void CCommunicationFacade::InitiallizeAsServer()
 {
 	CDharaniInterface *dharaniInterface;
 	dharaniInterface = CDharaniFacade::Instance();
 	dharaniInterface->DharaniServerInitiallize();
 }
 
-/**@brief	문자열을 보낸다.
+/**@brief	특정 주소의 raptor에게 문자열을 보낸다.
+ * @param	a_targetAddress	문자열을 받을 raptor의 ip 주소
+ * @param	a_message	보낼 문자열 메세지.
  */
-void CCommunicationFacade::SendTextMessage(CString a_message)
+void CCommunicationFacade::SendTextMessageTo(CString a_targetAddress, CString a_message)
 {
-	int tokenIndex = 0;
-	CString address;
-	address = a_message.Tokenize(_T(":"), tokenIndex);
-	
 	USES_CONVERSION;
 	CDharaniDTO message;
+	int tokenIndex = 0;
+	message.m_globalIp = inet_addr( W2A(a_targetAddress.Tokenize(_T("/"), tokenIndex)) );
+	message.m_localIp = inet_addr( W2A(a_targetAddress.Tokenize(_T("/"), tokenIndex)) );
 	message.m_message = W2A(a_message);
-	if(address==a_message)
-	{
-		message.m_globalIp = 0;
-		message.m_localIp = 0;
-	}
-	else
-	{
-		tokenIndex = 0;
-		message.m_globalIp = inet_addr( W2A(address.Tokenize(_T("/"), tokenIndex)) );
-		message.m_localIp = inet_addr( W2A(address.Tokenize(_T("/"), tokenIndex)) );
-	}
 
 	CDharaniInterface *dharaniInterface;
 	dharaniInterface = CDharaniFacade::Instance();
 	dharaniInterface->DharaniSendTextMessageTo(&message);
+}
+
+/**@brief	연결되어 있는 모든 raptor에게 문자를 보낸다.
+ * @param	a_message	보낼 문자열 메세지.
+ */
+void CCommunicationFacade::BroadcastTextMessage(CString a_message)
+{	
+	USES_CONVERSION;
+	CDharaniDTO message;
+	message.m_message = W2A(a_message);
+	message.m_globalIp = 0;
+	message.m_localIp = 0;
+
+	CDharaniInterface *dharaniInterface;
+	dharaniInterface = CDharaniFacade::Instance();
+	dharaniInterface->DharaniBroadcastTextMessage(&message);
 }
