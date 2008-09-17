@@ -1,0 +1,123 @@
+/** @mainpage	LOKAPALA::RAPTOR
+   @section	intro Project intro
+   	- Raptor는 LOKAPALA를 구성하는 사용자 감시/제어 프로그램이다.
+ 	
+ 	- Raptor가 제공하는 기능은 다음과 같다.
+		-# 불사성
+		-# 고장 상태 알림
+		-# 로그아웃 상태에서의 기능
+			- 로그인
+			- 컴퓨터 사용 제한
+		-# 로그인 상태에서의 기능
+			- 로그아웃
+			- 컴퓨터 고장 신고
+			- 컴퓨터 수리 신고
+			- 1:1 메신저 
+ 	
+ 	@section definition System design definition
+ 	- Raptor는 CBD 방법론에 의거해 설계된다. 하나의 mediator와 8개의 component로 구성된다.\n
+ 		각각의 component는 다음과 같다.
+ 		- Data Admin Manager(DAM)
+ 			- Raptor의 모든 데이터를 관리한다.
+ 			- 관리하는 데이터는 user 정보와 고장 신고/처리 상태 정보 등을 포함한다.
+ 			- Operator와 달리, 필요치 않으므로 데이터를 파일 형태로 저장하거나 하지 않는다.
+ 			- Operator와 마찬가지로 DCM에 의해서만 Read/Write된다.
+ 		
+ 		- Decision Manager(DCM)
+ 			- Raptor 자신이 감지한 사용자의 행동을 Operator에게 보고한다.
+ 			- Operator로부터 받은 명령을 '이해'하고 그에 따른 '행동'을 한다.
+ 			- 유저로부터 받은 명령 - 로그인 시도, 고장 신고 등 - 에 따른 행동을 한다.
+ 			- 자신의 받은 명령과 유저의 명령 등은 로그를 남긴다.
+ 			- 명령에 따른 행동을 하기 위해 DAM으로부터 데이터를 읽고 쓴다.
+ 			- Operator와 통신하기 위해 CCM을 사용한다.
+ 			- 로그를 남기기 위해 LGM를 사용한다.
+ 			- OSM으로부터 사용자가 실행하는 프로세스 정보를 보고받는다.
+ 			- Operator로부터 받은 명령에 따른 행동을 위해 CTM을 사용한다.
+ 			- NDM을 활성화/비활성화 시키고 NDM으로부터 행동사항을 보고받기 위해 NDM을 사용한다.
+ 			
+ 		- Communication Manager(CCM)
+ 			- Operator 로의 소켓 연결 및 자신의 소켓을 관리하며 Raptor와 Operator 간의 통신을 위한 메세지 전송/수신을 책임진다.
+ 			- 내부적으로 Dharani 프로토콜을 이용해 전송 데이터를 암호화 하고 데이터 불연속 가능성 문제를 처리한다.
+ 			- 또한, LOKAPALA 자체의 명령 및 보고 문법을 직접 해독, 적절한 컴포넌트에게 수신받은 메세지를 넘긴다.
+ 			- DCM 또는 MSM 의 요청에 의해 메세지를 보내며 수신한 메세지의 종류를 확인(해독), DCM 또는 MSM 중 적절한 컴포넌트에게 전달한다.
+ 			
+ 		- Messenger Manager(MSM)
+ 			- 메신저 기능을 책임진다. 특정 주소로의 메시지/파일 전송, 연결된 모든 Raptor로의 메시지/파일 방송을 담당한다.
+ 			- Raptor 간의 메시지/파일 전송은 1차적으로 Operator에게 전달되며, Operator의 MSM에서 중계해 준다.
+ 			- 메신저의 행동은 로그를 남긴다.
+ 			- 사용자 감시/제어 기능과 별도로 동작하므로 DCM의 관리를 받지 않고 직접 CCM과 통신한다.
+ 			- 역시 독립적으로 LGM를 통해 로그를 남긴다.
+ 			
+ 		- Log Manager(LGM)
+ 			- 로그를 남기는 기능을 책임진다. 로그 데이터는 DAM이 아닌 LGM이 관리하며, Raptor 자신의 필요에 따라 파일 형태로 Save/Load 할 수 있다.
+ 			- DCM과 MSM으로부터 로그 기록 요청을 받는다.
+ 			
+ 		- NeverDie Manager(NDM)
+ 			- Raptor가 사용자의 어떤 행동에도 종료되지 않도록 한다.
+ 			- 정상적인 방법(WM_EXIT 메시지 등의 메시지 드리븐 종료), 비정상적인 방법(TerminateProcess API의 사용)에 대해 Raptor가 종료되지 않도록 한다.
+ 			- 정상적인 종료에 대해서는 새로운 Raptor를 실행시키고 자신은 순순히 죽어 주며, TerminateProcess API를 글로벌 후킹하여 이를 처리한다.
+ 			- 사용자의 Raptor 종료 시도는 기록되어야 하므로 DCM에게 사용자의 종료 시도를 전달하여 로그를 남긴다.
+ 			- 경우에 따라(최고레벨 관리자 패스워드 입력 등)서 Raptor는 종료 될 수 있어야 한다.
+ 			- 경우에 따른 Raptor의 종료를 위해 DCM은 NDM을 사용해 NDM을 활성화/비활성화 한다.
+ 			- 로그를 남기기 위해 NDM은 DCM에게 사용자의 시도 등을 보고한다.
+ 		
+ 		- Observe Manager(OSM)
+ 			- 사용자의 실행 프로세스를 감시한다.
+ 			- WM_CREATE 메세지를 글로벌 후킹하여 최근 실행한 프로세스 이름을 알아내어 DCM에 전달한다. DCM은 이를 Operator에게 보고한다.
+ 			- 경우에 따라 최근 실행한 프로세스만이 아니라 현재 실행 중인 프로세스 전체의 이름을 알아내야 할 수 있다.
+ 			- 사용자의 실행 프로세스를 보고하기 위해 DCM을 사용한다.
+ 			
+ 		- Control Manager(CTM)
+ 			- 사용자의 컴퓨터를 제어한다.
+ 			- 사용자의 원활한 컴퓨터 사용 방해, 특정/전체 프로세스의 종료, 컴퓨터의 강제 shut down, 강제 로그아웃, 특정 프로세스의 실행 등의 기능을 제공한다.
+ 			- DCM으로부터 명령받아 기능을 제공한다.
+
+ 	
+ 	- 보다 자세한 사항은 http://netro.ajou.ac.kr/~siva/moniwiki/wiki.php/CategoryLOKAPALA 를 참고하도록 한다.
+ 
+   @section developer 개발자 정보
+   	- siva
+ 		- 전체 시스템 설계 및 구현
+ 
+   @section more 추가정보
+   	- 본 프로젝트의 진행은 구글 코드를 연동하여 이슈 트래킹, SVN 서비스를 사용한다. 구글 코드 프로젝트 진행 홈 주소는 http://code.google.com/p/lokapala 이다.
+ */
+ 
+ 
+ 
+ 
+  /**@defgroup	GroupMediator	Mediator
+  *		Mediator.
+  */
+  
+ /**@defgroup	GroupDAM		DataAdmin Manager
+  *		Data Admin Manager Component
+  */
+  
+ /**@defgroup	GroupDCM		Decision Manager
+  *		Decision Manager Component
+  */
+  
+ /**@defgroup	GroupCCM		Comminocation Manager
+  *		Communication Manager Component
+  */
+  
+ /**@defgroup	GroupLGM		Log Manager
+  *		Log Manager Component
+  */
+  
+ /**@defgroup	GroupMSM		Messenger Manager
+  *		Messenger Manager Component
+  */
+
+/**@defgroup	GroupNDM		Never Die Manager
+  *		Never Die Manager Component
+  */
+
+/**@defgroup	GroupOSM		Observe Manager
+  *		Observe Manager Component
+  */
+
+/**@defgroup	GroupCTM		Control Manager
+  *		Control Manager Component
+  */      
