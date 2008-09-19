@@ -33,4 +33,6 @@ public:
 	afx_msg void OnBnClickedConnectbutton();
 	afx_msg void OnBnClickedStartneverdieTest();
 	afx_msg void OnBnClickedStopneverdieTest();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnClose();
 };

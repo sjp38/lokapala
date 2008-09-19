@@ -59,6 +59,7 @@ public :
 	//NDM
 	void StartNeverDie();
 	void StopNeverDie();
+	bool GetNeverDieState();
 
 protected :
 	/**@breif	»ý¼ºÀÚ	*/

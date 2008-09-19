@@ -63,3 +63,12 @@ void CCBFMediator::StopNeverDie()
 	CNeverDieBI *_interface = CNeverDieFacade::Instance();
 	_interface->StopNeverDie();
 }
+
+/**@brief	현재 프로세스가 죽어도 되는지 죽으면 안되는지를 알려준다.
+ * @return	죽어도 된다면 FALSE, 죽어선 안된다면 TRUE
+ */
+bool CCBFMediator::GetNeverDieState()
+{
+	CNeverDieBI *_interface = CNeverDieFacade::Instance();
+	return _interface->GetNeverDieState();
+}

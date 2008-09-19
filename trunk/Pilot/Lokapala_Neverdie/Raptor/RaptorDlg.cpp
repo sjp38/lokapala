@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_BN_CLICKED(IDC_CONNECTBUTTON, &CRaptorDlg::OnBnClickedConnectbutton)
 	ON_BN_CLICKED(IDC_STARTNEVERDIE_TEST, &CRaptorDlg::OnBnClickedStartneverdieTest)
 	ON_BN_CLICKED(IDC_STOPNEVERDIE_TEST, &CRaptorDlg::OnBnClickedStopneverdieTest)
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -100,7 +101,9 @@ BOOL CRaptorDlg::OnInitDialog()
 
 	// TODO: Add extra initialization here
 	CCBFMediator::Instance()->SetMainDlg(this);
-	//CCBFMediator::Instance()->InitiallizeCommunication();
+	CCBFMediator::Instance()->StartNeverDie();
+	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
+	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -176,14 +179,59 @@ void CRaptorDlg::OnBnClickedConnectbutton()
 	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
 }
 
+/**@brief	네버다이 모드 스타트 버튼 클릭
+ */
 void CRaptorDlg::OnBnClickedStartneverdieTest()
 {
 	// TODO: Add your control notification handler code here
 	CCBFMediator::Instance()->StartNeverDie();
+	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
+	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 }
 
+/**@brief	네버다이 모드 중지 버튼 클릭
+ */
 void CRaptorDlg::OnBnClickedStopneverdieTest()
 {
 	// TODO: Add your control notification handler code here
 	CCBFMediator::Instance()->StopNeverDie();
+	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(1);
+	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(0);
+}
+
+/**@brief	PreTranslateMessage의 오버라이드.\n
+ *			esc, return의 입력 시 자동으로 종료되는 다이얼로그 베이스드 기반의 문제를 여기서 해결한다.
+ */
+BOOL CRaptorDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: Add your specialized code here and/or call the base class
+	if(pMsg->message==WM_KEYDOWN)
+	{
+		switch(pMsg->wParam)
+		{
+			case VK_ESCAPE :
+			case VK_RETURN :
+				return TRUE;
+			default :
+				break;
+		}
+	}
+
+	return CDialog::PreTranslateMessage(pMsg);
+}
+
+/**@brief	WM_CLOSE 메세지 이벤트 핸들러.
+ *			순순히 죽어 주되, 현재 죽어선 안된다면 자신과 같은 프로세스를 하나 더 실행하고 죽는다.
+ */
+void CRaptorDlg::OnClose()
+{
+	// TODO: Add your message handler code here and/or call default
+	if(CCBFMediator::Instance()->GetNeverDieState())
+	{
+		WCHAR *selfPath = (WCHAR *)malloc(sizeof(WCHAR)*MAX_PATH);
+		GetModuleFileName(NULL,selfPath,MAX_PATH);
+		ShellExecute(NULL, _T("open"), selfPath, NULL, NULL, SW_SHOWNORMAL);
+	}
+
+	CDialog::OnClose();
 }

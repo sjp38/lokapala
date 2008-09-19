@@ -31,12 +31,15 @@ public :
 
 	virtual void StartNeverDie();
 	virtual void StopNeverDie();
+	virtual bool GetNeverDieState();
 protected :
 	/**@brief	생성자	*/
-	CNeverDieFacade(){}
+	CNeverDieFacade(){m_state = false;}
 	/**@brief	소멸자	*/
 	~CNeverDieFacade(){}
 private :
+	/**@brief	현재 프로그램이 죽어도 되는지 안되는지	*/
+	bool m_state;
 	/**@brief	singleton	*/
 	static CNeverDieFacade *m_instance;
 };

@@ -31,6 +31,7 @@
 #include "NeverDieFacade.h"
 #include "NDDecisionSD.h"
 #include "APIHookingManager.h"
+#include "AutoExecuteManager.h"
 
 #include "ObserveFacade.h"
 #include "OSDecisionSD.h"
@@ -70,3 +71,4 @@ COSDecisionSD *COSDecisionSD::m_instance = NULL;
 
 
 CAPIHookingManager *CAPIHookingManager::m_instance = NULL;
+CAutoExecuteManager *CAutoExecuteManager::m_instance = NULL;
