@@ -22,8 +22,10 @@ void CAPIHookingManager::WriteSelfPathToMemory()
 		AfxMessageBox(_T("message map create fail!!"));
 	}
 	converted = (char *)MapViewOfFile(m_map, FILE_MAP_WRITE, 0, 0, 0);
+	USES_CONVERSION;
+	memcpy(converted, W2A(selfPath), MAX_PATH);
 	
-	wcstombs(converted,selfPath,wcslen(selfPath)+1);
+	free(selfPath);
 }
 
 /**@brief	APILib dll을 이용해 TerminateProcess를 글로벌 후킹한다.

@@ -158,14 +158,23 @@ void COperatorDlg::OnBnClickedButtontest()
 	CString message;
 	this->GetDlgItemTextW(IDC_EDITTEST, message);
 
-	CListBox *plistBox = (CListBox *)(this->GetDlgItem(IDC_LISTTEST));
+	CListBox *plistBox = (CListBox *)(this->GetDlgItem(IDC_USERLIST));
 
-	CString address;
-	plistBox->GetText(plistBox->GetCurSel(), address);
-	if(address==_T(""))
+	int selectedCount = plistBox->GetSelCount();
+
+	if(selectedCount<=0)
 	{
 		CCBFMediator::Instance()->BroadcastTextMessage(message);
 		return;
 	}
-	CCBFMediator::Instance()->SendTextMessageTo(address, message);
+
+	CString address;
+	CArray<int,int> selectedIndex;
+	selectedIndex.SetSize(selectedCount);
+	plistBox->GetSelItems(selectedCount, selectedIndex.GetData());
+	for(int i=0; i<selectedCount; i++)
+	{
+		plistBox->GetText(selectedIndex[i], address);
+		CCBFMediator::Instance()->SendTextMessageTo(address, message);
+	}	
 }
