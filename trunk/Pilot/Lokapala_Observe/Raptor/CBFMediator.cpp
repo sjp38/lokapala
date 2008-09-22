@@ -90,3 +90,19 @@ void CCBFMediator::StopProcessObservation()
 	CObserveBI *_interface = CObserveFacade::Instance();
 	_interface->StopProcessObservation();
 }
+
+/**@brief	OSM에게 현재 실행된 프로세스 이름을 알린다.
+ * @param	a_executedProcess	현재 실행된 프로세스의 이름
+ */
+void CCBFMediator::ReceiveExecutedProcess(CString a_executedProcess)
+{
+	CObserveBI *_interface = CObserveFacade::Instance();
+	_interface->ReceiveExecutedProcess(a_executedProcess);
+}
+
+/**@brief	DCM에게 실행된 프로세스를 알린다.
+ * @param	a_executedProcess	실행된 프로세스의 이름
+ */
+void CCBFMediator::NotifyExecutedProcess(CString a_executedProcess)
+{
+}

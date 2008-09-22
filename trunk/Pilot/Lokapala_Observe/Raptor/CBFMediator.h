@@ -64,6 +64,8 @@ public :
 	//OSM
 	void StartProcessObservation();
 	void StopProcessObservation();
+	void ReceiveExecutedProcess(CString a_executedProcess);
+	void NotifyExecutedProcess(CString a_executedProcess);
 
 protected :
 	/**@breif	»ý¼ºÀÚ	*/

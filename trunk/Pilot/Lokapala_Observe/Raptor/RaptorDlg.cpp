@@ -69,6 +69,7 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_WM_CLOSE()
 	ON_BN_CLICKED(IDC_BUTTON1, &CRaptorDlg::OnStartObservation)
 	ON_BN_CLICKED(IDC_BUTTON3, &CRaptorDlg::OnStopObservation)
+	ON_WM_COPYDATA()
 END_MESSAGE_MAP()
 
 
@@ -252,4 +253,16 @@ void CRaptorDlg::OnStopObservation()
 {
 	// TODO: Add your control notification handler code here
 	CCBFMediator::Instance()->StopProcessObservation();
+}
+
+/**@brief	WM_COPYDATA 이벤트 핸들러. 지금 실행된 프로세스를 알린다.
+ */
+BOOL CRaptorDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
+{
+	// TODO: Add your message handler code here and/or call default
+	//AfxMessageBox((LPCTSTR)pCopyDataStruct->lpData);
+	CString executed = (LPCTSTR)pCopyDataStruct->lpData;
+	CCBFMediator::Instance()->ReceiveExecutedProcess(executed);
+
+	return CDialog::OnCopyData(pWnd, pCopyDataStruct);
 }
