@@ -30,7 +30,7 @@ static LRESULT WINAPI GetMsgProc(int code, WPARAM wParam, LPARAM lParam) {
 		EnumProcesses(runprocess,sizeof(runprocess),&cb);	//현재 수행중인 프로세스를 확인
 		nProcesses = cb/sizeof(DWORD);
 
-		WCHAR names[MAX_PATH*128];
+		WCHAR names[MAX_PATH];
 
 		for(i=nProcesses-1;i<nProcesses;i++) {
 			HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,
@@ -40,25 +40,22 @@ static LRESULT WINAPI GetMsgProc(int code, WPARAM wParam, LPARAM lParam) {
 				DWORD cbNeed;
 				
 				if(EnumProcessModules(hProcess,&hMod,sizeof(hMod),&cbNeed)) {
-					GetModuleBaseName(hProcess,hMod,names+i*MAX_PATH,sizeof(WCHAR)*nProcesses);
-					MessageBox(NULL,names+i*MAX_PATH,_T("ab"),MB_OK);
-/*
-					WCHAR sz[MAX_PATH];
-					wsprintf(sz,"%s",names+i*MAX_PATH);					
+					GetModuleBaseName(hProcess,hMod,names,sizeof(WCHAR)*nProcesses);					
 
-					COPYDATASTRUCT cds = {0,lstrlenA(names+i*MAX_PATH)+1,sz};
+					//raptor의 윈도 핸들이 기록된 메모리 맵 파일 오픈
+					HANDLE map = OpenFileMapping(FILE_MAP_READ,FALSE,_T("raptorSelfWindowHandle"));
+					if(!map)
+					{
+						MessageBox(NULL,_T("file mapping object open fail!!"),_T("failure"),MB_OK);
+					}
+					HWND *hRaptorWnd;
+					hRaptorWnd = (HWND *)MapViewOfFile(map,FILE_MAP_READ,0,0,0);	//메모리 맵 파일 리드
 
-					//SendMessage(FindWindow(NULL,TEXT("wndApp")),
-					//	WM_COPYDATA,NULL,(LPARAM)&cds);
-					SendMessage(FindWindow(NULL,TEXT("Admin Program - CLIENT")),
-						WM_COPYDATA,NULL,(LPARAM)&cds);
-					
-					//char tem[MAX_PATH];
-					//wsprintf(tem,"%d",FindWindow(NULL,TEXT("Admin Program - CLIENT")));
-					//MessageBox(NULL,tem,"window handle",MB_OK);*/
+
+					COPYDATASTRUCT cds = {0,sizeof(WCHAR)*(wcslen(names)+1),names};					
+					SendMessage( *hRaptorWnd, WM_COPYDATA,NULL, (LPARAM)&cds );
 				}
 			}
-			//names[(i+1)*MAX_PATH]='\n';
 			CloseHandle(hProcess);
 		}
 	}

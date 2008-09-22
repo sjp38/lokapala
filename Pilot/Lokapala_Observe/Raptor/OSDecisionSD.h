@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void NotifyExecutedProcess(CString a_executedProcess);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	COSDecisionSD(){}

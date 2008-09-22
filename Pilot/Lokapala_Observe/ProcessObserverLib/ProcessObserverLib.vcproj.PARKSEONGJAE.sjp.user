@@ -9,7 +9,7 @@
 			Name="Debug|Win32"
 			>
 			<DebugSettings
-				Command=""
+				Command="D:\working\lokapala\trunk\Pilot\Lokapala_Observe\Debug\Raptor.exe"
 				WorkingDirectory=""
 				CommandArguments=""
 				Attach="false"

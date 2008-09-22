@@ -14,8 +14,12 @@
 class CObserveBI
 {
 public :
+	/**@brief	프로세스 실행 감시를 시작한다.	*/
 	virtual void StartProcessObservation() = 0;
+	/**@brief	프로세스 실행 감시를 중지한다.	*/
 	virtual void StopProcessObservation() = 0;
+	/**@brief	실행된 프로세스 이름을 OSM에게 알린다.	*/
+	virtual void ReceiveExecutedProcess(CString a_executedProcess) = 0;
 };
 
 #endif

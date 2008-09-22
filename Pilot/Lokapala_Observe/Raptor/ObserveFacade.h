@@ -31,6 +31,7 @@ public :
 
 	virtual void StartProcessObservation();
 	virtual void StopProcessObservation();
+	virtual void ReceiveExecutedProcess(CString a_executedProcess);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CObserveFacade(){}
