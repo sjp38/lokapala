@@ -50,6 +50,23 @@ public :
 	void SendTextMessageTo(CString a_targetAddress, CString a_message);
 
 
+	//DAM
+	void SaveDataAs(CString *a_filePath);
+
+	void AddUser(void *a_user);
+	void DeleteUser(CString *a_id);
+	void *GetUsers();
+
+	void SetSeats(int a_x, int a_y);
+	void AddSeat(void *a_seat);
+	void DeleteSeat(int a_x, int a_y);	
+	void *GetSeats();
+
+	void AddRule(void *a_rule);
+	void DeleteRule(void *a_rule);
+	void *GetRules();
+
+
 	void SetMainDlg(CDialog *a_pDlg);
 	CDialog *GetMainDlg();
 

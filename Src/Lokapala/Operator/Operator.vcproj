@@ -191,10 +191,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\OperatorDlg.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -221,6 +217,42 @@
 					RelativePath=".\DataAdminFacade.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\DataAdminManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\DataAdminSingletonInitiallize.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\RuleDataDTO.cpp"
+					>
+				</File>
+				<Filter
+					Name="DAM_DTO"
+					>
+					<File
+						RelativePath=".\RulesDataDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\SeatDataDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\SeatsDataDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\UserDataDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\UsersDataDTO.cpp"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="DCM"
@@ -241,12 +273,20 @@
 					RelativePath=".\DecisionFacade.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\DecisionSingletonInitiallize.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="LGM"
 				>
 				<File
 					RelativePath=".\LogFacade.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\LogSingletonFacade.cpp"
 					>
 				</File>
 			</Filter>
@@ -263,6 +303,10 @@
 				</File>
 				<File
 					RelativePath=".\CommunicationFacade.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CommunicationSingletonInitiallize.cpp"
 					>
 				</File>
 				<Filter
@@ -298,6 +342,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\MessengerSingletonInitiallize.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\MSCommunicationSD.cpp"
 					>
 				</File>
@@ -314,6 +362,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Dialog"
+				>
+				<File
+					RelativePath=".\OperatorDlg.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\RuleAdminDlg.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\SeatInfoAdminDlg.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\UserAdminDlg.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -322,10 +390,6 @@
 			>
 			<File
 				RelativePath=".\Operator.h"
-				>
-			</File>
-			<File
-				RelativePath=".\OperatorDlg.h"
 				>
 			</File>
 			<File
@@ -348,9 +412,53 @@
 					>
 				</File>
 				<File
+					RelativePath=".\DataAdminConstant.h"
+					>
+				</File>
+				<File
 					RelativePath=".\DataAdminFacade.h"
 					>
 				</File>
+				<File
+					RelativePath=".\DataAdminManager.h"
+					>
+				</File>
+				<Filter
+					Name="DAM_DTO"
+					>
+					<File
+						RelativePath=".\MessageDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\RuleDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\RulesDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\SeatDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\SeatsDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\StateDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\UserDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\UsersDataDTO.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="DCM_Header"
@@ -465,6 +573,26 @@
 				>
 				<File
 					RelativePath=".\CBFMediator.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Dialog"
+				>
+				<File
+					RelativePath=".\OperatorDlg.h"
+					>
+				</File>
+				<File
+					RelativePath=".\RuleAdminDlg.h"
+					>
+				</File>
+				<File
+					RelativePath=".\SeatInfoAdminDlg.h"
+					>
+				</File>
+				<File
+					RelativePath=".\UserAdminDlg.h"
 					>
 				</File>
 			</Filter>
