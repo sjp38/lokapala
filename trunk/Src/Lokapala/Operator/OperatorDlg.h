@@ -30,4 +30,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButtontest();
+	afx_msg void OnBnClickedUserAdmin();
+	afx_msg void OnBnClickedSeatAdmin();
+	afx_msg void OnBnClickedRuleAdmin();
+	afx_msg void OnBnClickedLoad();
+	afx_msg void OnBnClickedSave();
 };
