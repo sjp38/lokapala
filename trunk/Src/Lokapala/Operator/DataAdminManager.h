@@ -12,6 +12,7 @@
 #include "SeatsDataDTO.h"
 #include "RulesDataDTO.h"
 
+
 /**@ingroup	GroupDAM
  * @class	CDataAdminManager
  * @brief	실질적인 데이터 관리를 한다.
@@ -54,13 +55,13 @@ protected :
 
 
 private :	
-	void LoadUserDataFrom(CFile *a_file);
-	//void LoadSeatDataFrom(CFile *a_file);
-	//void LoadRuleDataFrom(CFile *a_file);
+	void LoadUserDataFrom(void *a_xmlRoot);
+	void LoadSeatDataFrom(void *a_xmlRoot);
+	void LoadRuleDataFrom(void *a_xmlRoot);
 
-	void SaveUserDataTo(CFile *a_file);
-	void SaveSeatDataTo(CFile *a_file);
-	void SaveRuleDataTo(CFile *a_file);
+	void SaveUserDataTo(void *a_xmlRoot);
+	void SaveSeatDataTo(void *a_xmlRoot);
+	void SaveRuleDataTo(void *a_xmlRoot);
 
 	CUsersDataDTO m_usersData;
 	CSeatsDataDTO m_seatsData;

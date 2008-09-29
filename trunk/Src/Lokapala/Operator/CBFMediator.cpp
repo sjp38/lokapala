@@ -50,10 +50,20 @@ void CCBFMediator::SendTextMessageTo(CString a_targetAddress, CString a_message)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //DAM
 
+/**@brief	현재 DAM의 모든 데이터를 파일로 저장한다.
+ */
 void CCBFMediator::SaveDataAs(CString *a_filePath)
 {
 	CDataAdminBI *_interface = CDataAdminFacade::Instance();
 	_interface->SaveDataAs(a_filePath);
+}
+
+/**@brief	외부 파일로부터 데이터를 읽어들인다.
+ */
+void CCBFMediator::LoadDataFrom(CString *a_filePath)
+{
+	CDataAdminBI *_interface = CDataAdminFacade::Instance();
+	_interface->LoadDataFrom(a_filePath);
 }
 
 /**@brief	DAM에 유저를 추가한다.

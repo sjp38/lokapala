@@ -7,112 +7,211 @@
 #include "stdafx.h"
 #include "DataAdminManager.h"
 
-void CDataAdminManager::LoadUserDataFrom(CFile *a_file)
+#include "tinyxml.h"
+
+/**@brief	특정 파일로부터 사용자 데이터를 읽는다.
+ *			현재까지는 xml 파일만 지원한다.
+ * @param	a_xmlRoot	xml 파일의 루트 엘레먼트의 포인터. void 포인터로 캐스팅해 사용된다.
+ */
+void CDataAdminManager::LoadUserDataFrom(void *a_xmlRoot)
 {
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
+	TiXmlElement *users = root->FirstChildElement("Users");
+	TiXmlElement *user = users->FirstChildElement("User");
+	USES_CONVERSION;
+	for(user;user;user = user->NextSiblingElement())
+	{
+		CString name = A2W(user->Attribute("name"));
+		CString lowPassword = A2W(user->Attribute("lowPassword"));
+		CString highPassword = A2W(user->Attribute("highPassword"));
+		int level;
+		user->Attribute("level", &level);
+
+		CUserDataDTO newUser(lowPassword, name, lowPassword, highPassword, level);
+		CCBFMediator::Instance()->AddUser(&newUser);
+	}	
+}
+
+/**@brief	파일로부터 좌석 정보를 읽는다.
+ */
+void CDataAdminManager::LoadSeatDataFrom(void *a_xmlRoot)
+{
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
+	TiXmlElement *seats = root->FirstChildElement("Seats");
+	int maxX, maxY;
+	seats->Attribute("maxX", &maxX);
+	seats->Attribute("maxY", &maxY);
+	m_seatsData.SetSeats(maxX, maxY);
+
+	TiXmlElement *seat = seats->FirstChildElement("Seat");
+	USES_CONVERSION;
+	for(seat; seat; seat = seat->NextSiblingElement())
+	{
+		CString globalIp = A2W(seat->Attribute("globalIp"));
+		CString localIp = A2W(seat->Attribute("localIp"));
+		int x,y;
+		seat->Attribute("x", &x);
+		seat->Attribute("y", &y);
+		CString nickname = A2W(seat->Attribute("nickname"));
+
+		CSeatDataDTO newSeat(globalIp, localIp, x, y, nickname);
+		CCBFMediator::Instance()->AddSeat(&newSeat);
+	}
+}
+
+/**@brief	파일로부터 금지프로세스 관련 규칙 정보를 읽어들인다.
+ */
+void CDataAdminManager::LoadRuleDataFrom(void *a_xmlRoot)
+{
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
+	TiXmlElement *rules = root->FirstChildElement("Rules");
 	
+	TiXmlElement *rule = rules->FirstChildElement("Rule");
+	USES_CONVERSION;
+	for(rule; rule; rule = rule->NextSiblingElement())
+	{
+		CString processName = A2W(rule->Attribute("processName"));
+		CString caption = A2W(rule->Attribute("caption"));
+		CString targetSeat = A2W(rule->Attribute("targetSeat"));
+		CString targetUser = A2W(rule->Attribute("targetUser"));
+		
+		int action;
+		rule->Attribute("reaction", &action);
+		enum Reactions reaction = (enum Reactions)action;
+		CString argument = A2W(rule->Attribute("argument"));
+
+		CRuleDataDTO newRule(processName, caption, targetSeat, targetUser, reaction, argument);
+		CCBFMediator::Instance()->AddRule(&newRule);
+	}
 }
 
 /**@brief	파일로부터 데이터를 읽는다.
  */
 void CDataAdminManager::LoadFromFile(CString *a_filePath)
-{
-	CFile file;
-	if(!file.Open(*a_filePath, CFile::modeRead))
+{	
+	USES_CONVERSION;
+	TiXmlDocument document(W2A(*a_filePath));
+	document.LoadFile();
+	TiXmlElement *root = document.FirstChildElement("Datas");
+	if(root==NULL)
 	{
-		AfxMessageBox(_T("fail to open file!"));
+		AfxMessageBox(_T("invalid xml file!"));
 		return;
 	}
-	LoadUserDataFrom(&file);
-	//LoadSeatDataFrom(&file);
-	//LoadRuleDataFrom(&file);
-	
-	file.Close();
+
+	LoadUserDataFrom(root);
+	LoadSeatDataFrom(root);
+	LoadRuleDataFrom(root);
 }
 
-/**@file	사용자 정보를 특정 파일에 저장한다.
+/**@brief	사용자 정보를 특정 파일에 저장한다.
+ * @param	a_xmlRoot	xml의 루트 엘레먼트 포인터.
  */
-void CDataAdminManager::SaveUserDataTo(CFile *a_file)
+void CDataAdminManager::SaveUserDataTo(void *a_xmlRoot)
 {
-	USES_CONVERSION;
-	CString userData;
-	char *data;
-	userData = _T("user data\n");
-	data = W2A(userData);
-	a_file->Write(data, strlen(data));
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
 
+	TiXmlComment *comment = new TiXmlComment();
+	comment->SetValue("data for user informations");
+	root->LinkEndChild(comment);
+
+	TiXmlElement *users = new TiXmlElement("Users");
+	root->LinkEndChild(users);
+
+
+	USES_CONVERSION;
 	POSITION pos = m_usersData.m_users.GetStartPosition();
 	CString key;
 	CUserDataDTO value;
 	while(pos != NULL)
 	{
 		m_usersData.m_users.GetNextAssoc(pos, key, value);
-		userData.Format(_T("%s\n%s\n%s\n%s\n%d\n"),
-			value.m_userId, value.m_name, value.m_lowLevelPassword, value.m_highLevelPassword, value.m_level);
-		data = W2A(userData);
-		a_file->Write(data, strlen(data));
+		TiXmlElement *user = new TiXmlElement("User");
+		users->LinkEndChild(user);
+		user->SetAttribute("name",W2A(value.m_name));
+		user->SetAttribute("lowPassword",W2A(value.m_lowLevelPassword));
+		user->SetAttribute("highPassword",W2A(value.m_highLevelPassword));
+		user->SetAttribute("level",value.m_level);
 	}
 }
 
 /**@file	좌석 정보를 특정 파일에 저장한다.
  */
-void CDataAdminManager::SaveSeatDataTo(CFile *a_file)
+void CDataAdminManager::SaveSeatDataTo(void *a_xmlRoot)
 {
-	USES_CONVERSION;
-	CString seatData;
-	char *data;
-	seatData.Format(_T("seat data\n%d\n%d\n"), m_seatsData.m_maxX, m_seatsData.m_maxY);
-	data = W2A(seatData);
-	a_file->Write(data, strlen(data));
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
 
+	TiXmlComment *comment = new TiXmlComment();
+	comment->SetValue("data for seat informations");
+	root->LinkEndChild(comment);
+
+	TiXmlElement *seats = new TiXmlElement("Seats");
+	root->LinkEndChild(seats);
+	seats->SetAttribute("maxX", m_seatsData.m_maxX);
+	seats->SetAttribute("maxY", m_seatsData.m_maxY);
+
+
+	USES_CONVERSION;
 	POSITION pos = m_seatsData.m_seats.GetStartPosition();
 	CString key;
 	CSeatDataDTO value;
 	while(pos != NULL)
 	{
 		m_seatsData.m_seats.GetNextAssoc(pos, key, value);
-		seatData.Format(_T("%s\n%s\n%d\n%d\n%s\n"),
-			value.m_globalIp, value.m_localIp, value.m_position.x, value.m_position.y, value.m_nickname);
-		data =W2A(seatData);
-			
-		a_file->Write(data, strlen(data));
+		TiXmlElement *seat = new TiXmlElement("Seat");
+		seats->LinkEndChild(seat);
+		seat->SetAttribute("globalIp", W2A(value.m_globalIp));
+		seat->SetAttribute("localIp",W2A(value.m_localIp));
+		seat->SetAttribute("x",value.m_position.x);
+		seat->SetAttribute("y",value.m_position.y);
+		seat->SetAttribute("nickname",W2A(value.m_nickname));
 	}
 }
 
 /**@file	금지 프로세스 규칙 정보를 특정 파일에 저장한다.
  */
-void CDataAdminManager::SaveRuleDataTo(CFile *a_file)
+void CDataAdminManager::SaveRuleDataTo(void *a_xmlRoot)
 {
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
+
+	TiXmlComment *comment = new TiXmlComment();
+	comment->SetValue("data for rule informations");
+	root->LinkEndChild(comment);
+
+	TiXmlElement *rules = new TiXmlElement("Rules");
+	root->LinkEndChild(rules);
+
 	USES_CONVERSION;
-	char *data;
-	CString ruleData;
-	ruleData = _T("rule data\n");
-	data = W2A(ruleData);
-	a_file->Write(data, strlen(data));
 	for(int i=0; i<m_rulesData.m_rules.GetCount(); i++)
 	{
-		CRuleDataDTO rule = m_rulesData.m_rules[i];
-		ruleData.Format(_T("%s\n%s\n%s\n%s\n%d\n%s"), 
-			rule.m_processName, rule.m_caption, rule.m_targetSeatId, rule.m_targetUserId, rule.m_reaction, rule.m_reactionArgument);
-		data = W2A(ruleData);
-		a_file->Write(data, strlen(data));
+		TiXmlElement *rule = new TiXmlElement("Rule");
+		rules->LinkEndChild(rule);
+		rule->SetAttribute("processName", W2A(m_rulesData.m_rules[i].m_processName));
+		rule->SetAttribute("caption", W2A(m_rulesData.m_rules[i].m_caption));
+		rule->SetAttribute("targetSeat", W2A(m_rulesData.m_rules[i].m_targetSeatId));
+		rule->SetAttribute("targetUser", W2A(m_rulesData.m_rules[i].m_targetUserId));
+		rule->SetAttribute("reaction", m_rulesData.m_rules[i].m_reaction);
+		rule->SetAttribute("argument", W2A(m_rulesData.m_rules[i].m_reactionArgument));
 	}
 }
 
-/**@file	현재 데이터를 파일로 저장한다.
+/**@file	현재 데이터를 파일로 저장한다. 일단 xml 포맷만을 지원한다.
  */
 void CDataAdminManager::SaveToFile(CString *a_filePath)
 {
-	CFile file;
-	if(!file.Open(*a_filePath, CFile::modeCreate | CFile::modeWrite))
-	{
-		AfxMessageBox(_T("fail to open file!"));
-		return;
-	}
-	SaveUserDataTo(&file);
-	SaveSeatDataTo(&file);
-	SaveRuleDataTo(&file);
+	TiXmlDocument doc;
+	TiXmlDeclaration *decl = new TiXmlDeclaration( "1.0", "euc-kr", "" );
+	doc.LinkEndChild( decl );
+
+	TiXmlElement *root = new TiXmlElement( "Datas" );
+	doc.LinkEndChild( root );
+
+	SaveUserDataTo(root);
+	SaveSeatDataTo(root);
+	SaveRuleDataTo(root);
 	
-	file.Close();	
+	USES_CONVERSION;
+	doc.SaveFile(W2A(*a_filePath));
 }
 
 /**@brief	유저 하나의 정보를 추가한다.

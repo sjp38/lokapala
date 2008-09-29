@@ -27,7 +27,7 @@ public :
 	/**@brief	접속되어 있다면, 접속한 자리의 id	*/
 	CString m_seatId;
 	
-	CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword);
+	CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int level=0);
 	CUserDataDTO(){}
 	~CUserDataDTO(){}
 

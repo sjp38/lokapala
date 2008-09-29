@@ -219,7 +219,18 @@ void COperatorDlg::OnBnClickedRuleAdmin()
  */
 void COperatorDlg::OnBnClickedLoad()
 {
-	// TODO: Add your control notification handler code here	     
+	// TODO: Add your control notification handler code here
+	CString szFilters =
+      _T("Lokapala data type Files(*.lkp) |*.lkp| XML Files(*.xml) |*.xml| ");
+
+   CFileDialog fileDlg (TRUE, _T("xml"), NULL, OFN_FILEMUSTEXIST, szFilters, this);
+   
+   if( fileDlg.DoModal ()==IDOK )
+   {
+      CString pathName = fileDlg.GetPathName();
+
+	  CCBFMediator::Instance()->LoadDataFrom(&pathName);
+   } 
 }
 
 /**@brief	저장하기 버튼 클릭
@@ -228,14 +239,13 @@ void COperatorDlg::OnBnClickedSave()
 {
 	// TODO: Add your control notification handler code here
 	CString szFilters =
-      _T("Lokapala data type Files (*.lkp)|*.lkp | excel Files(*.xls)|*.xls l XML Files (*.xml)|*.xml");
+      _T("Lokapala data type Files(*.lkp) |*.lkp| XML Files(*.xml) |*.xml| ");
 
-   CFileDialog fileDlg (FALSE, _T("lkp"), NULL, OFN_FILEMUSTEXIST| OFN_HIDEREADONLY, szFilters, this);
+   CFileDialog fileDlg (FALSE, _T("xml"), NULL, OFN_FILEMUSTEXIST| OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilters, this);
    
    if( fileDlg.DoModal ()==IDOK )
    {
-      CString pathName = fileDlg.GetPathName();   
-      CString fileName = fileDlg.GetFileTitle ();
+      CString pathName = fileDlg.GetPathName();
 
 	  CCBFMediator::Instance()->SaveDataAs(&pathName);
    } 
