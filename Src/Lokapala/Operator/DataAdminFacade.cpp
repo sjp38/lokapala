@@ -16,6 +16,13 @@ void CDataAdminFacade::SaveDataAs(CString *a_filePath)
 	CDataAdminManager::Instance()->SaveToFile(a_filePath);
 }
 
+/**@brief	파일로부터 데이터를 읽어들인다.
+ */
+void CDataAdminFacade::LoadDataFrom(CString *a_filePath)
+{
+	CDataAdminManager::Instance()->LoadFromFile(a_filePath);
+}
+
 /**@brief	유저 하나를 추가한다.
  */
 void CDataAdminFacade::AddUser(void *a_user)

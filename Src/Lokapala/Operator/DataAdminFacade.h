@@ -30,6 +30,7 @@ public :
 	}
 
 	virtual void SaveDataAs(CString *a_filePath);
+	virtual void LoadDataFrom(CString *a_filePath);
 
 	//user
 	virtual void AddUser(void *a_user);

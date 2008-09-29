@@ -18,6 +18,9 @@ public :
 	/**@brief	파일에 현재 데이터를 저장한다.	*/
 	virtual void SaveDataAs(CString *a_filePath) = 0;
 
+	/**@brief	파일로부터 데이터를 읽어들인다.	*/
+	virtual void LoadDataFrom(CString *a_filePath) = 0;
+
 	//user
 	/**@breif	유저를 추가한다.	*/
 	virtual void AddUser(void *a_user) = 0;

@@ -52,6 +52,7 @@ public :
 
 	//DAM
 	void SaveDataAs(CString *a_filePath);
+	void LoadDataFrom(CString *a_filePath);
 
 	void AddUser(void *a_user);
 	void DeleteUser(CString *a_id);

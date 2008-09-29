@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
+				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib tinyxml.lib"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -593,6 +593,18 @@
 				</File>
 				<File
 					RelativePath=".\UserAdminDlg.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="TinyXml"
+				>
+				<File
+					RelativePath=".\tinystr.h"
+					>
+				</File>
+				<File
+					RelativePath=".\tinyxml.h"
 					>
 				</File>
 			</Filter>
