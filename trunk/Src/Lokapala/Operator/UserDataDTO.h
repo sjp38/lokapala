@@ -22,12 +22,8 @@ public :
 	/**@brief	sha1으로 해싱된 digest message를 갖는다.	*/
 	CString m_highLevelPassword;
 	int m_level;
-	/**@brief	접속된 유저라면 TRUE, 아니면 FALSE	*/
-	BOOL m_connected;
-	/**@brief	접속되어 있다면, 접속한 자리의 id	*/
-	CString m_seatId;
 	
-	CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int level=0);
+	CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int a_level);
 	CUserDataDTO(){}
 	~CUserDataDTO(){}
 

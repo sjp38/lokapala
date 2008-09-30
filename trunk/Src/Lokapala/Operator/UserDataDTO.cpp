@@ -9,7 +9,7 @@
 #include <openssl/sha.h>
 
 /**@brief	생성자. high 레벨 패스워드는 sha1 알고리즘을 통해 해싱 해서 관리한다.	*/
-CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int level)
+CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int a_level)
 {
 	m_userId = a_userId;
 	if(m_userId == _T(""))
@@ -19,10 +19,7 @@ CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelP
 	m_name = a_name;
 	m_lowLevelPassword = a_lowLevelPassword;
 	m_highLevelPassword = HashMessage(a_highLevelPassword);
-	
-	m_connected = FALSE;
-	m_seatId = _T("");
-
+	m_level = a_level;
 }
 
 /**@brief	단방향 해싱을 한다. sha1 알고리즘을 사용한다.

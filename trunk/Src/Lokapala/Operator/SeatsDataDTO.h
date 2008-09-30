@@ -20,6 +20,7 @@ public :
 	int m_maxY;
 
 	void SetSeats(int a_maxX, int a_maxY);
+	void ClearSeats();
 	void AddSeat(CSeatDataDTO *a_seat);
 	void DeleteSeat(int a_x, int a_y);
 	CSeatDataDTO *GetSeatById(CString a_userId);
@@ -28,6 +29,8 @@ public :
 	~CSeatsDataDTO(){}
 
 private :
+	void ResetSeats();
+	BOOL ExistSameAddress(CSeatDataDTO *a_seat);
 	
 };
 

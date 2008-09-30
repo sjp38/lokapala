@@ -12,6 +12,9 @@
 #include "SeatsDataDTO.h"
 #include "RulesDataDTO.h"
 
+#include "ConnectedUsersDTO.h"
+#include "StatusReportDTO.h"
+
 
 /**@ingroup	GroupDAM
  * @class	CDataAdminManager
@@ -66,6 +69,8 @@ private :
 	CUsersDataDTO m_usersData;
 	CSeatsDataDTO m_seatsData;
 	CRulesDataDTO m_rulesData;
+
+	CConnectedUsersDTO m_connectedUsers;
 
 	static CDataAdminManager *m_instance;
 	

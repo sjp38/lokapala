@@ -27,6 +27,7 @@ BOOL CRuleAdminDlg::OnInitDialog()
 
 	// TODO:  Add extra initialization here
 	SetRulesOnControl();
+	ShowRules();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -112,6 +113,7 @@ void CRuleAdminDlg::SetRulesOnControl()
 	pcomboBox->AddString(_T("Reboot"));
 	pcomboBox->AddString(_T("Logout"));
 	pcomboBox->AddString(_T("Execute"));
+	pcomboBox->AddString(_T("Genocide Processes"));
 }
 
 

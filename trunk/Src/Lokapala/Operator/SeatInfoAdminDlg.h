@@ -24,4 +24,6 @@ public:
 
 private :
 	void ShowSeats();
+public:
+	virtual BOOL OnInitDialog();
 };
