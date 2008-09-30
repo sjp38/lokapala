@@ -24,4 +24,6 @@ public:
 
 private :
 	void ShowUsers();
+public:
+	virtual BOOL OnInitDialog();
 };

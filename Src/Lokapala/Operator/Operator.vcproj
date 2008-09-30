@@ -187,6 +187,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\DataAdminDlg.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Operator.cpp"
 				>
 			</File>
@@ -225,13 +229,21 @@
 					RelativePath=".\DataAdminSingletonInitiallize.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\RuleDataDTO.cpp"
-					>
-				</File>
 				<Filter
 					Name="DAM_DTO"
 					>
+					<File
+						RelativePath=".\ConnectedUserDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\ConnectedUsersDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\RuleDataDTO.cpp"
+						>
+					</File>
 					<File
 						RelativePath=".\RulesDataDTO.cpp"
 						>
@@ -242,6 +254,14 @@
 					</File>
 					<File
 						RelativePath=".\SeatsDataDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\StatusReportDTO.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\StatusReportsDTO.cpp"
 						>
 					</File>
 					<File
@@ -427,6 +447,14 @@
 					Name="DAM_DTO"
 					>
 					<File
+						RelativePath=".\ConnectedUserDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\ConnectedUsersDTO.h"
+						>
+					</File>
+					<File
 						RelativePath=".\MessageDTO.h"
 						>
 					</File>
@@ -448,6 +476,14 @@
 					</File>
 					<File
 						RelativePath=".\StateDataDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\StatusReportDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\StatusReportsDTO.h"
 						>
 					</File>
 					<File
@@ -579,6 +615,10 @@
 			<Filter
 				Name="Dialog"
 				>
+				<File
+					RelativePath=".\DataAdminDlg.h"
+					>
+				</File>
 				<File
 					RelativePath=".\OperatorDlg.h"
 					>

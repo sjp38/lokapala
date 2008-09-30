@@ -90,3 +90,13 @@ void CSeatInfoAdminDlg::ShowSeats()
 		pListBox->AddString(seatDisplay);
 	}
 }
+BOOL CSeatInfoAdminDlg::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+	ShowSeats();
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
+}

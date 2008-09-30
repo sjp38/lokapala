@@ -5,9 +5,8 @@
 #include "Operator.h"
 #include "OperatorDlg.h"
 
-#include "UserAdminDlg.h"
-#include "SeatInfoAdminDlg.h"
-#include "RuleAdminDlg.h"
+//데이터 관리 다이얼로그
+#include "DataAdminDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -67,11 +66,7 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_BUTTONTEST, &COperatorDlg::OnBnClickedButtontest)
-	ON_BN_CLICKED(IDC_USER_ADMIN, &COperatorDlg::OnBnClickedUserAdmin)
-	ON_BN_CLICKED(IDC_SEAT_ADMIN, &COperatorDlg::OnBnClickedSeatAdmin)
-	ON_BN_CLICKED(IDC_RULE_ADMIN, &COperatorDlg::OnBnClickedRuleAdmin)
-	ON_BN_CLICKED(IDC_LOAD, &COperatorDlg::OnBnClickedLoad)
-	ON_BN_CLICKED(IDC_SAVE, &COperatorDlg::OnBnClickedSave)
+	ON_BN_CLICKED(IDC_DATA_ADMIN, &COperatorDlg::OnBnClickedDataAdmin)
 END_MESSAGE_MAP()
 
 
@@ -188,65 +183,13 @@ void COperatorDlg::OnBnClickedButtontest()
 	}	
 }
 
-/**@brief	유저 관리 버튼 클릭
+
+
+/**@brief	데이터 관리 버튼 클릭
  */
-void COperatorDlg::OnBnClickedUserAdmin()
+void COperatorDlg::OnBnClickedDataAdmin()
 {
 	// TODO: Add your control notification handler code here
-	CUserAdminDlg userAdmin;
-	userAdmin.DoModal();
-}
-
-/**@brief	좌석 관리 버튼 클릭
- */
-void COperatorDlg::OnBnClickedSeatAdmin()
-{
-	// TODO: Add your control notification handler code here
-	CSeatInfoAdminDlg seatInfoAdmin;
-	seatInfoAdmin.DoModal();
-}
-
-/**@brief	금지 프로세스 관리 버튼 클릭
- */
-void COperatorDlg::OnBnClickedRuleAdmin()
-{
-	// TODO: Add your control notification handler code here
-	CRuleAdminDlg ruleAdmin;
-	ruleAdmin.DoModal();
-}
-
-/**@brief	불러오기 버튼 클릭
- */
-void COperatorDlg::OnBnClickedLoad()
-{
-	// TODO: Add your control notification handler code here
-	CString szFilters =
-      _T("Lokapala data type Files(*.lkp) |*.lkp| XML Files(*.xml) |*.xml| ");
-
-   CFileDialog fileDlg (TRUE, _T("xml"), NULL, OFN_FILEMUSTEXIST, szFilters, this);
-   
-   if( fileDlg.DoModal ()==IDOK )
-   {
-      CString pathName = fileDlg.GetPathName();
-
-	  CCBFMediator::Instance()->LoadDataFrom(&pathName);
-   } 
-}
-
-/**@brief	저장하기 버튼 클릭
- */
-void COperatorDlg::OnBnClickedSave()
-{
-	// TODO: Add your control notification handler code here
-	CString szFilters =
-      _T("Lokapala data type Files(*.lkp) |*.lkp| XML Files(*.xml) |*.xml| ");
-
-   CFileDialog fileDlg (FALSE, _T("xml"), NULL, OFN_FILEMUSTEXIST| OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilters, this);
-   
-   if( fileDlg.DoModal ()==IDOK )
-   {
-      CString pathName = fileDlg.GetPathName();
-
-	  CCBFMediator::Instance()->SaveDataAs(&pathName);
-   } 
+	CDataAdminDlg dataAdminDlg;
+	dataAdminDlg.DoModal();
 }

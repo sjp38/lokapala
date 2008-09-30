@@ -19,10 +19,10 @@ class CUsersDataDTO
 {
 public :
 	CMap <CString, LPCTSTR, CUserDataDTO, CUserDataDTO> m_users;
-	CArray <CUserDataDTO, CUserDataDTO> m_connectedUsers;
 
 	void AddUser(CUserDataDTO *a_user);
 	void DeleteUser(CString *a_id);
+	void ClearUsers();
 	CUserDataDTO *GetUserById(CString a_seatId);
 
 	CUsersDataDTO();

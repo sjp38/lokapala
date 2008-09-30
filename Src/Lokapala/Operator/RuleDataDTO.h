@@ -6,7 +6,7 @@
 #ifndef RULE_DATA_DTO_H
 #define RULE_DATA_DTO_H
 
-enum Reactions {SHUTDOWN, REBOOT, LOGOUT, EXUCUTE};
+enum Reactions {SHUTDOWN, REBOOT, LOGOUT, EXUCUTE, GENOCIDEPROCESSES};
 
 /**@ingroup GroupDAM
  * @class	CRuleDataDTO

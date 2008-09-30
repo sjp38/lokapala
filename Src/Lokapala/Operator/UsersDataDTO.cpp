@@ -33,8 +33,16 @@ void CUsersDataDTO::DeleteUser(CString *a_id)
 }
 
 
-/**@brief	이름을 가지고 해당 유저를 찾아낸다.
- * @return	이름으로 찾아낸 유저의 데이터 DTO
+/**@brief	전체 사용자 정보를 삭제한다.
+ */
+void CUsersDataDTO::ClearUsers()
+{
+	m_users.RemoveAll();
+}
+
+
+/**@brief	id을 가지고 해당 유저를 찾아낸다.
+ * @return	id로 찾아낸 유저의 데이터 DTO
  */
 CUserDataDTO *CUsersDataDTO::GetUserById(CString a_userId)
 {

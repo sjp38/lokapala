@@ -46,8 +46,9 @@ void CUserAdminDlg::OnBnClickedUserAdd()
 	GetDlgItemTextW(IDC_LOWPASS, lowPass);
 	CString highPass;
 	GetDlgItemTextW(IDC_HIGHPASS, highPass);
+	int level = GetDlgItemInt(IDC_LEVEL);
 
-	CUserDataDTO user(_T(""), name, lowPass, highPass);
+	CUserDataDTO user(_T(""), name, lowPass, highPass, level);
 
 	CCBFMediator::Instance()->AddUser( (void *)&user);
 
@@ -95,4 +96,16 @@ void CUserAdminDlg::ShowUsers()
 		userDisplay = value.m_lowLevelPassword+_T("/")+/*value.m_name+_T("/")+*/value.m_highLevelPassword;
 		pListBox->AddString(userDisplay);
 	}
+}
+
+
+BOOL CUserAdminDlg::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+	ShowUsers();
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
 }
