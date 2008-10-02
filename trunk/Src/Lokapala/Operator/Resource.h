@@ -22,7 +22,6 @@
 #define IDC_LOWPASS                     1006
 #define IDC_HIGHPASS                    1007
 #define IDC_USER_ADD                    1008
-#define IDC_USER_ADMIN                  1009
 #define IDC_USER_DELETE                 1009
 #define IDC_MAXX                        1010
 #define IDC_LEVEL                       1010
@@ -34,7 +33,6 @@
 #define IDC_NICKNAME                    1016
 #define IDC_ADD                         1017
 #define IDC_DELETE                      1018
-#define IDC_SEAT_ADMIN                  1018
 #define IDC_PROCESS_NAME                1019
 #define IDC_TITLE                       1020
 #define IDC_TARGET_SEAT                 1021
@@ -51,7 +49,7 @@
 #define IDC_DATA_ADMIN                  1032
 #define IDC_CONTROL                     1033
 #define IDC_MESSENGER                   1034
-#define IDC_BUTTON3                     1035
+#define IDC_DATA_ADMIN_TAB              1034
 #define IDC_RULE_ADMIN                  1035
 
 // Next default values for new objects
@@ -60,7 +58,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        133
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1034
+#define _APS_NEXT_CONTROL_VALUE         1035
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

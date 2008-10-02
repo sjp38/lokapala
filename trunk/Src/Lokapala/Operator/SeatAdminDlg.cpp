@@ -1,40 +1,43 @@
-// CSeatInfoAdminDlg.cpp : implementation file
+// SeatAdminDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
 #include "Operator.h"
-#include "SeatInfoAdminDlg.h"
+#include "SeatAdminDlg.h"
 
 #include "SeatsDataDTO.h"
 
 
-// CSeatInfoAdminDlg dialog
+// CSeatAdminDlg dialog
 
-IMPLEMENT_DYNAMIC(CSeatInfoAdminDlg, CDialog)
+IMPLEMENT_DYNAMIC(CSeatAdminDlg, CDialog)
 
-CSeatInfoAdminDlg::CSeatInfoAdminDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CSeatInfoAdminDlg::IDD, pParent)
+CSeatAdminDlg::CSeatAdminDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CSeatAdminDlg::IDD, pParent)
 {
 
 }
 
-CSeatInfoAdminDlg::~CSeatInfoAdminDlg()
+CSeatAdminDlg::~CSeatAdminDlg()
 {
 }
 
-void CSeatInfoAdminDlg::DoDataExchange(CDataExchange* pDX)
+void CSeatAdminDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 }
 
 
-BEGIN_MESSAGE_MAP(CSeatInfoAdminDlg, CDialog)
-	ON_BN_CLICKED(IDC_ADD, &CSeatInfoAdminDlg::OnBnClickedAdd)
-	ON_BN_CLICKED(IDC_DELETE, &CSeatInfoAdminDlg::OnBnClickedDelete)
+BEGIN_MESSAGE_MAP(CSeatAdminDlg, CDialog)
+	ON_BN_CLICKED(IDC_ADD, &CSeatAdminDlg::OnBnClickedAdd)
+	ON_BN_CLICKED(IDC_DELETE, &CSeatAdminDlg::OnBnClickedDelete)
 END_MESSAGE_MAP()
 
-/**@brief	Add 버튼 클릭	*/
-void CSeatInfoAdminDlg::OnBnClickedAdd()
+
+// CSeatAdminDlg message handlers
+
+/**@brief	Add 버튼을 클릭	*/
+void CSeatAdminDlg::OnBnClickedAdd()
 {
 	// TODO: Add your control notification handler code here
 	int maxX = GetDlgItemInt(IDC_MAXX);
@@ -59,8 +62,8 @@ void CSeatInfoAdminDlg::OnBnClickedAdd()
 	ShowSeats();
 }
 
-/**@brief	Delete 버튼 클릭	*/
-void CSeatInfoAdminDlg::OnBnClickedDelete()
+/**@brief	Delete 버튼을 클릭	*/
+void CSeatAdminDlg::OnBnClickedDelete()
 {
 	// TODO: Add your control notification handler code here
 	int x = GetDlgItemInt(IDC_X);
@@ -70,9 +73,8 @@ void CSeatInfoAdminDlg::OnBnClickedDelete()
 	ShowSeats();
 }
 
-
 /**@brief	현재 좌석 정보를 보여 준다.	*/
-void CSeatInfoAdminDlg::ShowSeats()
+void CSeatAdminDlg::ShowSeats()
 {
 	CListBox *pListBox = (CListBox *)GetDlgItem(IDC_SEATLIST);
 	pListBox->ResetContent();
@@ -90,7 +92,8 @@ void CSeatInfoAdminDlg::ShowSeats()
 		pListBox->AddString(seatDisplay);
 	}
 }
-BOOL CSeatInfoAdminDlg::OnInitDialog()
+
+BOOL CSeatAdminDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 

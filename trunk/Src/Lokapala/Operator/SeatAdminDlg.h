@@ -1,15 +1,17 @@
 #pragma once
 
 
-// CSeatInfoAdminDlg dialog
+// CSeatAdminDlg dialog
 
-class CSeatInfoAdminDlg : public CDialog
+class CSeatAdminDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CSeatInfoAdminDlg)
+private :
+	void ShowSeats();
+	DECLARE_DYNAMIC(CSeatAdminDlg)
 
 public:
-	CSeatInfoAdminDlg(CWnd* pParent = NULL);   // standard constructor
-	virtual ~CSeatInfoAdminDlg();
+	CSeatAdminDlg(CWnd* pParent = NULL);   // standard constructor
+	virtual ~CSeatAdminDlg();
 
 // Dialog Data
 	enum { IDD = IDD_SEAT_ADMIN };
@@ -21,9 +23,5 @@ protected:
 public:
 	afx_msg void OnBnClickedAdd();
 	afx_msg void OnBnClickedDelete();
-
-private :
-	void ShowSeats();
-public:
 	virtual BOOL OnInitDialog();
 };

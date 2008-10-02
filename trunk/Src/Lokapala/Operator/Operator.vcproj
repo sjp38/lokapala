@@ -187,10 +187,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\DataAdminDlg.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Operator.cpp"
 				>
 			</File>
@@ -386,6 +382,10 @@
 				Name="Dialog"
 				>
 				<File
+					RelativePath=".\DataAdminDlg.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\OperatorDlg.cpp"
 					>
 				</File>
@@ -394,7 +394,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\SeatInfoAdminDlg.cpp"
+					RelativePath=".\SeatAdminDlg.cpp"
 					>
 				</File>
 				<File
@@ -628,7 +628,7 @@
 					>
 				</File>
 				<File
-					RelativePath=".\SeatInfoAdminDlg.h"
+					RelativePath=".\SeatAdminDlg.h"
 					>
 				</File>
 				<File
