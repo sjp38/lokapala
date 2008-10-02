@@ -13,7 +13,7 @@
 #include "RulesDataDTO.h"
 
 #include "ConnectedUsersDTO.h"
-#include "StatusReportDTO.h"
+#include "StatusReportsDTO.h"
 
 
 /**@ingroup	GroupDAM
@@ -71,6 +71,7 @@ private :
 	CRulesDataDTO m_rulesData;
 
 	CConnectedUsersDTO m_connectedUsers;
+	CStatusReportsDTO m_statusReports;
 
 	static CDataAdminManager *m_instance;
 	
