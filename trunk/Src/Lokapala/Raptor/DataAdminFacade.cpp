@@ -6,10 +6,25 @@
 #include "stdafx.h"
 #include "DataAdminFacade.h"
 
-/**@brief	컴포넌트 간 통신을 테스트 하기 위한 멤버 함수.\n
- *			DAM으로부터 데이터 리드를 하는 역할. 다른 컴포넌트에서 SD를 통해 mediator에 요청하면, mediator에서 DAM의 BI를 통해 호출한다.
+#include "DataAdminManager.h"
+
+/**@brief	사용자 정보를 입력한다. 사용자의 로그인 요청 시에 불려진다.
  */
-void CDataAdminFacade::Read()
+void CDataAdminFacade::RegistUser(void *a_userInfo)
 {
-	;
+	CDataAdminManager::Instance()->RegistUser(a_userInfo);
+}
+
+/**@brief	사용자의 레벨을 입력한다. 사용자의 로그인 허락 시에 불려진다.
+ */
+void CDataAdminFacade::RegistUserLevel(int a_level)
+{
+	CDataAdminManager::Instance()->RegistUserLevel(a_level);
+}
+
+/**@brief	상태 변화를 기록한다.
+ */
+void CDataAdminFacade::ReportStatus(void *a_status)
+{
+	CDataAdminManager::Instance()->ReportStatus(a_status);
 }

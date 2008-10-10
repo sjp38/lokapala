@@ -15,7 +15,9 @@
 class CDataAdminBI
 {
 public :
-	virtual void Read()=0;
+	virtual void RegistUser(void *a_userInfo) = 0;
+	virtual void RegistUserLevel(int a_level) = 0;
+	virtual void ReportStatus(void *a_status) = 0;
 };
 
 #endif

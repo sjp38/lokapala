@@ -25,6 +25,7 @@ public :
 	void NotifyAccepted(in_addr *a_clientIp, in_addr *a_localIp);
 	void NotifyLeft(in_addr *a_globalIP, in_addr *a_localIp);
 	void NotifyReceived(char *a_receivedMessage);	
+	void NotifyReceived(char *a_message, in_addr a_localIp, in_addr a_globalIp);
 
 protected :
 	CDharaniExternSD(){};

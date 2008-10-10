@@ -15,6 +15,32 @@
 class CControlBI
 {
 public :
+	/**@brief	사용자의 정상적인 컴퓨터 사용을 제한한다.	*/
+	virtual void RestraintUser() = 0;
+
+	/**@brief	사용자의 정상적인 컴퓨터 사용을 허락한다.	*/
+	virtual void ReleaseUser() = 0;
+
+	/**@brief	강제로 사용자의 로그인을 해준다.	*/
+	virtual void Login(void *a_userInfo) = 0;
+
+	/**@brief	강제로 사용자를 로그아웃 시킨다.	*/
+	virtual void Logout() = 0;
+
+	/**@brief	컴퓨터를 꺼버린다.	*/
+	virtual void Shutdown() = 0;
+
+	/**@brief	컴퓨터를 재부팅 시킨다.	*/
+	virtual void Reboot() = 0;
+
+	/**@brief	실행 중인 프로세스를 모조리 죽여버린다.	*/
+	virtual void GenocideProcesses() = 0;
+
+	/**@brief	특정 이름의 프로세스를 죽인다.	*/
+	virtual void KillProcess(CString *a_processName) = 0;
+
+	/**@brief	특정 이름의 프로세스를 실행시킨다.	*/
+	virtual void ExecuteProcess(CString *a_processName) = 0;
 };
 
 #endif

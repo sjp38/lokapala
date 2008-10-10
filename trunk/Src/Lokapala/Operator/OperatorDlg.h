@@ -2,6 +2,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 
 // COperatorDlg dialog
@@ -31,4 +32,7 @@ protected:
 public:
 	afx_msg void OnBnClickedButtontest();
 	afx_msg void OnBnClickedDataAdmin();
+	CListBox m_notifyList;
+	CListBox m_connectedList;
+	CListBox m_criminalList;
 };

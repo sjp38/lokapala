@@ -9,16 +9,22 @@
 #include "DharaniExternSD.h"
 #include "DharaniClientManager.h"
 
-void CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
+
+/**@brief	클라이언트의 형태로 소켓 상태 등을 초기화하고 프로토콜 초기 행위(암호화 키 교환 등)를 한다.
+ * @return	정상적으로 초기화를 마쳤을 경우 0, 문제가 있을 경우 -1
+ */
+int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 {
 	WSADATA wsaData;
 	if(WSAStartup(MAKEWORD(2,2), &wsaData) != 0)
 	{
 		AfxMessageBox(_T("WSAStartup() error!"));
-		return;
+		return -1;
 	}
 
 	m_serverSocket = WSASocket(PF_INET, SOCK_STREAM,0,NULL,0,WSA_FLAG_OVERLAPPED);
+	//int optionValue = 1;
+	//setsockopt(m_serverSocket, IPPROTO_TCP, TCP_NODELAY, (char *)&optionValue, sizeof(*optionValue));
 
 	SOCKADDR_IN serverAddr;
 	memset(&serverAddr, 0, sizeof(serverAddr));
@@ -31,7 +37,7 @@ void CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 		AfxMessageBox(_T("connect() error!"));
 		closesocket(m_serverSocket);
 		WSACleanup();
-		return;
+		return -1;
 	}
 	
 	hostent *hostAddress = gethostbyname("");
@@ -56,6 +62,7 @@ void CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	}
 
 	_beginthreadex(NULL,0,&CDharaniClientManager::ReceiverThread,(LPVOID)m_serverSocket, 0, NULL);
+	return 0;
 }
 
 /**@brief	쓰레드로 돌며 소켓으로 들어오는 값을 받는다.
@@ -108,6 +115,14 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 	return 0;
 }
 
+/**@brief	서버와의 연결을 끊는다.
+ */
+void CDharaniClientManager::CloseConnection()
+{
+	closesocket(m_serverSocket);
+	WSACleanup();
+}
+
 /**@brief	메세지를 서버에게 날린다.
  * @param	a_message	보낼 메세지
  */
@@ -116,7 +131,7 @@ void CDharaniClientManager::SendTextMessage(char *a_message)
 	char encrypted[BUFSIZE];
 	encrypted[0] = (unsigned char)strlen(a_message);
 	this->Encrypt(a_message, encrypted+1);
-	send(m_serverSocket, encrypted, strlen(a_message)+1, 0);
+	send(m_serverSocket, encrypted, encrypted[0]+1, 0);
 }
 
 

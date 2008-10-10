@@ -42,9 +42,10 @@ private :
 	static unsigned int WINAPI ReceiverThread(LPVOID a_hCompletionPort);
 	static unsigned int WINAPI AcceptorThread(LPVOID a_hCompletionPort);
 	void RemoveFromClientSockets(SOCKET a_socket);
-	void AddToClientSockets(PTR_SOCKET_DATA a_socketData);	
+	void AddToClientSockets(PTR_SOCKET_DATA a_socketData);
+	SOCKET_DATA GetSocketDataFromClientSockets(SOCKET a_socket);
 	void AnalyzeReceived(char *a_receivedMessage, SOCKET a_sender);
-	void Decrypt(int a_passwd, char *a_plainText, char *a_cipherText);
+	void Decrypt(int a_passwd, size_t a_length, char *a_plainText, char *a_cipherText);
 	void Encrypt(int a_passwd, char *a_plainText, char *a_cipherText);
 
 	/**@brief	completion port kernel object	*/

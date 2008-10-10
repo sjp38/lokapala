@@ -32,7 +32,8 @@ public :
 		return m_instance;
 	}
 
-	void Initiallize(DWORD a_ServerAddress);
+	int Initiallize(DWORD a_ServerAddress);
+	void CloseConnection();
 	void SendTextMessage(char *a_message);
 
 protected :

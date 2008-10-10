@@ -5,6 +5,7 @@
 #include "Raptor.h"
 #include "RaptorDlg.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -107,6 +108,8 @@ BOOL CRaptorDlg::OnInitDialog()
 	CCBFMediator::Instance()->StartNeverDie();
 	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
 	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
+
+	CCBFMediator::Instance()->RestraintUser();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

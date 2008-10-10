@@ -6,9 +6,6 @@
 #ifndef COMMUNICATION_FACADE_H
 #define COMMUNICATION_FACADE_H
 
-#include "DharaniInterface.h"
-#include "DharaniFacade.h"
-
 #include "CommunicationBI.h"
 /**@ingroup	GroupCCM
  * @class	CCommunicationFacade
@@ -35,6 +32,7 @@ public :
 	virtual void InitiallizeAsServer();
 	virtual void SendTextMessageTo(CString a_targetAddress, CString a_message);
 	virtual void BroadcastTextMessage(CString a_message);
+	virtual void NotifyAccepted(void *a_acceptedData);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCommunicationFacade(){}

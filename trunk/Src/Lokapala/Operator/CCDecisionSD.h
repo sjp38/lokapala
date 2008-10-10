@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void UserLogin(void *a_loginRequestData);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCCDecisionSD(){}

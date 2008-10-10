@@ -7,13 +7,13 @@
 #include <atlconv.h>
 #include "CommunicationFacade.h"
 
+#include "CommunicationManager.h"
+
 /**@brief	서버로써의 통신을 위한 초기화를 한다.
  */
 void CCommunicationFacade::InitiallizeAsServer()
 {
-	CDharaniInterface *dharaniInterface;
-	dharaniInterface = CDharaniFacade::Instance();
-	dharaniInterface->DharaniServerInitiallize();
+	CCommunicationManager::Instance()->InitiallizeAsServer();
 }
 
 /**@brief	특정 주소의 raptor에게 문자열을 보낸다.
@@ -22,16 +22,7 @@ void CCommunicationFacade::InitiallizeAsServer()
  */
 void CCommunicationFacade::SendTextMessageTo(CString a_targetAddress, CString a_message)
 {
-	USES_CONVERSION;
-	CDharaniDTO message;
-	int tokenIndex = 0;
-	message.m_globalIp = inet_addr( W2A(a_targetAddress.Tokenize(_T("/"), tokenIndex)) );
-	message.m_localIp = inet_addr( W2A(a_targetAddress.Tokenize(_T("/"), tokenIndex)) );
-	message.m_message = W2A(a_message);
-
-	CDharaniInterface *dharaniInterface;
-	dharaniInterface = CDharaniFacade::Instance();
-	dharaniInterface->DharaniSendTextMessageTo(&message);
+	CCommunicationManager::Instance()->SendTextMessageTo(a_targetAddress, a_message);
 }
 
 /**@brief	연결되어 있는 모든 raptor에게 문자를 보낸다.
@@ -39,13 +30,13 @@ void CCommunicationFacade::SendTextMessageTo(CString a_targetAddress, CString a_
  */
 void CCommunicationFacade::BroadcastTextMessage(CString a_message)
 {	
-	USES_CONVERSION;
-	CDharaniDTO message;
-	message.m_message = W2A(a_message);
-	message.m_globalIp = 0;
-	message.m_localIp = 0;
+	CCommunicationManager::Instance()->BroadcastTextMessage(a_message);
+}
 
-	CDharaniInterface *dharaniInterface;
-	dharaniInterface = CDharaniFacade::Instance();
-	dharaniInterface->DharaniBroadcastTextMessage(&message);
+/**@brief	특정 사용자에게 로그인 허용 메세지를 전송한다.
+ * @param	a_acceptedData	로그인 허용된 사용자의 주소 및 레벨 등의 데이터를 담은 정보체의 포인터
+ */
+void CCommunicationFacade::NotifyAccepted(void *a_acceptedData)
+{
+	CCommunicationManager::Instance()->NotifyAccepted(a_acceptedData);
 }

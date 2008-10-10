@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void NotifyAccepted(void *a_acceptedData);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCCommunicationSD(){}

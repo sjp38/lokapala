@@ -4,18 +4,22 @@
  */
 
 #include "stdafx.h"
-#include <atlconv.h>
-#include "DharaniInterface.h"
-#include "DharaniFacade.h"
 #include "CommunicationFacade.h"
+
+#include "CommunicationManager.h"
 
 /**@brief	소켓을 생성한 후, 오퍼레이터에게 connect 한다.
  */
 void CCommunicationFacade::Initiallize(DWORD a_ServerAddress)
 {
-	CDharaniInterface *dharaniInterface;
-	dharaniInterface = new CDharaniFacade();
-	dharaniInterface->DharaniClientInitiallize(a_ServerAddress);
+	CCommunicationManager::Instance()->Initiallize(a_ServerAddress);
+}
+
+/**@brief	오퍼레이터와의 연결을 끊는다.
+ */
+void CCommunicationFacade::CloseConnection()
+{
+	CCommunicationManager::Instance()->CloseConnection();
 }
 
 
@@ -23,11 +27,13 @@ void CCommunicationFacade::Initiallize(DWORD a_ServerAddress)
  */
 void CCommunicationFacade::SendTextMessage(CString a_message)
 {
-	USES_CONVERSION;
-	CDharaniDTO message;
-	message.m_message = W2A(a_message);
+	CCommunicationManager::Instance()->SendTextMessage(a_message);
+}
 
-	CDharaniInterface *dharaniInterface;
-	dharaniInterface = new CDharaniFacade();
-	dharaniInterface->DharaniSendTextToServer(&message);
+
+/**@brief	오퍼레이터에게 로그인 요청을 보낸다.
+ */
+void CCommunicationFacade::SendLoginRequest(void *a_userInfo)
+{
+	CCommunicationManager::Instance()->SendLoginRequest(a_userInfo);
 }

@@ -290,6 +290,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\DecisionManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\DecisionSingletonInitiallize.cpp"
 					>
 				</File>
@@ -319,6 +323,10 @@
 				</File>
 				<File
 					RelativePath=".\CommunicationFacade.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CommunicationManager.cpp"
 					>
 				</File>
 				<File
@@ -475,10 +483,6 @@
 						>
 					</File>
 					<File
-						RelativePath=".\StateDataDTO.h"
-						>
-					</File>
-					<File
 						RelativePath=".\StatusReportDTO.h"
 						>
 					</File>
@@ -519,6 +523,10 @@
 					RelativePath=".\DecisionFacade.h"
 					>
 				</File>
+				<File
+					RelativePath=".\DecisionManager.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="LGM_Header"
@@ -551,6 +559,14 @@
 					RelativePath=".\CommunicationFacade.h"
 					>
 				</File>
+				<File
+					RelativePath=".\CommunicationManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\LokapalaProtocol.h"
+					>
+				</File>
 				<Filter
 					Name="Dharani_Header"
 					>
@@ -580,6 +596,14 @@
 					</File>
 					<File
 						RelativePath=".\DharaniServerManager.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="CCM_DTO"
+					>
+					<File
+						RelativePath=".\LoginRequestDTO.h"
 						>
 					</File>
 				</Filter>

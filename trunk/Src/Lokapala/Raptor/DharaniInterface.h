@@ -29,7 +29,11 @@ public :
 	 * @return	void
 	 */
 	virtual void DharaniServerInitiallize() = 0;
-	virtual void DharaniClientInitiallize(DWORD a_ServerAddress) = 0;
+	virtual int DharaniClientInitiallize(DWORD a_ServerAddress) = 0;
+
+	/**@brief	서버와의 연결을 종료한다.
+	 */
+	virtual void DharaniCloseServerConnection() = 0;
 };
 
 #endif

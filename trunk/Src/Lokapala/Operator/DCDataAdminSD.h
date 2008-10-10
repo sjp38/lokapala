@@ -27,7 +27,9 @@ public :
 		return m_instance;
 	}
 
-	void ReadDAM();
+	void *GetUsersDataDTO();
+	void *GetConnectedUsersDTO();
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCDataAdminSD(){}

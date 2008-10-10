@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void ReleaseUser();
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCControlSD(){}

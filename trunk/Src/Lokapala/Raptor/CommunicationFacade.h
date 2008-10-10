@@ -30,7 +30,9 @@ public :
 	}
 
 	virtual void Initiallize(DWORD a_ServerAddress);
+	virtual void CloseConnection();
 	virtual void SendTextMessage(CString a_message);
+	virtual void SendLoginRequest(void *a_userInfo);
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCommunicationFacade(){}

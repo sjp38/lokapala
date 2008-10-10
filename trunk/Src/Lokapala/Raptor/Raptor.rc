@@ -71,6 +71,50 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\Raptor.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LOGIN_DIALOG DIALOGEX 0, 0, 316, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Log-in"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NAME,81,14,117,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LOWPASS,81,33,118,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HIGHPASS,81,52,118,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "Login",IDC_LOGIN_BTN,149,69,50,14
+    CONTROL         "",IDC_OPERATOR_IPADDRESS,"SysIPAddress32",WS_TABSTOP,81,94,118,15
+    PUSHBUTTON      "Connect",IDC_CONNECT,95,112,50,14
+    PUSHBUTTON      "Disconnect",IDC_DISCONNECT,149,112,50,14
+    LTEXT           "Name",IDC_STATIC,19,20,19,8
+    LTEXT           "Low-Password",IDC_STATIC,19,35,47,8
+    LTEXT           "High-Password",IDC_STATIC,19,52,48,8
+    LTEXT           "State :",IDC_STATE,23,136,23,8
+    LTEXT           "Operator Address",IDC_STATIC,17,98,58,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_LOGIN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
 #endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -100,62 +144,24 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_RAPTOR_DIALOG DIALOGEX 0, 0, 320, 220
+IDD_RAPTOR_DIALOG DIALOGEX 0, 0, 320, 305
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Raptor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,209,199,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,263,199,50,14
-    LISTBOX         IDC_LISTTEST,7,7,306,153,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    EDITTEXT        IDC_EDITTEST,7,164,252,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "send",IDC_BUTTONTEST,263,164,50,14
-    PUSHBUTTON      "connect",IDC_CONNECTBUTTON,149,199,50,14
-    CONTROL         "",IDC_SERVERIP,"SysIPAddress32",WS_TABSTOP,41,198,100,15
-    PUSHBUTTON      "Start NeverDie",IDC_STARTNEVERDIE_TEST,7,180,65,14
-    PUSHBUTTON      "Stop NeverDie",IDC_STOPNEVERDIE_TEST,75,181,61,14
-    PUSHBUTTON      "Start Observation",IDC_BUTTON1,169,180,71,14
-    PUSHBUTTON      "Stop Observation",IDC_BUTTON3,243,180,70,14
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
-
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x1L
-#else
- FILEFLAGS 0x0L
-#endif
- FILEOS 0x4L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "040904e4"
-        BEGIN
-            VALUE "CompanyName", "TODO: <Company name>"
-            VALUE "FileDescription", "TODO: <File description>"
-            VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "Raptor.exe"
-            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
-            VALUE "OriginalFilename", "Raptor.exe"
-            VALUE "ProductName", "TODO: <Product name>"
-            VALUE "ProductVersion", "1.0.0.1"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x409, 1252
-    END
+    DEFPUSHBUTTON   "OK",IDOK,209,284,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,263,284,50,14
+    LISTBOX         IDC_LISTTEST,7,205,306,38,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDITTEST,7,247,252,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "send",IDC_BUTTONTEST,263,247,50,14
+    PUSHBUTTON      "connect",IDC_CONNECTBUTTON,149,284,50,14
+    CONTROL         "",IDC_SERVERIP,"SysIPAddress32",WS_TABSTOP,41,283,100,15
+    PUSHBUTTON      "Start NeverDie",IDC_STARTNEVERDIE_TEST,7,263,65,14
+    PUSHBUTTON      "Stop NeverDie",IDC_STOPNEVERDIE_TEST,75,264,61,14
+    PUSHBUTTON      "Start Observation",IDC_BUTTON1,169,263,71,14
+    PUSHBUTTON      "Stop Observation",IDC_BUTTON3,243,263,70,14
+    LISTBOX         IDC_NOTIFY_LIST,7,7,306,189,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
 
@@ -180,10 +186,49 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 313
         TOPMARGIN, 7
-        BOTTOMMARGIN, 213
+        BOTTOMMARGIN, 298
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "siva"
+            VALUE "FileDescription", "central manager program"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "Raptor.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "Raptor.exe"
+            VALUE "ProductName", "Lokapala-Operator"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
 
 
 /////////////////////////////////////////////////////////////////////////////

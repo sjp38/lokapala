@@ -16,10 +16,11 @@ void CDharaniFacade::DharaniServerInitiallize()
 }
 
 /**@brief	dharani 컴포넌트의 클라이언트 모델 초기화.
+ * @return	정상적으로 초기화 했을 때 0, 문제가 발생 했을 때 -1
  */
-void CDharaniFacade::DharaniClientInitiallize(DWORD a_ServerAddress)
+int CDharaniFacade::DharaniClientInitiallize(DWORD a_ServerAddress)
 {
-	CDharaniClientManager::Instance()->Initiallize(a_ServerAddress);
+	return CDharaniClientManager::Instance()->Initiallize(a_ServerAddress);
 }
 
 /**@brief	특정 클라이언트에게 메세지를 날린다.
