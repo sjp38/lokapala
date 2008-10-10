@@ -52,6 +52,9 @@ public :
 	void DeleteRule(void *a_rule);
 	CRulesDataDTO *GetRules();
 
+	//connected
+	CConnectedUsersDTO *GetConnectedUsers();
+
 protected :
 	CDataAdminManager(){}
 	~CDataAdminManager(){}

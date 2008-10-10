@@ -8,17 +8,34 @@
 #include "Resource.h"
 #include "DharaniExternSD.h"
 
+#include "CommunicationManager.h"
+
 /**@brief	Dharani가 관리하게 되는 클라이언트가 데이터를 받은 경우, 클라이언트 코드 측에 이 사실과 받은 내용을 알린다.
- * @param	a_srcAddress	데이터를 전송한 클라이언트의 ip 주소.
- * @param	a_message		전송받은 메세지
+ * @param	a_receivedMessage		전송받은 메세지
  */
 void CDharaniExternSD::NotifyReceived(char *a_receivedMessage)
 {
 	USES_CONVERSION;
 	CString message = A2W(a_receivedMessage);
-	CDialog *pDlg = CCBFMediator::Instance()->GetMainDlg();
-	CListBox *pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_LISTTEST));
-	pListBox->AddString(message);
+	CCBFMediator::Instance()->Notify(&message);
+
+	CCommunicationManager::Instance()->NotifyReceived(message);
+}
+
+/**@brief	Dharani가 관리하게 되는 클라이언트가 데이터를 받은 경우, 클라이언트 코드 측에 이 사실과 받은 내용을 알린다.
+ *			전송한 측의 주소가 필요한, 즉 서버로 사용할 경우 사용되는 오버로드 함수.
+ * @param	a_message		전송받은 메세지
+ * @param	a_localIp		메세지를 전송한 클라이언트의 로컬 주소
+ * @param	a_globalIp		메세지를 전송한 클라이언트의 글로벌 주소
+ */
+void CDharaniExternSD::NotifyReceived(char *a_receivedMessage, in_addr a_localIp, in_addr a_globalIp)
+{
+	USES_CONVERSION;
+	CString message = A2W(a_receivedMessage);
+	CString localIp = A2W(inet_ntoa(a_localIp));
+	CString globalIp = A2W(inet_ntoa(a_globalIp));
+
+	CCBFMediator::Instance()->Notify(&message);
 }
 
 /**@brief	클라이언트로부터의 연결이 성사되었음을 알린다.

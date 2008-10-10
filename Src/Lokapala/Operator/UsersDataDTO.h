@@ -29,6 +29,7 @@ public :
 	~CUsersDataDTO(){};
 
 private :
+	BOOL AlreadyExist(CString a_userId);
 };
 
 #endif

@@ -28,7 +28,10 @@ public :
 		return m_instance;
 	}
 
-	void Read();
+	void RegistUser(void *a_userInfo);
+	void RegistUserLevel(int a_level);
+	void ReportStatus(void *a_status);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDataAdminFacade(){}

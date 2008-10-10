@@ -108,6 +108,14 @@ void *CDataAdminFacade::GetRules()
 	return CDataAdminManager::Instance()->GetRules();
 }
 
+/**@brief	현재 접속된 전체 사용자 정보를 얻는다.
+ *			void 포인터로 캐스팅 되어 전달되므로 최종 클라이언트 코드에서만 실제 좌석 정보체 구조를 알면 된다.
+ */
+void *CDataAdminFacade::GetConnectedUsers()
+{
+	return CDataAdminManager::Instance()->GetConnectedUsers();
+}
+
 /**@brief	컴포넌트 간 통신을 테스트 하기 위한 멤버 함수.\n
  *			DAM으로부터 데이터 리드를 하는 역할. 다른 컴포넌트에서 SD를 통해 mediator에 요청하면, mediator에서 DAM의 BI를 통해 호출한다.
  */

@@ -142,9 +142,11 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 		ioData->buffer[ioData->formerReceivedBytes + bytesTransferred] = '\0';
 
 		//연속성 처리 : 데이터가 아직 다 들어오지 않았을 때
-		if( (unsigned short)ioData->buffer[0] > strlen(ioData->buffer+1))
+		if( (unsigned short)ioData->buffer[0] > bytesTransferred-1)
 		{
-			ioData->formerReceivedBytes = strlen(ioData->buffer+1);
+			USES_CONVERSION;
+			AfxMessageBox(A2W(ioData->buffer));
+			ioData->formerReceivedBytes += bytesTransferred;
 			memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 			ioData->wsaBuf.len = BUFSIZE - ioData->formerReceivedBytes;
 			ioData->wsaBuf.buf = ioData->buffer + ioData->formerReceivedBytes;
@@ -154,13 +156,13 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 			continue;
 		}
 
-		//데이터가 모두 들어왔을 때		
-		CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer);	//테스트
+		//데이터가 모두 들어왔을 때
+		//CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer, socketData->localIp, socketData->addr.sin_addr);	//복호화 이전. 테스트
 
 		char decrypted[BUFSIZE];
-		CDharaniServerManager::Instance()->Decrypt(socketData->passwd, decrypted, ioData->buffer+1);
+		CDharaniServerManager::Instance()->Decrypt(socketData->passwd, ioData->buffer[0], decrypted, ioData->buffer+1);
 		decrypted[ioData->buffer[0]] = '\0';
-		CDharaniExternSD::Instance()->NotifyReceived(decrypted);
+		CDharaniExternSD::Instance()->NotifyReceived(decrypted, socketData->localIp, socketData->addr.sin_addr);
 
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 		ioData->wsaBuf.len = BUFSIZE;
@@ -231,6 +233,26 @@ void CDharaniServerManager::BroadcastTextMessage(char *a_message)
 	}
 }
 
+/**@brief	클라이언트 소켓 목록에서 특정 소켓의 정보를 얻어온다.
+ */
+SOCKET_DATA CDharaniServerManager::GetSocketDataFromClientSockets(SOCKET a_socket)
+{
+	WaitForSingleObject(m_hMutex, INFINITE);
+	for(int i=0; i<m_socketCount; i++)
+	{
+		if(m_clientSockets[i].descriptor == a_socket)
+		{
+			SOCKET_DATA socketData = m_clientSockets[i];			
+			ReleaseMutex(m_hMutex);
+			return socketData;
+		}
+	}
+	ReleaseMutex(m_hMutex);
+	SOCKET_DATA socketData;
+	socketData.descriptor = -1;
+	return socketData;
+}
+
 /**@brief	클라이언트 소켓 목록에 소켓 정보를 추가한다.
  */
 void CDharaniServerManager::AddToClientSockets(PTR_SOCKET_DATA a_socketData)
@@ -280,15 +302,16 @@ PTR_SOCKET_DATA CDharaniServerManager::GetSocketByAddress(DWORD a_globalIp, DWOR
 
 
 /**@brief	특정 문자열을 복호화 한다.
- * @param	a_key	RC4 알고리즘 키
+ * @param	a_passwd	RC4 알고리즘 키
+ * @param	a_length	복호/암호화 할 문자열의 길이
  * @param	a_plainText	복호화 된 후의 문자열의 포인터
  * @param	a_cipherText	복호화 될, 암호화 된 문자열
  */
-void CDharaniServerManager::Decrypt(int a_passwd, char *a_plainText, char *a_cipherText)
+void CDharaniServerManager::Decrypt(int a_passwd, size_t a_length, char *a_plainText, char *a_cipherText)
 {
 	RC4_KEY rc4Key;
 	RC4_set_key(&rc4Key,strlen((char *)&a_passwd),(unsigned char *)&a_passwd);
-	RC4(&rc4Key, strlen(a_cipherText), (unsigned char *)a_cipherText, (unsigned char *)a_plainText);
+	RC4(&rc4Key, a_length, (unsigned char *)a_cipherText, (unsigned char *)a_plainText);
 }
 
 /**@brief	특정 문자열을 암호화 한다.

@@ -27,7 +27,9 @@ public :
 		return m_instance;
 	}
 
-	void ReadDAM();
+	void RegistUser(void *a_userInfo);
+	void RegistUserLevel(int a_level);
+	
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCDataAdminSD(){}

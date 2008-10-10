@@ -19,6 +19,7 @@
 #include "MessengerFacade.h"
 
 
+
 /**@ingroup GroupMediator
  * @class	CCBFMediator
  * @brief	Mediator.\n 모든 컴포넌트는 오직 이 메디에이터와 통신한다.
@@ -42,12 +43,13 @@ public :
 	}
 
 	//DCM
-	void ReadDAM();
+	void UserLogin(void *a_loginRequestData);
 
 	//CCM
 	void BeginCommunication();
 	void BroadcastTextMessage(CString a_message);
 	void SendTextMessageTo(CString a_targetAddress, CString a_message);
+	void NotifyAccepted(void *a_acceptedData);
 
 
 	//DAM
@@ -67,9 +69,14 @@ public :
 	void DeleteRule(void *a_rule);
 	void *GetRules();
 
+	void *GetConnectedUsers();
 
+
+	//common
 	void SetMainDlg(CDialog *a_pDlg);
 	CDialog *GetMainDlg();
+	void Notify(CString *a_notifyMessage);
+	
 
 protected :
 	/**@breif	생성자	*/

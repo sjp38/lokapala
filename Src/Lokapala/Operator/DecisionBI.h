@@ -12,6 +12,11 @@
  */
 class CDecisionBI
 {
+public :
+	/**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
+	 * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
+	 */
+	virtual void UserLogin(void *a_loginRequestData) = 0;
 };
 
 #endif

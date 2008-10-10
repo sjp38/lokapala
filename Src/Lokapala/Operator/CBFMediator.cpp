@@ -6,15 +6,27 @@
 #include "stdafx.h"
 #include "CBFMediator.h"
 
-/**@brief	컴포넌트 간 통신 테스트용 멤버함수. DAM으로부터 데이터를 읽는다.
- * @remarks		단순히 테스트용. 실질적으로 하는 일은 없다;
+#include "Resource.h"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DCM
+
+/**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
+ * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
  */
-void CCBFMediator::ReadDAM()
+void CCBFMediator::UserLogin(void *a_loginRequestData)
 {
-	CDataAdminBI *_interface = CDataAdminFacade::Instance();
-	_interface->Read();
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->UserLogin(a_loginRequestData);
 }
 
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CCM
 
 /**@brief	CCM의 통신 초기화. 서버 구조를 구현하기 위해 리슨 소켓을 생성하고 랩터로부터의 연결 요청을 수락한다.
  * @remarks	다라니 컴포넌트 테스트 용.
@@ -42,6 +54,16 @@ void CCBFMediator::SendTextMessageTo(CString a_targetAddress, CString a_message)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
 	_interface->SendTextMessageTo(a_targetAddress, a_message);
+}
+
+
+/**@brief	특정 주소로 로그인 허용 메세지를 전송한다.
+ * @param	a_acceptedData	로그인 허용 메세지를 전송하는데 필요한 데이터의 포인터.
+ */
+void CCBFMediator::NotifyAccepted(void *a_acceptedData)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->NotifyAccepted(a_acceptedData);
 }
 
 
@@ -150,6 +172,14 @@ void *CCBFMediator::GetRules()
 	return _interface->GetRules();
 }
 
+/**@brief	접속된 사용자 전체 정보를 얻어온다.
+ */
+void *CCBFMediator::GetConnectedUsers()
+{
+	CDataAdminBI *_interface = CDataAdminFacade::Instance();
+	return _interface->GetConnectedUsers();
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -168,4 +198,11 @@ CDialog *CCBFMediator::GetMainDlg()
 	return m_mainDlg;
 }
 
-
+/**@brief	공지 리스트박스에 공지사항을 표시한다.
+ */
+void CCBFMediator::Notify(CString *a_notifyMessage)
+{
+	CListBox *notifyList;
+	notifyList = (CListBox *)(m_mainDlg->GetDlgItem(IDC_NOTIFY_LIST));
+	notifyList->AddString(*a_notifyMessage);
+}

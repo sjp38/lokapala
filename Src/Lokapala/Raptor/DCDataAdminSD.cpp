@@ -6,9 +6,16 @@
 #include "stdafx.h"
 #include "DCDataAdminSD.h"
 
-/**@brief	DCM에서 DAM으로의 service delegate 테스트용 멤버 함수. 곧바로 DAM에 요청하지 않고, mediator에게 요청을 한다.
+/**@brief	DAM에 현재 랩터를 사용하는 사용자 정보를 등록한다.
  */
-void CDCDataAdminSD::ReadDAM()
+void CDCDataAdminSD::RegistUser(void *a_userInfo)
 {
-	CCBFMediator::Instance()->ReadDAM();
+	CCBFMediator::Instance()->RegistUser(a_userInfo);
+}
+
+/**@brief	현재 랩터를 사용하는 사용자 정보에 레벨을 등록한다.
+ */
+void CDCDataAdminSD::RegistUserLevel(int a_level)
+{
+	CCBFMediator::Instance()->RegistUserLevel(a_level);
 }

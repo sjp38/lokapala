@@ -43,14 +43,14 @@
 #define IDC_DELETE_RULE                 1026
 #define IDC_LOAD                        1027
 #define IDC_SAVE                        1028
-#define IDC_LIST2                       1029
-#define IDC_LIST3                       1030
-#define IDC_LIST4                       1031
+#define IDC_MAIN_NOTIFY                 1029
+#define IDC_NOTIFY_LIST                 1029
+#define IDC_CRIMINAL_LIST               1030
+#define IDC_CONNECTED_LIST              1031
 #define IDC_DATA_ADMIN                  1032
 #define IDC_CONTROL                     1033
 #define IDC_MESSENGER                   1034
 #define IDC_DATA_ADMIN_TAB              1034
-#define IDC_RULE_ADMIN                  1035
 
 // Next default values for new objects
 // 

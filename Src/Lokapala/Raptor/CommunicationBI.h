@@ -15,7 +15,9 @@ class CCommunicationBI
 {
 public :
 	virtual void Initiallize(DWORD a_ServerAddress) = 0;
+	virtual void CloseConnection() = 0;
 	virtual void SendTextMessage(CString a_message) = 0;
+	virtual void SendLoginRequest(void *a_userInfo) = 0;
 };
 
 #endif

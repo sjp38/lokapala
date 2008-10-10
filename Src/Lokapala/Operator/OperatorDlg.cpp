@@ -58,6 +58,9 @@ COperatorDlg::COperatorDlg(CWnd* pParent /*=NULL*/)
 void COperatorDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_NOTIFY_LIST, m_notifyList);
+	DDX_Control(pDX, IDC_CONNECTED_LIST, m_connectedList);
+	DDX_Control(pDX, IDC_CRIMINAL_LIST, m_criminalList);
 }
 
 BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)

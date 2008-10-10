@@ -28,6 +28,21 @@ public :
 		}
 		return m_instance;
 	}
+
+	virtual void RestraintUser();
+	virtual void ReleaseUser();
+	
+	virtual void Login(void *a_userInfo);
+	virtual void Logout();
+	
+	virtual void Shutdown();
+	virtual void Reboot();
+
+	virtual void GenocideProcesses();
+	virtual void KillProcess(CString *a_processName);
+
+	virtual void ExecuteProcess(CString *a_processName);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CControlFacade(){}

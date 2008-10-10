@@ -27,6 +27,18 @@ public :
 		return m_instance;
 	}
 
+	void LoginAccepted(int a_level);
+
+	//void Login();
+	//void Logout();
+	//void Shutdown();
+	//void Reboot();
+	//void GenocideProcesses();
+	//void KillProcess(CString *a_processName);
+	//void Execute(CString *a_processName);
+	
+	//void StatusChange(void *a_statusReport);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCCDecisionSD(){}

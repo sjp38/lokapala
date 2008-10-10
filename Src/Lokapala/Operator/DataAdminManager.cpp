@@ -299,3 +299,12 @@ CRulesDataDTO *CDataAdminManager::GetRules()
 {
 	return &m_rulesData;
 }
+
+
+
+/**@brief	접속된 사용자 정보를 넘긴다.
+ */
+CConnectedUsersDTO *CDataAdminManager::GetConnectedUsers()
+{
+	return &m_connectedUsers;
+}

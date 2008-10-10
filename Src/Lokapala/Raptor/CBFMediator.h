@@ -49,12 +49,20 @@ public :
 	CDialog *GetMainDlg();
 	void SetMainDlg(CDialog *a_pDlg);
 
+	//DAM
+	void RegistUser(void *a_userInfo);
+	void RegistUserLevel(int a_level);
+	void ReportStatus(void *a_status);
+
 	//DCM
-	void ReadDAM();
+	void LoginRequest(void *a_userInfo);
+	void LoginAccepted(int a_level);
 
 	//CCM
 	void InitiallizeCommunication(DWORD a_ServerAddress);
+	void CloseConnection();
 	void SendTextMessage(CString a_message);
+	void SendLoginRequest(void *a_userInfo);
 
 	//NDM
 	void StartNeverDie();
@@ -66,6 +74,20 @@ public :
 	void StopProcessObservation();
 	void ReceiveExecutedProcess(CString a_executedProcess);
 	void NotifyExecutedProcess(CString a_executedProcess);
+
+	//CTM
+	void RestraintUser();
+	void ReleaseUser();	
+	void Login(void *a_userInfo);
+	void Logout();	
+	void Shutdown();
+	void Reboot();
+	void GenocideProcesses();
+	void KillProcess(CString *a_processName);
+	void ExecuteProcess(CString *a_processName);
+
+	//common
+	void Notify(CString *a_message);
 
 protected :
 	/**@breif	»ý¼ºÀÚ	*/

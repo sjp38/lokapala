@@ -28,7 +28,8 @@ public :
 	virtual void DharaniBroadcastTextMessage(CDharaniDTO *a_sendData);
 	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData);
 	virtual void DharaniServerInitiallize(void);
-	virtual void DharaniClientInitiallize(DWORD a_ServerAddress);
+	virtual int DharaniClientInitiallize(DWORD a_ServerAddress);
+	virtual void DharaniCloseServerConnection();
 
 	CDharaniFacade(){}
 	~CDharaniFacade(){}

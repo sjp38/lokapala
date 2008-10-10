@@ -28,6 +28,10 @@ public :
 		}
 		return m_instance;
 	}
+
+	virtual void LoginRequest(void *a_userInfo);
+	virtual void LoginAccepted(int a_level);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDecisionFacade(){}

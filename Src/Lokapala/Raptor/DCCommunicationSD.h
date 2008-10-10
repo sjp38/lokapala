@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void LoginRequest(void *a_userInfo);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCCommunicationSD(){}
