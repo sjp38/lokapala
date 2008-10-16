@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void PostTextMessageToOperator(CString *a_message);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CMSCommunicationSD(){}

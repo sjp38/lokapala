@@ -23,6 +23,16 @@ public :
 
 	CLoginRequestDTO(){}
 	~CLoginRequestDTO(){}
+
+	CLoginRequestDTO(CString a_globalIp, CString a_localIp, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword)
+	{
+		m_globalIp = a_globalIp;
+		m_localIp = a_localIp;
+		m_name = a_name;
+		m_lowLevelPassword = a_lowLevelPassword;
+		m_highLevelPassword = a_highLevelPassword;
+		m_level = -1;
+	}
 };
 
 

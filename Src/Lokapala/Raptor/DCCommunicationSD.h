@@ -28,6 +28,8 @@ public :
 	}
 
 	void LoginRequest(void *a_userInfo);
+	void ReportExecutedProcess(CString *a_executedProcess);
+	void ReportStatus(void *a_status);
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

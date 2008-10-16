@@ -17,6 +17,7 @@ typedef CArray<CStatusReportDTO> CStatusReportDTOArray;
  */
 class CStatusReportsDTO
 {
+public :
 	CStatusReportDTOArray m_reports;
 	void AddReport(CStatusReportDTO *a_report);
 	void DeleteReportAt(CString a_globalIp, CString a_localIp);

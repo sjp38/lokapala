@@ -20,6 +20,23 @@ void CCBFMediator::UserLogin(void *a_loginRequestData)
 	_interface->UserLogin(a_loginRequestData);
 }
 
+/**@brief	사용자가 실행한 프로세스에 대해 올바른 프로세스인지 어떤지 확인/처리한다.
+ */
+void CCBFMediator::JudgeUserExecutedProcess(void *a_executedProcessData)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->JudgeUserExecutedProcess(a_executedProcessData);
+}
+
+
+/**@brief	새로운 고장 상태 보고를 받는다.
+ */
+void CCBFMediator::PresentStatusReport(void *a_statusReportData)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->PresentStatusReport(a_statusReportData);
+}
+
 
 
 
@@ -66,6 +83,53 @@ void CCBFMediator::NotifyAccepted(void *a_acceptedData)
 	_interface->NotifyAccepted(a_acceptedData);
 }
 
+/**@brief	특정 유저 컴퓨터를 꺼버린다.
+ */
+void CCBFMediator::ShutdownUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->ShutdownUser(a_argument);
+}
+
+/**@brief	특정 유저의 컴퓨터를 재부팅시킨다.
+ */
+void CCBFMediator::RebootUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->RebootUser(a_argument);
+}
+
+/**@brief	특정 유저를 강제 로그아웃 시킨다.
+ */
+void CCBFMediator::LogoutUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->LogoutUser(a_argument);
+}
+
+/**@brief	특정 유저에게 특정 프로세스를 실행시킨다.
+ */
+void CCBFMediator::ExecuteUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->ExecuteUser(a_argument);
+}
+
+/**@brief	특정 유저의 실행중인 프로세스 전부를 죽여버린다.
+ */
+void CCBFMediator::GenocideUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->GenocideUser(a_argument);
+}
+
+/**@brief	특정 유저에게 경고 메세지를 띄운다.
+ */
+void CCBFMediator::WarnUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->WarnUser(a_argument);
+}
 
 
 
@@ -172,6 +236,14 @@ void *CCBFMediator::GetRules()
 	return _interface->GetRules();
 }
 
+/**@brief	고장 상태 정보 전체를 얻어온다.
+ */
+void *CCBFMediator::GetStatusReports()
+{
+	CDataAdminBI *_interface = CDataAdminFacade::Instance();
+	return _interface->GetStatusReports();
+}
+
 /**@brief	접속된 사용자 전체 정보를 얻어온다.
  */
 void *CCBFMediator::GetConnectedUsers()
@@ -180,6 +252,17 @@ void *CCBFMediator::GetConnectedUsers()
 	return _interface->GetConnectedUsers();
 }
 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DAM
+
+void CCBFMediator::PresentMessage(void *a_messageData)
+{
+	CMessengerBI *_interface = CMessengerFacade::Instance();
+	_interface->ReceiveTextMessageFrom(a_messageData);
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

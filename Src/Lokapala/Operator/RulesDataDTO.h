@@ -7,6 +7,7 @@
 #define RULES_DATA_DTO_H
 
 #include "RuleDataDTO.h"
+#include "ExecutedProcessDTO.h"
 
 class CRulesDataDTO
 {
@@ -15,6 +16,8 @@ public :
 
 	void AddRule(CRuleDataDTO *a_rule);
 	void DeleteRule(CRuleDataDTO *a_targetRule);
+
+	void GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRulesDataDTO *a_searchedRules);
 
 	CRulesDataDTO(){}
 	~CRulesDataDTO(){}

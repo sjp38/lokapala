@@ -34,6 +34,31 @@ void CRulesDataDTO::DeleteRule(CRuleDataDTO *a_targetRule)
 }
 
 
+/**@brief	특정 실행된 프로세스에 대해, 해당하는 규칙을 검색해서 알려준다.
+ * @param	a_searchedRules	검색된 규칙을 받아 갈 포인터.
+ */
+void CRulesDataDTO::GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRulesDataDTO *a_searchedRules)
+{
+	CString seatId = a_executedProcess->m_executedGlobalIp + _T("/") + a_executedProcess->m_executedLocalIp;
+
+	for(int i=0; i<m_rules.GetCount(); i++)
+	{
+		if( ( m_rules[i].m_processName == _T("")
+			|| m_rules[i].m_processName.Find(a_executedProcess->m_executedProcessName) != -1 )
+			&&
+			( m_rules[i].m_targetSeatId == _T("")
+			|| m_rules[i].m_targetSeatId.Find(seatId) != -1 )
+			/*&&
+			( m_rules[i].m_targetUserId == _T("")
+			|| m_rules[i].m_targetUserId.Find() != -1 )*/	//일단 target user는 유보.
+		  )
+		{
+			a_searchedRules->AddRule(&m_rules[i]);
+		}
+	}
+}
+
+
 /**@brief	특정 금지 프로세스 관련 규칙을 찾아낸다.
  */
 int CRulesDataDTO::FindRule(CRuleDataDTO *a_targetRule)

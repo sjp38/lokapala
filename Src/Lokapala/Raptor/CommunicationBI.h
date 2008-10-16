@@ -16,8 +16,10 @@ class CCommunicationBI
 public :
 	virtual void Initiallize(DWORD a_ServerAddress) = 0;
 	virtual void CloseConnection() = 0;
-	virtual void SendTextMessage(CString a_message) = 0;
+	virtual void SendTextMessageToOperator(CString *a_message) = 0;
 	virtual void SendLoginRequest(void *a_userInfo) = 0;
+	virtual void SendExecutedProcessReport(CString *a_executedProcess) = 0;
+	virtual void SendStatusReport(void *a_statusReport) = 0;
 };
 
 #endif

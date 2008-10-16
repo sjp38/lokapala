@@ -199,6 +199,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\StatusReportDlg.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -350,6 +354,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\MessengerManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MessengerSingletonInitiallize.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\MSCommunicationSD.cpp"
 					>
 				</File>
@@ -434,6 +446,10 @@
 			</File>
 			<File
 				RelativePath=".\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\StatusReportDlg.h"
 				>
 			</File>
 			<File
@@ -533,6 +549,10 @@
 				</File>
 				<File
 					RelativePath=".\MessengerFacade.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MessengerManager.h"
 					>
 				</File>
 				<File

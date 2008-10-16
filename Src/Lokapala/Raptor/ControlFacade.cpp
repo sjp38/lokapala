@@ -31,42 +31,42 @@ void CControlFacade::Login(void *a_userInfo)
 
 /**@brief	강제로 사용자를 로그아웃 시킨다.
  */
-void CControlFacade::Logout()
+void CControlFacade::Logout(void *a_message)
 {
-	CControlManager::Instance()->Logout();
+	CControlManager::Instance()->Logout(a_message);
 }
 
 /**@brief	컴퓨터를 꺼버린다.
  */
-void CControlFacade::Shutdown()
+void CControlFacade::Shutdown(void *a_message)
 {
-	CControlManager::Instance()->Shutdown();
+	CControlManager::Instance()->Shutdown(a_message);
 }
 
 /**@brief	컴퓨터를 재부팅 시킨다.
  */
-void CControlFacade::Reboot()
+void CControlFacade::Reboot(void *a_message)
 {
-	CControlManager::Instance()->Reboot();
+	CControlManager::Instance()->Reboot(a_message);
 }
 
 /**@brief	실행 중인 프로세스를 모조리 죽여버린다.
  */
-void CControlFacade::GenocideProcesses()
+void CControlFacade::GenocideProcesses(void *a_message)
 {
-	CControlManager::Instance()->GenocideProcesses();
+	CControlManager::Instance()->GenocideProcesses(a_message);
 }
 
 /**@brief	특정 이름의 프로세스를 죽인다.
  */
-void CControlFacade::KillProcess(CString *a_processName)
+void CControlFacade::KillProcess(void *a_processName)
 {
 	CControlManager::Instance()->KillProcess(a_processName);
 }
 
 /**@brief	특정 이름의 프로세스를 실행시킨다.
  */
-void CControlFacade::ExecuteProcess(CString *a_processName)
+void CControlFacade::ExecuteProcess(void *a_processName)
 {
 	CControlManager::Instance()->ExecuteProcess(a_processName);
 }

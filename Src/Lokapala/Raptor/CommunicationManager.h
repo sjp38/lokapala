@@ -25,9 +25,14 @@ public :
 
 	void Initiallize(DWORD a_ServerAddress);
 	void CloseConnection();
-	void SendTextMessage(CString a_message);
-	void SendLoginRequest(void *a_userInfo);
+	void SendTextMessage(CString a_message);	
 	void NotifyReceived(CString a_message);
+
+	//raptor -> operator
+	void SendLoginRequest(void *a_userInfo);
+	void SendExecutedProcessReport(CString *a_executedProcess);
+	void SendTextMessageToOperator(CString *a_message);
+	void SendStatusReport(void *a_statusReport);
 
 protected :
 	CCommunicationManager(){}

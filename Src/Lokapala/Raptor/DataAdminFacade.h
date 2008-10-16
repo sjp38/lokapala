@@ -30,7 +30,7 @@ public :
 
 	void RegistUser(void *a_userInfo);
 	void RegistUserLevel(int a_level);
-	void ReportStatus(void *a_status);
+	void *GetStatusReports();
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

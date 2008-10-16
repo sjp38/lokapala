@@ -27,7 +27,7 @@ public :
 
 	void RegistUser(void *a_user);
 	void RegistUserLevel(int a_level);
-	void ReportStatus(void *a_status);
+	void *GetStatusReports();
 
 protected :
 	CDataAdminManager(){}

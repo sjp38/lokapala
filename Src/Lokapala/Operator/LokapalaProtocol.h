@@ -18,5 +18,6 @@
 #define GENOCIDE			10
 #define KILL				11
 #define EXECUTE				12
+#define WARN				13
 
 #define STATUS_CHANGE		13

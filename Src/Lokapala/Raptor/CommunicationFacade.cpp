@@ -25,9 +25,9 @@ void CCommunicationFacade::CloseConnection()
 
 /**@brief	텍스트 메세지를 오퍼레이터에게 보낸다.
  */
-void CCommunicationFacade::SendTextMessage(CString a_message)
+void CCommunicationFacade::SendTextMessageToOperator(CString *a_message)
 {
-	CCommunicationManager::Instance()->SendTextMessage(a_message);
+	CCommunicationManager::Instance()->SendTextMessageToOperator(a_message);
 }
 
 
@@ -36,4 +36,20 @@ void CCommunicationFacade::SendTextMessage(CString a_message)
 void CCommunicationFacade::SendLoginRequest(void *a_userInfo)
 {
 	CCommunicationManager::Instance()->SendLoginRequest(a_userInfo);
+}
+
+
+/**@brief	오퍼레이터에게 실행된 프로세스 이름을 보낸다.
+ */
+void CCommunicationFacade::SendExecutedProcessReport(CString *a_executedProcess)
+{
+	CCommunicationManager::Instance()->SendExecutedProcessReport(a_executedProcess);
+}
+
+
+/**@brief	상황 보고를 오퍼레이터에게 전송한다.
+ */
+void CCommunicationFacade::SendStatusReport(void *a_statusReport)
+{
+	CCommunicationManager::Instance()->SendStatusReport(a_statusReport);
 }

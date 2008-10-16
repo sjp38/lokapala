@@ -38,4 +38,6 @@ public:
 	afx_msg void OnStartObservation();
 	afx_msg void OnStopObservation();
 	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
+	afx_msg void OnBnClickedSend();
+	afx_msg void OnBnClickedStatusReport();
 };

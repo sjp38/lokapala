@@ -15,3 +15,19 @@ void CDecisionFacade::UserLogin(void *a_loginRequestData)
 {
 	CDecisionManager::Instance()->UserLogin(a_loginRequestData);
 }
+
+
+/**@brief	사용자 실행 프로세스에 대한 처리.
+ */
+void CDecisionFacade::JudgeUserExecutedProcess(void *a_executedProcessData)
+{
+	CDecisionManager::Instance()->JudgeUserExecutedProcess(a_executedProcessData);
+}
+
+
+/**@brief	새로운 고장 상태 보고에 대한 처리.
+ */
+void CDecisionFacade::PresentStatusReport(void *a_statusReportData)
+{
+	CDecisionManager::Instance()->PresentStatusReport(a_statusReportData);
+}

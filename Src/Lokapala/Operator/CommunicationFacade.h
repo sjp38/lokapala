@@ -33,6 +33,13 @@ public :
 	virtual void SendTextMessageTo(CString a_targetAddress, CString a_message);
 	virtual void BroadcastTextMessage(CString a_message);
 	virtual void NotifyAccepted(void *a_acceptedData);
+	virtual void ShutdownUser(void *a_argument);
+	virtual void RebootUser(void *a_argument);
+	virtual void LogoutUser(void *a_argument);
+	virtual void ExecuteUser(void *a_argument);
+	virtual void GenocideUser(void *a_argument);
+	virtual void WarnUser(void *a_argument);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCommunicationFacade(){}

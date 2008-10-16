@@ -11,7 +11,7 @@ enum State {HW_DEFECT, SW_DEFECT, REPAIRED, VERIFIED};
 
 /**@ingroup	GroupDAM
  * @class	CStatusReportDTO
- * @brief	고장 상태에 대한 정보체
+ * @brief	고장 상황에 대한 정보체
  */
 class CStatusReportDTO
 {
@@ -23,6 +23,7 @@ public :
 	CString m_comment;
 
 	CStatusReportDTO(CString a_globalIp, CString a_localIp, enum State a_state, CString a_date, CString a_comment);
+	CStatusReportDTO(enum State a_state, CString a_date, CString a_comment);
 
 	CStatusReportDTO(){}
 	~CStatusReportDTO(){}

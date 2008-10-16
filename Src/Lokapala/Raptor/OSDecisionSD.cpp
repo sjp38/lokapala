@@ -16,5 +16,5 @@ void COSDecisionSD::NotifyExecutedProcess(CString a_executedProcess)
 {
 	CListBox *pListBox = (CListBox *)( (CCBFMediator::Instance()->GetMainDlg())->GetDlgItem(IDC_LISTTEST) );
 	pListBox->AddString(a_executedProcess);
-	CCBFMediator::Instance()->NotifyExecutedProcess(a_executedProcess);
+	CCBFMediator::Instance()->ReportExecutedProcess(&a_executedProcess);
 }

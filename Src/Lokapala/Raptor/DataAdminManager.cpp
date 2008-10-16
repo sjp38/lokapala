@@ -16,8 +16,11 @@ void CDataAdminManager::RegistUserLevel(int a_level)
 	m_user.m_level = a_level;
 }
 
-/**@brief	상태 변화 보고를 저장한다.
+
+/**@brief	현재 상황 변화 보고 정보체를 가져온다.
+ * @return	상황 변화 보고 정보체의 포인터.
  */
-void CDataAdminManager::ReportStatus(void *a_status)
+void *CDataAdminManager::GetStatusReports()
 {
+	return &m_statusReports;
 }
