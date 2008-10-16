@@ -28,6 +28,10 @@ public :
 		}
 		return m_instance;
 	}
+
+	virtual void PostTextMessageTo(void *a_message);
+	virtual void ReceiveTextMessageFrom(void *a_message);
+	
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CMessengerFacade(){}

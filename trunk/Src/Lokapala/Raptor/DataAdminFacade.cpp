@@ -22,9 +22,10 @@ void CDataAdminFacade::RegistUserLevel(int a_level)
 	CDataAdminManager::Instance()->RegistUserLevel(a_level);
 }
 
-/**@brief	상태 변화를 기록한다.
+/**@brief	상황 변화 보고를 가져온다.
+ * @return	상황 변화 보고 정보체의 포인터.
  */
-void CDataAdminFacade::ReportStatus(void *a_status)
+void *CDataAdminFacade::GetStatusReports()
 {
-	CDataAdminManager::Instance()->ReportStatus(a_status);
+	return CDataAdminManager::Instance()->GetStatusReports();
 }

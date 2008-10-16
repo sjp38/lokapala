@@ -21,3 +21,69 @@ void CDecisionFacade::LoginAccepted(int a_level)
 {
 	CDecisionManager::Instance()->LoginAccepted(a_level);
 }
+
+/**@brief	오퍼레이터로부터의 강제 로그인 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::LoginOrderReceived(void *a_message)
+{
+	CDecisionManager::Instance()->LoginOrderReceived(a_message);
+}
+
+/**@brief	오퍼레이터로부터의 강제 로그아웃 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::LogoutOrderReceived(void *a_message)
+{
+	CDecisionManager::Instance()->LogoutOrderReceived(a_message);
+}
+
+/**@brief	오퍼레이터로부터의 강제 컴퓨터 종료 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::ShutdownOrderReceived(void *a_message)
+{
+	CDecisionManager::Instance()->ShutdownOrderReceived(a_message);
+}
+
+/**@brief	오퍼레이터로부터의 강제 컴퓨터 리부팅 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::RebootOrderReceived(void *a_message)
+{
+	CDecisionManager::Instance()->RebootOrderReceived(a_message);
+}
+
+/**@brief	오퍼레이터로부터의 실행중인 모든 프로세스 종료 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::GenocideProcessesOrderReceived(void *a_message)
+{
+	CDecisionManager::Instance()->GenocideProcessesOrderReceived(a_message);
+}
+
+/**@brief	오퍼레이터로부터의 특정 프로세스 종료 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::KillProcessOrderReceived(void *a_processName)
+{
+	CDecisionManager::Instance()->KillProcessOrderReceived(a_processName);
+}
+
+/**@brief	오퍼레이터로부터의 특정 프로세스 실행 명령에 대한 처리를 한다.
+ */
+void CDecisionFacade::ExecuteProcessOrderReceived(void *a_processName)
+{
+	CDecisionManager::Instance()->ExecuteProcessOrderReceived(a_processName);
+}
+
+
+
+/**@brief	실행된 프로세스 이름을 보고받는다.
+ */
+void CDecisionFacade::ReportExecutedProcess(CString *a_executedProcess)
+{
+	CDecisionManager::Instance()->ReportExecutedProcess(a_executedProcess);
+}
+
+
+/**@brief	상황 변화를 보고한다.
+ */
+void CDecisionFacade::ReportStatus(void *a_status)
+{
+	CDecisionManager::Instance()->ReportStatus(a_status);
+}

@@ -44,12 +44,20 @@ public :
 
 	//DCM
 	void UserLogin(void *a_loginRequestData);
+	void JudgeUserExecutedProcess(void *a_executedProcessData);
+	void PresentStatusReport(void *a_statusReportData);
 
 	//CCM
 	void BeginCommunication();
 	void BroadcastTextMessage(CString a_message);
 	void SendTextMessageTo(CString a_targetAddress, CString a_message);
 	void NotifyAccepted(void *a_acceptedData);
+	void ShutdownUser(void *a_argument);
+	void RebootUser(void *a_argument);
+	void LogoutUser(void *a_argument);
+	void ExecuteUser(void *a_argument);
+	void GenocideUser(void *a_argument);
+	void WarnUser(void *a_argument);
 
 
 	//DAM
@@ -69,7 +77,13 @@ public :
 	void DeleteRule(void *a_rule);
 	void *GetRules();
 
+	void *GetStatusReports();
+
 	void *GetConnectedUsers();
+
+
+	//MSM
+	void PresentMessage(void *a_messageData);
 
 
 	//common

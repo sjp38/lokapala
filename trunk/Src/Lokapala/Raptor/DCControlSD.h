@@ -29,6 +29,14 @@ public :
 
 	void ReleaseUser();
 
+	void Login(void *a_userInfo);
+	void Logout(void *a_message);	
+	void Shutdown(void *a_message);
+	void Reboot(void *a_message);
+	void GenocideProcesses(void *a_message);
+	void KillProcess(void *a_processName);
+	void ExecuteProcess(void *a_processName);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCControlSD(){}

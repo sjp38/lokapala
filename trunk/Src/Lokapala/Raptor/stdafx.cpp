@@ -17,9 +17,7 @@
 
 
 
-#include "MessengerFacade.h"
-#include "MSCommunicationSD.h"
-#include "MSLogSD.h"
+
 
 #include "NeverDieFacade.h"
 #include "NDDecisionSD.h"
@@ -39,7 +37,7 @@ CCBFMediator *CCBFMediator::m_instance = NULL;
 
 CLogFacade *CLogFacade::m_instance = NULL;
 
-CMessengerFacade *CMessengerFacade::m_instance = NULL;
+
 CNeverDieFacade *CNeverDieFacade::m_instance = NULL;
 CObserveFacade *CObserveFacade::m_instance = NULL;
 
@@ -48,8 +46,7 @@ CObserveFacade *CObserveFacade::m_instance = NULL;
 
 
 
-CMSCommunicationSD *CMSCommunicationSD::m_instance = NULL;
-CMSLogSD *CMSLogSD::m_instance = NULL;
+
 
 CNDDecisionSD *CNDDecisionSD::m_instance = NULL;
 

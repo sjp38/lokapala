@@ -108,6 +108,14 @@ void *CDataAdminFacade::GetRules()
 	return CDataAdminManager::Instance()->GetRules();
 }
 
+/**@brief	고장 상태 보고 정보 전체를 반환한다.
+ *			void 포인터로 캐스팅 되어 전달되므로 최종 클라이언트 코드에서만 실제 고장 상태 보고 정보체 구조를 알면 된다.
+ */
+void *CDataAdminFacade::GetStatusReports()
+{
+	return CDataAdminManager::Instance()->GetStatusReports();
+}
+
 /**@brief	현재 접속된 전체 사용자 정보를 얻는다.
  *			void 포인터로 캐스팅 되어 전달되므로 최종 클라이언트 코드에서만 실제 좌석 정보체 구조를 알면 된다.
  */

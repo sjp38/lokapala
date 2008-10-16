@@ -52,17 +52,33 @@ public :
 	//DAM
 	void RegistUser(void *a_userInfo);
 	void RegistUserLevel(int a_level);
-	void ReportStatus(void *a_status);
+	void *GetStatusReports();
 
 	//DCM
 	void LoginRequest(void *a_userInfo);
 	void LoginAccepted(int a_level);
+	void LoginOrderReceived(void *a_userInfo);
+	void LogoutOrderReceived(void *a_message);	
+	void ShutdownOrderReceived(void *a_message);
+	void RebootOrderReceived(void *a_message);
+	void GenocideProcessesOrderReceived(void *a_message);
+	void KillProcessOrderReceived(void *a_processName);
+	void ExecuteProcessOrderReceived(void *a_processName);
+
+	void ReportExecutedProcess(CString *a_executedProcess);	
+	void ReportStatus(void *a_status);
 
 	//CCM
 	void InitiallizeCommunication(DWORD a_ServerAddress);
 	void CloseConnection();
-	void SendTextMessage(CString a_message);
+	void SendTextMessageToOperator(CString *a_message);	//MSM에 의해 불려진다.
 	void SendLoginRequest(void *a_userInfo);
+	void SendExecutedProcessReport(CString *a_executedProcess);
+	void SendStatusReport(void *a_statusReport);
+
+	//MSM
+	void PostTextMessageToOperator(CString *a_message);			//어쨌거나 send라는 동사는 CCM만 쓸 수 있다.
+	void ReceiveTextMessageFromOperator(CString *a_message);
 
 	//NDM
 	void StartNeverDie();
@@ -73,18 +89,18 @@ public :
 	void StartProcessObservation();
 	void StopProcessObservation();
 	void ReceiveExecutedProcess(CString a_executedProcess);
-	void NotifyExecutedProcess(CString a_executedProcess);
+	//void NotifyExecutedProcess(CString a_executedProcess);
 
 	//CTM
 	void RestraintUser();
 	void ReleaseUser();	
 	void Login(void *a_userInfo);
-	void Logout();	
-	void Shutdown();
-	void Reboot();
-	void GenocideProcesses();
-	void KillProcess(CString *a_processName);
-	void ExecuteProcess(CString *a_processName);
+	void Logout(void *a_message);	
+	void Shutdown(void *a_message);
+	void Reboot(void *a_message);
+	void GenocideProcesses(void *a_message);
+	void KillProcess(void *a_processName);
+	void ExecuteProcess(void *a_processName);	
 
 	//common
 	void Notify(CString *a_message);

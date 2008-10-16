@@ -25,6 +25,16 @@ public :
 
 	void LoginRequest(void *a_userInfo);
 	void LoginAccepted(int a_level);
+	void LoginOrderReceived(void *a_userInfo);
+	void LogoutOrderReceived(void *a_message);	
+	void ShutdownOrderReceived(void *a_message);
+	void RebootOrderReceived(void *a_message);
+	void GenocideProcessesOrderReceived(void *a_message);
+	void KillProcessOrderReceived(void *a_processName);
+	void ExecuteProcessOrderReceived(void *a_processName);
+
+	void ReportExecutedProcess(CString *a_executedProcess);
+	void ReportStatus(void *a_status);
 
 protected :
 	CDecisionManager(){}

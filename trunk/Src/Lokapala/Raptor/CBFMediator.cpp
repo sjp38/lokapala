@@ -28,12 +28,13 @@ void CCBFMediator::RegistUserLevel(int a_level)
 	_interface->RegistUserLevel(a_level);
 }
 
-/**@brief	사용자가, 또는 오퍼레이터로부터의 상태 변화 입력이 있었을 때, 상태를 저장한다.
+/**@brief	현재 관리하고 있는 상황 정보체를 가져온다.
+ * @return	상황 정보체의 포인터.
  */
-void CCBFMediator::ReportStatus(void *a_status)
+void *CCBFMediator::GetStatusReports()
 {
 	CDataAdminBI *_interface = CDataAdminFacade::Instance();
-	_interface->ReportStatus(a_status);
+	return _interface->GetStatusReports();
 }
 
 
@@ -56,6 +57,78 @@ void CCBFMediator::LoginAccepted(int a_level)
 {
 	CDecisionBI *_interface = CDecisionFacade::Instance();
 	_interface->LoginAccepted(a_level);
+}
+
+/**@brief	오퍼레이터로부터 강제 로그인 명령이 내려왔을 때.
+ */
+void CCBFMediator::LoginOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->LoginOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 강제 로그아웃 명령이 내려왔을 때.
+ */
+void CCBFMediator::LogoutOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->LogoutOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 강제 컴퓨터 종료 명령이 내려왔을 때.
+ */
+void CCBFMediator::ShutdownOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->ShutdownOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 강제 컴퓨터 재부팅 명령이 내려왔을 때.
+ */
+void CCBFMediator::RebootOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->RebootOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 실행중인 모든 프로세스 종료 명령이 내려왔을 때.
+ */
+void CCBFMediator::GenocideProcessesOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->GenocideProcessesOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 실행중인 특정 프로세스 종료 명령이 내려왔을 때.
+ */
+void CCBFMediator::KillProcessOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->KillProcessOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 특정 프로세스 실행 명령이 내려왔을 때.
+ */
+void CCBFMediator::ExecuteProcessOrderReceived(void *a_userInfo)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->ExecuteProcessOrderReceived(a_userInfo);
+}
+
+/**@brief	실행된 프로세스 이름을 보고받는다.
+ */
+void CCBFMediator::ReportExecutedProcess(CString *a_executedProcess)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->ReportExecutedProcess(a_executedProcess);
+}
+
+/**@brief	사용자가, 또는 오퍼레이터로부터의 상황 변화 입력이 있었을 때, 상황를 저장한다.
+ */
+void CCBFMediator::ReportStatus(void *a_status)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->ReportStatus(a_status);
 }
 
 
@@ -83,10 +156,10 @@ void CCBFMediator::CloseConnection()
 
 /**@brief	특정 메세지를 오퍼레이터에게 전달한다.
  */
-void CCBFMediator::SendTextMessage(CString a_message)
+void CCBFMediator::SendTextMessageToOperator(CString *a_message)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->SendTextMessage(a_message);
+	_interface->SendTextMessageToOperator(a_message);
 }
 
 /**@brief	오퍼레이터에게 로그인 요청을 한다.
@@ -96,6 +169,46 @@ void CCBFMediator::SendLoginRequest(void *a_userInfo)
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
 	_interface->SendLoginRequest(a_userInfo);
 }
+
+/**@brief	오퍼레이터에게 실행된 프로세스 보고를 전달한다.
+ */
+void CCBFMediator::SendExecutedProcessReport(CString *a_executedProcess)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendExecutedProcessReport(a_executedProcess);
+}
+
+/**@brief	상황 변화 보고를 오퍼레이터에게 전송한다.
+ */
+void CCBFMediator::SendStatusReport(void *a_statusReport)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendStatusReport(a_statusReport);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// 공통 서비스
+
+/**@brief	MSM을 이용해 텍스트 메세지를 오퍼레이터에게 보낸다.
+ */
+void CCBFMediator::PostTextMessageToOperator(CString *a_message)
+{
+	CMessengerBI *_interface = CMessengerFacade::Instance();
+	_interface->PostTextMessageToOperator(a_message);
+}
+
+/**@brief	오퍼레이터로부터 텍스트 메세지를 받았음을 MSM에게 알린다.
+ */
+void CCBFMediator::ReceiveTextMessageFromOperator(CString *a_message)
+{
+	CMessengerBI *_interface = CMessengerFacade::Instance();
+	_interface->ReceiveTextMessageFromOperator(a_message);
+}
+
+
+
 
 
 
@@ -177,17 +290,12 @@ void CCBFMediator::ReceiveExecutedProcess(CString a_executedProcess)
 	_interface->ReceiveExecutedProcess(a_executedProcess);
 }
 
-/**@brief	DCM에게 실행된 프로세스를 알린다.
- * @param	a_executedProcess	실행된 프로세스의 이름
- */
-void CCBFMediator::NotifyExecutedProcess(CString a_executedProcess)
-{
-}
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// OSM
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// CTM
 
 /**@brief	사용자의 정상적인 컴퓨터 사용을 방해한다.
  */
@@ -215,39 +323,39 @@ void CCBFMediator::Login(void *a_userInfo)
 
 /**@brief	강제로 사용자를 로그아웃 시킨다.
  */
-void CCBFMediator::Logout()
+void CCBFMediator::Logout(void *a_message)
 {
 	CControlBI *_interface = CControlFacade::Instance();
-	_interface->Logout();
+	_interface->Logout(a_message);
 }
 
 /**@brief	컴퓨터를 꺼버린다.
  */
-void CCBFMediator::Shutdown()
+void CCBFMediator::Shutdown(void *a_message)
 {
 	CControlBI *_interface = CControlFacade::Instance();
-	_interface->Shutdown();
+	_interface->Shutdown(a_message);
 }
 
 /**@brief	컴퓨터를 재부팅 시킨다.
  */
-void CCBFMediator::Reboot()
+void CCBFMediator::Reboot(void *a_message)
 {
 	CControlBI *_interface = CControlFacade::Instance();
-	_interface->Reboot();
+	_interface->Reboot(a_message);
 }
 
 /**@brief	실행 중인 프로세스를 모조리 죽여버린다.
  */
-void CCBFMediator::GenocideProcesses()
+void CCBFMediator::GenocideProcesses(void *a_message)
 {
 	CControlBI *_interface = CControlFacade::Instance();
-	_interface->GenocideProcesses();
+	_interface->GenocideProcesses(a_message);
 }
 
 /**@brief	특정 이름의 프로세스를 죽인다.
  */
-void CCBFMediator::KillProcess(CString *a_processName)
+void CCBFMediator::KillProcess(void *a_processName)
 {
 	CControlBI *_interface = CControlFacade::Instance();
 	_interface->KillProcess(a_processName);
@@ -255,7 +363,7 @@ void CCBFMediator::KillProcess(CString *a_processName)
 
 /**@brief	특정 이름의 프로세스를 실행시킨다.
  */
-void CCBFMediator::ExecuteProcess(CString *a_processName)
+void CCBFMediator::ExecuteProcess(void *a_processName)
 {
 	CControlBI *_interface = CControlFacade::Instance();
 	_interface->ExecuteProcess(a_processName);

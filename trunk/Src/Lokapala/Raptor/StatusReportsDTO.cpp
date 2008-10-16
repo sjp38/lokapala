@@ -7,7 +7,7 @@
 #include "StatusReportsDTO.h"
 
 /**@brief	상황 보고 내용을 추가한다.\n
- *			만약 추가되는 상황의 상태가 VERIFIED, 즉 고장 상태 수리 완료라면 해당 주소에 대한 기존의 상황 보고는 삭제한다.
+ *			만약 추가되는 상황의 상황가 VERIFIED, 즉 고장 상황 수리 완료라면 해당 주소에 대한 기존의 상황 보고는 삭제한다.
  */
 void CStatusReportsDTO::AddReport(CStatusReportDTO *a_report)
 {

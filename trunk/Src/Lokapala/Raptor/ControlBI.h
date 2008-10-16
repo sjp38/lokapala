@@ -25,22 +25,22 @@ public :
 	virtual void Login(void *a_userInfo) = 0;
 
 	/**@brief	강제로 사용자를 로그아웃 시킨다.	*/
-	virtual void Logout() = 0;
+	virtual void Logout(void *a_message) = 0;
 
 	/**@brief	컴퓨터를 꺼버린다.	*/
-	virtual void Shutdown() = 0;
+	virtual void Shutdown(void *a_message) = 0;
 
 	/**@brief	컴퓨터를 재부팅 시킨다.	*/
-	virtual void Reboot() = 0;
+	virtual void Reboot(void *a_message) = 0;
 
 	/**@brief	실행 중인 프로세스를 모조리 죽여버린다.	*/
-	virtual void GenocideProcesses() = 0;
+	virtual void GenocideProcesses(void *a_message) = 0;
 
 	/**@brief	특정 이름의 프로세스를 죽인다.	*/
-	virtual void KillProcess(CString *a_processName) = 0;
+	virtual void KillProcess(void *a_processName) = 0;
 
 	/**@brief	특정 이름의 프로세스를 실행시킨다.	*/
-	virtual void ExecuteProcess(CString *a_processName) = 0;
+	virtual void ExecuteProcess(void *a_processName) = 0;
 };
 
 #endif

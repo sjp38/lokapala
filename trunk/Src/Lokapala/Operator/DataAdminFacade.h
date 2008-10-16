@@ -48,6 +48,9 @@ public :
 	virtual void DeleteRule(void *a_rule);
 	virtual void *GetRules();
 
+	//status reports
+	virtual void *GetStatusReports();
+
 	//connected users	
 	virtual void *GetConnectedUsers();
 

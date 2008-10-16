@@ -9,6 +9,8 @@
 #include "DharaniInterface.h"
 #include "DharaniFacade.h"
 
+#include "tinyxml.h"
+
 /**@ingroup	GroupCCM
  * @class	CCommunicationManager
  * @brief	CCM의 실질적인 동작. 다라니 컴포넌트는 여기서만 사용한다.
@@ -30,16 +32,30 @@ public :
 	void BroadcastTextMessage(CString a_message);
 
 	void NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp);
-	void NotifyAccepted(void *a_acceptedData);
 
-	void LoginProcess(CString *a_message, CString *a_localIp, CString *a_globalIp);
+	//Operator -> Raptor
+	void NotifyAccepted(void *a_acceptedData);
+	void ShutdownUser(void *a_argument);
+	void RebootUser(void *a_argument);
+	void LogoutUser(void *a_argument);
+	void ExecuteUser(void *a_argument);
+	void GenocideUser(void *a_argument);
+	void WarnUser(void *a_argument);
 
 protected :
 	CCommunicationManager(){}
 	~CCommunicationManager(){}
 
-private :
+private :	
 	static CCommunicationManager *m_instance;
+	
+	TiXmlElement *GetXmlParsedPacketElement(CString *a_packet);
+	//Raptor -> Operator
+	void LoginRequestReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);
+	void UserExecutedProcessReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);	
+	void StatusReportReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);
+
+	void MessageReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);
 };
 
 #endif

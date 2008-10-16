@@ -24,7 +24,7 @@ void CConnectedUsersDTO::RemoveConnected(CString *a_key)
 		m_connected.RemoveAt(cursor);		
 		return;
 	}
-	AfxMessageBox(_T("delete fail! no such rules!"));
+	AfxMessageBox(_T("delete fail! no such connected user!"));
 	return;
 }
 

@@ -28,6 +28,10 @@ public :
 		}
 		return m_instance;
 	}
+
+	virtual void PostTextMessageToOperator(CString *a_message);
+	virtual void ReceiveTextMessageFromOperator(CString *a_message);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CMessengerFacade(){}

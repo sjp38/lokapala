@@ -31,8 +31,11 @@ public :
 
 	virtual void Initiallize(DWORD a_ServerAddress);
 	virtual void CloseConnection();
-	virtual void SendTextMessage(CString a_message);
+	virtual void SendTextMessageToOperator(CString *a_message);
 	virtual void SendLoginRequest(void *a_userInfo);
+	virtual void SendExecutedProcessReport(CString *a_executedProcess);
+	virtual void SendStatusReport(void *a_statusReport);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCommunicationFacade(){}

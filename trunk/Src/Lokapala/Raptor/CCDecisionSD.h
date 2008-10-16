@@ -29,13 +29,13 @@ public :
 
 	void LoginAccepted(int a_level);
 
-	//void Login();
-	//void Logout();
-	//void Shutdown();
-	//void Reboot();
-	//void GenocideProcesses();
-	//void KillProcess(CString *a_processName);
-	//void Execute(CString *a_processName);
+	void Login(void *a_message);
+	void Logout(void *a_message);
+	void Shutdown(void *a_message);
+	void Reboot(void *a_message);
+	void GenocideProcesses(void *a_processName);
+	void KillProcess(void *a_processName);
+	void ExecuteProcess(void *a_processName);
 	
 	//void StatusChange(void *a_statusReport);
 

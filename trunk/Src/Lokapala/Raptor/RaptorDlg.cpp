@@ -5,6 +5,7 @@
 #include "Raptor.h"
 #include "RaptorDlg.h"
 
+#include "StatusReportDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,6 +72,8 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1, &CRaptorDlg::OnStartObservation)
 	ON_BN_CLICKED(IDC_BUTTON3, &CRaptorDlg::OnStopObservation)
 	ON_WM_COPYDATA()
+	ON_BN_CLICKED(IDC_SEND, &CRaptorDlg::OnBnClickedSend)
+	ON_BN_CLICKED(IDC_STATUS_REPORT, &CRaptorDlg::OnBnClickedStatusReport)
 END_MESSAGE_MAP()
 
 
@@ -171,7 +174,7 @@ void CRaptorDlg::OnBnClickedButtontest()
 	// TODO: Add your control notification handler code here
 	CString message;
 	this->GetDlgItemTextW(IDC_EDITTEST,message);
-	CCBFMediator::Instance()->SendTextMessage(message);
+	CCBFMediator::Instance()->SendTextMessageToOperator(&message);
 }
 
 /**@brief	오퍼레이터로 접속 버튼 클릭
@@ -268,4 +271,23 @@ BOOL CRaptorDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 	CCBFMediator::Instance()->ReceiveExecutedProcess(executed);
 
 	return CDialog::OnCopyData(pWnd, pCopyDataStruct);
+}
+
+/**@brief	오퍼레이터에게 메세지 전송 버튼 눌렀을 때
+ */
+void CRaptorDlg::OnBnClickedSend()
+{
+	// TODO: Add your control notification handler code here
+	CString message;
+	this->GetDlgItemTextW(IDC_EDITTEST,message);
+	CCBFMediator::Instance()->PostTextMessageToOperator(&message);
+}
+
+/**@brief	스테이터스 레포트 버튼 클릭
+ */
+void CRaptorDlg::OnBnClickedStatusReport()
+{
+	// TODO: Add your control notification handler code here
+	CStatusReportDlg statusReportDlg;
+	statusReportDlg.DoModal();
 }

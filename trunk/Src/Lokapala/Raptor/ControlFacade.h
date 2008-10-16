@@ -33,15 +33,15 @@ public :
 	virtual void ReleaseUser();
 	
 	virtual void Login(void *a_userInfo);
-	virtual void Logout();
+	virtual void Logout(void *a_message);
 	
-	virtual void Shutdown();
-	virtual void Reboot();
+	virtual void Shutdown(void *a_message);
+	virtual void Reboot(void *a_message);
 
-	virtual void GenocideProcesses();
-	virtual void KillProcess(CString *a_processName);
+	virtual void GenocideProcesses(void *a_message);
+	virtual void KillProcess(void *a_processName);
 
-	virtual void ExecuteProcess(CString *a_processName);
+	virtual void ExecuteProcess(void *a_processName);
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

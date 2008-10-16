@@ -366,6 +366,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\MessengerManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\MessengerSingletonInitiallize.cpp"
 					>
 				</File>
@@ -463,7 +467,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\ExecutedProcessDTO.h"
+						>
+					</File>
+					<File
 						RelativePath=".\MessageDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\ReactionArgumentDTO.h"
 						>
 					</File>
 					<File
@@ -617,6 +629,10 @@
 				</File>
 				<File
 					RelativePath=".\MessengerFacade.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MessengerManager.h"
 					>
 				</File>
 				<File

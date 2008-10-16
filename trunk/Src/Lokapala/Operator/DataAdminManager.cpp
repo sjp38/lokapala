@@ -301,6 +301,14 @@ CRulesDataDTO *CDataAdminManager::GetRules()
 }
 
 
+/**@brief	전체 고장 상태 보고를 넘긴다.
+ */
+CStatusReportsDTO *CDataAdminManager::GetStatusReports()
+{
+	return &m_statusReports;
+}
+
+
 
 /**@brief	접속된 사용자 정보를 넘긴다.
  */

@@ -40,3 +40,52 @@ void CCommunicationFacade::NotifyAccepted(void *a_acceptedData)
 {
 	CCommunicationManager::Instance()->NotifyAccepted(a_acceptedData);
 }
+
+/**@brief	특정 사용자의 컴퓨터를 꺼버린다.
+ * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::ShutdownUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->ShutdownUser(a_argument);
+}
+
+/**@brief	특정 사용자의 컴퓨터를 재부팅 시킨다.
+ * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::RebootUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->RebootUser(a_argument);
+}
+
+/**@brief	특정 사용자를 강제 로그아웃 시킨다.
+ * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::LogoutUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->LogoutUser(a_argument);
+}
+
+/**@brief	특정 사용자에게 특정 프로세스를 실행 시킨다.
+ * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::ExecuteUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->ExecuteUser(a_argument);
+}
+
+
+/**@brief	특정 사용자의 실행중인 모든 프로세스를 죽인다.
+ * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::GenocideUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->GenocideUser(a_argument);
+}
+
+/**@brief	특정 사용자에게 경고 메세지를 날린다.
+ * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::WarnUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->WarnUser(a_argument);
+}

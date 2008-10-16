@@ -52,6 +52,9 @@ public :
 	void DeleteRule(void *a_rule);
 	CRulesDataDTO *GetRules();
 
+	//status reports
+	CStatusReportsDTO *GetStatusReports();
+
 	//connected
 	CConnectedUsersDTO *GetConnectedUsers();
 

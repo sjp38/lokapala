@@ -10,7 +10,7 @@
 #include "DharaniClientManager.h"
 
 
-/**@brief	클라이언트의 형태로 소켓 상태 등을 초기화하고 프로토콜 초기 행위(암호화 키 교환 등)를 한다.
+/**@brief	클라이언트의 형태로 소켓 상황 등을 초기화하고 프로토콜 초기 행위(암호화 키 교환 등)를 한다.
  * @return	정상적으로 초기화를 마쳤을 경우 0, 문제가 있을 경우 -1
  */
 int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)

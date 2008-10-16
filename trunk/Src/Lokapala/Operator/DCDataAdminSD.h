@@ -29,6 +29,9 @@ public :
 
 	void *GetUsersDataDTO();
 	void *GetConnectedUsersDTO();
+	void *GetRulesDataDTO();
+	void *GetSeatsDataDTO();
+	void *GetStatusReportsDTO();
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

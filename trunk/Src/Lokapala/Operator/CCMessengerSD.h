@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void PresentMessage(void *a_messageData);
+
 protected :
 	/**@brief	»ı¼ºÀÚ	*/
 	CCCMessengerSD(){}

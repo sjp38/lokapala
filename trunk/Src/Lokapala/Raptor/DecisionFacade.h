@@ -31,6 +31,15 @@ public :
 
 	virtual void LoginRequest(void *a_userInfo);
 	virtual void LoginAccepted(int a_level);
+	virtual void LoginOrderReceived(void *a_userInfo);
+	virtual void LogoutOrderReceived(void *a_message);	
+	virtual void ShutdownOrderReceived(void *a_message);
+	virtual void RebootOrderReceived(void *a_message);
+	virtual void GenocideProcessesOrderReceived(void *a_message);
+	virtual void KillProcessOrderReceived(void *a_processName);
+	virtual void ExecuteProcessOrderReceived(void *a_processName);
+	virtual void ReportExecutedProcess(CString *a_executedProcess);
+	virtual void ReportStatus(void *a_status);
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

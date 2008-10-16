@@ -16,7 +16,7 @@ CControlManager::CControlManager()
 	int screenx = GetSystemMetrics(SM_CXSCREEN);
 	int screeny = GetSystemMetrics(SM_CYSCREEN);
 	m_loginDlg->MoveWindow(0,0,screenx, screeny);
-	::SetWindowPos(m_loginDlg->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_SHOWWINDOW);	//윈도우를 최상위로 위치시킨다.
+	//::SetWindowPos(m_loginDlg->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_SHOWWINDOW);	//윈도우를 최상위로 위치시킨다.
 }
 
 /**@brief	로그인 윈도우를 화면 최상단에 화면 크기로 보이게 한다.
@@ -58,42 +58,49 @@ void CControlManager::ReleaseUser()
  */
 void CControlManager::Login(void *a_userInfo)
 {
+	AfxMessageBox(_T("violent login!"));
 }
 
 /**@brief	강제로 사용자를 로그아웃 시킨다.
  */
-void CControlManager::Logout()
+void CControlManager::Logout(void *a_message)
 {
+	AfxMessageBox(_T("violent logout!"));
 }
 
 /**@brief	컴퓨터를 종료시킨다.
  */
-void CControlManager::Shutdown()
+void CControlManager::Shutdown(void *a_message)
 {
+	AfxMessageBox(_T("violent shutdown"));
 }
 
 /**@brief	컴퓨터를 리부팅시킨다.
  */
-void CControlManager::Reboot()
+void CControlManager::Reboot(void *a_message)
 {
+	AfxMessageBox(_T("violent reboot!"));
 }
 
 /**@brief	실행되고 있는 모든 프로세스를 종료시킨다.
  */
-void CControlManager::GenocideProcesses()
+void CControlManager::GenocideProcesses(void *a_message)
 {
+	AfxMessageBox(_T("violent genocide!"));
 }
 
 /**@brief	특정 프로세스를 종료시킨다.
  * @param	a_processName	종료시키고자 하는 프로세스의 이름
  */
-void CControlManager::KillProcess(CString *a_processName)
+void CControlManager::KillProcess(void *a_processName)
 {
+	AfxMessageBox(_T("violent kill!"));
 }
 
 /**@brief	특정 프로세스를 실행시킨다.
  * @param	a_processName	실행하고자 하는 프로세스의 이름
  */
-void CControlManager::ExecuteProcess(CString *a_processName)
+void CControlManager::ExecuteProcess(void *a_processName)
 {
+	AfxMessageBox(_T("violent execute!"));
 }

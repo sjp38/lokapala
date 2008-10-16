@@ -22,3 +22,24 @@ void *CDCDataAdminSD::GetConnectedUsersDTO()
 {
 	return CCBFMediator::Instance()->GetConnectedUsers();
 }
+
+/**@brief	DAM으로부터 규칙 정보 전체를 얻어온다.
+ */
+void *CDCDataAdminSD::GetRulesDataDTO()
+{
+	return CCBFMediator::Instance()->GetRules();
+}
+
+/**@brief	DAM으로부터 좌석 정보 전체를 얻어온다.
+ */
+void *CDCDataAdminSD::GetSeatsDataDTO()
+{
+	return CCBFMediator::Instance()->GetSeats();
+}
+
+/**@brief	DAM으로부터 고장상태 정보 전체를 얻어온다.
+ */
+void *CDCDataAdminSD::GetStatusReportsDTO()
+{
+	return CCBFMediator::Instance()->GetStatusReports();
+}

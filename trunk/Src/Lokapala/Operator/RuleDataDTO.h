@@ -6,7 +6,7 @@
 #ifndef RULE_DATA_DTO_H
 #define RULE_DATA_DTO_H
 
-enum Reactions {SHUTDOWN, REBOOT, LOGOUT, EXUCUTE, GENOCIDEPROCESSES};
+enum Reactions {SHUTDOWN, REBOOT, LOGOUT, EXECUTE, GENOCIDEPROCESSES, WARN};
 
 /**@ingroup GroupDAM
  * @class	CRuleDataDTO
@@ -28,6 +28,7 @@ public :
 	CRuleDataDTO(CString a_processName, CString a_caption, 
 		CString a_targetSeatId, CString a_targetUserId, 
 		enum Reactions a_reaction, CString a_reactionArgument);
+	CRuleDataDTO(CString a_processName);
 	CRuleDataDTO(){}
 	~CRuleDataDTO(){}
 };
