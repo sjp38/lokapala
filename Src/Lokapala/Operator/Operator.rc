@@ -191,6 +191,13 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
 #endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -230,17 +237,16 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,585,318,50,14
     EDITTEXT        IDC_EDITTEST,517,90,62,12,ES_AUTOHSCROLL
     PUSHBUTTON      "send",IDC_BUTTONTEST,585,89,50,14
-    LISTBOX         IDC_LISTTEST,516,7,64,78,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LISTBOX         IDC_USERLIST,584,7,51,78,LBS_SORT | LBS_MULTIPLESEL | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LISTBOX         IDC_NOTIFY_LIST,7,14,202,299,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     LISTBOX         IDC_CRIMINAL_LIST,213,165,96,147,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LISTBOX         IDC_CONNECTED_LIST,213,15,96,139,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Main Notify",IDC_STATIC,10,5,37,8
     LTEXT           "Connected User",IDC_STATIC,213,7,52,8
     LTEXT           "Criminal",IDC_STATIC,213,156,26,8
-    PUSHBUTTON      "Data Admin",IDC_DATA_ADMIN,319,24,50,14
-    PUSHBUTTON      "Control",IDC_CONTROL,319,46,50,14
-    PUSHBUTTON      "Messenger",IDC_MESSENGER,321,70,50,14
+    PUSHBUTTON      "Data Admin",IDC_DATA_ADMIN,583,118,50,14
+    PUSHBUTTON      "Control",IDC_CONTROL,583,140,50,14
+    PUSHBUTTON      "Messenger",IDC_MESSENGER,585,164,50,14
+    CONTROL         "",IDC_STATE_VIEW,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,313,15,198,297
 END
 
 

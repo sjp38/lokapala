@@ -57,3 +57,7 @@
 
 
 #include "CBFMediator.h"
+
+#define LKPLM_NOTIFYMESSAGE	(WM_USER+1)
+#define LKPLM_SHOWCHANGED	(WM_USER+2)
+#define LKPLM_SHOWSTATUS	(WM_USER+2)

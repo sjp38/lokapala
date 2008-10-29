@@ -46,6 +46,14 @@ void CDharaniExternSD::NotifyReceived(char *a_receivedMessage, in_addr a_localIp
 void CDharaniExternSD::NotifyAccepted(in_addr *a_globalIp, in_addr *a_localIp)
 {
 	USES_CONVERSION;
+	CString address = A2W(inet_ntoa(*a_globalIp));
+	address += _T("/");
+	address += A2W(inet_ntoa(*a_localIp));
+
+	CCommunicationManager::Instance()->RaptorAccepted(address);
+
+	/*
+	USES_CONVERSION;
 	CString message = _T("accepted : ");
 	CString address = A2W(inet_ntoa(*a_globalIp));
 	address += _T("/");
@@ -57,6 +65,7 @@ void CDharaniExternSD::NotifyAccepted(in_addr *a_globalIp, in_addr *a_localIp)
 
 	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_USERLIST));
 	pListBox->AddString(address);
+	*/
 }
 
 /**@brief	특정 클라이언트가 접속 해제 했음을 알린다.
@@ -66,6 +75,13 @@ void CDharaniExternSD::NotifyAccepted(in_addr *a_globalIp, in_addr *a_localIp)
  */
 void CDharaniExternSD::NotifyLeft(in_addr *a_globalIp, in_addr *a_localIp)
 {
+	USES_CONVERSION;
+	CString globalIp = A2W(inet_ntoa(*a_globalIp));
+	CString localIp = A2W(inet_ntoa(*a_localIp));
+
+	CCommunicationManager::Instance()->RaptorLeaved(globalIp, localIp);
+
+	/*
 	USES_CONVERSION;
 	CString address = A2W(inet_ntoa(*a_globalIp));
 	address += _T("/");
@@ -79,4 +95,5 @@ void CDharaniExternSD::NotifyLeft(in_addr *a_globalIp, in_addr *a_localIp)
 
 	pListBox = (CListBox *)(pDlg->GetDlgItem(IDC_LISTTEST));
 	pListBox->AddString(address+_T(" leaved"));
+	*/
 }

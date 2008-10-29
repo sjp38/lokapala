@@ -21,7 +21,7 @@
 /**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
  * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
  */
-void CDecisionManager::UserLogin(void *a_loginRequestData)
+void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 {
 	CLoginRequestDTO *loginRequestData;
 	loginRequestData = (CLoginRequestDTO *)a_loginRequestData;
@@ -47,8 +47,10 @@ void CDecisionManager::UserLogin(void *a_loginRequestData)
 		loginRequestData->m_level = userData->m_level;
 		
 		//DCCommunication SD를 이용해 로그인 허용 메세지를 날린다.
-		CDCCommunicationSD::Instance()->NotifyAccepted(loginRequestData);
+		CDCCommunicationSD::Instance()->NotifyAccepted(loginRequestData);		
+		CCBFMediator::Instance()->NotifyRaptorLogin(&user.m_seatId);
 	}
+	RemoveFromAcceptedUser(loginRequestData->m_globalIp, loginRequestData->m_localIp);
 }
 
 
@@ -73,8 +75,7 @@ void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 		CDCCommunicationSD::Instance()->RebootUser(&reactionArgument);
 		break;
 	case LOGOUT :
-		RemoveFromAcceptedUser(executedProcess->m_executedGlobalIp, executedProcess->m_executedLocalIp);
-		CDCCommunicationSD::Instance()->LogoutUser(&reactionArgument);
+		LogoutUser(executedProcess->m_executedGlobalIp, executedProcess->m_executedLocalIp);		
 		break;
 	case EXECUTE :
 		CDCCommunicationSD::Instance()->ExecuteUser(&reactionArgument);
@@ -121,6 +122,22 @@ void CDecisionManager::PresentStatusReport(void *a_statusReportData)
 	CStatusReportDTO *statusReport = (CStatusReportDTO *)a_statusReportData;
 	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CDCDataAdminSD::Instance()->GetStatusReportsDTO();
 	statusReports->AddReport(statusReport);
+}
+
+/**@brief	유저를 강제로 로그아웃 시킨다.
+ */
+void CDecisionManager::LogoutUser(CString a_globalIp, CString a_localIp)
+{
+	RemoveFromAcceptedUser(a_globalIp, a_localIp);
+	
+	CReactionArgumentDTO reactionArgument;
+	reactionArgument.m_targetGlobalIp = a_globalIp;
+	reactionArgument.m_targetLocalIp = a_localIp;
+	reactionArgument.m_reactionArgument = _T("");	
+	CDCCommunicationSD::Instance()->LogoutUser(&reactionArgument);
+
+	CString address = a_globalIp + _T("/") + a_localIp;
+	CCBFMediator::Instance()->NotifyRaptorLogout(&address);
 }
 
 /**@brief	특정 유저를 연결된 유저 목록에서 제거한다.

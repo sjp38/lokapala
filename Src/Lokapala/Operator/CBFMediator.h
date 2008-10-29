@@ -43,7 +43,7 @@ public :
 	}
 
 	//DCM
-	void UserLogin(void *a_loginRequestData);
+	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);
 
@@ -87,9 +87,15 @@ public :
 
 
 	//common
-	void SetMainDlg(CDialog *a_pDlg);
-	CDialog *GetMainDlg();
+	void SetMainDlg(CDialog *a_pDlg);	
 	void Notify(CString *a_notifyMessage);
+	void NotifyRaptorLogin(CString *a_address);
+	void NotifyRaptorLogout(CString *a_address);
+
+	void NotifyRaptorAccepted(CString *a_address);
+	void NotifyRaptorLeaved(CString *a_address);
+
+	void InitStatusViewAs(int a_column, int a_row);
 	
 
 protected :

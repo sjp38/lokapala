@@ -61,6 +61,28 @@ void CCommunicationManager::BroadcastTextMessage(CString a_message)
 	dharaniInterface->DharaniBroadcastTextMessage(&message);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Dharani -> CCM
+
+/**@brief	다라니 컴포넌트로부터 새로운 랩터의 연결을 알린다.
+ */
+void CCommunicationManager::RaptorAccepted(CString a_address)
+{
+	CCBFMediator::Instance()->NotifyRaptorAccepted(&a_address);
+}
+
+
+/**@brief	다라니 컴포넌트로부터 특정 랩터로부터의 연결이 끊어졌음을 알린다.
+ */
+void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
+{
+	CString address = a_globalIp + _T("/") + a_localIp;	
+	CCBFMediator::Instance()->NotifyRaptorLeaved(&address);
+
+	//해당 사용자를 로그아웃 시키기 위해 필요없는 정보를 넣어 로그인 판정을 받는다.
+	CLoginRequestDTO loginRequestData(a_globalIp, a_localIp, _T(""), _T(""), _T(""));
+	CCCDecisionSD::Instance()->UserLogin(&loginRequestData);
+}
 
 
 /**@brief	다라니 컴포넌트로부터 전송받은 메세지를 받는다.

@@ -31,7 +31,10 @@ public :
 	void SendTextMessageTo(CString a_targetAddress, CString a_message);
 	void BroadcastTextMessage(CString a_message);
 
-	void NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp);
+	//dharani -> ccm
+	void RaptorAccepted(CString a_address);
+	void RaptorLeaved(CString a_globalIp, CString a_localIp);
+	void NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp);	
 
 	//Operator -> Raptor
 	void NotifyAccepted(void *a_acceptedData);

@@ -104,6 +104,7 @@ public :
 
 	//common
 	void Notify(CString *a_message);
+	void TrySuicide();
 
 protected :
 	/**@breif	»ý¼ºÀÚ	*/

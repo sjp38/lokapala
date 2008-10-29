@@ -381,3 +381,11 @@ void CCBFMediator::Notify(CString *a_message)
 	CListBox *notifyList = (CListBox *)( m_mainDlg->GetDlgItem(IDC_NOTIFY_LIST) );
 	notifyList->AddString(*a_message);
 }
+
+
+/**@brief	스스로에게 WM_CLOSE 메세지를 던진다.
+ */
+void CCBFMediator::TrySuicide()
+{
+	SendMessage(m_mainDlg->m_hWnd, WM_CLOSE, NULL, NULL);
+}

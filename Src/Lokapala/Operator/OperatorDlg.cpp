@@ -8,6 +8,8 @@
 //데이터 관리 다이얼로그
 #include "DataAdminDlg.h"
 
+#include "DisplayDTO.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -70,6 +72,9 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_BUTTONTEST, &COperatorDlg::OnBnClickedButtontest)
 	ON_BN_CLICKED(IDC_DATA_ADMIN, &COperatorDlg::OnBnClickedDataAdmin)
+	ON_MESSAGE(LKPLM_NOTIFYMESSAGE, &COperatorDlg::OnNotifyMessage)
+	ON_MESSAGE(LKPLM_SHOWCHANGED, &COperatorDlg::OnShowChanged)
+	ON_MESSAGE(LKPLM_SHOWSTATUS, &COperatorDlg::OnShowStatus)
 END_MESSAGE_MAP()
 
 
@@ -195,4 +200,69 @@ void COperatorDlg::OnBnClickedDataAdmin()
 	// TODO: Add your control notification handler code here
 	CDataAdminDlg dataAdminDlg;
 	dataAdminDlg.DoModal();
+}
+
+
+/**@brief	LKPLM_NOTIFYMESSAGE  메세지 핸들러.
+ *			공지 리스트박스에 메세지를 띄운다.
+ */
+LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
+{
+	CString *notifyMessage = (CString *)( (void *)wParam );
+	m_notifyList.AddString(*notifyMessage);
+
+	static int maxSize;
+	CDC* pDc = m_notifyList.GetDC();
+	int messageSize = (pDc->GetTextExtent(*notifyMessage)).cx;
+
+	if( maxSize < messageSize )
+	{
+		maxSize = messageSize;
+		m_notifyList.SetHorizontalExtent(maxSize);
+		m_notifyList.ReleaseDC(pDc);		
+	}
+	return 0;
+}
+
+
+/**@brief	LKPLM_SHOWCHANGED  메세지 핸들러
+ */
+LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
+{
+	CDisplayDTO *displayData = (CDisplayDTO *)wParam;
+
+	UINT index = 0;
+	switch(displayData->m_displayState)
+	{
+	case LOGIN :		
+		m_notifyList.AddString(displayData->m_seatId + _T(" login"));		
+		m_connectedList.AddString(displayData->m_seatId);
+		break;
+
+	case LOGOUT :		
+		index = m_connectedList.FindString(index, displayData->m_seatId);
+		m_connectedList.DeleteString(index);
+		m_notifyList.AddString(displayData->m_seatId + _T(" logout"));
+
+		break;
+	case HW :
+		break;
+	case SW :
+		break;
+	case VERIFIED :
+		break;
+	case CRIMINAL :
+		break;
+	case INNOCENT :
+		break;
+	}
+
+	return 0;
+}
+
+/**@brief	LKPLM_SHOWSTATUS  메세지 핸들러
+ */
+LRESULT COperatorDlg::OnShowStatus(WPARAM wParam, LPARAM lParam)
+{
+	return 0;
 }
