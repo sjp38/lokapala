@@ -11,7 +11,7 @@
  */
 void CCCDecisionSD::UserLogin(void *a_loginRequestData)
 {
-	CCBFMediator::Instance()->UserLogin(a_loginRequestData);
+	CCBFMediator::Instance()->JudgeLoginRequest(a_loginRequestData);
 }
 
 

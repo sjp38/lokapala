@@ -46,7 +46,14 @@ END_MESSAGE_MAP()
  */
 void CLoginDlg::OnBnClickedLoginBtn()
 {
-	// TODO: Add your control notification handler code here	
+	// TODO: Add your control notification handler code here
+
+	//오퍼레이터에게 접속
+	DWORD serverIp;
+	m_operatorIPAddress.GetAddress(serverIp);
+	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
+
+	//로그인 데이터 전송
 	CString name;
 	m_nameEdit.GetWindowTextW(name);
 	CString lowPassword;
@@ -74,6 +81,8 @@ void CLoginDlg::OnBnClickedConnect()
 void CLoginDlg::OnBnClickedDisconnect()
 {
 	// TODO: Add your control notification handler code here
+	CString message = _T("Break connection from now operator");
+	CCBFMediator::Instance()->Logout(&message);
 }
 
 

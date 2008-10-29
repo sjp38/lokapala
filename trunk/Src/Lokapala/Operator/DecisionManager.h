@@ -23,10 +23,11 @@ public :
 		return m_instance;
 	}
 
-	void UserLogin(void *a_loginRequestData);
+	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);
-	void RemoveFromAcceptedUser(CString a_globalIp, CString a_localIp);
+
+	void LogoutUser(CString a_globalIp, CString a_localIp);	
 
 protected :
 	CDecisionManager(){}
@@ -35,8 +36,10 @@ protected :
 private :
 	static CDecisionManager *m_instance;
 
+
 	void DoReactionsTo(void *a_executedProcess, void *a_rules);
 	void DoReactionTo(void *a_executedProcess, void *a_rule);
+	void RemoveFromAcceptedUser(CString a_globalIp, CString a_localIp);
 };
 
 #endif

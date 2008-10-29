@@ -28,6 +28,9 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg LRESULT OnNotifyMessage(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnShowChanged(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnShowStatus(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedButtontest();

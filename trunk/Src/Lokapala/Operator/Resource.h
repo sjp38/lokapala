@@ -11,6 +11,7 @@
 #define IDD_SEAT_ADMIN                  130
 #define IDD_RULE_ADMIN                  131
 #define IDD_DATA_ADMIN                  132
+#define IDB_BITMAP1                     133
 #define IDC_EDITTEST                    1001
 #define IDC_BUTTONTEST                  1002
 #define IDC_LISTTEST                    1003
@@ -43,7 +44,6 @@
 #define IDC_DELETE_RULE                 1026
 #define IDC_LOAD                        1027
 #define IDC_SAVE                        1028
-#define IDC_MAIN_NOTIFY                 1029
 #define IDC_NOTIFY_LIST                 1029
 #define IDC_CRIMINAL_LIST               1030
 #define IDC_CONNECTED_LIST              1031
@@ -51,14 +51,15 @@
 #define IDC_CONTROL                     1033
 #define IDC_MESSENGER                   1034
 #define IDC_DATA_ADMIN_TAB              1034
+#define IDC_STATE_VIEW                  1035
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        133
+#define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1035
+#define _APS_NEXT_CONTROL_VALUE         1036
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

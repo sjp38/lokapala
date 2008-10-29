@@ -8,16 +8,18 @@
 
 #include "Resource.h"
 
+#include "DisplayDTO.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DCM
 
 /**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
  * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
  */
-void CCBFMediator::UserLogin(void *a_loginRequestData)
+void CCBFMediator::JudgeLoginRequest(void *a_loginRequestData)
 {
 	CDecisionBI *_interface = CDecisionFacade::Instance();
-	_interface->UserLogin(a_loginRequestData);
+	_interface->JudgeLoginRequest(a_loginRequestData);
 }
 
 /**@brief	사용자가 실행한 프로세스에 대해 올바른 프로세스인지 어떤지 확인/처리한다.
@@ -274,18 +276,45 @@ void CCBFMediator::SetMainDlg(CDialog *a_pDlg)
 }
 
 
-/**@brief	메인 다이얼로그의 포인터를 리턴한다.
- */
-CDialog *CCBFMediator::GetMainDlg()
-{
-	return m_mainDlg;
-}
-
 /**@brief	공지 리스트박스에 공지사항을 표시한다.
  */
 void CCBFMediator::Notify(CString *a_notifyMessage)
 {
-	CListBox *notifyList;
-	notifyList = (CListBox *)(m_mainDlg->GetDlgItem(IDC_NOTIFY_LIST));
-	notifyList->AddString(*a_notifyMessage);
+	void *notifyMessage = (void *)a_notifyMessage;
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_NOTIFYMESSAGE, (WPARAM)notifyMessage, NULL);
+}
+
+/**@brief	새로운 랩터의 로그인을 알린다.
+ */
+void CCBFMediator::NotifyRaptorLogin(CString *a_address)
+{	
+	CDisplayDTO displayData(*a_address, LOGIN);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);	
+}
+
+/**@brief	특정 랩터의 로그아웃을 알린다.
+ */
+void CCBFMediator::NotifyRaptorLogout(CString *a_address)
+{	
+	CDisplayDTO displayData(*a_address, LOGOUT);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);
+}
+
+/**@brief	특정 랩터로부터의 소켓 연결이 들어왔음을 알린다.
+ *			이는 곧 로그인 시도임을 의미한다.
+ */
+void CCBFMediator::NotifyRaptorAccepted(CString *a_address)
+{
+	CString message = *a_address + _T(" socket connected");
+	Notify(&message);
+}
+
+/**@brief	특정 랩터로부터의 소켓 연결이 끊어졌음을 알린다.
+ *			이는 오퍼레이터의 강제 로그아웃에 의해서일 수도, 해당 랩터의 연결 해제에 의해서일 수도 있다.
+ *			하지만 어쨌건 해당 랩터는 로그아웃 상태에 빠진다.
+ */
+void CCBFMediator::NotifyRaptorLeaved(CString *a_address)
+{
+	CString message = *a_address + _T(" socket disconnected");
+	Notify(&message);
 }

@@ -29,9 +29,9 @@ public :
 		return m_instance;
 	}
 
-	void UserLogin(void *a_loginRequestData);
+	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
-	void PresentStatusReport(void *a_statusReportData);
+	void PresentStatusReport(void *a_statusReportData);	
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

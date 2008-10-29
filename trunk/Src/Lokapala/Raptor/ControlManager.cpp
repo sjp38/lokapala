@@ -66,6 +66,7 @@ void CControlManager::Login(void *a_userInfo)
 void CControlManager::Logout(void *a_message)
 {
 	AfxMessageBox(_T("violent logout!"));
+	CCBFMediator::Instance()->TrySuicide();
 }
 
 /**@brief	컴퓨터를 종료시킨다.
