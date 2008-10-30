@@ -24,6 +24,7 @@ public :
 	int m_level;
 	
 	CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int a_level);
+	CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, int a_level, CString a_hashedHighLevelPassword);
 	CUserDataDTO(){}
 	~CUserDataDTO(){}
 

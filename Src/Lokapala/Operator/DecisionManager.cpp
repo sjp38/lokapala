@@ -31,26 +31,24 @@ void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 	usersData = (CUsersDataDTO *)( CDCDataAdminSD::Instance()->GetUsersDataDTO() );
 	CUserDataDTO *userData;
 	userData = usersData->GetUserById( loginRequestData->m_lowLevelPassword );
-	if(userData == NULL)
+	if(userData == NULL 
+		|| userData->m_name != loginRequestData->m_name 
+		|| userData->m_highLevelPassword != loginRequestData->m_highLevelPassword )
 	{
+		LogoutUser(loginRequestData->m_globalIp, loginRequestData->m_localIp);
 		return;
 	}
-	if( userData->m_name == loginRequestData->m_name 
-		&& userData->m_highLevelPassword == loginRequestData->m_highLevelPassword )
-	{
-		CConnectedUsersDTO *connectedUsers = (CConnectedUsersDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
-		CConnectedUserDTO user;
-		user.m_userId = loginRequestData->m_lowLevelPassword;
-		user.m_seatId = loginRequestData->m_globalIp + _T("/") + loginRequestData->m_localIp;
-		connectedUsers->RegistConnected(&user);
+	CConnectedUsersDTO *connectedUsers = (CConnectedUsersDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
+	CConnectedUserDTO user;
+	user.m_userId = loginRequestData->m_lowLevelPassword;
+	user.m_seatId = loginRequestData->m_globalIp + _T("/") + loginRequestData->m_localIp;
+	connectedUsers->RegistConnected(&user);
 
-		loginRequestData->m_level = userData->m_level;
-		
-		//DCCommunication SD를 이용해 로그인 허용 메세지를 날린다.
-		CDCCommunicationSD::Instance()->NotifyAccepted(loginRequestData);		
-		CCBFMediator::Instance()->NotifyRaptorLogin(&user.m_seatId);
-	}
-	RemoveFromAcceptedUser(loginRequestData->m_globalIp, loginRequestData->m_localIp);
+	loginRequestData->m_level = userData->m_level;
+
+	//DCCommunication SD를 이용해 로그인 허용 메세지를 날린다.
+	CDCCommunicationSD::Instance()->NotifyAccepted(loginRequestData);		
+	CCBFMediator::Instance()->NotifyRaptorLogin(&user.m_seatId);	
 }
 
 

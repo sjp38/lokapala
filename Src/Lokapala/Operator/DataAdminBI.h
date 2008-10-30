@@ -40,7 +40,7 @@ public :
 	/**@brief	좌석 정보를 추가한다.	*/
 	virtual void AddSeat(void *a_seat) = 0;
 	/**@brief	좌석 정보를 삭제한다.	*/
-	virtual void DeleteSeat(int a_x, int a_y) = 0;
+	virtual void DeleteSeat(void *a_seat) = 0;
 	/**@brief	전체 좌석 정보를 얻는다.
 	 *			void 포인터로 캐스팅 되어 전달되므로 최종 클라이언트 코드에서만 실제 좌석 정보체 구조를 알면 된다.
 	 */

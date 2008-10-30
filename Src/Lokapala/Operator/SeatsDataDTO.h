@@ -22,7 +22,7 @@ public :
 	void SetSeats(int a_maxX, int a_maxY);
 	void ClearSeats();
 	void AddSeat(CSeatDataDTO *a_seat);
-	void DeleteSeat(int a_x, int a_y);
+	void DeleteSeat(CString *a_seatId);
 	CSeatDataDTO *GetSeatById(CString a_userId);
 
 	CSeatsDataDTO();

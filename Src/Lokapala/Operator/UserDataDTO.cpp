@@ -22,6 +22,21 @@ CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelP
 	m_level = a_level;
 }
 
+/**@brief	생성자. high 레벨 패스워드가 이미 해싱된 데이터로 들어올 대 사용하기 위해 오버로드되었다.
+ */
+CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, int a_level, CString a_hashedHighLevelPassword)
+{
+	m_userId = a_userId;
+	if(m_userId == _T(""))
+	{
+		m_userId = a_lowLevelPassword;
+	}
+	m_name = a_name;
+	m_lowLevelPassword = a_lowLevelPassword;
+	m_highLevelPassword = a_hashedHighLevelPassword;
+	m_level = a_level;
+}
+
 /**@brief	단방향 해싱을 한다. sha1 알고리즘을 사용한다.
  * @param	a_message	해싱을 하고자 하는 메세지
  * @return	해싱된 메세지
