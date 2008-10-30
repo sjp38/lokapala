@@ -43,6 +43,8 @@
 #define IDC_ADD_RULE                    1025
 #define IDC_DELETE_RULE                 1026
 #define IDC_LOAD                        1027
+#define IDC_ARGUMENT2                   1027
+#define IDC_TARGET_LEVEL                1027
 #define IDC_SAVE                        1028
 #define IDC_NOTIFY_LIST                 1029
 #define IDC_CRIMINAL_LIST               1030

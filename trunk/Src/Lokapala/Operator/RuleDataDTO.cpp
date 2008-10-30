@@ -8,13 +8,14 @@
 
 /**@brief	»ý¼ºÀÚ.	*/
 CRuleDataDTO::CRuleDataDTO(CString a_processName, CString a_caption,
-						   CString a_targetSeatId, CString a_targetUserId, 
+						   CString a_targetSeatId, CString a_targetUserId, int a_targetLevel,
 						   Reactions a_reaction, CString a_reactionArgument)
 {
 	m_processName = a_processName;
 	m_caption = a_caption;
 	m_targetSeatId = a_targetSeatId;
 	m_targetUserId = a_targetUserId;
+	m_targetLevel = a_targetLevel;
 	m_reaction = a_reaction;
 	m_reactionArgument = a_reactionArgument;
 }

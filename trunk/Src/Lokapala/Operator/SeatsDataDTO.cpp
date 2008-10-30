@@ -11,6 +11,8 @@
 /**@brief	생성자. 좌석 정보 구조체의 전체 크기를 잡는다.	*/
 CSeatsDataDTO::CSeatsDataDTO()
 {
+	m_maxX = 5;
+	m_maxY = 5;
 	m_seats.InitHashTable(MAX_SEAT_X*MAX_SEAT_Y+1);
 }
 
@@ -59,17 +61,9 @@ void CSeatsDataDTO::AddSeat(CSeatDataDTO *a_seat)
 
 /**@brief	좌석 정보를 하나 지운다.
  */
-void CSeatsDataDTO::DeleteSeat(int a_x, int a_y)
+void CSeatsDataDTO::DeleteSeat(CString *a_seatId)
 {
-	if(a_x > m_maxX || a_y > m_maxY)
-	{
-		AfxMessageBox(_T("seat info add fail!! invalid position!!"));
-		return;
-	}
-
-	CString key;
-	key.Format(_T("%d/%d"),a_x,a_y);
-	if( m_seats.RemoveKey(key)==0 )
+	if( m_seats.RemoveKey(*a_seatId)==0 )
 	{
 		AfxMessageBox(_T("seat info delete fail!!"));
 	}

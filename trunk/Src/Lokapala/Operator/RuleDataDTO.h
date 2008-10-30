@@ -21,12 +21,14 @@ public :
 	CString m_targetSeatId;
 	/**@brief	규칙을 적용할 유저 id(유저별로 규칙 적용 가능)	*/
 	CString m_targetUserId;
+	/**@brief	규칙을 적용할 유저의 최대 레벨	*/
+	int m_targetLevel;
 	enum Reactions m_reaction;
 	/**@brief	리액션 시 사용자에게 전송할 메세지. 리액션이 EXECUTE 라면 실행할 프로세스의 경로를 의미한다.	*/
 	CString m_reactionArgument;
 
 	CRuleDataDTO(CString a_processName, CString a_caption, 
-		CString a_targetSeatId, CString a_targetUserId, 
+		CString a_targetSeatId, CString a_targetUserId, int a_targetLevel,
 		enum Reactions a_reaction, CString a_reactionArgument);
 	CRuleDataDTO(CString a_processName);
 	CRuleDataDTO(){}

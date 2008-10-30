@@ -1,10 +1,17 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CRuleAdminDlg dialog
 
 class CRuleAdminDlg : public CDialog
 {
+
+private :
+	void GetInputVariables(CString *a_processName, CString *a_caption,
+		CString *a_targetSeat, CString *a_targetUser, int *a_targetLevel,
+		int *a_reaction, CString *a_reactionArgument);
+	void SetInputVariables(int a_pos);
 	DECLARE_DYNAMIC(CRuleAdminDlg)
 
 public:
@@ -27,4 +34,13 @@ private :
 	void ShowRules();
 public:
 	virtual BOOL OnInitDialog();
+	CEdit m_targetSeat;
+	CEdit m_targetUser;
+	CEdit m_targetLevel;
+	CEdit m_processName;
+	CEdit m_title;
+	CComboBox m_reaction;
+	CEdit m_argument;
+	CListBox m_ruleList;
+	afx_msg void OnLbnSelchangeRulelist();
 };

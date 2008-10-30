@@ -68,9 +68,9 @@ void CDataAdminFacade::AddSeat(void *a_seat)
 
 /**@brief	좌석 정보를 삭제한다.
  */
-void CDataAdminFacade::DeleteSeat(int a_x, int a_y)
+void CDataAdminFacade::DeleteSeat(void *a_seat)
 {
-	CDataAdminManager::Instance()->DeleteSeat(a_x, a_y);
+	CDataAdminManager::Instance()->DeleteSeat(a_seat);
 }
 
 /**@brief	전체 좌석 정보를 얻는다.

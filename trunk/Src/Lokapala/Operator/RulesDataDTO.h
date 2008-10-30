@@ -16,6 +16,7 @@ public :
 
 	void AddRule(CRuleDataDTO *a_rule);
 	void DeleteRule(CRuleDataDTO *a_targetRule);
+	void DeleteRule(int a_position);
 
 	void GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRulesDataDTO *a_searchedRules);
 

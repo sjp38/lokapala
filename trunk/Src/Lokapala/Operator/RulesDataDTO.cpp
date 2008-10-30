@@ -33,6 +33,14 @@ void CRulesDataDTO::DeleteRule(CRuleDataDTO *a_targetRule)
 	return;
 }
 
+/**@brief	금지 프로세스 관련 규칙 하나를 제거한다. 배열 내에서의 위치를 이용하도록 오버로드되었다.
+ * @param	a_position	규칙 배열 내에서 제거하고자 하는 규칙의 인덱스
+ */
+void CRulesDataDTO::DeleteRule(int a_position)
+{
+	m_rules.RemoveAt(a_position);
+}
+
 
 /**@brief	특정 실행된 프로세스에 대해, 해당하는 규칙을 검색해서 알려준다.
  * @param	a_searchedRules	검색된 규칙을 받아 갈 포인터.

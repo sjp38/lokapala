@@ -70,7 +70,7 @@ public :
 
 	void SetSeats(int a_x, int a_y);
 	void AddSeat(void *a_seat);
-	void DeleteSeat(int a_x, int a_y);	
+	void DeleteSeat(void *a_seat);	
 	void *GetSeats();
 
 	void AddRule(void *a_rule);

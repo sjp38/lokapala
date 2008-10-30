@@ -40,7 +40,7 @@ public :
 	//seat
 	virtual void SetSeats(int a_x, int a_y);
 	virtual void AddSeat(void *a_seat);
-	virtual void DeleteSeat(int a_x, int a_y);
+	virtual void DeleteSeat(void *a_seat);
 	virtual void *GetSeats();
 
 	//rule

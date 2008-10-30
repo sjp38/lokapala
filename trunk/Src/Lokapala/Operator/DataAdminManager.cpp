@@ -27,7 +27,7 @@ void CDataAdminManager::LoadUserDataFrom(void *a_xmlRoot)
 		int level;
 		user->Attribute("level", &level);
 
-		CUserDataDTO newUser(lowPassword, name, lowPassword, highPassword, level);
+		CUserDataDTO newUser(lowPassword, name, lowPassword, level, highPassword);
 		CCBFMediator::Instance()->AddUser(&newUser);
 	}	
 }
@@ -74,13 +74,15 @@ void CDataAdminManager::LoadRuleDataFrom(void *a_xmlRoot)
 		CString caption = A2W(rule->Attribute("caption"));
 		CString targetSeat = A2W(rule->Attribute("targetSeat"));
 		CString targetUser = A2W(rule->Attribute("targetUser"));
+		int targetLevel;
+		rule->Attribute("targetLevel", &targetLevel);
 		
 		int action;
 		rule->Attribute("reaction", &action);
 		enum Reactions reaction = (enum Reactions)action;
 		CString argument = A2W(rule->Attribute("argument"));
 
-		CRuleDataDTO newRule(processName, caption, targetSeat, targetUser, reaction, argument);
+		CRuleDataDTO newRule(processName, caption, targetSeat, targetUser, targetLevel, reaction, argument);
 		CCBFMediator::Instance()->AddRule(&newRule);
 	}
 }
@@ -259,9 +261,9 @@ void CDataAdminManager::AddSeat(void *a_seat)
 
 /**@brief	좌석 정보 삭제
  */
-void CDataAdminManager::DeleteSeat(int a_x, int a_y)
+void CDataAdminManager::DeleteSeat(void *a_seatId)
 {
-	m_seatsData.DeleteSeat(a_x, a_y);
+	m_seatsData.DeleteSeat((CString *)a_seatId);
 }
 
 /**@brief	전체 좌석 정보를 넘겨준다.

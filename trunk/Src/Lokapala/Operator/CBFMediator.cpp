@@ -198,10 +198,10 @@ void CCBFMediator::AddSeat(void *a_seat)
 }
 
 /**@brief	좌석 정보를 삭제한다.	*/
-void CCBFMediator::DeleteSeat(int a_x, int a_y)
+void CCBFMediator::DeleteSeat(void *a_seat)
 {
 	CDataAdminBI *_interface = CDataAdminFacade::Instance();
-	_interface->DeleteSeat(a_x, a_y);
+	_interface->DeleteSeat(a_seat);
 }
 
 /**@brief	전체 좌석 정보를 얻는다.
