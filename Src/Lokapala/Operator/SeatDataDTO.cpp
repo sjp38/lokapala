@@ -6,11 +6,10 @@
 #include "stdafx.h"
 #include "SeatDataDTO.h"
 
-CSeatDataDTO::CSeatDataDTO(CString a_globalIp, CString a_localIp, int a_x, int a_y, CString a_nickname)
+CSeatDataDTO::CSeatDataDTO(CString a_hostAddress, int a_x, int a_y, CString a_nickname)
 {
-	m_seatId.Format(_T("%s/%s"),a_globalIp,a_localIp);
-	m_globalIp = a_globalIp;
-	m_localIp = a_localIp;
+	m_seatId = a_hostAddress;
+	m_hostAddress = a_hostAddress;
 	m_position.x = a_x;
 	m_position.y = a_y;
 	m_nickname = a_nickname;

@@ -16,12 +16,11 @@ class CSeatDataDTO
 public :
 	/**@brief	{글로벌 ip}/{로컬 ip} 의 형태를 갖는다.	*/
 	CString m_seatId;
-	CString m_globalIp;
-	CString m_localIp;
+	CString m_hostAddress;
 	CPoint m_position;
 	CString m_nickname;
 
-	CSeatDataDTO(CString a_globalIp, CString a_localIp, int a_x, int a_y, CString a_nickname);
+	CSeatDataDTO(CString a_hostAddress, int a_x, int a_y, CString a_nickname);
 	CSeatDataDTO(){}
 	~CSeatDataDTO(){}
 };

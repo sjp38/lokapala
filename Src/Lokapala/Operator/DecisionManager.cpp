@@ -35,13 +35,13 @@ void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 		|| userData->m_name != loginRequestData->m_name 
 		|| userData->m_highLevelPassword != loginRequestData->m_highLevelPassword )
 	{
-		LogoutUser(loginRequestData->m_globalIp, loginRequestData->m_localIp);
+		LogoutUser(loginRequestData->m_hostAddress);
 		return;
 	}
 	CConnectedUsersDTO *connectedUsers = (CConnectedUsersDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
 	CConnectedUserDTO user;
 	user.m_userId = loginRequestData->m_lowLevelPassword;
-	user.m_seatId = loginRequestData->m_globalIp + _T("/") + loginRequestData->m_localIp;
+	user.m_seatId = loginRequestData->m_hostAddress;
 	connectedUsers->RegistConnected(&user);
 
 	loginRequestData->m_level = userData->m_level;
@@ -56,12 +56,14 @@ void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
  */
 void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 {
-	CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;;
+	CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;
+
+	CCBFMediator::Instance()->NotifyRaptorExecutedProcess(&executedProcess->m_executedHostAddress,
+		&executedProcess->m_executedProcessName);
 
 	CRuleDataDTO *rule = (CRuleDataDTO *)a_rule;
 	CReactionArgumentDTO reactionArgument;
-	reactionArgument.m_targetGlobalIp = executedProcess->m_executedGlobalIp;
-	reactionArgument.m_targetLocalIp = executedProcess->m_executedLocalIp;
+	reactionArgument.m_targetHostAddress = executedProcess->m_executedHostAddress;
 	reactionArgument.m_reactionArgument = rule->m_reactionArgument;
 
 	switch(rule->m_reaction)
@@ -73,7 +75,7 @@ void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 		CDCCommunicationSD::Instance()->RebootUser(&reactionArgument);
 		break;
 	case LOGOUT :
-		LogoutUser(executedProcess->m_executedGlobalIp, executedProcess->m_executedLocalIp);		
+		LogoutUser(executedProcess->m_executedHostAddress);		
 		break;
 	case EXECUTE :
 		CDCCommunicationSD::Instance()->ExecuteUser(&reactionArgument);
@@ -84,7 +86,7 @@ void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 	case WARN :
 		CDCCommunicationSD::Instance()->WarnUser(&reactionArgument);
 		break;
-	}
+	}	
 }
 
 /**@brief	룰들에 명시된 반응을 실제로 행한다.
@@ -124,25 +126,24 @@ void CDecisionManager::PresentStatusReport(void *a_statusReportData)
 
 /**@brief	유저를 강제로 로그아웃 시킨다.
  */
-void CDecisionManager::LogoutUser(CString a_globalIp, CString a_localIp)
+void CDecisionManager::LogoutUser(CString a_hostAddress)
 {
-	RemoveFromAcceptedUser(a_globalIp, a_localIp);
+	RemoveFromAcceptedUser(a_hostAddress);
 	
 	CReactionArgumentDTO reactionArgument;
-	reactionArgument.m_targetGlobalIp = a_globalIp;
-	reactionArgument.m_targetLocalIp = a_localIp;
+	reactionArgument.m_targetHostAddress = a_hostAddress;
 	reactionArgument.m_reactionArgument = _T("");	
 	CDCCommunicationSD::Instance()->LogoutUser(&reactionArgument);
 
-	CString address = a_globalIp + _T("/") + a_localIp;
+	CString address = a_hostAddress;
 	CCBFMediator::Instance()->NotifyRaptorLogout(&address);
 }
 
 /**@brief	특정 유저를 연결된 유저 목록에서 제거한다.
  */
-void CDecisionManager::RemoveFromAcceptedUser(CString a_globalIp, CString a_localIp)
+void CDecisionManager::RemoveFromAcceptedUser(CString a_hostAddress)
 {
 	CConnectedUsersDTO *connectedUsers = (CConnectedUsersDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
-	CString seatId = a_globalIp + _T("/") + a_localIp;
+	CString seatId = a_hostAddress;
 	connectedUsers->RemoveConnected(&seatId);
 }

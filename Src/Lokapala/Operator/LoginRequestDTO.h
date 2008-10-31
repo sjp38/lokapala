@@ -14,8 +14,7 @@
 class CLoginRequestDTO
 {
 public :
-	CString m_globalIp;
-	CString m_localIp;
+	CString m_hostAddress;
 	CString m_name;
 	CString m_lowLevelPassword;
 	CString m_highLevelPassword;
@@ -24,10 +23,9 @@ public :
 	CLoginRequestDTO(){}
 	~CLoginRequestDTO(){}
 
-	CLoginRequestDTO(CString a_globalIp, CString a_localIp, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword)
+	CLoginRequestDTO(CString a_hostAddress, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword)
 	{
-		m_globalIp = a_globalIp;
-		m_localIp = a_localIp;
+		m_hostAddress = a_hostAddress;
 		m_name = a_name;
 		m_lowLevelPassword = a_lowLevelPassword;
 		m_highLevelPassword = a_highLevelPassword;

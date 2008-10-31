@@ -47,7 +47,7 @@ void CRulesDataDTO::DeleteRule(int a_position)
  */
 void CRulesDataDTO::GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRulesDataDTO *a_searchedRules)
 {
-	CString seatId = a_executedProcess->m_executedGlobalIp + _T("/") + a_executedProcess->m_executedLocalIp;
+	CString seatId = a_executedProcess->m_executedHostAddress;
 
 	for(int i=0; i<m_rules.GetCount(); i++)
 	{

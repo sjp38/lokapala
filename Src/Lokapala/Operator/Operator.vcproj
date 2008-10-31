@@ -425,7 +425,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Resource.h"
+				RelativePath=".\resource.h"
 				>
 			</File>
 			<File
@@ -699,7 +699,15 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath=".\res\bitmap1.bmp"
+				RelativePath=".\res\bmp00001.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\bmp00002.bmp"
+				>
+			</File>
+			<File
+				RelativePath=".\res\icon1.ico"
 				>
 			</File>
 			<File

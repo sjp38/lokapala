@@ -16,13 +16,12 @@ enum State {HW_DEFECT, SW_DEFECT, REPAIRED, VERIFIED};
 class CStatusReportDTO
 {
 public :
-	CString m_globalIp;
-	CString m_localIp;
+	CString m_hostAddress;
 	enum State m_state;
 	CString m_date;
 	CString m_comment;
 
-	CStatusReportDTO(CString a_globalIp, CString a_localIp, enum State a_state, CString a_date, CString a_comment);
+	CStatusReportDTO(CString a_hostAddress, enum State a_state, CString a_date, CString a_comment);
 
 	CStatusReportDTO(){}
 	~CStatusReportDTO(){}

@@ -62,7 +62,6 @@ void CUserAdminDlg::SetInputVariables(void *a_user)
 	CUserDataDTO *user = (CUserDataDTO *)a_user;
 	m_name.SetWindowTextW(user->m_name);
 	m_lowPassword.SetWindowTextW(user->m_lowLevelPassword);
-	m_highPassword.SetWindowTextW(user->m_highLevelPassword);
 	CString value;
 	value.Format(_T("%d"), user->m_level);
 	m_level.SetWindowTextW(value);

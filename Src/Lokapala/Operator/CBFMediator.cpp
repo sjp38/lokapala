@@ -300,6 +300,14 @@ void CCBFMediator::NotifyRaptorLogout(CString *a_address)
 	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);
 }
 
+/**@brief	특정 금지 프로세스를 실행했음을 알린다.
+ */
+void CCBFMediator::NotifyRaptorExecutedProcess(CString *a_hostAddress, CString *a_executedProcess)
+{	
+	CDisplayDTO displayData(*a_hostAddress, CRIMINAL, *a_executedProcess);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);
+}
+
 /**@brief	특정 랩터로부터의 소켓 연결이 들어왔음을 알린다.
  *			이는 곧 로그인 시도임을 의미한다.
  */

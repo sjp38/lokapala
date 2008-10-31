@@ -31,8 +31,6 @@ void CSeatsDataDTO::SetSeats(int a_maxX, int a_maxY)
 	m_maxY = a_maxY;
 
 	ResetSeats();
-
-	//새로 잡힌 크기에 맞춰 기존의 좌석 정보 중 크기를 넘는 좌석을 지우는 과정 필요
 }
 
 /**@brief	좌석 정보를 모두 삭제한다.
@@ -49,11 +47,6 @@ void CSeatsDataDTO::AddSeat(CSeatDataDTO *a_seat)
 	if(a_seat->m_position.x > m_maxX || a_seat->m_position.y > m_maxY)
 	{
 		AfxMessageBox(_T("seat info add fail!! invalid position!!"));
-		return;
-	}
-	if(ExistSameAddress(a_seat))
-	{
-		AfxMessageBox(_T("same address seat already exist!"));
 		return;
 	}
 	m_seats.SetAt(a_seat->m_seatId, *a_seat);
@@ -76,7 +69,31 @@ CSeatDataDTO *CSeatsDataDTO::GetSeatById(CString a_seatId)
 {
 	CMap<CString, LPCTSTR, CSeatDataDTO, CSeatDataDTO>::CPair *pCursor;
 	pCursor = m_seats.PLookup(a_seatId);
+	if(pCursor == NULL)
+	{
+		return NULL;
+	}
 	return &(pCursor->value);
+}
+
+
+/**@brief	좌표로 좌석 이름을 얻어와 반환한다.
+ */
+CString CSeatsDataDTO::GetSeatNicknameByAxis(int a_x, int a_y)
+{
+	POSITION pos = m_seats.GetStartPosition();
+	CString key;
+	CSeatDataDTO value;
+	while(pos != NULL)
+	{
+		m_seats.GetNextAssoc(pos, key, value);
+		if(value.m_position.x == a_x && value.m_position.y == a_y)
+		{
+			return value.m_nickname;
+		}
+	}
+	key = _T("");
+	return key;
 }
 
 
@@ -99,7 +116,7 @@ void CSeatsDataDTO::ResetSeats()
 }
 
 /**@brief	동일한 주소의 좌석 정보가 있는지 확인한다.
- *			좌석 id는 좌표로만 사용하므로, ip 주소가 겹치는 곳을 미리 확인한다.
+ *			좌석 id는 ip 주소만 사용하므로, 동일 좌표인지만 확인한다.
  */
 BOOL CSeatsDataDTO::ExistSameAddress(CSeatDataDTO *a_seat)
 {
@@ -109,7 +126,7 @@ BOOL CSeatsDataDTO::ExistSameAddress(CSeatDataDTO *a_seat)
 	while(pos != NULL)
 	{
 		m_seats.GetNextAssoc(pos, key, value);
-		if(value.m_globalIp == a_seat->m_globalIp && value.m_localIp == a_seat->m_localIp)
+		if(value.m_position.x == a_seat->m_position.x && value.m_position.y == a_seat->m_position.y)
 		{
 			return TRUE;
 		}

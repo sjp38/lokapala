@@ -80,7 +80,7 @@ void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
 	CCBFMediator::Instance()->NotifyRaptorLeaved(&address);
 
 	//해당 사용자를 로그아웃 시키기 위해 필요없는 정보를 넣어 로그인 판정을 받는다.
-	CLoginRequestDTO loginRequestData(a_globalIp, a_localIp, _T(""), _T(""), _T(""));
+	CLoginRequestDTO loginRequestData(address, _T(""), _T(""), _T(""));
 	CCCDecisionSD::Instance()->UserLogin(&loginRequestData);
 }
 
@@ -97,21 +97,22 @@ void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp,
 	{
 		return;
 	}
+	CString address = a_globalIp + _T("/") + a_localIp;
 	const char *header = proot->Attribute("Header");
 	
 	switch(atoi( header ))
 	{
 	case LOGIN_REQUEST :
-		LoginRequestReceived(&a_message, &a_localIp, &a_globalIp);
+		LoginRequestReceived(&a_message, &address);
 		break;
 	case PROCESS_EXECUTED :
-		UserExecutedProcessReceived(&a_message, &a_localIp, &a_globalIp);
+		UserExecutedProcessReceived(&a_message, &address);
 		break;
 	case MESSAGE :
-		MessageReceived(&a_message, &a_localIp, &a_globalIp);
+		MessageReceived(&a_message, &address);
 		break;
 	case STATUS_CHANGED :
-		StatusReportReceived(&a_message, &a_localIp, &a_globalIp);
+		StatusReportReceived(&a_message, &address);
 		break;
 	default :
 		break;
@@ -127,8 +128,7 @@ void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp,
 void CCommunicationManager::NotifyAccepted(void *a_acceptedData)
 {
 	CLoginRequestDTO *acceptedData = (CLoginRequestDTO *)a_acceptedData;
-	CString destinationGlobalIp = acceptedData->m_globalIp;
-	CString destinationLocalIp = acceptedData->m_localIp;
+	CString destinationHostAddress = acceptedData->m_hostAddress;
 	int level = acceptedData->m_level;
 
 	TiXmlDocument doc;
@@ -143,7 +143,7 @@ void CCommunicationManager::NotifyAccepted(void *a_acceptedData)
 	const char *packet = printer.CStr();
 
 	USES_CONVERSION;
-	SendTextMessageTo(destinationGlobalIp + _T("/") + destinationLocalIp, A2W(packet));
+	SendTextMessageTo(destinationHostAddress, A2W(packet));
 }
 
 /**@brief	특정 사용자의 컴퓨터를 끈다.
@@ -151,8 +151,7 @@ void CCommunicationManager::NotifyAccepted(void *a_acceptedData)
 void CCommunicationManager::ShutdownUser(void *a_argument)
 {
 	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
-	CString targetGlobalIp = argument->m_targetGlobalIp;
-	CString targetLocalIp = argument->m_targetLocalIp;
+	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
 	TiXmlElement *root = new TiXmlElement("Packet");
@@ -166,7 +165,7 @@ void CCommunicationManager::ShutdownUser(void *a_argument)
 	doc.Accept(&printer);
 	const char *packet = printer.CStr();
 	
-	SendTextMessageTo(targetGlobalIp + _T("/") + targetLocalIp, A2W(packet));
+	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
 /**@brief	특정 사용자의 컴퓨터를 재부팅 시킨다.
@@ -174,8 +173,7 @@ void CCommunicationManager::ShutdownUser(void *a_argument)
 void CCommunicationManager::RebootUser(void *a_argument)
 {
 	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
-	CString targetGlobalIp = argument->m_targetGlobalIp;
-	CString targetLocalIp = argument->m_targetLocalIp;
+	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
 	TiXmlElement *root = new TiXmlElement("Packet");
@@ -189,7 +187,7 @@ void CCommunicationManager::RebootUser(void *a_argument)
 	doc.Accept(&printer);
 	const char *packet = printer.CStr();
 	
-	SendTextMessageTo(targetGlobalIp + _T("/") + targetLocalIp, A2W(packet));
+	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
 /**@brief	특정 사용자를 로그아웃시킨다.
@@ -197,8 +195,7 @@ void CCommunicationManager::RebootUser(void *a_argument)
 void CCommunicationManager::LogoutUser(void *a_argument)
 {
 	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
-	CString targetGlobalIp = argument->m_targetGlobalIp;
-	CString targetLocalIp = argument->m_targetLocalIp;
+	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
 	TiXmlElement *root = new TiXmlElement("Packet");
@@ -212,7 +209,7 @@ void CCommunicationManager::LogoutUser(void *a_argument)
 	doc.Accept(&printer);
 	const char *packet = printer.CStr();
 	
-	SendTextMessageTo(targetGlobalIp + _T("/") + targetLocalIp, A2W(packet));
+	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
 /**@brief	특정 사용자에게 특정 프로세스를 실행시킨다.
@@ -220,8 +217,7 @@ void CCommunicationManager::LogoutUser(void *a_argument)
 void CCommunicationManager::ExecuteUser(void *a_argument)
 {
 	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
-	CString targetGlobalIp = argument->m_targetGlobalIp;
-	CString targetLocalIp = argument->m_targetLocalIp;
+	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
 	TiXmlElement *root = new TiXmlElement("Packet");
@@ -235,7 +231,7 @@ void CCommunicationManager::ExecuteUser(void *a_argument)
 	doc.Accept(&printer);
 	const char *packet = printer.CStr();
 	
-	SendTextMessageTo(targetGlobalIp + _T("/") + targetLocalIp, A2W(packet));
+	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
 /**@brief	특정 사용자의 실행중인 모든 프로세스를 종료시킨다.
@@ -243,8 +239,7 @@ void CCommunicationManager::ExecuteUser(void *a_argument)
 void CCommunicationManager::GenocideUser(void *a_argument)
 {
 	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
-	CString targetGlobalIp = argument->m_targetGlobalIp;
-	CString targetLocalIp = argument->m_targetLocalIp;
+	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
 	TiXmlElement *root = new TiXmlElement("Packet");
@@ -258,7 +253,7 @@ void CCommunicationManager::GenocideUser(void *a_argument)
 	doc.Accept(&printer);
 	const char *packet = printer.CStr();
 	
-	SendTextMessageTo(targetGlobalIp + _T("/") + targetLocalIp, A2W(packet));
+	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
 /**@brief	특정 사용자에게 경고 메세지를 띄운다.
@@ -266,8 +261,7 @@ void CCommunicationManager::GenocideUser(void *a_argument)
 void CCommunicationManager::WarnUser(void *a_argument)
 {
 	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
-	CString targetGlobalIp = argument->m_targetGlobalIp;
-	CString targetLocalIp = argument->m_targetLocalIp;
+	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
 	TiXmlElement *root = new TiXmlElement("Packet");
@@ -281,7 +275,7 @@ void CCommunicationManager::WarnUser(void *a_argument)
 	doc.Accept(&printer);
 	const char *packet = printer.CStr();
 	
-	SendTextMessageTo(targetGlobalIp + _T("/") + targetLocalIp, A2W(packet));
+	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
 
@@ -307,7 +301,7 @@ TiXmlElement *CCommunicationManager::GetXmlParsedPacketElement(CString *a_packet
 
 /**@brief	로그인에 요청에 대한 처리를 해준다.
  */
-void CCommunicationManager::LoginRequestReceived(CString *a_message, CString *a_localIp, CString *a_globalIp)
+void CCommunicationManager::LoginRequestReceived(CString *a_message, CString *a_hostAddress)
 {	
 	USES_CONVERSION;
 	TiXmlDocument doc;
@@ -323,7 +317,7 @@ void CCommunicationManager::LoginRequestReceived(CString *a_message, CString *a_
 	CString highPassword =  A2W(proot->Attribute("highPassword"));
 	highPassword.TrimRight(_T("temp"));
 	
-	CLoginRequestDTO loginRequestData(*a_globalIp, *a_localIp, A2W(name), A2W(lowPassword), highPassword);
+	CLoginRequestDTO loginRequestData(*a_hostAddress, A2W(name), A2W(lowPassword), highPassword);
 
 	CCCDecisionSD::Instance()->UserLogin(&loginRequestData);	
 }
@@ -331,7 +325,7 @@ void CCommunicationManager::LoginRequestReceived(CString *a_message, CString *a_
 
 /**@brief	랩터로부터 보고된 실행 프로세스에 대한 처리.
  */
-void CCommunicationManager::UserExecutedProcessReceived(CString *a_message, CString *a_localIp, CString *a_globalIp)
+void CCommunicationManager::UserExecutedProcessReceived(CString *a_message, CString *a_hostAddress)
 {
 	USES_CONVERSION;
 	TiXmlDocument doc;
@@ -343,14 +337,14 @@ void CCommunicationManager::UserExecutedProcessReceived(CString *a_message, CStr
 	}
 	const char *processName = proot->Attribute("executedProcessName");
 
-	CExecutedProcessDTO executedProcessData(A2W(processName), *a_localIp, *a_globalIp);
+	CExecutedProcessDTO executedProcessData(A2W(processName), *a_hostAddress);
 
 	CCCDecisionSD::Instance()->JudgeUserExecutedProcess(&executedProcessData);
 }
 
 /**@brief	랩터로부터 들어온 고장 상황 보고에 대한 처리.
  */
-void CCommunicationManager::StatusReportReceived(CString *a_message, CString *a_localIp, CString *a_globalIp)
+void CCommunicationManager::StatusReportReceived(CString *a_message, CString *a_hostAddress)
 {
 	USES_CONVERSION;
 	TiXmlDocument doc;
@@ -366,14 +360,14 @@ void CCommunicationManager::StatusReportReceived(CString *a_message, CString *a_
 	const char *date = proot->Attribute("date");
 	const char *comment = proot->Attribute("comment");
 
-	CStatusReportDTO statusReportData(*a_globalIp, *a_localIp, state, A2W(date), A2W(comment));
+	CStatusReportDTO statusReportData(*a_hostAddress, state, A2W(date), A2W(comment));
 
 	CCCDecisionSD::Instance()->PresentStatusReport(&statusReportData);
 }
 
 /**@brief	랩터로부터 메신저를 통해 들어온 메세지에 대한 처리.
  */
-void CCommunicationManager::MessageReceived(CString *a_message, CString *a_localIp, CString *a_globalIp)
+void CCommunicationManager::MessageReceived(CString *a_message, CString *a_hostAddress)
 {
 	USES_CONVERSION;
 	TiXmlDocument doc;
@@ -385,6 +379,6 @@ void CCommunicationManager::MessageReceived(CString *a_message, CString *a_local
 	}
 	const char *message = proot->Attribute("message");
 
-	CMessageDTO messageData(*a_globalIp, *a_localIp, A2W(message));
+	CMessageDTO messageData(*a_hostAddress, A2W(message));
 	CCCMessengerSD::Instance()->PresentMessage(&messageData);	
 }

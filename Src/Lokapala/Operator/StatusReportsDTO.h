@@ -20,9 +20,9 @@ class CStatusReportsDTO
 public :
 	CStatusReportDTOArray m_reports;
 	void AddReport(CStatusReportDTO *a_report);
-	void DeleteReportAt(CString a_globalIp, CString a_localIp);
+	void DeleteReportAt(CString a_hostAddress);
 
-	void GetReportFrom(CString a_globalIp, CString a_localIp, CStatusReportDTOArray *a_dest);
+	void GetReportFrom(CString a_hostAddress, CStatusReportDTOArray *a_dest);
 	void ClearReports();
 };
 

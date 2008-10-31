@@ -13,7 +13,7 @@ void CStatusReportsDTO::AddReport(CStatusReportDTO *a_report)
 {
 	if(a_report->m_state == VERIFIED)
 	{
-		DeleteReportAt(a_report->m_globalIp, a_report->m_localIp);
+		DeleteReportAt(a_report->m_hostAddress);
 	}
 	m_reports.Add(*a_report);
 
@@ -21,11 +21,11 @@ void CStatusReportsDTO::AddReport(CStatusReportDTO *a_report)
 
 /**@brief	특정 주소로부터의 상황 보고를 삭제한다.
  */
-void CStatusReportsDTO::DeleteReportAt(CString a_globalIp, CString a_localIp)
+void CStatusReportsDTO::DeleteReportAt(CString a_hostAddress)
 {	
 	for(int i=0; i<m_reports.GetCount(); i++)
 	{
-		if(m_reports[i].m_globalIp == a_globalIp && m_reports[i].m_localIp == a_localIp)
+		if(m_reports[i].m_hostAddress == a_hostAddress)
 		{
 			m_reports.RemoveAt(i);
 		}
@@ -35,11 +35,11 @@ void CStatusReportsDTO::DeleteReportAt(CString a_globalIp, CString a_localIp)
 /**@brief	특정 주소로부터의 상황 보고를 가져온다.
  * @brief	a_dest	해당 상황 보고들을 넣어줄 상황 보고 정보체 배열의 주소.
  */
-void CStatusReportsDTO::GetReportFrom(CString a_globalIp, CString a_localIp, CStatusReportDTOArray *a_dest)
+void CStatusReportsDTO::GetReportFrom(CString a_hostAddress, CStatusReportDTOArray *a_dest)
 {
 	for(int i=m_reports.GetCount()-1; i>=0; i--)
 	{
-		if(m_reports[i].m_globalIp == a_globalIp && m_reports[i].m_localIp == a_localIp)
+		if(m_reports[i].m_hostAddress == a_hostAddress)
 		{
 			a_dest->Add(m_reports[i]);
 		}

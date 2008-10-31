@@ -14,8 +14,7 @@
 class CReactionArgumentDTO
 {
 public :
-	CString m_targetGlobalIp;
-	CString m_targetLocalIp;
+	CString m_targetHostAddress;
 	CString m_reactionArgument;
 };
 
