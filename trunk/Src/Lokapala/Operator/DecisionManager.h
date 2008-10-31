@@ -27,7 +27,7 @@ public :
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);
 
-	void LogoutUser(CString a_globalIp, CString a_localIp);	
+	void LogoutUser(CString a_hostAddress);	
 
 protected :
 	CDecisionManager(){}
@@ -39,7 +39,7 @@ private :
 
 	void DoReactionsTo(void *a_executedProcess, void *a_rules);
 	void DoReactionTo(void *a_executedProcess, void *a_rule);
-	void RemoveFromAcceptedUser(CString a_globalIp, CString a_localIp);
+	void RemoveFromAcceptedUser(CString a_hostAddress);
 };
 
 #endif

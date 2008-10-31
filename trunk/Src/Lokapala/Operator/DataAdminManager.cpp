@@ -47,14 +47,13 @@ void CDataAdminManager::LoadSeatDataFrom(void *a_xmlRoot)
 	USES_CONVERSION;
 	for(seat; seat; seat = seat->NextSiblingElement())
 	{
-		CString globalIp = A2W(seat->Attribute("globalIp"));
-		CString localIp = A2W(seat->Attribute("localIp"));
+		CString hostAddress = A2W(seat->Attribute("hostAddress"));
 		int x,y;
 		seat->Attribute("x", &x);
 		seat->Attribute("y", &y);
 		CString nickname = A2W(seat->Attribute("nickname"));
 
-		CSeatDataDTO newSeat(globalIp, localIp, x, y, nickname);
+		CSeatDataDTO newSeat(hostAddress, x, y, nickname);
 		CCBFMediator::Instance()->AddSeat(&newSeat);
 	}
 }
@@ -162,8 +161,7 @@ void CDataAdminManager::SaveSeatDataTo(void *a_xmlRoot)
 		m_seatsData.m_seats.GetNextAssoc(pos, key, value);
 		TiXmlElement *seat = new TiXmlElement("Seat");
 		seats->LinkEndChild(seat);
-		seat->SetAttribute("globalIp", W2A(value.m_globalIp));
-		seat->SetAttribute("localIp",W2A(value.m_localIp));
+		seat->SetAttribute("hostAddress", W2A(value.m_hostAddress));
 		seat->SetAttribute("x",value.m_position.x);
 		seat->SetAttribute("y",value.m_position.y);
 		seat->SetAttribute("nickname",W2A(value.m_nickname));

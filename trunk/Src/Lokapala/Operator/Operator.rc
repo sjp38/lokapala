@@ -199,7 +199,8 @@ END
 // Bitmap
 //
 
-IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
+IDB_NORMAL              BITMAP                  "res\\bmp00001.bmp"
+IDB_ABNORMAL            BITMAP                  "res\\bmp00002.bmp"
 #endif    // Korean resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -229,27 +230,52 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_OPERATOR_DIALOG DIALOGEX 0, 0, 642, 339
+IDD_OPERATOR_DIALOG DIALOGEX 0, 0, 774, 339
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Operator"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,529,318,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,585,318,50,14
-    EDITTEXT        IDC_EDITTEST,517,90,62,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "send",IDC_BUTTONTEST,585,89,50,14
+    EDITTEXT        IDC_COMMAND,7,320,248,12,ES_AUTOHSCROLL
     LISTBOX         IDC_NOTIFY_LIST,7,14,202,299,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     LISTBOX         IDC_CRIMINAL_LIST,213,165,96,147,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LISTBOX         IDC_CONNECTED_LIST,213,15,96,139,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Main Notify",IDC_STATIC,10,5,37,8
     LTEXT           "Connected User",IDC_STATIC,213,7,52,8
     LTEXT           "Criminal",IDC_STATIC,213,156,26,8
-    PUSHBUTTON      "Data Admin",IDC_DATA_ADMIN,583,118,50,14
-    PUSHBUTTON      "Control",IDC_CONTROL,583,140,50,14
-    PUSHBUTTON      "Messenger",IDC_MESSENGER,585,164,50,14
-    CONTROL         "",IDC_STATE_VIEW,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,313,15,198,297
+    PUSHBUTTON      "Data Admin",IDC_DATA_ADMIN,717,100,50,35
+    PUSHBUTTON      "Control",IDC_CONTROL,717,141,50,34
+    PUSHBUTTON      "Messenger",IDC_MESSENGER,717,182,50,34
+    PUSHBUTTON      "Command",IDC_CMD_EXECUTE,258,318,50,14
+    CONTROL         "",IDC_STATE_DISPLAY,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,319,15,393,317
 END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_OPERATOR_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 767
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 332
+    END
+END
+#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -274,13 +300,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "TODO: <Company name>"
-            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "CompanyName", "Team Naraka"
+            VALUE "FileDescription", "Lokapala"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "Operator.exe"
-            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "LegalCopyright", "LGPL"
             VALUE "OriginalFilename", "Operator.exe"
-            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductName", "Lokapala::Operator"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -289,33 +315,6 @@ BEGIN
         VALUE "Translation", 0x409, 1252
     END
 END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 163
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 55
-    END
-
-    IDD_OPERATOR_DIALOG, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 635
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 332
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////

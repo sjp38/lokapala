@@ -23,7 +23,7 @@ void CMessengerManager::PostTextMessageTo(void *a_message)
 void CMessengerManager::ReceiveTextMessageFrom(void *a_message)
 {
 	CMessageDTO *messageData = (CMessageDTO *)a_message;
-	CString message = messageData->m_globalIp + _T("/") + messageData->m_localIp + _T(":") + messageData->m_message;
+	CString message = messageData->m_hostAddress + _T(":") + messageData->m_message;
 
 	CCBFMediator::Instance()->Notify(&message);
 }

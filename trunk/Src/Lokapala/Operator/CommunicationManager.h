@@ -54,11 +54,11 @@ private :
 	
 	TiXmlElement *GetXmlParsedPacketElement(CString *a_packet);
 	//Raptor -> Operator
-	void LoginRequestReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);
-	void UserExecutedProcessReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);	
-	void StatusReportReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);
+	void LoginRequestReceived(CString *a_message, CString *a_hostAddress);
+	void UserExecutedProcessReceived(CString *a_message, CString *a_hostAddress);	
+	void StatusReportReceived(CString *a_message, CString *a_hostAddress);
 
-	void MessageReceived(CString *a_message, CString *a_localIp, CString *a_globalIp);
+	void MessageReceived(CString *a_message, CString *a_hostAddress);
 };
 
 #endif

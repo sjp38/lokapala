@@ -15,14 +15,12 @@ class CExecutedProcessDTO
 {
 public :
 	CString m_executedProcessName;
-	CString m_executedLocalIp;
-	CString m_executedGlobalIp;
+	CString m_executedHostAddress;
 
-	CExecutedProcessDTO(CString a_executedProcessName, CString a_executedLocalIp, CString a_executedGlobalIp)
+	CExecutedProcessDTO(CString a_executedProcessName, CString a_executedHostAddress)
 	{
 		m_executedProcessName = a_executedProcessName;
-		m_executedLocalIp = a_executedLocalIp;
-		m_executedGlobalIp = a_executedGlobalIp;
+		m_executedHostAddress = a_executedHostAddress;
 	}
 	CExecutedProcessDTO(){}
 	~CExecutedProcessDTO(){}

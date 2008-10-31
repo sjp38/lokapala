@@ -91,6 +91,8 @@ public :
 	void Notify(CString *a_notifyMessage);
 	void NotifyRaptorLogin(CString *a_address);
 	void NotifyRaptorLogout(CString *a_address);
+	void NotifyRaptorExecutedProcess(CString *a_address, CString *a_executedProcess);
+	void NotifyRaptorStatusChange();
 
 	void NotifyRaptorAccepted(CString *a_address);
 	void NotifyRaptorLeaved(CString *a_address);

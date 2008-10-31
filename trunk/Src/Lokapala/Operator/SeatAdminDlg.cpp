@@ -83,8 +83,11 @@ void CSeatAdminDlg::SetInputVariables(CSeatDataDTO *a_seat)
 	value.Format(_T("%d"), a_seat->m_position.y);
 	m_y.SetWindowTextW(value);
 
-	m_globalIp.SetWindowTextW(a_seat->m_globalIp);
-	m_localIp.SetWindowTextW(a_seat->m_localIp);
+	CString hostAddress = a_seat->m_hostAddress;
+	int tokenIndex=0;
+	
+	m_globalIp.SetWindowTextW( hostAddress.Tokenize(_T("/"), tokenIndex) );
+	m_localIp.SetWindowTextW( hostAddress.Tokenize(_T("/"), tokenIndex) );
 
 	m_nickname.SetWindowTextW(a_seat->m_nickname);
 }
@@ -98,7 +101,9 @@ void CSeatAdminDlg::OnBnClickedAdd()
 	int x,y;
 	GetInputVariables(&globalIp, &localIp, &x, &y, &nickname);
 
-	CSeatDataDTO seat(globalIp, localIp, x, y, nickname);
+	CString hostAddress = globalIp + _T("/") + localIp;
+
+	CSeatDataDTO seat(hostAddress, x, y, nickname);
 	CCBFMediator::Instance()->AddSeat( (void *)&seat );
 
 	ShowSeats();
@@ -138,7 +143,12 @@ void CSeatAdminDlg::ShowSeats()
 	{
 		pSeatsData->m_seats.GetNextAssoc(pos, key, value);
 		CString seatDisplay;
-		seatDisplay = value.m_globalIp+_T("/")+value.m_localIp+_T(":")+value.m_nickname;
+
+		CString hostAddress = value.m_hostAddress;
+		int tokenIndex=0;
+		CString globalIp = hostAddress.Tokenize(_T("/"), tokenIndex);
+		CString localIp = hostAddress.Tokenize(_T("/"), tokenIndex);
+		seatDisplay = globalIp + _T("/") + localIp + _T(":") + value.m_nickname;
 		m_seatList.AddString(seatDisplay);
 	}
 }

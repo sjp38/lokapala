@@ -18,11 +18,13 @@ class CDisplayDTO
 public :
 	CString m_seatId;
 	enum DisplayState m_displayState;
+	CString m_argument;
 
-	CDisplayDTO(CString a_seatId, enum DisplayState a_state)
+	CDisplayDTO(CString a_seatId, enum DisplayState a_state, CString m_argument=_T(""))
 	{
 		m_seatId = a_seatId;
 		m_displayState = a_state;
+		m_argument = m_argument;
 	}
 	CDisplayDTO(){};
 	~CDisplayDTO(){};

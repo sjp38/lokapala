@@ -8,6 +8,16 @@
 // COperatorDlg dialog
 class COperatorDlg : public CDialog
 {
+private :
+	CImageList m_stateImage;
+	void InitiallizeStatusListCtrl();
+	void DisplayIconAsLogin(CString a_seatId);
+	void DisplayIconAsLogout(CString a_seatId);
+	void DisplayIconAsNormal(CString a_seatId);
+	void DisplayIconAsAbnormal(CString a_seatId);
+
+
+
 // Construction
 public:
 	COperatorDlg(CWnd* pParent = NULL);	// standard constructor
@@ -35,7 +45,10 @@ protected:
 public:
 	afx_msg void OnBnClickedButtontest();
 	afx_msg void OnBnClickedDataAdmin();
+	afx_msg void OnBnClickedCmdExecute();
 	CListBox m_notifyList;
 	CListBox m_connectedList;
 	CListBox m_criminalList;
+	CEdit m_command;
+	CListCtrl m_stateDisplayList;
 };
