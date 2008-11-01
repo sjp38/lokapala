@@ -6,7 +6,7 @@
 #ifndef DISPLAY_DTO_H
 #define DISPLAY_DTO_H
 
-enum DisplayState {LOGIN, LOGOUT, HW, SW, HWSW, VERIFIED, CRIMINAL, INNOCENT};
+enum DisplayState {LOGIN, LOGOUT, HW, SW, HWSW, FINE, CRIMINAL, INNOCENT, SEATADD, SEATDELETE};
 
 /**@ingroup	GroupMediator
  * @class	CDisplayDTO

@@ -10,11 +10,20 @@ class COperatorDlg : public CDialog
 {
 private :
 	CImageList m_stateImage;
+
+	void Notify(CString a_message);
 	void InitiallizeStatusListCtrl();
+	
+	int GetIconIndexBySeatId(CString a_seatId);
+
+	void DisplayAddedSeat(CString a_seatId);
+	void DisplayDeletedSeat(CString a_seatId);
+
 	void DisplayIconAsLogin(CString a_seatId);
 	void DisplayIconAsLogout(CString a_seatId);
 	void DisplayIconAsNormal(CString a_seatId);
 	void DisplayIconAsAbnormal(CString a_seatId);
+	void DisplayIconAsAttention(CString a_seatId);
 
 
 
@@ -51,4 +60,5 @@ public:
 	CListBox m_criminalList;
 	CEdit m_command;
 	CListCtrl m_stateDisplayList;
+	afx_msg void OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult);
 };

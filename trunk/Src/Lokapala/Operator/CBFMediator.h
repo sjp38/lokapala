@@ -89,13 +89,16 @@ public :
 	//common
 	void SetMainDlg(CDialog *a_pDlg);	
 	void Notify(CString *a_notifyMessage);
-	void NotifyRaptorLogin(CString *a_address);
-	void NotifyRaptorLogout(CString *a_address);
-	void NotifyRaptorExecutedProcess(CString *a_address, CString *a_executedProcess);
-	void NotifyRaptorStatusChange();
+	void NotifyRaptorLogin(CString *a_hostAddress);
+	void NotifyRaptorLogout(CString *a_hostAddress);
+	void NotifyRaptorExecutedProcess(CString *a_hostAddress, CString *a_executedProcess);
+	void NotifyRaptorStatusChange(void *a_statusReports);
 
-	void NotifyRaptorAccepted(CString *a_address);
-	void NotifyRaptorLeaved(CString *a_address);
+	void NotifyRaptorAccepted(CString *a_hostAddress);
+	void NotifyRaptorLeaved(CString *a_hostAddress);
+
+	void NotifySeatAdded(CString *a_seatId);
+	void NotifySeatDeleted(CString *a_seatId);
 
 	void InitStatusViewAs(int a_column, int a_row);
 	

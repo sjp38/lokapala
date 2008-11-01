@@ -9,6 +9,7 @@
 #include "Resource.h"
 
 #include "DisplayDTO.h"
+#include "StatusReportsDTO.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DCM
@@ -308,6 +309,54 @@ void CCBFMediator::NotifyRaptorExecutedProcess(CString *a_hostAddress, CString *
 	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);
 }
 
+/**@brief	상황 보고를 알린다.
+ */
+void CCBFMediator::NotifyRaptorStatusChange(void *a_statusReports)
+{
+	CStatusReportDTOArray *statusReports = (CStatusReportDTOArray *)a_statusReports;
+	if( (*statusReports)[0].m_state == VERIFIED )
+	{
+		CDisplayDTO displayData( (*statusReports)[0].m_hostAddress, FINE, _T(""));
+		SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);
+		return;
+	}
+
+	BOOL sw = FALSE;
+	BOOL hw = FALSE;
+	for(int i=0;i<statusReports->GetCount(); i++)
+	{		
+		if( (*statusReports)[i].m_state == SW_DEFECT )
+		{
+			sw = TRUE;
+		}
+		else if( (*statusReports)[i].m_state == HW_DEFECT )
+		{
+			hw = TRUE;
+		}
+	}
+
+	enum DisplayState state;
+	if(sw)
+	{
+		state = SW;
+	}
+	if(hw)
+	{
+		state = HW;
+	}
+	if(sw && hw)
+	{
+		state = HWSW;
+	}
+	if(!sw && !hw)
+	{
+		state = FINE;
+	}
+	
+	CDisplayDTO displayData( (*statusReports)[0].m_hostAddress, state);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&displayData, NULL);
+}
+
 /**@brief	특정 랩터로부터의 소켓 연결이 들어왔음을 알린다.
  *			이는 곧 로그인 시도임을 의미한다.
  */
@@ -325,4 +374,22 @@ void CCBFMediator::NotifyRaptorLeaved(CString *a_address)
 {
 	CString message = *a_address + _T(" socket disconnected");
 	Notify(&message);
+}
+
+
+/**@brief	새로운 좌석의 추가를 알린다.
+ */
+void CCBFMediator::NotifySeatAdded(CString *a_seatId)
+{
+	CDisplayDTO display(*a_seatId, SEATADD);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
+}
+
+
+/**@brief	좌석의 삭제를 알린다.
+ */
+void CCBFMediator::NotifySeatDeleted(CString *a_seatId)
+{
+	CDisplayDTO display(*a_seatId, SEATDELETE);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
 }

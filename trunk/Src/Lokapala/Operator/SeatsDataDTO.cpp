@@ -50,12 +50,14 @@ void CSeatsDataDTO::AddSeat(CSeatDataDTO *a_seat)
 		return;
 	}
 	m_seats.SetAt(a_seat->m_seatId, *a_seat);
+	CCBFMediator::Instance()->NotifySeatAdded(&a_seat->m_seatId);
 }
 
 /**@brief	좌석 정보를 하나 지운다.
  */
 void CSeatsDataDTO::DeleteSeat(CString *a_seatId)
 {
+	CCBFMediator::Instance()->NotifySeatDeleted(a_seatId);
 	if( m_seats.RemoveKey(*a_seatId)==0 )
 	{
 		AfxMessageBox(_T("seat info delete fail!!"));
