@@ -94,6 +94,12 @@ void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 void CDecisionManager::DoReactionsTo(void *a_executedProcess, void *a_rules)
 {
 	CRulesDataDTO *rules = (CRulesDataDTO *)a_rules;
+	if(rules->m_rules.GetCount() > 0)
+	{
+		CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;
+		CCBFMediator::Instance()->NotifyRaptorExecutedProcess( &executedProcess->m_executedHostAddress, &executedProcess->m_executedProcessName); 
+	}
+
 	for(int i=0; i<rules->m_rules.GetCount(); i++)
 	{
 		DoReactionTo(a_executedProcess, &(rules->m_rules[i]));
@@ -122,6 +128,11 @@ void CDecisionManager::PresentStatusReport(void *a_statusReportData)
 	CStatusReportDTO *statusReport = (CStatusReportDTO *)a_statusReportData;
 	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CDCDataAdminSD::Instance()->GetStatusReportsDTO();
 	statusReports->AddReport(statusReport);
+
+	CStatusReportDTOArray targetStatusReports;
+	statusReports->GetReportFrom(statusReport->m_hostAddress, &targetStatusReports);
+
+	CCBFMediator::Instance()->NotifyRaptorStatusChange(&targetStatusReports);
 }
 
 /**@brief	유저를 강제로 로그아웃 시킨다.

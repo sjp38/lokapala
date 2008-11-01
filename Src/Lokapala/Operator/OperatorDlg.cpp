@@ -10,6 +10,8 @@
 
 #include "DisplayDTO.h"
 
+#include "StatusReportsDTO.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -78,6 +80,7 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	ON_MESSAGE(LKPLM_NOTIFYMESSAGE, &COperatorDlg::OnNotifyMessage)
 	ON_MESSAGE(LKPLM_SHOWCHANGED, &COperatorDlg::OnShowChanged)
 	ON_MESSAGE(LKPLM_SHOWSTATUS, &COperatorDlg::OnShowStatus)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_STATE_DISPLAY, &COperatorDlg::OnLvnItemchangedStateDisplay)
 END_MESSAGE_MAP()
 
 
@@ -207,12 +210,32 @@ void COperatorDlg::OnBnClickedDataAdmin()
 }
 
 
+void COperatorDlg::Notify(CString a_message)
+{
+	m_notifyList.AddString(a_message);
+
+	static int maxSize;
+	CDC* pDc = m_notifyList.GetDC();
+	int messageSize = (pDc->GetTextExtent(a_message)).cx;
+
+	if( maxSize < messageSize )
+	{
+		maxSize = messageSize;
+		m_notifyList.SetHorizontalExtent(maxSize);
+		m_notifyList.ReleaseDC(pDc);		
+	}
+
+	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);	
+}
+
+
 /**@brief	LKPLM_NOTIFYMESSAGE  메세지 핸들러.
  *			공지 리스트박스에 메세지를 띄운다.
  */
 LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 {
 	CString *notifyMessage = (CString *)( (void *)wParam );
+
 	m_notifyList.AddString(*notifyMessage);
 
 	static int maxSize;
@@ -225,6 +248,8 @@ LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 		m_notifyList.SetHorizontalExtent(maxSize);
 		m_notifyList.ReleaseDC(pDc);		
 	}
+	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);
+//	Notify(*notifyMessage);
 	return 0;
 }
 
@@ -239,7 +264,7 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 	switch(displayData->m_displayState)
 	{
 	case LOGIN :		
-		m_notifyList.AddString(displayData->m_seatId + _T(" login"));		
+		Notify(displayData->m_seatId + _T(" login"));		
 		m_connectedList.AddString(displayData->m_seatId);
 		DisplayIconAsLogin(displayData->m_seatId);
 		break;
@@ -247,29 +272,36 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 	case LOGOUT :		
 		index = m_connectedList.FindString(index, displayData->m_seatId);
 		m_connectedList.DeleteString(index);
-		m_notifyList.AddString(displayData->m_seatId + _T(" logout"));
+		Notify(displayData->m_seatId + _T(" logout"));
 		DisplayIconAsLogout(displayData->m_seatId);
 		break;
 	case HW :
-		m_notifyList.AddString(displayData->m_seatId + _T(" reported H/W defect!"));
+		Notify(displayData->m_seatId + _T(" reported H/W defect!"));
 		DisplayIconAsAbnormal(displayData->m_seatId);
 		break;
 	case SW :
-		m_notifyList.AddString(displayData->m_seatId + _T(" reported h/w defect!"));
+		Notify(displayData->m_seatId + _T(" reported h/w defect!"));
 		DisplayIconAsAbnormal(displayData->m_seatId);
 		break;
-	case VERIFIED :
-		m_notifyList.AddString(displayData->m_seatId + _T(" verified"));
+	case FINE :
+		Notify(displayData->m_seatId + _T(" verified"));
 		DisplayIconAsNormal(displayData->m_seatId);
 		break;
 	case CRIMINAL :
-		m_notifyList.AddString(displayData->m_seatId + _T(" have done limited process!"));
-		DisplayIconAsAbnormal(displayData->m_seatId);
+		Notify(displayData->m_seatId + _T(" have done limited process!"));
+		DisplayIconAsAttention(displayData->m_seatId);
 		break;
 	case INNOCENT :
-		m_notifyList.AddString(displayData->m_seatId + _T(" have judged innocent"));
+		Notify(displayData->m_seatId + _T(" have judged innocent"));
 		DisplayIconAsAbnormal(displayData->m_seatId);
 		break;
+	case SEATADD :
+		Notify(displayData->m_seatId + _T(" added"));
+		DisplayAddedSeat(displayData->m_seatId);
+		break;
+	case SEATDELETE :
+		Notify(displayData->m_seatId + _T(" deleted"));
+		DisplayDeletedSeat(displayData->m_seatId);
 	}
 
 	return 0;
@@ -283,19 +315,49 @@ LRESULT COperatorDlg::OnShowStatus(WPARAM wParam, LPARAM lParam)
 }
 
 
-
-/**@brief	로그인 되었음을 리스트 컨트롤의 아이콘으로 표시한다.
+/**@brief	좌석 번호로 해당 좌석의 리스트 컨트롤 내 인덱스를 얻어온다.
  */
-void COperatorDlg::DisplayIconAsLogin(CString a_seatId)
+int COperatorDlg::GetIconIndexBySeatId(CString a_seatId)
 {
+	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
+	CSeatDataDTO *seat = seatData->GetSeatById(a_seatId);
+	if(seat == NULL)
+	{
+		return -1;
+	}
+	return (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y - 1;
+}
+
+
+/**@brief	새로운 좌석의 추가를 나타낸다.
+ */
+void COperatorDlg::DisplayAddedSeat(CString a_seatId)
+{	
 	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
 	CSeatDataDTO *seat = seatData->GetSeatById(a_seatId);
 	if(seat == NULL)
 	{
 		return;
 	}
-	int seatNumber = (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y;
+	int seatNumber = (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y - 1;
+	CString seatName = seat->m_nickname + _T("(") + seat->m_hostAddress + _T(")") ;
+	m_stateDisplayList.SetItemText(seatNumber, 0, seatName.GetBuffer());
+}
 
+/**@brief	새로운 좌석의 삭제를 나타낸다.
+ */
+void COperatorDlg::DisplayDeletedSeat(CString a_seatId)
+{
+	int seatNumber = GetIconIndexBySeatId(a_seatId);
+	m_stateDisplayList.SetItemText(seatNumber, 0, _T(""));
+}
+
+
+/**@brief	로그인 되었음을 리스트 컨트롤의 아이콘으로 표시한다.
+ */
+void COperatorDlg::DisplayIconAsLogin(CString a_seatId)
+{
+	int seatNumber = GetIconIndexBySeatId(a_seatId);
 	m_stateDisplayList.SetItemState( seatNumber, 0, LVIS_CUT);
 }
 
@@ -303,14 +365,7 @@ void COperatorDlg::DisplayIconAsLogin(CString a_seatId)
  */
 void COperatorDlg::DisplayIconAsLogout(CString a_seatId)
 {
-	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
-	CSeatDataDTO *seat = seatData->GetSeatById(a_seatId);
-	if(seat == NULL)
-	{
-		return;
-	}
-	int seatNumber = (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y;
-
+	int seatNumber = GetIconIndexBySeatId(a_seatId);
 	m_stateDisplayList.SetItemState( seatNumber, LVIS_CUT, LVIS_CUT);
 }
 
@@ -318,21 +373,16 @@ void COperatorDlg::DisplayIconAsLogout(CString a_seatId)
  */
 void COperatorDlg::DisplayIconAsNormal(CString a_seatId)
 {
-	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
-	CSeatDataDTO *seat = seatData->GetSeatById(a_seatId);
-	if(seat == NULL)
-	{
-		return;
-	}
-	int seatNumber = (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y;
+	int seatNumber = GetIconIndexBySeatId(a_seatId);
 
 	UINT state = m_stateDisplayList.GetItemState(seatNumber, LVIS_CUT);
+	CString text = m_stateDisplayList.GetItemText(seatNumber, 0);
 
 	LVITEM item;
 	item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_STATE;
 	item.iItem = seatNumber;
 	item.iSubItem = 0;
-	item.pszText = seat->m_nickname.GetBuffer();
+	item.pszText = text.GetBuffer();
 	item.iImage = 0;
 	item.state = state;
 
@@ -343,26 +393,35 @@ void COperatorDlg::DisplayIconAsNormal(CString a_seatId)
  */
 void COperatorDlg::DisplayIconAsAbnormal(CString a_seatId)
 {
-	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
-	CSeatDataDTO *seat = seatData->GetSeatById(a_seatId);
-	if(seat == NULL)
-	{
-		return;
-	}
-	int seatNumber = (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y;
+	int seatNumber = GetIconIndexBySeatId(a_seatId);
 
 	UINT state = m_stateDisplayList.GetItemState(seatNumber, LVIS_CUT);
+	CString text = m_stateDisplayList.GetItemText(seatNumber, 0);
 
 	LVITEM item;
 	item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_STATE;
 	item.iItem = seatNumber;
 	item.iSubItem = 0;
-	item.pszText = seat->m_nickname.GetBuffer();
+	item.pszText = text.GetBuffer();
 	item.iImage = 1;
 	item.state = state;
 
 	m_stateDisplayList.SetItem( &item);
 }
+
+
+/**@brief	아이콘을 선택 상태로 만들어 주목하게 만든다.
+ */
+void COperatorDlg::DisplayIconAsAttention(CString a_seatId)
+{
+	m_stateDisplayList.SetFocus();
+	int seatNumber = GetIconIndexBySeatId(a_seatId);
+	m_stateDisplayList.SetItemState( seatNumber, LVIS_SELECTED, LVIS_SELECTED);
+	m_stateDisplayList.SetFocus();
+}
+
+
+
 
 /**@brief	상태 표시 리스트 컨트롤을 초기화 한다.
  */
@@ -386,17 +445,69 @@ void COperatorDlg::InitiallizeStatusListCtrl()
 		for(int j=0; j<maxY; j++)
 		{
 			LVITEM item = {0};
-			item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_STATE;
+			item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_STATE | LVS_SHOWSELALWAYS;
 			item.iItem = i*maxX + j;
 			item.iSubItem = 0;
-			item.iImage = 0;
-			item.state = LVIS_CUT | LVS_AUTOARRANGE;
-			CString a;
-			a.Format(_T("%d"),i*maxX+j);
-			item.pszText = a.GetBuffer();
+			item.iImage = 0;			
+			item.state = LVIS_CUT | LVS_AUTOARRANGE;			
+			item.pszText = _T("");
 
 			m_stateDisplayList.InsertItem(&item);			
-			m_stateDisplayList.SetItemPosition(i*maxX + j, CPoint(j*70, i*70));
+			m_stateDisplayList.SetItemPosition(i*maxX + j, CPoint(j*84, i*84));
 		}
-	}	
+	}
+}
+
+/**@brief	리스트 박스에서 아이템 선택 시. 해당 자리의 state report 정보를 notify 리스트박스를 통해 보여준다.
+ */
+void COperatorDlg::OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	// TODO: Add your control notification handler code here
+	*pResult = 0;
+	
+	int iItem = m_stateDisplayList.GetNextItem(-1, LVNI_SELECTED);
+	if(iItem<0)
+	{		
+		return;
+	}
+	
+	CString seatName = m_stateDisplayList.GetItemText(iItem, 0);
+	if(seatName==_T(""))
+	{
+		return;
+	}
+	int tokenIndex = 0;
+	CString seatId = seatName.Tokenize(_T("( )"), tokenIndex);
+	seatId = seatName.Tokenize(_T("( )"), tokenIndex);
+
+	CStatusReportDTOArray statusReports;
+	CStatusReportsDTO *statusReportsData = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+	
+	statusReportsData->GetReportFrom(seatId, &statusReports);
+	for(int i=0;i < statusReports.GetCount(); i++)
+	{
+		CStatusReportDTO statusReport = statusReports[i];
+		CString state;
+		switch(statusReport.m_state)
+		{
+		case HW_DEFECT :
+			state = _T("HW_DEFECT");
+			break;
+		case SW_DEFECT :
+			state = _T("SW_DEFECT");
+			break;
+		case REPAIRED :
+			state = _T("REPAIRED");
+			break;
+		case VERIFIED :
+			state = _T("VERIFIED");
+			break;
+		}
+		Notify( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);
+	}
+	
+
+	*pResult = 0;
 }
