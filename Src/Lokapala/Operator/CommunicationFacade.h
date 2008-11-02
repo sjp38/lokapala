@@ -37,6 +37,7 @@ public :
 	virtual void RebootUser(void *a_argument);
 	virtual void LogoutUser(void *a_argument);
 	virtual void ExecuteUser(void *a_argument);
+	virtual void KillUser(void *a_argument);
 	virtual void GenocideUser(void *a_argument);
 	virtual void WarnUser(void *a_argument);
 

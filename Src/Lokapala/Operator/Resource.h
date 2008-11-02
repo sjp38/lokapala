@@ -13,6 +13,9 @@
 #define IDD_DATA_ADMIN                  132
 #define IDB_NORMAL                      140
 #define IDB_ABNORMAL                    142
+#define IDR_CONTROL_MENU                143
+#define IDD_REMOTE_CONTROL              145
+#define IDD_MESSENGER                   146
 #define IDC_COMMAND                     1001
 #define IDC_BUTTONTEST                  1002
 #define IDC_CMD_EXECUTE                 1002
@@ -21,6 +24,7 @@
 #define IDC_USERLIST                    1004
 #define IDC_SEATLIST                    1004
 #define IDC_RULELIST                    1004
+#define IDC_TARGET                      1004
 #define IDC_NAME                        1005
 #define IDC_LOWPASS                     1006
 #define IDC_HIGHPASS                    1007
@@ -56,16 +60,42 @@
 #define IDC_DATA_ADMIN_TAB              1034
 #define IDC_STATE_VIEW                  1035
 #define IDC_STATE_DISPLAY               1035
-#define IDC_EDIT1                       1038
-#define IDC_BUTTON1                     1043
+#define IDC_EXECUTE_PROCESS             1045
+#define IDC_EDIT2                       1045
+#define IDC_KILL_PROCESS                1046
+#define IDC_EDIT3                       1046
+#define IDC_GENOCIDE_PROCESSES          1047
+#define IDC_BUTTON1                     1047
+#define IDC_SHUTDOWN                    1048
+#define IDC_REBOOT                      1049
+#define IDC_LOGOUT                      1050
+#define ID_32771                        32771
+#define ID_32772                        32772
+#define ID_32773                        32773
+#define ID_32774                        32774
+#define ID_32775                        32775
+#define ID_32776                        32776
+#define ID_32777                        32777
+#define ID_EXECUTE_PROCESS              32778
+#define ID_TERMINATE_PROCESS            32779
+#define ID_GENOCIDEPROCESSES            32780
+#define ID_SHUTDOWN                     32781
+#define ID_REBOOT                       32782
+#define ID_SEND_MESSAGE                 32783
+#define ID_GENOCIDE_PROCESSES           32784
+#define ID_LOGOUT                       32785
+#define ID_32786                        32786
+#define ID_32787                        32787
+#define ID_REMOTE_CONTROL               32788
+#define ID_SET_SEAT                     32789
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        143
-#define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1044
+#define _APS_NEXT_RESOURCE_VALUE        147
+#define _APS_NEXT_COMMAND_VALUE         32790
+#define _APS_NEXT_CONTROL_VALUE         1048
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

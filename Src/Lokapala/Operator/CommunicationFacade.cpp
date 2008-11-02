@@ -73,6 +73,14 @@ void CCommunicationFacade::ExecuteUser(void *a_argument)
 	CCommunicationManager::Instance()->ExecuteUser(a_argument);
 }
 
+/**@brief	특정 사용자의 특정 프로세스를 종료시킨다.
+ * @param	a_argument	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터
+ */
+void CCommunicationFacade::KillUser(void *a_argument)
+{
+	CCommunicationManager::Instance()->KillUser(a_argument);
+}
+
 
 /**@brief	특정 사용자의 실행중인 모든 프로세스를 죽인다.
  * @param	a_argment	목표 사용자의 위치, 동작 시의 추가 행동 등을 담은 정보체의 포인터

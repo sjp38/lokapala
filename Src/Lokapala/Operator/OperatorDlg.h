@@ -25,6 +25,8 @@ private :
 	void DisplayIconAsAbnormal(CString a_seatId);
 	void DisplayIconAsAttention(CString a_seatId);
 
+	void GetSelectedIconSeatId(CArray<CString> *a_target);
+
 
 
 // Construction
@@ -61,4 +63,8 @@ public:
 	CEdit m_command;
 	CListCtrl m_stateDisplayList;
 	afx_msg void OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnNMRClickStateDisplay(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnRemoteControl();
+	afx_msg void OnSetSeat();
+	afx_msg void OnSendMessage();
 };

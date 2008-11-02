@@ -43,6 +43,13 @@ void CDCCommunicationSD::ExecuteUser(void *a_argument)
 	CCBFMediator::Instance()->ExecuteUser(a_argument);
 }
 
+/**@brief	특정 유저의 특정 프로세스를 종료시킨다.
+ */
+void CDCCommunicationSD::KillUser(void *a_argument)
+{
+	CCBFMediator::Instance()->KillUser(a_argument);
+}
+
 /**@brief	특정 유저가 실행하고 있는 모든 프로세스를 죽인다.
  */
 void CDCCommunicationSD::GenocideUser(void *a_argument)

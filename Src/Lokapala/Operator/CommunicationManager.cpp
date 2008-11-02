@@ -234,6 +234,27 @@ void CCommunicationManager::ExecuteUser(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
+void CCommunicationManager::KillUser(void *a_argument)
+{
+	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CString targetHostAddress = argument->m_targetHostAddress;
+	CString processName = argument->m_reactionArgument;
+
+	TiXmlDocument doc;
+	TiXmlElement *root = new TiXmlElement("Packet");
+	doc.LinkEndChild(root);
+	root->SetAttribute("Header", KILL);
+	USES_CONVERSION;
+	root->SetAttribute("processName", W2A(processName));
+
+	TiXmlPrinter printer;
+	printer.SetStreamPrinting();
+	doc.Accept(&printer);
+	const char *packet = printer.CStr();
+	
+	SendTextMessageTo(targetHostAddress, A2W(packet));
+}
+
 /**@brief	특정 사용자의 실행중인 모든 프로세스를 종료시킨다.
  */
 void CCommunicationManager::GenocideUser(void *a_argument)

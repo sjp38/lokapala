@@ -7,10 +7,13 @@
 
 //데이터 관리 다이얼로그
 #include "DataAdminDlg.h"
+//원격 제어 다이얼로그
+#include "RemoteControlDlg.h"
 
 #include "DisplayDTO.h"
 
 #include "StatusReportsDTO.h"
+#include "ReactionArgumentDTO.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,6 +36,7 @@ public:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
@@ -81,6 +85,10 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	ON_MESSAGE(LKPLM_SHOWCHANGED, &COperatorDlg::OnShowChanged)
 	ON_MESSAGE(LKPLM_SHOWSTATUS, &COperatorDlg::OnShowStatus)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_STATE_DISPLAY, &COperatorDlg::OnLvnItemchangedStateDisplay)
+	ON_NOTIFY(NM_RCLICK, IDC_STATE_DISPLAY, &COperatorDlg::OnNMRClickStateDisplay)
+	ON_COMMAND(ID_REMOTE_CONTROL, &COperatorDlg::OnRemoteControl)
+	ON_COMMAND(ID_SET_SEAT, &COperatorDlg::OnSetSeat)
+	ON_COMMAND(ID_SEND_MESSAGE, &COperatorDlg::OnSendMessage)
 END_MESSAGE_MAP()
 
 
@@ -210,6 +218,8 @@ void COperatorDlg::OnBnClickedDataAdmin()
 }
 
 
+/**@brief	공지 창에 메세지를 띄운다.
+ */
 void COperatorDlg::Notify(CString a_message)
 {
 	m_notifyList.AddString(a_message);
@@ -249,7 +259,6 @@ LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 		m_notifyList.ReleaseDC(pDc);		
 	}
 	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);
-//	Notify(*notifyMessage);
 	return 0;
 }
 
@@ -510,4 +519,70 @@ void COperatorDlg::OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
 	
 
 	*pResult = 0;
+}
+
+/**@brief	리스트박스에서 우클릭
+ */
+void COperatorDlg::OnNMRClickStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	//LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<NMITEMACTIVATE>(pNMHDR);
+	// TODO: Add your control notification handler code here
+	CMenu remoteControlMenu;
+	remoteControlMenu.LoadMenuW(IDR_CONTROL_MENU);
+	CMenu *pPopup = remoteControlMenu.GetSubMenu(0);
+
+	CPoint point;
+	point.x = GetCurrentMessage()->pt.x;
+	point.y = GetCurrentMessage()->pt.y;
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
+
+
+	*pResult = 0;
+}
+
+
+/**@brief	상태 표시 리스트 컨트롤에서 선택된 항목들의 좌석 id를 얻어온다.
+ * @param	a_target	선택된 항목들의 좌석 id를 넣어줄 포인터.
+ */
+void COperatorDlg::GetSelectedIconSeatId(CArray<CString> *a_target)
+{
+	int iItem = m_stateDisplayList.GetNextItem(-1, LVNI_SELECTED);
+	while(iItem != -1)
+	{	
+		CString seatId = m_stateDisplayList.GetItemText(iItem, 0);
+		int tokenIndex = 0;
+		seatId.Tokenize(_T("( )"), tokenIndex);
+		seatId = seatId.Tokenize(_T("( )"), tokenIndex);
+		a_target->Add(seatId);
+
+		iItem = m_stateDisplayList.GetNextItem(iItem, LVNI_SELECTED);
+	}	
+}
+
+/**@brief	컨텍스트 메뉴에서 원격 제어 선택
+ */
+void COperatorDlg::OnRemoteControl()
+{
+	// TODO: Add your command handler code here
+	CArray<CString> target;
+	GetSelectedIconSeatId(&target);
+	CRemoteControlDlg remoteControlDlg;
+	remoteControlDlg.m_selectedTarget.Copy(target);
+	remoteControlDlg.DoModal();
+}
+
+/**@brief	컨텍스트 메뉴에서 좌석 설정 선택
+ */
+void COperatorDlg::OnSetSeat()
+{
+	// TODO: Add your command handler code here
+	CDataAdminDlg dataAdminDlg;
+	dataAdminDlg.DoModal();
+}
+
+/**@brief	컨텍스트 메뉴에서 메세지 전송 선택
+ */
+void COperatorDlg::OnSendMessage()
+{
+	// TODO: Add your command handler code here
 }
