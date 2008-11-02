@@ -118,6 +118,12 @@ void CCBFMediator::ExecuteUser(void *a_argument)
 	_interface->ExecuteUser(a_argument);
 }
 
+void CCBFMediator::KillUser(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->KillUser(a_argument);
+}
+
 /**@brief	특정 유저의 실행중인 프로세스 전부를 죽여버린다.
  */
 void CCBFMediator::GenocideUser(void *a_argument)

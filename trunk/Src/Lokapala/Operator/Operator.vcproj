@@ -187,6 +187,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\ExecuteProcessDlg.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Operator.cpp"
 				>
 			</File>
@@ -402,6 +406,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\RemoteControlDlg.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\RuleAdminDlg.cpp"
 					>
 				</File>
@@ -420,6 +428,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\ExecuteProcessDlg.h"
+				>
+			</File>
 			<File
 				RelativePath=".\Operator.h"
 				>
@@ -665,6 +677,10 @@
 				</File>
 				<File
 					RelativePath=".\OperatorDlg.h"
+					>
+				</File>
+				<File
+					RelativePath=".\RemoteControlDlg.h"
 					>
 				</File>
 				<File

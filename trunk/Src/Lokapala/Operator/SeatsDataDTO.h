@@ -26,6 +26,8 @@ public :
 	CSeatDataDTO *GetSeatById(CString a_userId);
 	CString GetSeatNicknameByAxis(int a_x, int a_y);
 
+	void GetEntireSeatId(CArray<CString> *a_dest);
+
 	CSeatsDataDTO();
 	~CSeatsDataDTO(){}
 

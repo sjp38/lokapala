@@ -80,6 +80,9 @@ void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 	case EXECUTE :
 		CDCCommunicationSD::Instance()->ExecuteUser(&reactionArgument);
 		break;
+	case KILL :
+		CDCCommunicationSD::Instance()->KillUser(&reactionArgument);
+		break;
 	case GENOCIDEPROCESSES :
 		CDCCommunicationSD::Instance()->GenocideUser(&reactionArgument);
 		break;

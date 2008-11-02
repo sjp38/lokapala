@@ -99,6 +99,22 @@ CString CSeatsDataDTO::GetSeatNicknameByAxis(int a_x, int a_y)
 }
 
 
+/**@brief	등록된 모든 좌석의 좌석 id를 얻어온다.
+ * @param	a_dest	얻어온 좌석 id를 저장할 곳의 포인터.
+ */
+void CSeatsDataDTO::GetEntireSeatId(CArray<CString> *a_dest)
+{
+	POSITION pos = m_seats.GetStartPosition();
+	CString key;
+	CSeatDataDTO value;
+	while(pos != NULL)
+	{
+		m_seats.GetNextAssoc(pos, key, value);
+		a_dest->Add(value.m_seatId);
+	}
+}
+
+
 /**@brief	좌석정보의 안전성을 다시금 챙긴다.
  *			전체 좌석 크기에 어긋나는, 잘못된 정보를 없앤다.
  */
