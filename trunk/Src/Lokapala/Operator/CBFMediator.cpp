@@ -14,6 +14,22 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DCM
 
+/**@brief	호스트가 접속했음.
+ */
+void CCBFMediator::HostConnected(void *a_hostData)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->HostConnected(a_hostData);
+}
+
+/**@brief	호스트가 접속을 끊었음. 로그아웃 했을 경우와 동일하다.
+ */
+void CCBFMediator::HostDisconnected(void *a_hostData)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->HostDisconnected(a_hostData);
+}
+
 /**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
  * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
  */
@@ -368,8 +384,8 @@ void CCBFMediator::NotifyRaptorStatusChange(void *a_statusReports)
  */
 void CCBFMediator::NotifyRaptorAccepted(CString *a_address)
 {
-	CString message = *a_address + _T(" socket connected");
-	Notify(&message);
+	CDisplayDTO display(*a_address, DISPLAY_CONNECTED);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
 }
 
 /**@brief	특정 랩터로부터의 소켓 연결이 끊어졌음을 알린다.
@@ -378,8 +394,16 @@ void CCBFMediator::NotifyRaptorAccepted(CString *a_address)
  */
 void CCBFMediator::NotifyRaptorLeaved(CString *a_address)
 {
-	CString message = *a_address + _T(" socket disconnected");
-	Notify(&message);
+	CDisplayDTO display(*a_address, DISPLAY_DISCONNECTED);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
+}
+
+/**@brief	좌석의 크기 변경을 알린다.
+ */
+void CCBFMediator::NotifySeatResized(int a_maxX, int a_maxY)
+{
+	CDisplayDTO display(_T(""), SEATRESIZE, _T(""), a_maxX, a_maxY);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
 }
 
 

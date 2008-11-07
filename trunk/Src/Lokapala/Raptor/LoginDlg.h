@@ -10,6 +10,8 @@
 class CLoginDlg : public CDialog
 {
 private :
+	void NotifyStatus(CString a_message);
+private :
 	DECLARE_DYNAMIC(CLoginDlg)
 
 public:
@@ -34,4 +36,5 @@ public:
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnDestroy();
+	CListBox m_statusList;
 };

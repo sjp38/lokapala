@@ -13,6 +13,10 @@
 class CDecisionBI
 {
 public :
+	/**@brief	연결된 호스트에 대해 처리한다.	*/
+	virtual void HostConnected(void *a_hostData) = 0;
+	/**@brief	연결이 끊긴 호스트에 대해 처리한다.	*/
+	virtual void HostDisconnected(void *a_hostData) = 0;
 	/**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
 	 * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
 	 */

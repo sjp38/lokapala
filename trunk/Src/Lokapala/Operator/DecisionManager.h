@@ -9,7 +9,8 @@
 
 /**@ingroup	GroupDCM
  * @class	CDecisionManager
- * @brief	DCM의 실질적인 행동을 한다.
+ * @brief	DCM의 실질적인 행동을 한다.\n
+ *			추후, 데이터 처리, 명령, 판결로 클래스를 나눌것.
  */
 class CDecisionManager
 {
@@ -22,6 +23,11 @@ public :
 		}
 		return m_instance;
 	}
+
+	void HostConnected(void *a_hostData);
+	void HostDisconnected(void *a_hostData);
+
+	void ReportStatusTo(CString *a_hostAddress);
 
 	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
@@ -37,6 +43,7 @@ private :
 	static CDecisionManager *m_instance;
 
 
+	void ControlRaptor(void *a_controlAction);
 	void DoReactionsTo(void *a_executedProcess, void *a_rules);
 	void DoReactionTo(void *a_executedProcess, void *a_rule);
 	void RemoveFromAcceptedUser(CString a_hostAddress);

@@ -139,6 +139,7 @@ void CRuleAdminDlg::SetRulesOnControl()
 	pcomboBox->AddString(_T("Reboot"));
 	pcomboBox->AddString(_T("Logout"));
 	pcomboBox->AddString(_T("Execute"));
+	pcomboBox->AddString(_T("Kill"));
 	pcomboBox->AddString(_T("Genocide Processes"));
 	pcomboBox->AddString(_T("Warn"));
 }

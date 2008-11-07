@@ -4,24 +4,32 @@
 #pragma once
 #include "afxwin.h"
 
+#include "SeatsDisplayDTO.h"
+
 
 // COperatorDlg dialog
 class COperatorDlg : public CDialog
 {
 private :
+	bool m_imageListSetted;
 	CImageList m_stateImage;
+	CSeatsDisplayDTO m_seatsDisplayData;
 
 	void Notify(CString a_message);
+	void NotifyConnected(CString a_message);
+	void NotifyCriminal(CString a_message);
+
 	void InitiallizeStatusListCtrl();
 	
 	int GetIconIndexBySeatId(CString a_seatId);
 
+	void DisplayChangedSeatSize(int a_maxX, int a_maxY);
 	void DisplayAddedSeat(CString a_seatId);
 	void DisplayDeletedSeat(CString a_seatId);
 
 	void DisplayIconAsLogin(CString a_seatId);
 	void DisplayIconAsLogout(CString a_seatId);
-	void DisplayIconAsNormal(CString a_seatId);
+	void DisplayIconAsNormal(CString a_seatId);	
 	void DisplayIconAsAbnormal(CString a_seatId);
 	void DisplayIconAsAttention(CString a_seatId);
 
@@ -67,4 +75,5 @@ public:
 	afx_msg void OnRemoteControl();
 	afx_msg void OnSetSeat();
 	afx_msg void OnSendMessage();
+	afx_msg void OnBnClickedControl();
 };

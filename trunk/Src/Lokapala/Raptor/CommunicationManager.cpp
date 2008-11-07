@@ -21,10 +21,20 @@
  */
 void CCommunicationManager::Initiallize(DWORD a_ServerAddress)
 {
-	CDharaniInterface *dharaniInterface = CDharaniFacade::Instance();
+	if(m_connected == TRUE)
+	{
+		return;
+	}
+	CDharaniInterface *dharaniInterface = CDharaniFacade::Instance();	
 	
 	if( 0 == dharaniInterface->DharaniClientInitiallize(a_ServerAddress) )
 	{
+		m_connected =TRUE;
+		CFile file;
+		file.Open(_T("operatorAddress.cfg"), CFile::modeCreate | CFile::modeWrite);
+		file.Write(&a_ServerAddress, sizeof(a_ServerAddress));
+		file.Close();
+
 		m_operatorAddress = a_ServerAddress;
 	}
 }
@@ -33,8 +43,14 @@ void CCommunicationManager::Initiallize(DWORD a_ServerAddress)
  */
 void CCommunicationManager::CloseConnection()
 {
+	if(m_connected == FALSE)
+	{
+		return;
+	}
 	CDharaniInterface *dharaniInterface = CDharaniFacade::Instance();
 	dharaniInterface->DharaniCloseServerConnection();
+
+	m_connected = FALSE;
 }
 
 
@@ -65,6 +81,7 @@ void CCommunicationManager::NotifyReceived(CString a_message)
 		return;
 	}
 	const char *header = proot->Attribute("Header");
+	CString argument = A2W(proot->Attribute("argument"));
 	
 	switch( atoi(header) )
 	{
@@ -72,25 +89,26 @@ void CCommunicationManager::NotifyReceived(CString a_message)
 		LoginAccepted(&a_message);
 		break;
 	case LOGIN :
-		CCCDecisionSD::Instance()->Login( A2W(proot->Attribute("message")) );
+		
+		CCCDecisionSD::Instance()->Login( &argument );
 		break;
 	case LOGOUT :
-		CCCDecisionSD::Instance()->Logout( A2W(proot->Attribute("message")) );
+		CCCDecisionSD::Instance()->Logout( &argument );
 		break;
 	case SHUTDOWN :
-		CCCDecisionSD::Instance()->Shutdown( A2W(proot->Attribute("message")) );
+		CCCDecisionSD::Instance()->Shutdown( &argument );
 		break;
 	case REBOOT :
-		CCCDecisionSD::Instance()->Reboot( A2W(proot->Attribute("message")) );
+		CCCDecisionSD::Instance()->Reboot( &argument );
 		break;
 	case GENOCIDE :
-		CCCDecisionSD::Instance()->GenocideProcesses( A2W(proot->Attribute("message")) );
+		CCCDecisionSD::Instance()->GenocideProcesses( &argument );
 		break;
 	case KILL :
-		CCCDecisionSD::Instance()->KillProcess( A2W(proot->Attribute("processName")) );
+		CCCDecisionSD::Instance()->KillProcess( &argument );
 		break;
 	case EXECUTE :
-		CCCDecisionSD::Instance()->ExecuteProcess( A2W(proot->Attribute("processName")) );
+		CCCDecisionSD::Instance()->ExecuteProcess( &argument );
 		break;
 	case MESSAGE :
 		//CCCMessengerSD::Instnace()->ReceiveTextMessageFrom( A2W(proot->Attribute("message")) );

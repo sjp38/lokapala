@@ -23,6 +23,8 @@ public :
 		return m_instance;
 	}
 
+	bool m_connected;
+
 	void Initiallize(DWORD a_ServerAddress);
 	void CloseConnection();
 	void SendTextMessage(CString a_message);	
@@ -35,7 +37,7 @@ public :
 	void SendStatusReport(void *a_statusReport);
 
 protected :
-	CCommunicationManager(){}
+	CCommunicationManager(){ m_connected = FALSE; }
 	~CCommunicationManager(){}	
 
 private :

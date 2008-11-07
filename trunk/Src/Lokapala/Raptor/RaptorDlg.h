@@ -2,6 +2,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 
 // CRaptorDlg dialog
@@ -29,7 +30,6 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButtontest();
 	afx_msg void OnBnClickedConnectbutton();
 	afx_msg void OnBnClickedStartneverdieTest();
 	afx_msg void OnBnClickedStopneverdieTest();
@@ -40,4 +40,5 @@ public:
 	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 	afx_msg void OnBnClickedSend();
 	afx_msg void OnBnClickedStatusReport();
+	CEdit m_input;
 };

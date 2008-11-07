@@ -67,8 +67,8 @@ BOOL WINAPI Hook_TerminateProcess( HANDLE hProcess, UINT uExitCode ) {
 			char *selfPath = (char *)malloc(sizeof(char)*MAX_PATH);
 			selfPath = (char *)MapViewOfFile(map,FILE_MAP_READ,0,0,0);	//메모리 맵 파일 리드
 
-			MessageBox(NULL,szFileName,"name of target",MB_OK);
-			MessageBox(NULL,selfPath,"name of client",MB_OK);
+			//MessageBox(NULL,szFileName,"name of target",MB_OK);
+			//MessageBox(NULL,selfPath,"name of client",MB_OK);
 
 			if(strcmp(selfPath,szFileName)==0)
 			{

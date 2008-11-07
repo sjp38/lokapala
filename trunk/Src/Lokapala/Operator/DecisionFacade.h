@@ -29,6 +29,8 @@ public :
 		return m_instance;
 	}
 
+	void HostConnected(void *a_hostData);
+	void HostDisconnected(void *a_hostData);
 	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);	

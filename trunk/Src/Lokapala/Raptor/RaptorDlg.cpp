@@ -57,6 +57,7 @@ CRaptorDlg::CRaptorDlg(CWnd* pParent /*=NULL*/)
 void CRaptorDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_INPUT, m_input);
 }
 
 BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
@@ -64,7 +65,6 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_BUTTONTEST, &CRaptorDlg::OnBnClickedButtontest)
 	ON_BN_CLICKED(IDC_CONNECTBUTTON, &CRaptorDlg::OnBnClickedConnectbutton)
 	ON_BN_CLICKED(IDC_STARTNEVERDIE_TEST, &CRaptorDlg::OnBnClickedStartneverdieTest)
 	ON_BN_CLICKED(IDC_STOPNEVERDIE_TEST, &CRaptorDlg::OnBnClickedStopneverdieTest)
@@ -166,16 +166,6 @@ HCURSOR CRaptorDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-
-/**@brief	테스트용 문자 전송 버튼 클릭
- */
-void CRaptorDlg::OnBnClickedButtontest()
-{
-	// TODO: Add your control notification handler code here
-	CString message;
-	this->GetDlgItemTextW(IDC_EDITTEST,message);
-	CCBFMediator::Instance()->SendTextMessageToOperator(&message);
-}
 
 /**@brief	오퍼레이터로 접속 버튼 클릭
  */
@@ -279,7 +269,7 @@ void CRaptorDlg::OnBnClickedSend()
 {
 	// TODO: Add your control notification handler code here
 	CString message;
-	this->GetDlgItemTextW(IDC_EDITTEST,message);
+	m_input.GetWindowTextW(message);
 	CCBFMediator::Instance()->PostTextMessageToOperator(&message);
 }
 

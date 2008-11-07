@@ -21,7 +21,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			UseOfMFC="2"
+			UseOfMFC="1"
 			CharacterSet="1"
 			>
 			<Tool
@@ -48,7 +48,7 @@
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 				DebugInformationFormat="4"
@@ -187,10 +187,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\ExecuteProcessDlg.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Operator.cpp"
 				>
 			</File>
@@ -233,11 +229,11 @@
 					Name="DAM_DTO"
 					>
 					<File
-						RelativePath=".\ConnectedUserDTO.cpp"
+						RelativePath=".\ConnectedHostDTO.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\ConnectedUsersDTO.cpp"
+						RelativePath=".\ConnectedHostsDTO.cpp"
 						>
 					</File>
 					<File
@@ -393,6 +389,10 @@
 					RelativePath=".\CBFMediator.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\SeatsDisplayDTO.cpp"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Dialog"
@@ -428,10 +428,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\ExecuteProcessDlg.h"
-				>
-			</File>
 			<File
 				RelativePath=".\Operator.h"
 				>
@@ -471,11 +467,15 @@
 					Name="DAM_DTO"
 					>
 					<File
-						RelativePath=".\ConnectedUserDTO.h"
+						RelativePath=".\ConnectedHostDTO.h"
 						>
 					</File>
 					<File
-						RelativePath=".\ConnectedUsersDTO.h"
+						RelativePath=".\ConnectedHostsDTO.h"
+						>
+					</File>
+					<File
+						RelativePath=".\ControlActionDTO.h"
 						>
 					</File>
 					<File
@@ -484,10 +484,6 @@
 					</File>
 					<File
 						RelativePath=".\MessageDTO.h"
-						>
-					</File>
-					<File
-						RelativePath=".\ReactionArgumentDTO.h"
 						>
 					</File>
 					<File
@@ -557,6 +553,10 @@
 				>
 				<File
 					RelativePath=".\LogBI.h"
+					>
+				</File>
+				<File
+					RelativePath=".\LogDTO.h"
 					>
 				</File>
 				<File
@@ -665,6 +665,10 @@
 				</File>
 				<File
 					RelativePath=".\DisplayDTO.h"
+					>
+				</File>
+				<File
+					RelativePath=".\SeatsDisplayDTO.h"
 					>
 				</File>
 			</Filter>

@@ -9,13 +9,47 @@
 #include "DCDataAdminSD.h"
 #include "UsersDataDTO.h"
 #include "LoginRequestDTO.h"
-#include "ConnectedUsersDTO.h"
+#include "ConnectedHostsDTO.h"
 #include "DCCommunicationSD.h"
 
 #include "RulesDataDTO.h"
 #include "StatusReportsDTO.h"
 #include "ExecutedProcessDTO.h"
-#include "ReactionArgumentDTO.h"
+#include "ControlActionDTO.h"
+
+
+/**@brief	호스트의 접속에 대해 처리한다.
+ */
+void CDecisionManager::HostConnected(void *a_hostData)
+{
+	CConnectedHostDTO *host = (CConnectedHostDTO *)a_hostData;
+	CConnectedHostsDTO *connectedHosts = (CConnectedHostsDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
+	connectedHosts->RegistConnected(host);
+
+	CCBFMediator::Instance()->NotifyRaptorAccepted(&host->m_hostAddress);
+	ReportStatusTo(&host->m_hostAddress);
+}
+
+/**@brief	호스트의 접속 종료에 대해 처리한다.
+ */
+void CDecisionManager::HostDisconnected(void *a_hostData)
+{
+	CConnectedHostDTO *host = (CConnectedHostDTO *)a_hostData;
+	RemoveFromAcceptedUser(host->m_hostAddress);
+
+	CCBFMediator::Instance()->NotifyRaptorLogout(&host->m_hostAddress);
+	CCBFMediator::Instance()->NotifyRaptorLeaved(&host->m_hostAddress);
+}
+
+/**@brief	특정 주소로 상태 보고를 날린다.
+ */
+void CDecisionManager::ReportStatusTo(CString *a_hostAddress)
+{
+	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+	CStatusReportDTOArray nowReports;
+	statusReports->GetReportFrom(*a_hostAddress, &nowReports);
+	//CDCCommunicationSD::Instance()->ReportStatus();
+}
 
 
 /**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
@@ -38,56 +72,54 @@ void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 		LogoutUser(loginRequestData->m_hostAddress);
 		return;
 	}
-	CConnectedUsersDTO *connectedUsers = (CConnectedUsersDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
-	CConnectedUserDTO user;
+	CConnectedHostsDTO *connectedUsers = (CConnectedHostsDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
+	CConnectedHostDTO user;
 	user.m_userId = loginRequestData->m_lowLevelPassword;
-	user.m_seatId = loginRequestData->m_hostAddress;
+	user.m_hostAddress = loginRequestData->m_hostAddress;
 	connectedUsers->RegistConnected(&user);
 
 	loginRequestData->m_level = userData->m_level;
 
 	//DCCommunication SD를 이용해 로그인 허용 메세지를 날린다.
 	CDCCommunicationSD::Instance()->NotifyAccepted(loginRequestData);		
-	CCBFMediator::Instance()->NotifyRaptorLogin(&user.m_seatId);	
+	CCBFMediator::Instance()->NotifyRaptorLogin(&user.m_hostAddress);	
 }
 
 
 /**@brief	룰에 명시된 반응을 실제로 행한다.
  */
-void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
+void CDecisionManager::ControlRaptor(/*void *a_executedProcess, */void *a_controlAction)
 {
-	CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;
+	//CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;
 
-	CCBFMediator::Instance()->NotifyRaptorExecutedProcess(&executedProcess->m_executedHostAddress,
-		&executedProcess->m_executedProcessName);
+	//CCBFMediator::Instance()->NotifyRaptorExecutedProcess(&executedProcess->m_executedHostAddress,
+	//	&executedProcess->m_executedProcessName);
 
-	CRuleDataDTO *rule = (CRuleDataDTO *)a_rule;
-	CReactionArgumentDTO reactionArgument;
-	reactionArgument.m_targetHostAddress = executedProcess->m_executedHostAddress;
-	reactionArgument.m_reactionArgument = rule->m_reactionArgument;
+	
+	CControlActionDTO controlAction = *(CControlActionDTO *)a_controlAction;
 
-	switch(rule->m_reaction)
+	switch(controlAction.m_action)
 	{
 	case SHUTDOWN :
-		CDCCommunicationSD::Instance()->ShutdownUser(&reactionArgument);
+		CDCCommunicationSD::Instance()->ShutdownUser(&controlAction);
 		break;
 	case REBOOT :
-		CDCCommunicationSD::Instance()->RebootUser(&reactionArgument);
+		CDCCommunicationSD::Instance()->RebootUser(&controlAction);
 		break;
 	case LOGOUT :
-		LogoutUser(executedProcess->m_executedHostAddress);		
+		LogoutUser(controlAction.m_targetHostAddress);		
 		break;
 	case EXECUTE :
-		CDCCommunicationSD::Instance()->ExecuteUser(&reactionArgument);
+		CDCCommunicationSD::Instance()->ExecuteUser(&controlAction);
 		break;
 	case KILL :
-		CDCCommunicationSD::Instance()->KillUser(&reactionArgument);
+		CDCCommunicationSD::Instance()->KillUser(&controlAction);
 		break;
 	case GENOCIDEPROCESSES :
-		CDCCommunicationSD::Instance()->GenocideUser(&reactionArgument);
+		CDCCommunicationSD::Instance()->GenocideUser(&controlAction);
 		break;
 	case WARN :
-		CDCCommunicationSD::Instance()->WarnUser(&reactionArgument);
+		CDCCommunicationSD::Instance()->WarnUser(&controlAction);
 		break;
 	}	
 }
@@ -97,15 +129,20 @@ void CDecisionManager::DoReactionTo(void *a_executedProcess, void *a_rule)
 void CDecisionManager::DoReactionsTo(void *a_executedProcess, void *a_rules)
 {
 	CRulesDataDTO *rules = (CRulesDataDTO *)a_rules;
+	CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;	
 	if(rules->m_rules.GetCount() > 0)
-	{
-		CExecutedProcessDTO *executedProcess = (CExecutedProcessDTO *)a_executedProcess;
+	{		
 		CCBFMediator::Instance()->NotifyRaptorExecutedProcess( &executedProcess->m_executedHostAddress, &executedProcess->m_executedProcessName); 
 	}
 
 	for(int i=0; i<rules->m_rules.GetCount(); i++)
 	{
-		DoReactionTo(a_executedProcess, &(rules->m_rules[i]));
+		CRuleDataDTO rule = rules->m_rules[i];
+		CControlActionDTO controlAction;
+		controlAction.m_targetHostAddress = executedProcess->m_executedHostAddress;
+		controlAction.m_reactionArgument = rule.m_reactionArgument;
+		controlAction.m_action = rule.m_reaction;
+		ControlRaptor(&controlAction);
 	}
 }
 
@@ -144,10 +181,10 @@ void CDecisionManager::LogoutUser(CString a_hostAddress)
 {
 	RemoveFromAcceptedUser(a_hostAddress);
 	
-	CReactionArgumentDTO reactionArgument;
-	reactionArgument.m_targetHostAddress = a_hostAddress;
-	reactionArgument.m_reactionArgument = _T("");	
-	CDCCommunicationSD::Instance()->LogoutUser(&reactionArgument);
+	CControlActionDTO controlAction;
+	controlAction.m_targetHostAddress = a_hostAddress;
+	controlAction.m_reactionArgument = _T("");	
+	CDCCommunicationSD::Instance()->LogoutUser(&controlAction);
 
 	CString address = a_hostAddress;
 	CCBFMediator::Instance()->NotifyRaptorLogout(&address);
@@ -157,7 +194,7 @@ void CDecisionManager::LogoutUser(CString a_hostAddress)
  */
 void CDecisionManager::RemoveFromAcceptedUser(CString a_hostAddress)
 {
-	CConnectedUsersDTO *connectedUsers = (CConnectedUsersDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
+	CConnectedHostsDTO *connectedUsers = (CConnectedHostsDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
 	CString seatId = a_hostAddress;
 	connectedUsers->RemoveConnected(&seatId);
 }

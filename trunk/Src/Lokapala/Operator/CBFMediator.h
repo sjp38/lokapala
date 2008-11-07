@@ -43,6 +43,8 @@ public :
 	}
 
 	//DCM
+	void HostConnected(void *a_hostData);
+	void HostDisconnected(void *a_hostData);
 	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);
@@ -98,6 +100,7 @@ public :
 	void NotifyRaptorAccepted(CString *a_hostAddress);
 	void NotifyRaptorLeaved(CString *a_hostAddress);
 
+	void NotifySeatResized(int a_maxX, int a_maxY);
 	void NotifySeatAdded(CString *a_seatId);
 	void NotifySeatDeleted(CString *a_seatId);
 
