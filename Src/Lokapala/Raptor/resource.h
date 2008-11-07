@@ -38,6 +38,7 @@
 #define IDC_NOTIFY_LIST                 1018
 #define IDC_STATUS                      1023
 #define IDC_REPORT                      1024
+#define IDC_LIST1                       1025
 
 // Next default values for new objects
 // 
@@ -45,7 +46,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1025
+#define _APS_NEXT_CONTROL_VALUE         1026
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

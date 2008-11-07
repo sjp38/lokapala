@@ -12,7 +12,7 @@
 #include "SeatsDataDTO.h"
 #include "RulesDataDTO.h"
 
-#include "ConnectedUsersDTO.h"
+#include "ConnectedHostsDTO.h"
 #include "StatusReportsDTO.h"
 
 
@@ -56,7 +56,7 @@ public :
 	CStatusReportsDTO *GetStatusReports();
 
 	//connected
-	CConnectedUsersDTO *GetConnectedUsers();
+	CConnectedHostsDTO *GetConnectedUsers();
 
 protected :
 	CDataAdminManager(){}
@@ -76,7 +76,7 @@ private :
 	CSeatsDataDTO m_seatsData;
 	CRulesDataDTO m_rulesData;
 
-	CConnectedUsersDTO m_connectedUsers;
+	CConnectedHostsDTO m_connectedUsers;
 	CStatusReportsDTO m_statusReports;
 
 	static CDataAdminManager *m_instance;

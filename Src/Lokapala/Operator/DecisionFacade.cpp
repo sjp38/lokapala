@@ -8,6 +8,20 @@
 
 #include "DecisionManager.h"
 
+/**@brief	접속한 호스트에 대한 처리
+ */
+void CDecisionFacade::HostConnected(void *a_hostData)
+{
+	CDecisionManager::Instance()->HostConnected(a_hostData);
+}
+
+/**@brief	접속 종료한 호스트에 대한 처리
+ */
+void CDecisionFacade::HostDisconnected(void *a_hostData)
+{
+	CDecisionManager::Instance()->HostDisconnected(a_hostData);
+}
+
 /**@brief	사용자 로그인 처리. 올바른 사용자인지 확인한다.
  * @param	a_loginRequestData	사용자 로그인 정보의 포인터. 해당 DTO의 포인터이지만 void 포인터로 캐스팅 해 사용한다.
  */

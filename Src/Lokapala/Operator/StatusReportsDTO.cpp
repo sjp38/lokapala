@@ -27,7 +27,7 @@ void CStatusReportsDTO::DeleteReportAt(CString a_hostAddress)
 	{
 		if(m_reports[i].m_hostAddress == a_hostAddress)
 		{
-			m_reports.RemoveAt(i);
+			m_reports.RemoveAt(i--);
 		}
 	}
 }

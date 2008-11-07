@@ -15,7 +15,9 @@
 
 #include "CCMessengerSD.h"
 #include "MessageDTO.h"
-#include "ReactionArgumentDTO.h"
+#include "ControlActionDTO.h"
+
+#include "ConnectedHostDTO.h"
 
 
 /**@brief	서버로써의 통신을 위한 초기화를 한다.
@@ -68,7 +70,9 @@ void CCommunicationManager::BroadcastTextMessage(CString a_message)
  */
 void CCommunicationManager::RaptorAccepted(CString a_address)
 {
-	CCBFMediator::Instance()->NotifyRaptorAccepted(&a_address);
+	CConnectedHostDTO connectedHost(_T(""), a_address);
+	CCBFMediator::Instance()->HostConnected(&connectedHost);
+	//CCBFMediator::Instance()->NotifyRaptorAccepted(&a_address);
 }
 
 
@@ -76,12 +80,14 @@ void CCommunicationManager::RaptorAccepted(CString a_address)
  */
 void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
 {
-	CString address = a_globalIp + _T("/") + a_localIp;	
-	CCBFMediator::Instance()->NotifyRaptorLeaved(&address);
+	CString address = a_globalIp + _T("/") + a_localIp;
+	CConnectedHostDTO disconnectedHost(_T(""), address);
+	CCBFMediator::Instance()->HostDisconnected(&disconnectedHost);
+	//CCBFMediator::Instance()->NotifyRaptorLeaved(&address);
 
 	//해당 사용자를 로그아웃 시키기 위해 필요없는 정보를 넣어 로그인 판정을 받는다.
-	CLoginRequestDTO loginRequestData(address, _T(""), _T(""), _T(""));
-	CCCDecisionSD::Instance()->UserLogin(&loginRequestData);
+	//CLoginRequestDTO loginRequestData(address, _T(""), _T(""), _T(""));
+	//CCCDecisionSD::Instance()->UserLogin(&loginRequestData);
 }
 
 
@@ -150,7 +156,7 @@ void CCommunicationManager::NotifyAccepted(void *a_acceptedData)
  */
 void CCommunicationManager::ShutdownUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
@@ -158,7 +164,7 @@ void CCommunicationManager::ShutdownUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", SHUTDOWN);
 	USES_CONVERSION;
-	root->SetAttribute("message", W2A(argument->m_reactionArgument));
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -172,7 +178,7 @@ void CCommunicationManager::ShutdownUser(void *a_argument)
  */
 void CCommunicationManager::RebootUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
@@ -180,7 +186,7 @@ void CCommunicationManager::RebootUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", REBOOT);
 	USES_CONVERSION;
-	root->SetAttribute("message", W2A(argument->m_reactionArgument));
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -194,7 +200,7 @@ void CCommunicationManager::RebootUser(void *a_argument)
  */
 void CCommunicationManager::LogoutUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
@@ -202,7 +208,7 @@ void CCommunicationManager::LogoutUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", LOGOUT);
 	USES_CONVERSION;
-	root->SetAttribute("message", W2A(argument->m_reactionArgument));
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -216,7 +222,7 @@ void CCommunicationManager::LogoutUser(void *a_argument)
  */
 void CCommunicationManager::ExecuteUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
@@ -224,7 +230,7 @@ void CCommunicationManager::ExecuteUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", EXECUTE);
 	USES_CONVERSION;
-	root->SetAttribute("processName", W2A(argument->m_reactionArgument));
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -236,7 +242,7 @@ void CCommunicationManager::ExecuteUser(void *a_argument)
 
 void CCommunicationManager::KillUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 	CString processName = argument->m_reactionArgument;
 
@@ -245,7 +251,7 @@ void CCommunicationManager::KillUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", KILL);
 	USES_CONVERSION;
-	root->SetAttribute("processName", W2A(processName));
+	root->SetAttribute("argument", W2A(processName));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -259,7 +265,7 @@ void CCommunicationManager::KillUser(void *a_argument)
  */
 void CCommunicationManager::GenocideUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
@@ -267,7 +273,7 @@ void CCommunicationManager::GenocideUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", GENOCIDE);
 	USES_CONVERSION;
-	root->SetAttribute("message", W2A(argument->m_reactionArgument));
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -281,7 +287,7 @@ void CCommunicationManager::GenocideUser(void *a_argument)
  */
 void CCommunicationManager::WarnUser(void *a_argument)
 {
-	CReactionArgumentDTO *argument = (CReactionArgumentDTO *)a_argument;
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
 		
 	TiXmlDocument doc;
@@ -289,7 +295,7 @@ void CCommunicationManager::WarnUser(void *a_argument)
 	doc.LinkEndChild(root);
 	root->SetAttribute("Header", WARN);
 	USES_CONVERSION;
-	root->SetAttribute("message", W2A(argument->m_reactionArgument));
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();

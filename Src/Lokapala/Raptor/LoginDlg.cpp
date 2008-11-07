@@ -6,6 +6,7 @@
 #include "LoginDlg.h"
 
 #include "UserDTO.h"
+#include "StatusReportsDTO.h"
 
 
 // CLoginDlg dialog
@@ -29,6 +30,7 @@ void CLoginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LOWPASS, m_lowPassEdit);
 	DDX_Control(pDX, IDC_HIGHPASS, m_highPassEdit);
 	DDX_Control(pDX, IDC_OPERATOR_IPADDRESS, m_operatorIPAddress);
+	DDX_Control(pDX, IDC_LIST1, m_statusList);
 }
 
 
@@ -91,6 +93,43 @@ BOOL CLoginDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO:  Add extra initialization here
+	CFile file;
+	if( file.Open(_T("operatorAddress.cfg"), CFile::modeRead) )
+	{
+		DWORD address;
+		file.Read(&address, sizeof(address));
+		m_operatorIPAddress.SetAddress(address);
+		file.Close();
+	}	
+
+	DWORD serverIp;
+	m_operatorIPAddress.GetAddress(serverIp);
+	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
+
+	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+	for(int i=0; i<statusReports->m_reports.GetCount(); i++)
+	{
+		CStatusReportDTO statusReport = statusReports->m_reports[i];
+		CString state;
+		switch(statusReport.m_state)
+		{
+		case HW_DEFECT :
+			state = _T("HW_DEFECT");
+			break;
+		case SW_DEFECT :
+			state = _T("SW_DEFECT");
+			break;
+		case REPAIRED :
+			state = _T("REPAIRED");
+			break;
+		case VERIFIED :
+			state = _T("VERIFIED");
+			break;
+		}
+		NotifyStatus( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);
+	}
+	
+	
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -127,4 +166,25 @@ void CLoginDlg::OnDestroy()
 	CDialog::OnDestroy();
 
 	// TODO: Add your message handler code here
+}
+
+
+/**@brief	현재 컴퓨터의 상태를 알린다.
+ */
+void CLoginDlg::NotifyStatus(CString a_message)
+{
+	m_statusList.AddString(a_message);
+
+	static int maxSize;
+	CDC* pDc = m_statusList.GetDC();
+	int messageSize = (pDc->GetTextExtent(a_message)).cx;
+
+	if( maxSize < messageSize )
+	{
+		maxSize = messageSize;
+		m_statusList.SetHorizontalExtent(maxSize);
+		m_statusList.ReleaseDC(pDc);		
+	}
+
+	m_statusList.SetCurSel(m_statusList.GetCount()-1);	
 }

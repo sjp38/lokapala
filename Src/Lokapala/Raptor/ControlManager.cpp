@@ -58,50 +58,58 @@ void CControlManager::ReleaseUser()
  */
 void CControlManager::Login(void *a_userInfo)
 {
-	AfxMessageBox(_T("violent login!"));
+	CString message = _T("violent login");
+	CCBFMediator::Instance()->Notify(&message);
+	//AfxMessageBox(_T("violent login!"));
 }
 
 /**@brief	강제로 사용자를 로그아웃 시킨다.
  */
-void CControlManager::Logout(void *a_message)
+void CControlManager::Logout(void *a_argument)
 {
-	AfxMessageBox(_T("violent logout!"));
+	CString message = _T("violent logout : ") + *(CString *)a_argument;
+	CCBFMediator::Instance()->Notify(&message);
 	CCBFMediator::Instance()->TrySuicide();
 }
 
 /**@brief	컴퓨터를 종료시킨다.
  */
-void CControlManager::Shutdown(void *a_message)
+void CControlManager::Shutdown(void *a_argument)
 {
-	AfxMessageBox(_T("violent shutdown"));
+	CString message = _T("violent shutdown : ") + *(CString *)a_argument;
+	CCBFMediator::Instance()->Notify(&message);
 }
 
 /**@brief	컴퓨터를 리부팅시킨다.
  */
-void CControlManager::Reboot(void *a_message)
+void CControlManager::Reboot(void *a_argument)
 {
-	AfxMessageBox(_T("violent reboot!"));
+	CString message = _T("violent reboot : ") + *(CString *)a_argument;
+	CCBFMediator::Instance()->Notify(&message);
 }
 
 /**@brief	실행되고 있는 모든 프로세스를 종료시킨다.
  */
-void CControlManager::GenocideProcesses(void *a_message)
+void CControlManager::GenocideProcesses(void *a_argument)
 {
-	AfxMessageBox(_T("violent genocide!"));
+	CString message = _T("violent genocide : ") + *(CString *)a_argument;
+	CCBFMediator::Instance()->Notify(&message);
 }
 
 /**@brief	특정 프로세스를 종료시킨다.
  * @param	a_processName	종료시키고자 하는 프로세스의 이름
  */
-void CControlManager::KillProcess(void *a_processName)
+void CControlManager::KillProcess(void *a_argument)
 {
-	AfxMessageBox(_T("violent kill!"));
+	CString message = _T("violent kill : ") + *(CString *)a_argument;
+	CCBFMediator::Instance()->Notify(&message);
 }
 
 /**@brief	특정 프로세스를 실행시킨다.
  * @param	a_processName	실행하고자 하는 프로세스의 이름
  */
-void CControlManager::ExecuteProcess(void *a_processName)
+void CControlManager::ExecuteProcess(void *a_argument)
 {
-	AfxMessageBox(_T("violent execute!"));
+	CString message = _T("violent execute : ") + *(CString *)a_argument;
+	CCBFMediator::Instance()->Notify(&message);
 }

@@ -30,13 +30,13 @@ public :
 	void Login(void *a_userInfo);
 	void Logout(void *a_message);
 	
-	void Shutdown(void *a_message);
-	void Reboot(void *a_message);
+	void Shutdown(void *a_argument);
+	void Reboot(void *a_argument);
 
-	void GenocideProcesses(void *a_message);
-	void KillProcess(void *a_processName);
+	void GenocideProcesses(void *a_argument);
+	void KillProcess(void *a_argument);
 
-	void ExecuteProcess(void *a_processName);
+	void ExecuteProcess(void *a_argument);
 
 protected :
 	CControlManager();

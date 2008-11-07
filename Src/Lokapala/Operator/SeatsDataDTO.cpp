@@ -26,11 +26,12 @@ void CSeatsDataDTO::SetSeats(int a_maxX, int a_maxY)
 	{
 		AfxMessageBox(_T("too many seat!"));
 		return;
-	}
+	}	
 	m_maxX = a_maxX;
 	m_maxY = a_maxY;
 
-	ResetSeats();
+	ResetSeats();	
+	CCBFMediator::Instance()->NotifySeatResized(a_maxX, a_maxY);
 }
 
 /**@brief	좌석 정보를 모두 삭제한다.
@@ -48,6 +49,11 @@ void CSeatsDataDTO::AddSeat(CSeatDataDTO *a_seat)
 	{
 		AfxMessageBox(_T("seat info add fail!! invalid position!!"));
 		return;
+	}
+	CSeatDataDTO value;
+	if(m_seats.Lookup(a_seat->m_seatId, value))
+	{
+		DeleteSeat(&a_seat->m_seatId);
 	}
 	m_seats.SetAt(a_seat->m_seatId, *a_seat);
 	CCBFMediator::Instance()->NotifySeatAdded(&a_seat->m_seatId);

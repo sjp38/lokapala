@@ -13,7 +13,7 @@
 #include "DisplayDTO.h"
 
 #include "StatusReportsDTO.h"
-#include "ReactionArgumentDTO.h"
+#include "ControlActionDTO.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -89,6 +89,7 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	ON_COMMAND(ID_REMOTE_CONTROL, &COperatorDlg::OnRemoteControl)
 	ON_COMMAND(ID_SET_SEAT, &COperatorDlg::OnSetSeat)
 	ON_COMMAND(ID_SEND_MESSAGE, &COperatorDlg::OnSendMessage)
+	ON_BN_CLICKED(IDC_CONTROL, &COperatorDlg::OnBnClickedControl)
 END_MESSAGE_MAP()
 
 
@@ -124,6 +125,7 @@ BOOL COperatorDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	CCBFMediator::Instance()->SetMainDlg(this);
 	CCBFMediator::Instance()->BeginCommunication();
+	m_imageListSetted = FALSE;
 	InitiallizeStatusListCtrl();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -238,6 +240,44 @@ void COperatorDlg::Notify(CString a_message)
 	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);	
 }
 
+/**@brief	연결 상태 표시 창에 메세지를 띄운다.
+ */
+void COperatorDlg::NotifyConnected(CString a_message)
+{
+	m_connectedList.AddString(a_message);
+
+	static int maxSize;
+	CDC* pDc = m_connectedList.GetDC();
+	int messageSize = (pDc->GetTextExtent(a_message)).cx;
+
+	if( maxSize < messageSize )
+	{
+		maxSize = messageSize;
+		m_connectedList.SetHorizontalExtent(maxSize);
+		m_connectedList.ReleaseDC(pDc);		
+	}
+}
+
+/**@brief	실행 금지 프로세스 실행 공지 창에 메세지를 띄운다.
+ */
+void COperatorDlg::NotifyCriminal(CString a_message)
+{
+	m_criminalList.AddString(a_message);
+
+	static int maxSize;
+	CDC* pDc = m_criminalList.GetDC();
+	int messageSize = (pDc->GetTextExtent(a_message)).cx;
+
+	if( maxSize < messageSize )
+	{
+		maxSize = messageSize;
+		m_criminalList.SetHorizontalExtent(maxSize);
+		m_criminalList.ReleaseDC(pDc);		
+	}
+
+	m_criminalList.SetCurSel(m_criminalList.GetCount()-1);	
+}
+
 
 /**@brief	LKPLM_NOTIFYMESSAGE  메세지 핸들러.
  *			공지 리스트박스에 메세지를 띄운다.
@@ -268,22 +308,40 @@ LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 {
 	CDisplayDTO *displayData = (CDisplayDTO *)wParam;
+	m_seatsDisplayData.AddDisplayDTO(*displayData);
 
 	UINT index = 0;
 	switch(displayData->m_displayState)
 	{
-	case LOGIN :		
-		Notify(displayData->m_seatId + _T(" login"));		
-		m_connectedList.AddString(displayData->m_seatId);
+	case LOGIN :
+		Notify(displayData->m_seatId + _T(" login"));
+		index = m_connectedList.FindString(index, displayData->m_seatId);
+		m_connectedList.DeleteString(index);
+		NotifyConnected(displayData->m_seatId + _T(" : login"));
 		DisplayIconAsLogin(displayData->m_seatId);
 		break;
 
 	case LOGOUT :		
-		index = m_connectedList.FindString(index, displayData->m_seatId);
-		m_connectedList.DeleteString(index);
 		Notify(displayData->m_seatId + _T(" logout"));
+		index = m_connectedList.FindString(index, displayData->m_seatId + _T(" : login"));
+		m_connectedList.DeleteString(index);
+		NotifyConnected(displayData->m_seatId);		
 		DisplayIconAsLogout(displayData->m_seatId);
 		break;
+
+	case DISPLAY_CONNECTED :
+		Notify(displayData->m_seatId + _T(" connected"));
+		NotifyConnected(displayData->m_seatId);
+		break;
+
+	case DISPLAY_DISCONNECTED :
+		Notify(displayData->m_seatId + _T(" disconnected"));
+		index = m_connectedList.FindString(index, displayData->m_seatId + _T(" : login"));
+		m_connectedList.DeleteString(index);
+		index = m_connectedList.FindString(index, displayData->m_seatId);
+		m_connectedList.DeleteString(index);
+		break;
+	
 	case HW :
 		Notify(displayData->m_seatId + _T(" reported H/W defect!"));
 		DisplayIconAsAbnormal(displayData->m_seatId);
@@ -297,12 +355,17 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 		DisplayIconAsNormal(displayData->m_seatId);
 		break;
 	case CRIMINAL :
-		Notify(displayData->m_seatId + _T(" have done limited process!"));
+		Notify(displayData->m_seatId + _T(" have executed limited process : ") + displayData->m_argument);
+		NotifyCriminal(displayData->m_seatId + _T(" have executed limited process : ") + displayData->m_argument);
 		DisplayIconAsAttention(displayData->m_seatId);
 		break;
 	case INNOCENT :
 		Notify(displayData->m_seatId + _T(" have judged innocent"));
 		DisplayIconAsAbnormal(displayData->m_seatId);
+		break;
+	case SEATRESIZE :
+		Notify(_T("seat reset"));
+		DisplayChangedSeatSize(displayData->m_seatMaxX, displayData->m_seatMaxY);
 		break;
 	case SEATADD :
 		Notify(displayData->m_seatId + _T(" added"));
@@ -311,6 +374,7 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 	case SEATDELETE :
 		Notify(displayData->m_seatId + _T(" deleted"));
 		DisplayDeletedSeat(displayData->m_seatId);
+		break;	
 	}
 
 	return 0;
@@ -334,9 +398,21 @@ int COperatorDlg::GetIconIndexBySeatId(CString a_seatId)
 	{
 		return -1;
 	}
-	return (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y - 1;
+	return (seat->m_position.y - 1) * seatData->m_maxX + seat->m_position.x - 1;
 }
 
+/**@brief	좌석 크기가 변했음을 표시한다.
+ * @brief	a_maxX	새로운, 좌석의 가로 크기
+ * @brief	a_maxY	새로운, 좌석의 세로 크기
+ */
+void COperatorDlg::DisplayChangedSeatSize(int a_maxX, int a_maxY)
+{	
+	InitiallizeStatusListCtrl();
+	for(int i=0; i<m_seatsDisplayData.m_displayDTOs.GetCount(); i++)
+	{
+		SendMessage(LKPLM_SHOWCHANGED, (WPARAM)&m_seatsDisplayData.m_displayDTOs[i], NULL);
+	}
+}
 
 /**@brief	새로운 좌석의 추가를 나타낸다.
  */
@@ -348,7 +424,7 @@ void COperatorDlg::DisplayAddedSeat(CString a_seatId)
 	{
 		return;
 	}
-	int seatNumber = (seat->m_position.x - 1) * seatData->m_maxX + seat->m_position.y - 1;
+	int seatNumber = (seat->m_position.y - 1) * seatData->m_maxX + seat->m_position.x - 1;
 	CString seatName = seat->m_nickname + _T("(") + seat->m_hostAddress + _T(")") ;
 	m_stateDisplayList.SetItemText(seatNumber, 0, seatName.GetBuffer());
 }
@@ -436,28 +512,35 @@ void COperatorDlg::DisplayIconAsAttention(CString a_seatId)
  */
 void COperatorDlg::InitiallizeStatusListCtrl()
 {
-	m_stateImage.Create(48,48,ILC_COLOR24, 2,0);
-	CBitmap normal, abnormal;
-	normal.LoadBitmapW(IDB_NORMAL);
-	abnormal.LoadBitmapW(IDB_ABNORMAL);
-	COLORREF crMask = RGB(0,0,0);
-	m_stateImage.Add(&normal, crMask);
-	m_stateImage.Add(&abnormal, crMask);
+	if(m_imageListSetted == FALSE)
+	{
+		m_imageListSetted = TRUE;
+		m_stateImage.Create(48,48,ILC_COLOR24, 2,0);
+		CBitmap normal, abnormal;
+		normal.LoadBitmapW(IDB_NORMAL);
+		abnormal.LoadBitmapW(IDB_ABNORMAL);
+		COLORREF crMask = RGB(0,0,0);
+		m_stateImage.Add(&normal, crMask);
+		m_stateImage.Add(&abnormal, crMask);
 
-	m_stateDisplayList.SetImageList(&m_stateImage, LVSIL_NORMAL);
+		m_stateDisplayList.SetImageList(&m_stateImage, LVSIL_NORMAL);
+	}
+	
 
 	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
 	int maxX = seatData->m_maxX;
 	int maxY = seatData->m_maxY;
-	for(int i=0; i<maxX; i++)
+
+	m_stateDisplayList.DeleteAllItems();
+	for(int i=0; i<maxY; i++)
 	{
-		for(int j=0; j<maxY; j++)
+		for(int j=0; j<maxX; j++)
 		{
 			LVITEM item = {0};
 			item.mask = LVIF_TEXT | LVIF_IMAGE | LVIF_STATE | LVS_SHOWSELALWAYS;
 			item.iItem = i*maxX + j;
 			item.iSubItem = 0;
-			item.iImage = 0;			
+			item.iImage = 0;
 			item.state = LVIS_CUT | LVS_AUTOARRANGE;			
 			item.pszText = _T("");
 
@@ -515,8 +598,7 @@ void COperatorDlg::OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
 			break;
 		}
 		Notify( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);
-	}
-	
+	}	
 
 	*pResult = 0;
 }
@@ -585,4 +667,14 @@ void COperatorDlg::OnSetSeat()
 void COperatorDlg::OnSendMessage()
 {
 	// TODO: Add your command handler code here
+}
+
+void COperatorDlg::OnBnClickedControl()
+{
+	// TODO: Add your control notification handler code here
+	CArray<CString> target;
+	GetSelectedIconSeatId(&target);
+	CRemoteControlDlg remoteControlDlg;
+	remoteControlDlg.m_selectedTarget.Copy(target);
+	remoteControlDlg.DoModal();
 }
