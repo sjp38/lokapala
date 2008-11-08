@@ -32,4 +32,6 @@ public:
 	afx_msg void OnBnClickedReboot();
 	afx_msg void OnBnClickedLogout();
 	virtual BOOL OnInitDialog();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };

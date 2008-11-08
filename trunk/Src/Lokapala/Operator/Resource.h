@@ -16,6 +16,12 @@
 #define IDR_CONTROL_MENU                143
 #define IDD_REMOTE_CONTROL              145
 #define IDD_MESSENGER                   146
+#define IDB_SIDEBAR                     147
+#define IDB_DATAADMIN_TITLE             148
+#define IDB_REMOTE_CONTROL_TITLE        149
+#define IDB_NOTIFY_TEXT                 150
+#define IDB_CONNECTED_TEXT              151
+#define IDB_PROCESS_TEXT                152
 #define IDC_COMMAND                     1001
 #define IDC_BUTTONTEST                  1002
 #define IDC_CMD_EXECUTE                 1002
@@ -67,6 +73,7 @@
 #define IDC_GENOCIDE_PROCESSES          1047
 #define IDC_BUTTON1                     1047
 #define IDC_SHUTDOWN                    1048
+#define IDC_SIDEBAR                     1048
 #define IDC_REBOOT                      1049
 #define IDC_LOGOUT                      1050
 #define ID_32771                        32771
@@ -93,9 +100,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        147
+#define _APS_NEXT_RESOURCE_VALUE        153
 #define _APS_NEXT_COMMAND_VALUE         32790
-#define _APS_NEXT_CONTROL_VALUE         1048
+#define _APS_NEXT_CONTROL_VALUE         1049
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

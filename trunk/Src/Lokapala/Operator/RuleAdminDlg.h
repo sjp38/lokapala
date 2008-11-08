@@ -43,4 +43,5 @@ public:
 	CEdit m_argument;
 	CListBox m_ruleList;
 	afx_msg void OnLbnSelchangeRulelist();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };

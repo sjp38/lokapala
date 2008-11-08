@@ -38,4 +38,5 @@ public:
 	CEdit m_level;
 	CListBox m_userList;
 	afx_msg void OnLbnSelchangeUserlist();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };
