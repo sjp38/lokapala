@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(CUserAdminDlg, CDialog)
 	ON_BN_CLICKED(IDC_USER_ADD, &CUserAdminDlg::OnBnClickedUserAdd)
 	ON_BN_CLICKED(IDC_USER_DELETE, &CUserAdminDlg::OnBnClickedUserDelete)
 	ON_LBN_SELCHANGE(IDC_USERLIST, &CUserAdminDlg::OnLbnSelchangeUserlist)
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -156,4 +157,26 @@ void CUserAdminDlg::OnLbnSelchangeUserlist()
 	CUserDataDTO *user = usersData->GetUserById(userId);
 
 	SetInputVariables((void *)user);	
+}
+
+/**@brief	다이얼로그 배경색, 스태틱 컨트롤 배경색 조정
+ */
+HBRUSH CUserAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(244,243,238));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
 }

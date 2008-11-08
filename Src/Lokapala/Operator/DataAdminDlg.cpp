@@ -33,6 +33,8 @@ BEGIN_MESSAGE_MAP(CDataAdminDlg, CDialog)
 	ON_BN_CLICKED(IDC_LOAD, &CDataAdminDlg::OnBnClickedLoad)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_DATA_ADMIN_TAB, &CDataAdminDlg::OnTcnSelchangingDataAdminTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_DATA_ADMIN_TAB, &CDataAdminDlg::OnTcnSelchangeDataAdminTab)
+	ON_WM_CTLCOLOR()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -215,4 +217,35 @@ void CDataAdminDlg::TerminateSubDialog()
 	{
 		delete m_pRuleDlg;
 	}
+}
+
+/**@brief	다이얼로그 배경색, 스태틱 컨트롤 배경색 조정
+ */
+HBRUSH CDataAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(255,255,255));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
+}
+
+/**@brief	타이틀바 없이 움직이기
+ */
+void CDataAdminDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
+	CDialog::OnLButtonDown(nFlags, point);
 }

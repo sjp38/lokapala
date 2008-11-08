@@ -51,6 +51,7 @@ BEGIN_MESSAGE_MAP(CRuleAdminDlg, CDialog)
 	ON_BN_CLICKED(IDC_ADD_RULE, &CRuleAdminDlg::OnBnClickedAddRule)
 	ON_BN_CLICKED(IDC_DELETE_RULE, &CRuleAdminDlg::OnBnClickedDeleteRule)
 	ON_LBN_SELCHANGE(IDC_RULELIST, &CRuleAdminDlg::OnLbnSelchangeRulelist)
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -179,4 +180,26 @@ void CRuleAdminDlg::OnLbnSelchangeRulelist()
 	int selected = selectedIndex[0];
 
 	SetInputVariables(selected);
+}
+
+/**@brief	다이얼로그 배경색, 스태틱 컨트롤 배경색 조정
+ */
+HBRUSH CRuleAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(244,243,238));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
 }

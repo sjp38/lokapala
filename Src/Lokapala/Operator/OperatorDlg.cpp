@@ -79,17 +79,21 @@ BEGIN_MESSAGE_MAP(COperatorDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	
-	ON_BN_CLICKED(IDC_CMD_EXECUTE, &COperatorDlg::OnBnClickedCmdExecute)
-	ON_BN_CLICKED(IDC_DATA_ADMIN, &COperatorDlg::OnBnClickedDataAdmin)
+	ON_BN_CLICKED(IDC_CMD_EXECUTE, &COperatorDlg::OnBnClickedCmdExecute)	
 	ON_MESSAGE(LKPLM_NOTIFYMESSAGE, &COperatorDlg::OnNotifyMessage)
 	ON_MESSAGE(LKPLM_SHOWCHANGED, &COperatorDlg::OnShowChanged)
 	ON_MESSAGE(LKPLM_SHOWSTATUS, &COperatorDlg::OnShowStatus)
+	ON_MESSAGE(LKPLM_OPTION_CLICK, &COperatorDlg::OnOptionClick)
+	ON_MESSAGE(LKPLM_CONTROL_CLICK, &COperatorDlg::OnControlClick)
+	ON_MESSAGE(LKPLM_MESSENGER_CLICK, &COperatorDlg::OnMessengerClick)
+
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_STATE_DISPLAY, &COperatorDlg::OnLvnItemchangedStateDisplay)
 	ON_NOTIFY(NM_RCLICK, IDC_STATE_DISPLAY, &COperatorDlg::OnNMRClickStateDisplay)
 	ON_COMMAND(ID_REMOTE_CONTROL, &COperatorDlg::OnRemoteControl)
 	ON_COMMAND(ID_SET_SEAT, &COperatorDlg::OnSetSeat)
-	ON_COMMAND(ID_SEND_MESSAGE, &COperatorDlg::OnSendMessage)
-	ON_BN_CLICKED(IDC_CONTROL, &COperatorDlg::OnBnClickedControl)
+	ON_WM_CTLCOLOR()
+	ON_WM_LBUTTONDOWN()
+	ON_STN_CLICKED(IDC_SIDEBAR, &COperatorDlg::OnStnClickedSidebar)
 END_MESSAGE_MAP()
 
 
@@ -127,6 +131,7 @@ BOOL COperatorDlg::OnInitDialog()
 	CCBFMediator::Instance()->BeginCommunication();
 	m_imageListSetted = FALSE;
 	InitiallizeStatusListCtrl();
+	SetWindowText(_T("Operator"));
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -208,15 +213,32 @@ void COperatorDlg::OnBnClickedCmdExecute()
 }
 
 
-
-
 /**@brief	데이터 관리 버튼 클릭
  */
-void COperatorDlg::OnBnClickedDataAdmin()
+LRESULT COperatorDlg::OnOptionClick(WPARAM wParam, LPARAM lParam)
 {
-	// TODO: Add your control notification handler code here
 	CDataAdminDlg dataAdminDlg;
 	dataAdminDlg.DoModal();
+	return 0;
+}
+
+/**@brief	원격 제어 버튼 클릭
+ */
+LRESULT COperatorDlg::OnControlClick(WPARAM wParam, LPARAM lParam)
+{
+	CArray<CString> target;
+	GetSelectedIconSeatId(&target);
+	CRemoteControlDlg remoteControlDlg;
+	remoteControlDlg.m_selectedTarget.Copy(target);
+	remoteControlDlg.DoModal();
+	return 0;
+}
+
+/**@brief	메신저 버튼 클릭
+ */
+LRESULT COperatorDlg::OnMessengerClick(WPARAM wParam, LPARAM lParam)
+{
+	return 0;
 }
 
 
@@ -443,6 +465,10 @@ void COperatorDlg::DisplayDeletedSeat(CString a_seatId)
 void COperatorDlg::DisplayIconAsLogin(CString a_seatId)
 {
 	int seatNumber = GetIconIndexBySeatId(a_seatId);
+	if(seatNumber == -1)
+	{
+		return;
+	}
 	m_stateDisplayList.SetItemState( seatNumber, 0, LVIS_CUT);
 }
 
@@ -662,19 +688,66 @@ void COperatorDlg::OnSetSeat()
 	dataAdminDlg.DoModal();
 }
 
-/**@brief	컨텍스트 메뉴에서 메세지 전송 선택
+/**@brief	사이드바 클릭
  */
-void COperatorDlg::OnSendMessage()
+//void COperatorDlg::OnStnClickedSidebar()
+//{
+//	// TODO: Add your control notification handler code here
+//	AfxMessageBox(_T("abc"));
+//}
+
+/**@brief	다이얼로그 배경색 지정
+ */
+HBRUSH COperatorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
-	// TODO: Add your command handler code here
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(255,255,255));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
 }
 
-void COperatorDlg::OnBnClickedControl()
+/**@brief	다이얼로그를 클릭 했을 때.
+ */
+void COperatorDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	if(point.x > 1140 && point.x < 1190)
+	{
+		if(point.y > 10 && point.y < 30)		//종료 버튼
+		{
+			PostMessage(WM_CLOSE);
+		}
+		if(point.y > 300 && point.y < 350)		//설정 버튼
+		{
+			PostMessage(LKPLM_OPTION_CLICK);			
+		}
+		if(point.y > 380 && point.y < 430)		//조작 버튼
+		{
+			PostMessage(LKPLM_CONTROL_CLICK);
+		}
+		if(point.y > 450 && point.y < 500)		//대화 버튼
+		{
+			PostMessage(LKPLM_MESSENGER_CLICK);
+		}
+	}
+	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
+	CDialog::OnLButtonDown(nFlags, point);
+	return;
+}
+
+void COperatorDlg::OnStnClickedSidebar()
 {
 	// TODO: Add your control notification handler code here
-	CArray<CString> target;
-	GetSelectedIconSeatId(&target);
-	CRemoteControlDlg remoteControlDlg;
-	remoteControlDlg.m_selectedTarget.Copy(target);
-	remoteControlDlg.DoModal();
 }

@@ -40,4 +40,5 @@ public:
 	CEdit m_nickname;
 	CListBox m_seatList;
 	afx_msg void OnLbnSelchangeSeatlist();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };

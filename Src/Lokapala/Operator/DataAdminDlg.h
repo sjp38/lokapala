@@ -40,4 +40,6 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnTcnSelchangingDataAdminTab(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnTcnSelchangeDataAdminTab(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };

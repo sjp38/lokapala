@@ -60,10 +60,11 @@ protected:
 	afx_msg LRESULT OnNotifyMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnShowChanged(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnShowStatus(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnOptionClick(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnControlClick(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnMessengerClick(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButtontest();
-	afx_msg void OnBnClickedDataAdmin();
 	afx_msg void OnBnClickedCmdExecute();
 	CListBox m_notifyList;
 	CListBox m_connectedList;
@@ -74,6 +75,8 @@ public:
 	afx_msg void OnNMRClickStateDisplay(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnRemoteControl();
 	afx_msg void OnSetSeat();
-	afx_msg void OnSendMessage();
 	afx_msg void OnBnClickedControl();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnStnClickedSidebar();
 };

@@ -38,6 +38,7 @@ BEGIN_MESSAGE_MAP(CSeatAdminDlg, CDialog)
 	ON_BN_CLICKED(IDC_ADD, &CSeatAdminDlg::OnBnClickedAdd)
 	ON_BN_CLICKED(IDC_DELETE, &CSeatAdminDlg::OnBnClickedDelete)
 	ON_LBN_SELCHANGE(IDC_SEATLIST, &CSeatAdminDlg::OnLbnSelchangeSeatlist)
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -187,4 +188,26 @@ void CSeatAdminDlg::OnLbnSelchangeSeatlist()
 	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
 	CSeatDataDTO *seat = seatData->GetSeatById(seatId);
 	SetInputVariables(seat);
+}
+
+/**@brief	다이얼로그 배경색, 스태틱 컨트롤 배경색 조정
+ */
+HBRUSH CSeatAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(244,243,238));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
 }
