@@ -56,7 +56,7 @@ public :
 	CStatusReportsDTO *GetStatusReports();
 
 	//connected
-	CConnectedHostsDTO *GetConnectedUsers();
+	CConnectedHostsDTO *GetConnectedHosts();
 
 protected :
 	CDataAdminManager(){}
@@ -76,7 +76,7 @@ private :
 	CSeatsDataDTO m_seatsData;
 	CRulesDataDTO m_rulesData;
 
-	CConnectedHostsDTO m_connectedUsers;
+	CConnectedHostsDTO m_connectedHosts;
 	CStatusReportsDTO m_statusReports;
 
 	static CDataAdminManager *m_instance;

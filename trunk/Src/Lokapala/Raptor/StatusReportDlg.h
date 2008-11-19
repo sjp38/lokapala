@@ -9,6 +9,7 @@ class CStatusReportDlg : public CDialog
 private :
 	CString GetTime();
 	void SetStatusOnControl();
+	void DisplayStatusReports();
 	DECLARE_DYNAMIC(CStatusReportDlg)
 
 public:
@@ -27,4 +28,5 @@ public:
 	virtual BOOL OnInitDialog();
 	CEdit m_commentCtrl;
 	afx_msg void OnBnClickedReport();
+	CListBox m_statusList;
 };

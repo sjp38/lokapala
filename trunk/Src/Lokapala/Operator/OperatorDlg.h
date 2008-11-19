@@ -4,21 +4,18 @@
 #pragma once
 #include "afxwin.h"
 
-#include "SeatsDisplayDTO.h"
-
-
 // COperatorDlg dialog
 class COperatorDlg : public CDialog
 {
 private :
 	bool m_imageListSetted;
 	CImageList m_stateImage;
-	CSeatsDisplayDTO m_seatsDisplayData;
 
 	void Notify(CString a_message);
 	void NotifyConnected(CString a_message);
 	void NotifyCriminal(CString a_message);
 
+	void SetImageList();
 	void InitiallizeStatusListCtrl();
 	
 	int GetIconIndexBySeatId(CString a_seatId);

@@ -72,7 +72,6 @@ void CCommunicationManager::RaptorAccepted(CString a_address)
 {
 	CConnectedHostDTO connectedHost(_T(""), a_address);
 	CCBFMediator::Instance()->HostConnected(&connectedHost);
-	//CCBFMediator::Instance()->NotifyRaptorAccepted(&a_address);
 }
 
 
@@ -83,11 +82,6 @@ void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
 	CString address = a_globalIp + _T("/") + a_localIp;
 	CConnectedHostDTO disconnectedHost(_T(""), address);
 	CCBFMediator::Instance()->HostDisconnected(&disconnectedHost);
-	//CCBFMediator::Instance()->NotifyRaptorLeaved(&address);
-
-	//해당 사용자를 로그아웃 시키기 위해 필요없는 정보를 넣어 로그인 판정을 받는다.
-	//CLoginRequestDTO loginRequestData(address, _T(""), _T(""), _T(""));
-	//CCCDecisionSD::Instance()->UserLogin(&loginRequestData);
 }
 
 
@@ -131,7 +125,7 @@ void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp,
 
 /**@brief	로그인 성공했다는 걸 알려준다.
  */
-void CCommunicationManager::NotifyAccepted(void *a_acceptedData)
+void CCommunicationManager::SendLoginAcceptedNotifyMessage(void *a_acceptedData)
 {
 	CLoginRequestDTO *acceptedData = (CLoginRequestDTO *)a_acceptedData;
 	CString destinationHostAddress = acceptedData->m_hostAddress;
@@ -154,7 +148,7 @@ void CCommunicationManager::NotifyAccepted(void *a_acceptedData)
 
 /**@brief	특정 사용자의 컴퓨터를 끈다.
  */
-void CCommunicationManager::ShutdownUser(void *a_argument)
+void CCommunicationManager::SendShutdownInstruction(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -176,7 +170,7 @@ void CCommunicationManager::ShutdownUser(void *a_argument)
 
 /**@brief	특정 사용자의 컴퓨터를 재부팅 시킨다.
  */
-void CCommunicationManager::RebootUser(void *a_argument)
+void CCommunicationManager::SendRebootInstruction(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -198,7 +192,7 @@ void CCommunicationManager::RebootUser(void *a_argument)
 
 /**@brief	특정 사용자를 로그아웃시킨다.
  */
-void CCommunicationManager::LogoutUser(void *a_argument)
+void CCommunicationManager::SendBanUserInstruction(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -220,7 +214,7 @@ void CCommunicationManager::LogoutUser(void *a_argument)
 
 /**@brief	특정 사용자에게 특정 프로세스를 실행시킨다.
  */
-void CCommunicationManager::ExecuteUser(void *a_argument)
+void CCommunicationManager::SendExecuteProcessInstruction(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -240,7 +234,7 @@ void CCommunicationManager::ExecuteUser(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-void CCommunicationManager::KillUser(void *a_argument)
+void CCommunicationManager::SendKillProcessInstruction(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -263,7 +257,7 @@ void CCommunicationManager::KillUser(void *a_argument)
 
 /**@brief	특정 사용자의 실행중인 모든 프로세스를 종료시킨다.
  */
-void CCommunicationManager::GenocideUser(void *a_argument)
+void CCommunicationManager::SendGenocideProcessInstruction(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -285,7 +279,7 @@ void CCommunicationManager::GenocideUser(void *a_argument)
 
 /**@brief	특정 사용자에게 경고 메세지를 띄운다.
  */
-void CCommunicationManager::WarnUser(void *a_argument)
+void CCommunicationManager::SendWarningMessage(void *a_argument)
 {
 	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
 	CString targetHostAddress = argument->m_targetHostAddress;
@@ -303,6 +297,31 @@ void CCommunicationManager::WarnUser(void *a_argument)
 	const char *packet = printer.CStr();
 	
 	SendTextMessageTo(targetHostAddress, A2W(packet));
+}
+
+
+/**@brief	특정 사용자에게 상태 보고를 날린다.
+ */
+void CCommunicationManager::SendStatusReport(void *a_statusReport)
+{
+	CStatusReportDTO *statusReport = (CStatusReportDTO *)a_statusReport;
+
+	USES_CONVERSION;
+	TiXmlDocument doc;
+
+	TiXmlElement *root = new TiXmlElement("Packet");
+	doc.LinkEndChild(root);
+	root->SetAttribute("Header", STATUS_CHANGED);
+	root->SetAttribute("state", statusReport->m_state);
+	root->SetAttribute("date", W2A(statusReport->m_date));
+	root->SetAttribute("comment", W2A(statusReport->m_comment));
+
+	TiXmlPrinter printer;
+	printer.SetStreamPrinting();
+	doc.Accept(&printer);
+	const char *packet =	printer.CStr();
+
+	SendTextMessageTo(statusReport->m_hostAddress, A2W(packet));
 }
 
 

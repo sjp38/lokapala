@@ -8,6 +8,9 @@
 // CRaptorDlg dialog
 class CRaptorDlg : public CDialog
 {
+private :
+	void Notify(CString a_message);
+
 // Construction
 public:
 	CRaptorDlg(CWnd* pParent = NULL);	// standard constructor
@@ -40,5 +43,7 @@ public:
 	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 	afx_msg void OnBnClickedSend();
 	afx_msg void OnBnClickedStatusReport();
+	afx_msg LRESULT OnStatusChanged(WPARAM wParam, LPARAM lParam);
 	CEdit m_input;
+	CListBox m_notifyList;
 };

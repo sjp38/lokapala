@@ -389,10 +389,6 @@
 					RelativePath=".\CBFMediator.cpp"
 					>
 				</File>
-				<File
-					RelativePath=".\SeatsDisplayDTO.cpp"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="Dialog"
@@ -665,10 +661,6 @@
 				</File>
 				<File
 					RelativePath=".\DisplayDTO.h"
-					>
-				</File>
-				<File
-					RelativePath=".\SeatsDisplayDTO.h"
 					>
 				</File>
 			</Filter>

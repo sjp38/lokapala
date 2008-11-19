@@ -24,6 +24,7 @@ public :
 	void AddSeat(CSeatDataDTO *a_seat);
 	void DeleteSeat(CString *a_seatId);
 	CSeatDataDTO *GetSeatById(CString a_userId);
+	CString GetSeatIdByAxis(int a_x, int a_y);
 	CString GetSeatNicknameByAxis(int a_x, int a_y);
 
 

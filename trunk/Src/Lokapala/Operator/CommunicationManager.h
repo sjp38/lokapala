@@ -37,14 +37,15 @@ public :
 	void NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp);	
 
 	//Operator -> Raptor
-	void NotifyAccepted(void *a_acceptedData);
-	void ShutdownUser(void *a_argument);
-	void RebootUser(void *a_argument);
-	void LogoutUser(void *a_argument);
-	void ExecuteUser(void *a_argument);
-	void KillUser(void *a_argument);
-	void GenocideUser(void *a_argument);
-	void WarnUser(void *a_argument);
+	void SendLoginAcceptedNotifyMessage(void *a_acceptedData);
+	void SendShutdownInstruction(void *a_argument);
+	void SendRebootInstruction(void *a_argument);
+	void SendBanUserInstruction(void *a_argument);
+	void SendExecuteProcessInstruction(void *a_argument);
+	void SendKillProcessInstruction(void *a_argument);
+	void SendGenocideProcessInstruction(void *a_argument);
+	void SendWarningMessage(void *a_argument);
+	void SendStatusReport(void *a_statusReport);
 
 protected :
 	CCommunicationManager(){}

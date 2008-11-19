@@ -52,7 +52,7 @@ public :
 	virtual void *GetStatusReports();
 
 	//connected users	
-	virtual void *GetConnectedUsers();
+	virtual void *GetConnectedHosts();
 
 	void Read();
 protected :

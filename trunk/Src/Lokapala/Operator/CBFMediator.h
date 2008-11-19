@@ -48,19 +48,28 @@ public :
 	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);
+	void ShutdownHost(void *a_argument);
+	void RebootHost(void *a_argument);
+	void BanUser(void *a_argument);
+	void ExecuteHostProcess(void *a_argument);
+	void KillHostProcess(void *a_argument);
+	void GenocideHostProcess(void *a_argument);
+	void WarnHost(void *a_argument);
+	void SubmitStatusReportToHost(void *a_statusReport);
 
 	//CCM
 	void BeginCommunication();
 	void BroadcastTextMessage(CString a_message);
 	void SendTextMessageTo(CString a_targetAddress, CString a_message);
-	void NotifyAccepted(void *a_acceptedData);	//로그인 허용
-	void ShutdownUser(void *a_argument);
-	void RebootUser(void *a_argument);
-	void LogoutUser(void *a_argument);
-	void ExecuteUser(void *a_argument);
-	void KillUser(void *a_argument);
-	void GenocideUser(void *a_argument);
-	void WarnUser(void *a_argument);
+	void SendLoginAcceptedNotifyMessage(void *a_acceptedData);	//로그인 허용
+	void SendShutdownInstruction(void *a_argument);
+	void SendRebootInstruction(void *a_argument);
+	void SendBanUserInstruction(void *a_argument);
+	void SendExecuteProcessInstruction(void *a_argument);
+	void SendKillProcessInstruction(void *a_argument);
+	void SendGenocideProcessInstruction(void *a_argument);
+	void SendWarningMessage(void *a_argument);
+	void SendStatusReport(void *a_statusReport);
 
 
 	//DAM
@@ -82,7 +91,7 @@ public :
 
 	void *GetStatusReports();
 
-	void *GetConnectedUsers();
+	void *GetConnectedHosts();
 
 
 	//MSM

@@ -27,6 +27,7 @@ void CStatusReportDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATUS, m_statusCtrl);
 	DDX_Control(pDX, IDC_COMMENT, m_commentCtrl);
+	DDX_Control(pDX, IDC_STATUS_LIST, m_statusList);
 }
 
 
@@ -43,6 +44,7 @@ BOOL CStatusReportDlg::OnInitDialog()
 
 	// TODO:  Add extra initialization here
 	SetStatusOnControl();
+	DisplayStatusReports();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -86,4 +88,37 @@ void CStatusReportDlg::OnBnClickedReport()
 	statusReports->AddReport(&report);
 
 	CCBFMediator::Instance()->ReportStatus(&report);
+	DisplayStatusReports();
+}
+
+
+/**@brief	리스트박스에 현재 상태를 보여준다.
+ */
+void CStatusReportDlg::DisplayStatusReports()
+{
+	m_statusList.ResetContent();
+	CStatusReportsDTO *statusReportsData = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+	CStatusReportDTOArray statusReports;
+	statusReportsData->GetReportFrom(_T(""), &statusReports);
+	for(int i=0; i<statusReports.GetCount(); i++)
+	{
+		CStatusReportDTO statusReport = statusReports[i];
+		CString state;
+		switch(statusReport.m_state)
+		{
+		case HW_DEFECT :
+			state = _T("HW_DEFECT");
+			break;
+		case SW_DEFECT :
+			state = _T("SW_DEFECT");
+			break;
+		case REPAIRED :
+			state = _T("REPAIRED");
+			break;
+		case VERIFIED :
+			state = _T("VERIFIED");
+			break;
+		}
+		m_statusList.AddString( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);	
+	}
 }

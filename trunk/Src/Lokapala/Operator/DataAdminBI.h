@@ -69,7 +69,7 @@ public :
 	/**@brief	현재 접속된 전체 사용자 정보를 얻는다.
 	 *			void 포인터로 캐스팅 되어 전달되므로 최종 클라이언트 코드에서만 실제 좌석 정보체 구조를 알면 된다.
 	 */
-	virtual void *GetConnectedUsers() = 0;
+	virtual void *GetConnectedHosts() = 0;
 
 
 	virtual void Read()=0;

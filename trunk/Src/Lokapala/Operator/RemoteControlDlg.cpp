@@ -7,6 +7,7 @@
 
 #include "ConnectedHostsDTO.h"
 #include "ControlActionDTO.h"
+#include "StatusReportsDTO.h"
 
 
 // CRemoteControlDlg dialog
@@ -28,6 +29,7 @@ void CRemoteControlDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_TARGET, m_targetList);
 	DDX_Control(pDX, IDC_ARGUMENT, m_argumentInput);
+	DDX_Control(pDX, IDC_STATUS, m_statusInput);
 }
 
 
@@ -40,8 +42,20 @@ BEGIN_MESSAGE_MAP(CRemoteControlDlg, CDialog)
 	ON_BN_CLICKED(IDC_LOGOUT, &CRemoteControlDlg::OnBnClickedLogout)
 	ON_WM_CTLCOLOR()
 	ON_WM_LBUTTONDOWN()
+	ON_BN_CLICKED(IDC_STATUS_REPORT, &CRemoteControlDlg::OnBnClickedStatusReport)
 END_MESSAGE_MAP()
 
+
+/**@brief	선택되어진 목적 주소를 얻어 온다.
+ * @param	a_selectedIndex	이곳에 선택된 주소의 리스트박스에서의 인덱스들을 넣어 준다.
+ */
+void CRemoteControlDlg::GetSelectedTarget(CArray<int> *a_selectedIndex)
+{
+	int selectedCount = m_targetList.GetSelCount();
+	a_selectedIndex->SetSize(selectedCount);
+	a_selectedIndex->SetSize(selectedCount);
+	m_targetList.GetSelItems(selectedCount, a_selectedIndex->GetData());
+}
 
 // CRemoteControlDlg message handlers
 /**@brief	특정 프로세스 실행
@@ -49,17 +63,15 @@ END_MESSAGE_MAP()
 void CRemoteControlDlg::OnBnClickedExecuteProcess()
 {
 	// TODO: Add your control notification handler code here
-	int selectedCount = m_targetList.GetSelCount();
-	CArray<int,int> selectedIndex;
-	selectedIndex.SetSize(selectedCount);
-	m_targetList.GetSelItems(selectedCount, selectedIndex.GetData());
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
 
 	for(int i=0; i<selectedIndex.GetCount(); i++)
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->ExecuteUser(&action);
+		CCBFMediator::Instance()->SendExecuteProcessInstruction(&action);
 	}
 }
 
@@ -68,17 +80,15 @@ void CRemoteControlDlg::OnBnClickedExecuteProcess()
 void CRemoteControlDlg::OnBnClickedKillProcess()
 {
 	// TODO: Add your control notification handler code here
-	int selectedCount = m_targetList.GetSelCount();
-	CArray<int,int> selectedIndex;
-	selectedIndex.SetSize(selectedCount);
-	m_targetList.GetSelItems(selectedCount, selectedIndex.GetData());
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
 
 	for(int i=0; i<selectedIndex.GetCount(); i++)
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->KillUser(&action);
+		CCBFMediator::Instance()->SendKillProcessInstruction(&action);
 	}
 }
 
@@ -87,17 +97,15 @@ void CRemoteControlDlg::OnBnClickedKillProcess()
 void CRemoteControlDlg::OnBnClickedGenocideProcesses()
 {
 	// TODO: Add your control notification handler code here
-	int selectedCount = m_targetList.GetSelCount();
-	CArray<int,int> selectedIndex;
-	selectedIndex.SetSize(selectedCount);
-	m_targetList.GetSelItems(selectedCount, selectedIndex.GetData());
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
 
 	for(int i=0; i<selectedIndex.GetCount(); i++)
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->GenocideUser(&action);
+		CCBFMediator::Instance()->SendGenocideProcessInstruction(&action);
 	}
 }
 
@@ -106,17 +114,15 @@ void CRemoteControlDlg::OnBnClickedGenocideProcesses()
 void CRemoteControlDlg::OnBnClickedShutdown()
 {
 	// TODO: Add your control notification handler code here
-	int selectedCount = m_targetList.GetSelCount();
-	CArray<int,int> selectedIndex;
-	selectedIndex.SetSize(selectedCount);
-	m_targetList.GetSelItems(selectedCount, selectedIndex.GetData());
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
 
 	for(int i=0; i<selectedIndex.GetCount(); i++)
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->ShutdownUser(&action);
+		CCBFMediator::Instance()->SendShutdownInstruction(&action);
 	}
 }
 
@@ -125,17 +131,15 @@ void CRemoteControlDlg::OnBnClickedShutdown()
 void CRemoteControlDlg::OnBnClickedReboot()
 {
 	// TODO: Add your control notification handler code here
-	int selectedCount = m_targetList.GetSelCount();
-	CArray<int,int> selectedIndex;
-	selectedIndex.SetSize(selectedCount);
-	m_targetList.GetSelItems(selectedCount, selectedIndex.GetData());
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
 
 	for(int i=0; i<selectedIndex.GetCount(); i++)
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->RebootUser(&action);
+		CCBFMediator::Instance()->SendRebootInstruction(&action);
 	}
 }
 
@@ -144,17 +148,52 @@ void CRemoteControlDlg::OnBnClickedReboot()
 void CRemoteControlDlg::OnBnClickedLogout()
 {
 	// TODO: Add your control notification handler code here
-	int selectedCount = m_targetList.GetSelCount();
-	CArray<int,int> selectedIndex;
-	selectedIndex.SetSize(selectedCount);
-	m_targetList.GetSelItems(selectedCount, selectedIndex.GetData());
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
 
 	for(int i=0; i<selectedIndex.GetCount(); i++)
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->LogoutUser(&action);
+		CCBFMediator::Instance()->SendBanUserInstruction(&action);
+	}
+}
+
+/**@brief	현재 시각을 YYYY.MM.DD/HH:MM:SS 포맷으로 반환한다.
+ */
+CString CRemoteControlDlg::GetTime()
+{
+	CTime nowTime = CTime::GetCurrentTime();
+	CString nowTimeText;
+	nowTimeText.Format(_T("%04d.%02d.%02d/%02d:%02d:%02d"), 
+		nowTime.GetYear(), nowTime.GetMonth(), nowTime.GetDay(), nowTime.GetHour(), nowTime.GetMinute(), nowTime.GetSecond());
+
+	return nowTimeText;
+}
+
+/**@brief	스테이터스 보고
+ */
+void CRemoteControlDlg::OnBnClickedStatusReport()
+{
+	// TODO: Add your control notification handler code here
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
+
+	for(int i=0; i<selectedIndex.GetCount(); i++)
+	{
+		CString targetAddress;
+		m_targetList.GetText(selectedIndex[i], targetAddress);
+		CString comment;
+		m_argumentInput.GetWindowTextW(comment);
+
+		enum State state = (enum State)m_statusInput.GetCurSel();
+		CString date = GetTime();
+
+		CStatusReportDTO report(targetAddress, state, date, comment);
+		CStatusReportsDTO *statusReportsData = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+		statusReportsData->AddReport(&report);
+		CCBFMediator::Instance()->SubmitStatusReportToHost(&report);
 	}
 }
 
@@ -165,7 +204,7 @@ BOOL CRemoteControlDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	// TODO:  Add extra initialization here
-	CConnectedHostsDTO *connectedHostsData = (CConnectedHostsDTO *)CCBFMediator::Instance()->GetConnectedUsers();
+	CConnectedHostsDTO *connectedHostsData = (CConnectedHostsDTO *)CCBFMediator::Instance()->GetConnectedHosts();
 
 	for(int i=0; i<connectedHostsData->m_connected.GetCount(); i++)
 	{
@@ -178,8 +217,20 @@ BOOL CRemoteControlDlg::OnInitDialog()
 		m_targetList.SetSel(selected);
 	}
 
+	SetStatusOnControl();
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
+}
+
+/**@brief	스테이터스 드롭다운 박스에 선택할 상태를 넣는다.
+ */
+void CRemoteControlDlg::SetStatusOnControl()
+{
+	m_statusInput.AddString(_T("H/W defect"));
+	m_statusInput.AddString(_T("S/W defect"));
+	m_statusInput.AddString(_T("Repaired"));
+	m_statusInput.AddString(_T("Verified"));
 }
 
 /**@brief	다이얼로그 배경색, 스태틱 컨트롤 배경색 조정

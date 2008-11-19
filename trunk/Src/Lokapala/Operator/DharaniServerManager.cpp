@@ -73,14 +73,12 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 
 		hClientSocket = accept(hListenSocket, (SOCKADDR *)&clientAddress, &addrLen);
 
-		//클라이언트의 로컬 ip 정보(private ip일 수 있다)를 받고 연결을 알린다.
+		//클라이언트의 로컬 ip 정보(private ip일 수 있다)를 받는다.
 		in_addr clientLocalIp;
-		recv(hClientSocket, (char *)((void *)&clientLocalIp), sizeof(in_addr), 0);
-		CDharaniExternSD::Instance()->NotifyAccepted(&clientAddress.sin_addr, (in_addr *)&clientLocalIp);
+		recv(hClientSocket, (char *)((void *)&clientLocalIp), sizeof(in_addr), 0);		
 
 		//암호화 키 생성
 		int passwd = rand();
-		//itoa(randno, passwd, 16);
 		//암호화 키 전송
 		WSABUF wsaBuf;
 		wsaBuf.buf = (char *)&passwd;
@@ -110,6 +108,8 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		DWORD RecvBytes;
 
 		WSARecv(socketData->descriptor, &(ioData->wsaBuf), 1, &RecvBytes, &Flags, &(ioData->overlapped), NULL);
+
+		CDharaniExternSD::Instance()->NotifyAccepted(&clientAddress.sin_addr, (in_addr *)&clientLocalIp);
 	}
 }
 

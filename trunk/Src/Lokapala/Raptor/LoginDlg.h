@@ -36,5 +36,6 @@ public:
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnDestroy();
+	afx_msg LRESULT OnStatusChanged(WPARAM wParam, LPARAM lParam);
 	CListBox m_statusList;
 };

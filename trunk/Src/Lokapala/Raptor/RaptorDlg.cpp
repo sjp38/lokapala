@@ -7,6 +7,8 @@
 
 #include "StatusReportDlg.h"
 
+#include "StatusReportsDTO.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -58,6 +60,7 @@ void CRaptorDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_INPUT, m_input);
+	DDX_Control(pDX, IDC_NOTIFY_LIST, m_notifyList);
 }
 
 BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
@@ -74,6 +77,7 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_WM_COPYDATA()
 	ON_BN_CLICKED(IDC_SEND, &CRaptorDlg::OnBnClickedSend)
 	ON_BN_CLICKED(IDC_STATUS_REPORT, &CRaptorDlg::OnBnClickedStatusReport)
+	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CRaptorDlg::OnStatusChanged)
 END_MESSAGE_MAP()
 
 
@@ -227,6 +231,7 @@ void CRaptorDlg::OnClose()
 	// TODO: Add your message handler code here and/or call default
 	if(CCBFMediator::Instance()->GetNeverDieState())
 	{
+		CCBFMediator::Instance()->CloseConnection();
 		WCHAR *selfPath = (WCHAR *)malloc(sizeof(WCHAR)*MAX_PATH);
 		GetModuleFileName(NULL,selfPath,MAX_PATH);
 		ShellExecute(NULL, _T("open"), selfPath, NULL, NULL, SW_SHOWNORMAL);
@@ -280,4 +285,52 @@ void CRaptorDlg::OnBnClickedStatusReport()
 	// TODO: Add your control notification handler code here
 	CStatusReportDlg statusReportDlg;
 	statusReportDlg.DoModal();
+}
+
+
+/**@brief	상태 변화 보고를 오퍼레이터로부터 받았을 때.
+*/
+LRESULT CRaptorDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
+{
+	CStatusReportDTO statusReport = *(CStatusReportDTO *)wParam;
+
+	CString state;
+	switch(statusReport.m_state)
+	{
+	case HW_DEFECT :
+		state = _T("HW_DEFECT");
+		break;
+	case SW_DEFECT :
+		state = _T("SW_DEFECT");
+		break;
+	case REPAIRED :
+		state = _T("REPAIRED");
+		break;
+	case VERIFIED :
+		state = _T("VERIFIED");
+		break;
+	}
+	Notify( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);	
+	return 0;
+}
+
+
+/**@brief	메인 다이얼로그를 통해 메세지를 뿌린다.
+ */
+void CRaptorDlg::Notify(CString a_message)
+{
+	m_notifyList.AddString(a_message);
+
+	static int maxSize;
+	CDC* pDc = m_notifyList.GetDC();
+	int messageSize = (pDc->GetTextExtent(a_message)).cx;
+
+	if( maxSize < messageSize )
+	{
+		maxSize = messageSize;
+		m_notifyList.SetHorizontalExtent(maxSize);
+		m_notifyList.ReleaseDC(pDc);		
+	}
+
+	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);
 }

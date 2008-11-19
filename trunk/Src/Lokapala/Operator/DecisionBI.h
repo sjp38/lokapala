@@ -26,6 +26,22 @@ public :
 	virtual void JudgeUserExecutedProcess(void *a_executedProcessData) = 0;
 	/**@brief	새로운 고장 상태 보고에 대한 처리	*/
 	virtual void PresentStatusReport(void *a_statusReportData) = 0;
+	/**@brief	특정 호스트의 컴퓨터를 종료시킨다.	*/
+	virtual void ShutdownHost(void *a_argument) = 0;
+	/**@brief	특정 호스트의 컴퓨터를 리부팅시킨다.	*/
+	virtual void RebootHost(void *a_argument) = 0;
+	/**@brief	특정 사용자를 강제로 로그아웃 시킨다.	*/
+	virtual void BanUser(void *a_argument) = 0;
+	/**@brief	특정 호스트의 특정 프로세스를 실행시킨다.	*/
+	virtual void ExecuteHostProcess(void *a_argument) = 0;
+	/**@brief	특정 호스트의 특정 프로세스를 종료시킨다.	*/
+	virtual void KillHostProcess(void *a_argument) = 0;
+	/**@brief	특정 호스트의 모든 프로세스를 실행시킨다.	*/
+	virtual void GenocideHostProcess(void *a_argument) = 0;
+	/**@brief	특정 호스트에게 경고를 한다.	*/
+	virtual void WarnHost(void *a_argument) = 0;
+	/**@brief	특정 호스트에게 상태 보고를 한다	*/
+	virtual void SubmitStatusReportToHost(void *a_statusReport) = 0;
 };
 
 #endif

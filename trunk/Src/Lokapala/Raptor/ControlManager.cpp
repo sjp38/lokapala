@@ -16,7 +16,9 @@ CControlManager::CControlManager()
 	int screenx = GetSystemMetrics(SM_CXSCREEN);
 	int screeny = GetSystemMetrics(SM_CYSCREEN);
 	m_loginDlg->MoveWindow(0,0,screenx, screeny);
+	
 	//::SetWindowPos(m_loginDlg->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_SHOWWINDOW);	//윈도우를 최상위로 위치시킨다.
+	CCBFMediator::Instance()->SetLoginDlg(m_loginDlg);
 }
 
 /**@brief	로그인 윈도우를 화면 최상단에 화면 크기로 보이게 한다.

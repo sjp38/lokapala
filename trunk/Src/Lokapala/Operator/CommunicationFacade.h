@@ -32,14 +32,15 @@ public :
 	virtual void InitiallizeAsServer();
 	virtual void SendTextMessageTo(CString a_targetAddress, CString a_message);
 	virtual void BroadcastTextMessage(CString a_message);
-	virtual void NotifyAccepted(void *a_acceptedData);
-	virtual void ShutdownUser(void *a_argument);
-	virtual void RebootUser(void *a_argument);
-	virtual void LogoutUser(void *a_argument);
-	virtual void ExecuteUser(void *a_argument);
-	virtual void KillUser(void *a_argument);
-	virtual void GenocideUser(void *a_argument);
-	virtual void WarnUser(void *a_argument);
+	virtual void SendLoginAcceptedNotifyMessage(void *a_acceptedData);
+	virtual void SendShutdownInstruction(void *a_argument);
+	virtual void SendRebootInstruction(void *a_argument);
+	virtual void SendBanUserInstruction(void *a_argument);
+	virtual void SendExecuteProcessInstruction(void *a_argument);
+	virtual void SendKillProcessInstruction(void *a_argument);
+	virtual void SendGenocideProcessInstruction(void *a_argument);
+	virtual void SendWarningMessage(void *a_argument);
+	virtual void SendStatusReport(void *a_statusReport);
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

@@ -13,7 +13,7 @@
 #include "LokapalaProtocol.h"
 
 #include "UserDTO.h"
-#include "StatusReportDTO.h"
+#include "StatusReportsDTO.h"
 
 #include "CCDecisionSD.h"
 
@@ -113,8 +113,8 @@ void CCommunicationManager::NotifyReceived(CString a_message)
 	case MESSAGE :
 		//CCCMessengerSD::Instnace()->ReceiveTextMessageFrom( A2W(proot->Attribute("message")) );
 		break;
-	case STATUS_CHANGE :
-		//CCCDecisionSD::Instance()->StatusReport( A2W(proot->Attribute("message")) );	//아규먼트 등의 구현이 애매하므로 이건 나중에 구현.
+	case STATUS_CHANGED :
+		StatusReportReceived(&a_message);
 		break;
 	default :
 		break;
@@ -234,4 +234,29 @@ void CCommunicationManager::SendStatusReport(void *a_statusReport)
 	const char *packet =	printer.CStr();
 
 	SendTextMessage(A2W(packet));
+}
+
+/**@brief	오퍼레이터로부터 상태 보고를 받았을 때.
+ */
+void CCommunicationManager::StatusReportReceived(CString *a_message)
+{
+	USES_CONVERSION;
+	TiXmlDocument doc;
+	doc.Parse(W2A(*a_message));
+	TiXmlElement *proot = doc.FirstChildElement("Packet");
+	if(proot == NULL)
+	{
+		return;
+	}
+	int tempState;
+	proot->Attribute("state", &tempState);
+	enum State state = (enum State)tempState;
+	const char *date = proot->Attribute("date");
+	const char *comment = proot->Attribute("comment");
+
+	CStatusReportDTO statusReportData(state, A2W(date), A2W(comment));
+	CStatusReportsDTO *statusReportsData = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+	statusReportsData->AddReport(&statusReportData);
+
+	CCBFMediator::Instance()->NotifyStatusReceived(&statusReportData);
 }

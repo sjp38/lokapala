@@ -7,7 +7,7 @@
 #include "StatusReportsDTO.h"
 
 /**@brief	상황 보고 내용을 추가한다.\n
- *			만약 추가되는 상황의 상황가 VERIFIED, 즉 고장 상황 수리 완료라면 해당 주소에 대한 기존의 상황 보고는 삭제한다.
+ *			만약 추가되는 상황의 상황이 VERIFIED, 즉 고장 상황 수리 완료라면 해당 주소에 대한 기존의 상황 보고는 삭제한다.
  */
 void CStatusReportsDTO::AddReport(CStatusReportDTO *a_report)
 {
@@ -39,9 +39,6 @@ void CStatusReportsDTO::GetReportFrom(CString a_hostAddress, CStatusReportDTOArr
 {
 	for(int i=m_reports.GetCount()-1; i>=0; i--)
 	{
-		if(m_reports[i].m_hostAddress == a_hostAddress)
-		{
-			a_dest->Add(m_reports[i]);
-		}
+		a_dest->Add(m_reports[i]);
 	}
 }

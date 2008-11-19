@@ -33,7 +33,16 @@ public :
 	void HostDisconnected(void *a_hostData);
 	void JudgeLoginRequest(void *a_loginRequestData);
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
-	void PresentStatusReport(void *a_statusReportData);	
+	void PresentStatusReport(void *a_statusReportData);
+
+	void ShutdownHost(void *a_argument);
+	void RebootHost(void *a_argument);
+	void BanUser(void *a_argument);
+	void ExecuteHostProcess(void *a_argument);
+	void KillHostProcess(void *a_argument);
+	void GenocideHostProcess(void *a_argument);
+	void WarnHost(void *a_argument);
+	void SubmitStatusReportToHost(void *a_statusReport);
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
