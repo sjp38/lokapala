@@ -14,6 +14,7 @@
 
 #include "StatusReportsDTO.h"
 #include "ControlActionDTO.h"
+#include "ConnectedHostsDTO.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -265,7 +266,7 @@ void COperatorDlg::Notify(CString a_message)
 /**@brief	연결 상태 표시 창에 메세지를 띄운다.
  */
 void COperatorDlg::NotifyConnected(CString a_message)
-{
+{	
 	m_connectedList.AddString(a_message);
 
 	static int maxSize;
@@ -330,7 +331,6 @@ LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 {
 	CDisplayDTO *displayData = (CDisplayDTO *)wParam;
-	m_seatsDisplayData.AddDisplayDTO(*displayData);
 
 	UINT index = 0;
 	switch(displayData->m_displayState)
@@ -347,7 +347,7 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 		Notify(displayData->m_seatId + _T(" logout"));
 		index = m_connectedList.FindString(index, displayData->m_seatId + _T(" : login"));
 		m_connectedList.DeleteString(index);
-		NotifyConnected(displayData->m_seatId);		
+		NotifyConnected(displayData->m_seatId);
 		DisplayIconAsLogout(displayData->m_seatId);
 		break;
 
@@ -358,10 +358,11 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 
 	case DISPLAY_DISCONNECTED :
 		Notify(displayData->m_seatId + _T(" disconnected"));
-		index = m_connectedList.FindString(index, displayData->m_seatId + _T(" : login"));
-		m_connectedList.DeleteString(index);
-		index = m_connectedList.FindString(index, displayData->m_seatId);
-		m_connectedList.DeleteString(index);
+		index = 0;
+		while( (index = m_connectedList.FindString(index, displayData->m_seatId)) != LB_ERR )
+		{
+			m_connectedList.DeleteString(index);
+		}
 		break;
 	
 	case HW :
@@ -430,16 +431,12 @@ int COperatorDlg::GetIconIndexBySeatId(CString a_seatId)
 void COperatorDlg::DisplayChangedSeatSize(int a_maxX, int a_maxY)
 {	
 	InitiallizeStatusListCtrl();
-	for(int i=0; i<m_seatsDisplayData.m_displayDTOs.GetCount(); i++)
-	{
-		SendMessage(LKPLM_SHOWCHANGED, (WPARAM)&m_seatsDisplayData.m_displayDTOs[i], NULL);
-	}
 }
 
 /**@brief	새로운 좌석의 추가를 나타낸다.
  */
 void COperatorDlg::DisplayAddedSeat(CString a_seatId)
-{	
+{
 	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
 	CSeatDataDTO *seat = seatData->GetSeatById(a_seatId);
 	if(seat == NULL)
@@ -449,6 +446,22 @@ void COperatorDlg::DisplayAddedSeat(CString a_seatId)
 	int seatNumber = (seat->m_position.y - 1) * seatData->m_maxX + seat->m_position.x - 1;
 	CString seatName = seat->m_nickname + _T("(") + seat->m_hostAddress + _T(")") ;
 	m_stateDisplayList.SetItemText(seatNumber, 0, seatName.GetBuffer());
+
+	CConnectedHostsDTO *connectedHostsData = (CConnectedHostsDTO *)CCBFMediator::Instance()->GetConnectedHosts();
+	CStatusReportsDTO *statusReportsData = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+
+	CConnectedHostDTO *connectedHost = (CConnectedHostDTO *)connectedHostsData->GetConnected(&a_seatId);
+	CStatusReportDTOArray statusReportArray;
+	statusReportsData->GetReportFrom(a_seatId, &statusReportArray);
+	
+	if(connectedHost != NULL && connectedHost->m_userId != _T(""))
+	{
+		DisplayIconAsLogin(a_seatId);
+	}
+	if(statusReportArray.GetCount() != 0 && statusReportArray[statusReportArray.GetCount()-1].m_state != VERIFIED)
+	{
+		DisplayIconAsAbnormal(a_seatId);
+	}
 }
 
 /**@brief	새로운 좌석의 삭제를 나타낸다.
@@ -456,7 +469,9 @@ void COperatorDlg::DisplayAddedSeat(CString a_seatId)
 void COperatorDlg::DisplayDeletedSeat(CString a_seatId)
 {
 	int seatNumber = GetIconIndexBySeatId(a_seatId);
-	m_stateDisplayList.SetItemText(seatNumber, 0, _T(""));
+	m_stateDisplayList.SetItemText(seatNumber, 0, _T(""));				//이름 바꾸고
+	m_stateDisplayList.SetItemState( seatNumber, LVIS_CUT, LVIS_CUT);	//로그아웃 시키고
+	DisplayIconAsNormal(a_seatId);		//정상 상태로 바꾼다.
 }
 
 
@@ -532,11 +547,9 @@ void COperatorDlg::DisplayIconAsAttention(CString a_seatId)
 }
 
 
-
-
-/**@brief	상태 표시 리스트 컨트롤을 초기화 한다.
+/**@brief	리스트 컨트롤에 이미지 리스트를 세팅한다.
  */
-void COperatorDlg::InitiallizeStatusListCtrl()
+void COperatorDlg::SetImageList()
 {
 	if(m_imageListSetted == FALSE)
 	{
@@ -551,7 +564,13 @@ void COperatorDlg::InitiallizeStatusListCtrl()
 
 		m_stateDisplayList.SetImageList(&m_stateImage, LVSIL_NORMAL);
 	}
-	
+}
+
+/**@brief	상태 표시 리스트 컨트롤을 초기화 한다.
+ */
+void COperatorDlg::InitiallizeStatusListCtrl()
+{
+	SetImageList();	
 
 	CSeatsDataDTO *seatData = (CSeatsDataDTO *)CCBFMediator::Instance()->GetSeats();
 	int maxX = seatData->m_maxX;
@@ -572,6 +591,13 @@ void COperatorDlg::InitiallizeStatusListCtrl()
 
 			m_stateDisplayList.InsertItem(&item);			
 			m_stateDisplayList.SetItemPosition(i*maxX + j, CPoint(j*84, i*84));
+
+
+			CString seatId = seatData->GetSeatIdByAxis(j+1, i+1);
+			if( seatId != _T("") )
+			{
+				DisplayAddedSeat(seatId);
+			}			
 		}
 	}
 }
@@ -660,6 +686,10 @@ void COperatorDlg::GetSelectedIconSeatId(CArray<CString> *a_target)
 		CString seatId = m_stateDisplayList.GetItemText(iItem, 0);
 		int tokenIndex = 0;
 		seatId.Tokenize(_T("( )"), tokenIndex);
+		if(tokenIndex == -1)
+		{
+			break;
+		}
 		seatId = seatId.Tokenize(_T("( )"), tokenIndex);
 		a_target->Add(seatId);
 

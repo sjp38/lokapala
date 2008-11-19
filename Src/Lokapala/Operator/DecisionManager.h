@@ -33,7 +33,14 @@ public :
 	void JudgeUserExecutedProcess(void *a_executedProcessData);
 	void PresentStatusReport(void *a_statusReportData);
 
-	void LogoutUser(CString a_hostAddress);	
+	void ShutdownHost(void *a_argument);
+	void RebootHost(void *a_argument);
+	void BanUser(void *a_argument);
+	void ExecuteHostProcess(void *a_argument);
+	void KillHostProcess(void *a_argument);
+	void GenocideHostProcess(void *a_argument);
+	void WarnHost(void *a_argument);
+	void SubmitStatusReportToHost(void *a_statusReport);
 
 protected :
 	CDecisionManager(){}

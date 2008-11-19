@@ -42,6 +42,7 @@ protected :
 
 private :
 	void LoginAccepted(CString *a_message);
+	void StatusReportReceived(CString *a_message);
 
 	DWORD m_operatorAddress;
 	static CCommunicationManager *m_instance;

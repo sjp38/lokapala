@@ -32,6 +32,20 @@ void CConnectedHostsDTO::RemoveConnected(CString *a_key)
 	return;
 }
 
+/**@brief	연결된 목록에서 원하는 연결 사항을 얻는다.
+ * @param	a_key	찾고자 하는 연결 항목의 유저 id 또는 호스트 어드레스
+ * @return	찾은 경우, 해당 연결 사항의 포인터, 찾지 못한 경우, NULL
+ */
+void *CConnectedHostsDTO::GetConnected(CString *a_key)
+{
+	int index = FindConnected(a_key);
+	if(index == -1)
+	{
+		return NULL;
+	}
+	return &m_connected[index];
+}
+
 /**@brief	연결된 목록에서 원하는 연결 사항을 찾는다.
  * @param	a_key	찾고자 하는 연결 항목의 유저 id 또는 좌석 id.
  */

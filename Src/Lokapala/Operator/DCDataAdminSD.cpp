@@ -20,7 +20,7 @@ void *CDCDataAdminSD::GetUsersDataDTO()
  */
 void *CDCDataAdminSD::GetConnectedUsersDTO()
 {
-	return CCBFMediator::Instance()->GetConnectedUsers();
+	return CCBFMediator::Instance()->GetConnectedHosts();
 }
 
 /**@brief	DAM으로부터 규칙 정보 전체를 얻어온다.

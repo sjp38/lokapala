@@ -6,6 +6,10 @@
 
 class CRemoteControlDlg : public CDialog
 {
+private :
+	CString GetTime();
+	void SetStatusOnControl();
+	void GetSelectedTarget(CArray<int> *a_selectedIndex);
 public :
 	CArray<CString> m_selectedTarget;
 
@@ -34,4 +38,6 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	CComboBox m_statusInput;
+	afx_msg void OnBnClickedStatusReport();
 };

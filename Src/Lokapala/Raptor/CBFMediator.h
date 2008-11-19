@@ -48,6 +48,8 @@ public :
 	}
 	CDialog *GetMainDlg();
 	void SetMainDlg(CDialog *a_pDlg);
+	CDialog *GetLoginDlg();
+	void SetLoginDlg(CDialog *a_pDlg);
 
 	//DAM
 	void RegistUser(void *a_userInfo);
@@ -105,6 +107,7 @@ public :
 	//common
 	void Notify(CString *a_message);
 	void TrySuicide();
+	void NotifyStatusReceived(void *a_statusReport);
 
 protected :
 	/**@breif	생성자	*/
@@ -115,6 +118,7 @@ private :
 	/**@brief	singleton. 언제나 단 하나만 존재한다.	*/
 	static CCBFMediator *m_instance;
 	CDialog *m_mainDlg;
+	CDialog *m_loginDlg;
 };
 
 #endif

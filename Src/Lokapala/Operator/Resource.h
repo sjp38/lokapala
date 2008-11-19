@@ -51,6 +51,7 @@
 #define IDC_TARGET_SEAT                 1021
 #define IDC_TARGET_USER                 1022
 #define IDC_REACTION                    1023
+#define IDC_STATUS                      1023
 #define IDC_ARGUMENT                    1024
 #define IDC_ADD_RULE                    1025
 #define IDC_DELETE_RULE                 1026
@@ -76,6 +77,7 @@
 #define IDC_SIDEBAR                     1048
 #define IDC_REBOOT                      1049
 #define IDC_LOGOUT                      1050
+#define IDC_STATUS_REPORT               1051
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -100,9 +102,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        153
+#define _APS_NEXT_RESOURCE_VALUE        154
 #define _APS_NEXT_COMMAND_VALUE         32790
-#define _APS_NEXT_CONTROL_VALUE         1049
+#define _APS_NEXT_CONTROL_VALUE         1053
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

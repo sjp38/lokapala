@@ -45,3 +45,60 @@ void CDecisionFacade::PresentStatusReport(void *a_statusReportData)
 {
 	CDecisionManager::Instance()->PresentStatusReport(a_statusReportData);
 }
+
+
+/**@brief	특정 호스트의 컴퓨터를 종료 시킨다.
+ */
+void CDecisionFacade::ShutdownHost(void *a_argument)
+{
+	CDecisionManager::Instance()->ShutdownHost(a_argument);
+}
+
+/**@brief	특정 호스트의 컴퓨터를 리부팅 시킨다.
+ */
+void CDecisionFacade::RebootHost(void *a_argument)
+{
+	CDecisionManager::Instance()->RebootHost(a_argument);
+}
+
+/**@brief	특정 사용자를 강제로 로그아웃 시킨다.
+ */
+void CDecisionFacade::BanUser(void *a_argument)
+{
+	CDecisionManager::Instance()->BanUser(a_argument);
+}
+
+/**@brief	특정 호스트의 특정 프로세스를 실행시킨다.
+ */
+void CDecisionFacade::ExecuteHostProcess(void *a_argument)
+{
+	CDecisionManager::Instance()->ExecuteHostProcess(a_argument);
+}
+
+/**@brief	특정 호스트의 특정 프로세스를 종료 시킨다.
+ */
+void CDecisionFacade::KillHostProcess(void *a_argument)
+{
+	CDecisionManager::Instance()->KillHostProcess(a_argument);
+}
+
+/**@brief	특정 호스트의 모든 프로세스를 종료 시킨다.
+ */
+void CDecisionFacade::GenocideHostProcess(void *a_argument)
+{
+	CDecisionManager::Instance()->GenocideHostProcess(a_argument);
+}
+
+/**@brief	특정 호스트에게 경고를 날린다.
+ */
+void CDecisionFacade::WarnHost(void *a_argument)
+{
+	CDecisionManager::Instance()->WarnHost(a_argument);
+}
+
+/**@brief	특정 호스트에게 상태 보고를 날린다.
+ */
+void CDecisionFacade::SubmitStatusReportToHost(void *a_statusReport)
+{
+	CDecisionManager::Instance()->SubmitStatusReportToHost(a_statusReport);
+}

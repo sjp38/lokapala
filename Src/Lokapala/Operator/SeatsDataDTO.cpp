@@ -84,6 +84,25 @@ CSeatDataDTO *CSeatsDataDTO::GetSeatById(CString a_seatId)
 	return &(pCursor->value);
 }
 
+/**@brief	좌표로 좌석 id를 얻어와 반환한다.
+ */
+CString CSeatsDataDTO::GetSeatIdByAxis(int a_x, int a_y)
+{
+	POSITION pos = m_seats.GetStartPosition();
+	CString key;
+	CSeatDataDTO value;
+	while(pos != NULL)
+	{
+		m_seats.GetNextAssoc(pos, key, value);
+		if(value.m_position.x == a_x && value.m_position.y == a_y)
+		{
+			return value.m_seatId;
+		}
+	}
+	key = _T("");
+	return key;
+}
+
 
 /**@brief	좌표로 좌석 이름을 얻어와 반환한다.
  */

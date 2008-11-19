@@ -48,7 +48,10 @@ void CDecisionManager::ReportStatusTo(CString *a_hostAddress)
 	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
 	CStatusReportDTOArray nowReports;
 	statusReports->GetReportFrom(*a_hostAddress, &nowReports);
-	//CDCCommunicationSD::Instance()->ReportStatus();
+	for(int i=0; i<nowReports.GetCount(); i++)
+	{
+		SubmitStatusReportToHost(&nowReports[i]);
+	}
 }
 
 
@@ -69,7 +72,9 @@ void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 		|| userData->m_name != loginRequestData->m_name 
 		|| userData->m_highLevelPassword != loginRequestData->m_highLevelPassword )
 	{
-		LogoutUser(loginRequestData->m_hostAddress);
+		CControlActionDTO action;
+		action.m_targetHostAddress = loginRequestData->m_hostAddress;
+		BanUser(&action);
 		return;
 	}
 	CConnectedHostsDTO *connectedUsers = (CConnectedHostsDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
@@ -101,25 +106,25 @@ void CDecisionManager::ControlRaptor(/*void *a_executedProcess, */void *a_contro
 	switch(controlAction.m_action)
 	{
 	case SHUTDOWN :
-		CDCCommunicationSD::Instance()->ShutdownUser(&controlAction);
+		ShutdownHost(a_controlAction);		
 		break;
 	case REBOOT :
-		CDCCommunicationSD::Instance()->RebootUser(&controlAction);
+		RebootHost(a_controlAction);
 		break;
 	case LOGOUT :
-		LogoutUser(controlAction.m_targetHostAddress);		
+		BanUser(a_controlAction);
 		break;
 	case EXECUTE :
-		CDCCommunicationSD::Instance()->ExecuteUser(&controlAction);
+		ExecuteHostProcess(a_controlAction);
 		break;
 	case KILL :
-		CDCCommunicationSD::Instance()->KillUser(&controlAction);
+		KillHostProcess(a_controlAction);
 		break;
 	case GENOCIDEPROCESSES :
-		CDCCommunicationSD::Instance()->GenocideUser(&controlAction);
+		GenocideHostProcess(a_controlAction);
 		break;
 	case WARN :
-		CDCCommunicationSD::Instance()->WarnUser(&controlAction);
+		WarnHost(a_controlAction);
 		break;
 	}	
 }
@@ -175,21 +180,6 @@ void CDecisionManager::PresentStatusReport(void *a_statusReportData)
 	CCBFMediator::Instance()->NotifyRaptorStatusChange(&targetStatusReports);
 }
 
-/**@brief	유저를 강제로 로그아웃 시킨다.
- */
-void CDecisionManager::LogoutUser(CString a_hostAddress)
-{
-	RemoveFromAcceptedUser(a_hostAddress);
-	
-	CControlActionDTO controlAction;
-	controlAction.m_targetHostAddress = a_hostAddress;
-	controlAction.m_reactionArgument = _T("");	
-	CDCCommunicationSD::Instance()->LogoutUser(&controlAction);
-
-	CString address = a_hostAddress;
-	CCBFMediator::Instance()->NotifyRaptorLogout(&address);
-}
-
 /**@brief	특정 유저를 연결된 유저 목록에서 제거한다.
  */
 void CDecisionManager::RemoveFromAcceptedUser(CString a_hostAddress)
@@ -197,4 +187,71 @@ void CDecisionManager::RemoveFromAcceptedUser(CString a_hostAddress)
 	CConnectedHostsDTO *connectedUsers = (CConnectedHostsDTO *)CDCDataAdminSD::Instance()->GetConnectedUsersDTO();
 	CString seatId = a_hostAddress;
 	connectedUsers->RemoveConnected(&seatId);
+}
+
+
+/**@brief	특정 호스트의 컴퓨터를 종료시킨다.
+ */
+void CDecisionManager::ShutdownHost(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendShutdownInstruction(a_argument);
+}
+
+/**@brief	특정 호스트의 컴퓨터를 리부팅시킨다.
+ */
+void CDecisionManager::RebootHost(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendRebootInstruction(a_argument);
+}
+
+/**@brief	특정 유저를 강제로 로그아웃 시킨다.
+ */
+void CDecisionManager::BanUser(void *a_argument)
+{
+	CString hostAddress = ((CControlActionDTO *)a_argument)->m_targetHostAddress;
+	RemoveFromAcceptedUser(hostAddress);
+	
+	CDCCommunicationSD::Instance()->SendBanUserInstruction(a_argument);
+	CCBFMediator::Instance()->NotifyRaptorLogout(&hostAddress);
+}
+
+/**@brief	특정 호스트의 특정 프로세스를 실행시킨다.
+ */
+void CDecisionManager::ExecuteHostProcess(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendExecuteProcessInstruction(a_argument);
+}
+
+/**@brief	특정 호스트의 특정 프로세스를 종료 시킨다.
+ */
+void CDecisionManager::KillHostProcess(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendKillProcessInstruction(a_argument);
+}
+
+/**@brief	특정 호스트의 모든 프로세스를 종료시킨다.
+ */
+void CDecisionManager::GenocideHostProcess(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendGenocideProcessInstruction(a_argument);
+}
+
+/**@brief	특정 호스트에게 경고를 날린다.
+ */
+void CDecisionManager::WarnHost(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendWarningMessage(a_argument);
+}
+
+/**@brief	특정 호스트에게 상태 보고를 날린다.
+ */
+void CDecisionManager::SubmitStatusReportToHost(void *a_statusReport)
+{
+	CStatusReportDTO *statusReport = (CStatusReportDTO *)a_statusReport;
+	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CDCDataAdminSD::Instance()->GetStatusReportsDTO();
+	
+	CStatusReportDTOArray statusReportArray;
+	statusReports->GetReportFrom(statusReport->m_hostAddress, &statusReportArray);
+	CCBFMediator::Instance()->NotifyRaptorStatusChange(&statusReportArray);
+	CDCCommunicationSD::Instance()->SendStatusReport(a_statusReport);
 }

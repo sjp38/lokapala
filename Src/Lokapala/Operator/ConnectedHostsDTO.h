@@ -17,7 +17,8 @@ class CConnectedHostsDTO
 public :
 	CArray<CConnectedHostDTO> m_connected;
 	void RegistConnected(CConnectedHostDTO *a_connected);
-	void RemoveConnected(CString *a_connected);	
+	void RemoveConnected(CString *a_connected);
+	void *GetConnected(CString *a_key);
 
 private :
 	int FindConnected(CString *a_key);

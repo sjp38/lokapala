@@ -57,6 +57,71 @@ void CCBFMediator::PresentStatusReport(void *a_statusReportData)
 }
 
 
+/**@brief	특정 호스트의 컴퓨터를 종료시킨다.
+ */
+void CCBFMediator::ShutdownHost(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->ShutdownHost(a_argument);
+}
+
+/**@brief	특정 호스트의 컴퓨터를 리부팅 시킨다.
+ */
+void CCBFMediator::RebootHost(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->RebootHost(a_argument);
+}
+
+/**@brief	특정 유저를 강제로 로그아웃시킨다.
+ */
+void CCBFMediator::BanUser(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->BanUser(a_argument);
+}
+
+/**@brief	특정 호스트의 특정 프로세스를 실행시킨다.
+ */
+void CCBFMediator::ExecuteHostProcess(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->ExecuteHostProcess(a_argument);
+}
+
+/**@brief	특정 호스트의 특정 프로세스를 종료시킨다.
+ */
+void CCBFMediator::KillHostProcess(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->KillHostProcess(a_argument);
+}
+
+/**@brief	특정 호스트의 모든 프로세스를 종료시킨다.
+ */
+void CCBFMediator::GenocideHostProcess(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->GenocideHostProcess(a_argument);
+}
+
+/**@brief	특정 호스트에게 경고를 한다.
+ */
+void CCBFMediator::WarnHost(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->WarnHost(a_argument);
+}
+
+/**@brief	특정 호스트에게 상태 보고를 날린다.
+ */
+void CCBFMediator::SubmitStatusReportToHost(void *a_statusReport)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->SubmitStatusReportToHost(a_statusReport);
+}
+
+
 
 
 
@@ -96,64 +161,72 @@ void CCBFMediator::SendTextMessageTo(CString a_targetAddress, CString a_message)
 /**@brief	특정 주소로 로그인 허용 메세지를 전송한다.
  * @param	a_acceptedData	로그인 허용 메세지를 전송하는데 필요한 데이터의 포인터.
  */
-void CCBFMediator::NotifyAccepted(void *a_acceptedData)
+void CCBFMediator::SendLoginAcceptedNotifyMessage(void *a_acceptedData)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->NotifyAccepted(a_acceptedData);
+	_interface->SendLoginAcceptedNotifyMessage(a_acceptedData);
 }
 
 /**@brief	특정 유저 컴퓨터를 꺼버린다.
  */
-void CCBFMediator::ShutdownUser(void *a_argument)
+void CCBFMediator::SendShutdownInstruction(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->ShutdownUser(a_argument);
+	_interface->SendShutdownInstruction(a_argument);
 }
 
 /**@brief	특정 유저의 컴퓨터를 재부팅시킨다.
  */
-void CCBFMediator::RebootUser(void *a_argument)
+void CCBFMediator::SendRebootInstruction(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->RebootUser(a_argument);
+	_interface->SendRebootInstruction(a_argument);
 }
 
 /**@brief	특정 유저를 강제 로그아웃 시킨다.
  */
-void CCBFMediator::LogoutUser(void *a_argument)
+void CCBFMediator::SendBanUserInstruction(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->LogoutUser(a_argument);
+	_interface->SendBanUserInstruction(a_argument);
 }
 
 /**@brief	특정 유저에게 특정 프로세스를 실행시킨다.
  */
-void CCBFMediator::ExecuteUser(void *a_argument)
+void CCBFMediator::SendExecuteProcessInstruction(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->ExecuteUser(a_argument);
+	_interface->SendExecuteProcessInstruction(a_argument);
 }
 
-void CCBFMediator::KillUser(void *a_argument)
+void CCBFMediator::SendKillProcessInstruction(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->KillUser(a_argument);
+	_interface->SendKillProcessInstruction(a_argument);
 }
 
 /**@brief	특정 유저의 실행중인 프로세스 전부를 죽여버린다.
  */
-void CCBFMediator::GenocideUser(void *a_argument)
+void CCBFMediator::SendGenocideProcessInstruction(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->GenocideUser(a_argument);
+	_interface->SendGenocideProcessInstruction(a_argument);
 }
 
 /**@brief	특정 유저에게 경고 메세지를 띄운다.
  */
-void CCBFMediator::WarnUser(void *a_argument)
+void CCBFMediator::SendWarningMessage(void *a_argument)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
-	_interface->WarnUser(a_argument);
+	_interface->SendWarningMessage(a_argument);
+}
+
+/**@brief	특정 호스트로 고장 상태 보고를 날린다.
+ */
+void CCBFMediator::SendStatusReport(void *a_statusReport)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendStatusReport(a_statusReport);
 }
 
 
@@ -271,10 +344,10 @@ void *CCBFMediator::GetStatusReports()
 
 /**@brief	접속된 사용자 전체 정보를 얻어온다.
  */
-void *CCBFMediator::GetConnectedUsers()
+void *CCBFMediator::GetConnectedHosts()
 {
 	CDataAdminBI *_interface = CDataAdminFacade::Instance();
-	return _interface->GetConnectedUsers();
+	return _interface->GetConnectedHosts();
 }
 
 

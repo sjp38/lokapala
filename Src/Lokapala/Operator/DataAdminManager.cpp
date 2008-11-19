@@ -312,7 +312,7 @@ CStatusReportsDTO *CDataAdminManager::GetStatusReports()
 
 /**@brief	접속된 사용자 정보를 넘긴다.
  */
-CConnectedHostsDTO *CDataAdminManager::GetConnectedUsers()
+CConnectedHostsDTO *CDataAdminManager::GetConnectedHosts()
 {
-	return &m_connectedUsers;
+	return &m_connectedHosts;
 }

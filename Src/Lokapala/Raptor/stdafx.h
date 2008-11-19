@@ -56,3 +56,5 @@
 
 
 #include "CBFMediator.h"
+
+#define LKPLM_STATUS_CHANGED	(WM_USER+1)

@@ -229,6 +229,20 @@ CDialog *CCBFMediator::GetMainDlg()
 	return m_mainDlg;
 }
 
+/**@brief	로그인 다이얼로그의 포인터를 저장
+ */
+void CCBFMediator::SetLoginDlg(CDialog *a_pDlg)
+{
+	m_loginDlg = a_pDlg;
+}
+
+/**@brief	로그인 다이얼로그의 포인터를 획득
+ */
+CDialog *CCBFMediator::GetLoginDlg()
+{
+	return m_loginDlg;
+}
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -388,4 +402,13 @@ void CCBFMediator::Notify(CString *a_message)
 void CCBFMediator::TrySuicide()
 {
 	SendMessage(m_mainDlg->m_hWnd, WM_CLOSE, NULL, NULL);
+}
+
+
+/**@brief	상황 보고를 받았음을 알린다. 로그인 다이얼로그에 이를 표시한다.
+ */
+void CCBFMediator::NotifyStatusReceived(void *a_statusReport)
+{
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_STATUS_CHANGED, (WPARAM)a_statusReport, NULL);
+	SendMessage(m_loginDlg->m_hWnd, LKPLM_STATUS_CHANGED, (WPARAM)a_statusReport, NULL);
 }

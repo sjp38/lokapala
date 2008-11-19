@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialog)
 	ON_BN_CLICKED(IDC_CONNECT, &CLoginDlg::OnBnClickedConnect)
 	ON_BN_CLICKED(IDC_DISCONNECT, &CLoginDlg::OnBnClickedDisconnect)
 	ON_WM_DESTROY()
+	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CLoginDlg::OnStatusChanged)
 END_MESSAGE_MAP()
 
 
@@ -104,32 +105,7 @@ BOOL CLoginDlg::OnInitDialog()
 
 	DWORD serverIp;
 	m_operatorIPAddress.GetAddress(serverIp);
-	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
-
-	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
-	for(int i=0; i<statusReports->m_reports.GetCount(); i++)
-	{
-		CStatusReportDTO statusReport = statusReports->m_reports[i];
-		CString state;
-		switch(statusReport.m_state)
-		{
-		case HW_DEFECT :
-			state = _T("HW_DEFECT");
-			break;
-		case SW_DEFECT :
-			state = _T("SW_DEFECT");
-			break;
-		case REPAIRED :
-			state = _T("REPAIRED");
-			break;
-		case VERIFIED :
-			state = _T("VERIFIED");
-			break;
-		}
-		NotifyStatus( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);
-	}
-	
-	
+	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);	
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -187,4 +163,31 @@ void CLoginDlg::NotifyStatus(CString a_message)
 	}
 
 	m_statusList.SetCurSel(m_statusList.GetCount()-1);	
+}
+
+/**@brief	LKPLM_STATSU_CHANGED 메세지 핸들러. 상태 변경 시 호출된다.
+ */
+LRESULT CLoginDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
+{
+	CStatusReportDTO statusReport = *(CStatusReportDTO *)wParam;
+
+	CString state;
+	switch(statusReport.m_state)
+	{
+	case HW_DEFECT :
+		state = _T("HW_DEFECT");
+		break;
+	case SW_DEFECT :
+		state = _T("SW_DEFECT");
+		break;
+	case REPAIRED :
+		state = _T("REPAIRED");
+		break;
+	case VERIFIED :
+		state = _T("VERIFIED");
+		break;
+	}
+	NotifyStatus( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);
+
+	return 0;
 }
