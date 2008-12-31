@@ -19,3 +19,10 @@ void CDCDataAdminSD::RegistUserLevel(int a_level)
 {
 	CCBFMediator::Instance()->RegistUserLevel(a_level);
 }
+
+/**@brief	현재 고장 상태 정보를 파일로 저장한다.
+ */
+void CDCDataAdminSD::SaveStatusReportsToFile( CString a_fileName )
+{
+	CCBFMediator::Instance()->SaveStatusReportsToFile(a_fileName);
+}

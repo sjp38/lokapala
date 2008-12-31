@@ -29,6 +29,8 @@ public :
 
 	void RegistUser(void *a_userInfo);
 	void RegistUserLevel(int a_level);
+
+	void SaveStatusReportsToFile( CString a_fileName=_T("stateReports.cfg") );
 	
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

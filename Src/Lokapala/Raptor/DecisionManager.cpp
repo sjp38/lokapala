@@ -91,3 +91,11 @@ void CDecisionManager::ReportStatus(void *a_status)
 {
 	CDCCommunicationSD::Instance()->ReportStatus(a_status);
 }
+
+/**@brief	사용자가 프로그램을 종료 하고자 한 경우.
+ *			종료에 대한 처리는 다이얼로그에서 한다. 여기선, 현재 고장 상태(state reports)를 파일로 저장한다.
+ */
+void CDecisionManager::UserTryingToKillMe()
+{
+	CDCDataAdminSD::Instance()->SaveStatusReportsToFile();
+}

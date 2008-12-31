@@ -29,6 +29,9 @@ public :
 	void RegistUserLevel(int a_level);
 	void *GetStatusReports();
 
+	void SaveStatusReportsToFile(CString a_filePath);
+	void LoadStatusReportsFromFile(CString a_filePath);
+
 protected :
 	CDataAdminManager(){}
 	~CDataAdminManager(){}

@@ -36,6 +36,8 @@ public :
 	void ReportExecutedProcess(CString *a_executedProcess);
 	void ReportStatus(void *a_status);
 
+	void UserTryingToKillMe(void);
+
 protected :
 	CDecisionManager(){}
 	~CDecisionManager(){}

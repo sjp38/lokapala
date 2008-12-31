@@ -43,9 +43,11 @@ protected :
 	~CDharaniClientManager(){}
 
 private :
+
+	static int Receive(SOCKET a_srcSocket, void *a_target, unsigned int a_size);
 	static unsigned int WINAPI ReceiverThread(LPVOID a_serverSocket);
 	void Encrypt(char *a_plainText, char *a_cipherText);
-	void Decrypt(char *a_plainText, char *a_cipherText);
+	void Decrypt(char *a_plainText, char *a_cipherText, unsigned int a_size);
 
 	/**@brief	completion port kernel object handle	*/
 	SOCKET m_serverSocket;	//서버 소켓 디스크립터

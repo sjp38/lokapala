@@ -46,4 +46,5 @@ public:
 	afx_msg LRESULT OnStatusChanged(WPARAM wParam, LPARAM lParam);
 	CEdit m_input;
 	CListBox m_notifyList;
+	afx_msg void OnDestroy();
 };

@@ -69,18 +69,18 @@ void CAutoExecuteManager::ClearAutoExecute()
 }
 
 
-/**@brief	regedit를 사용 불가하게 만든다.
+/**@brief	regedit를 사용 가능하게 만든다.
  */
 void CAutoExecuteManager::SetRegEditAvailable()
 {
-	DWORD regeditDisable = 1;
+	DWORD regeditDisable = 0;
 	RegSetValueEx(m_hregeditEnable, _T("DisableRegistryTools"), 0, REG_DWORD, (const BYTE*)&regeditDisable, sizeof(DWORD));
 }
 
-/**@brief	regedit를 사용 가능하게 만든다.
+/**@brief	regedit를 사용 불가능하게 만든다.
  */
 void CAutoExecuteManager::SetRegEditDisable()
 {
-	DWORD regeditAvailable = 0;
+	DWORD regeditAvailable = 1;
 	RegSetValueEx(m_hregeditEnable, _T("DisableRegistryTools"), 0, REG_DWORD, (const unsigned char *)&regeditAvailable, sizeof(DWORD));
 }

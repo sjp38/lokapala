@@ -124,6 +124,7 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 	DWORD bytesTransferred;
 	PTR_SOCKET_DATA socketData;
 	PTR_IO_DATA ioData;
+	int size=0;
 
 	while(1)
 	{
@@ -138,14 +139,15 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 			free(ioData);
 			continue;
 		}
+
+		memcpy(&size, ioData->buffer, sizeof(size));
 		
-		ioData->buffer[ioData->formerReceivedBytes + bytesTransferred] = '\0';
 
 		//연속성 처리 : 데이터가 아직 다 들어오지 않았을 때
-		if( (unsigned short)ioData->buffer[0] > bytesTransferred-1)
+		if( size > bytesTransferred )
 		{
-			USES_CONVERSION;
-			AfxMessageBox(A2W(ioData->buffer));
+			/*USES_CONVERSION;
+			AfxMessageBox(A2W(ioData->buffer));*/
 			ioData->formerReceivedBytes += bytesTransferred;
 			memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 			ioData->wsaBuf.len = BUFSIZE - ioData->formerReceivedBytes;
@@ -160,8 +162,7 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 		//CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer, socketData->localIp, socketData->addr.sin_addr);	//복호화 이전. 테스트
 
 		char decrypted[BUFSIZE];
-		CDharaniServerManager::Instance()->Decrypt(socketData->passwd, ioData->buffer[0], decrypted, ioData->buffer+1);
-		decrypted[ioData->buffer[0]] = '\0';
+		CDharaniServerManager::Instance()->Decrypt(socketData->passwd, size, decrypted, ioData->buffer+sizeof(size));
 		CDharaniExternSD::Instance()->NotifyReceived(decrypted, socketData->localIp, socketData->addr.sin_addr);
 
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
@@ -209,15 +210,16 @@ void CDharaniServerManager::AnalyzeReceived(char *a_receivedMessage, SOCKET a_se
  * @param	a_message	보낼 메세지
  */
 void CDharaniServerManager::SendMessageTo(PTR_SOCKET_DATA a_receiver, char *a_message)
-{
-	char encrypted[BUFSIZE];
-	this->Encrypt(a_receiver->passwd, a_message, encrypted+1);
-	encrypted[0] = (unsigned char)strlen(a_message);
-	
+{	
+	int size = strlen(a_message)+1;	
+
+	char encrypted[BUFSIZE];	
+	this->Encrypt(a_receiver->passwd, a_message, encrypted+sizeof(size));
+	memcpy(encrypted, &size, sizeof(size));
+
 	WSABUF wsaBuf;
 	wsaBuf.buf = encrypted;
-	wsaBuf.len = strlen(a_message)*sizeof(char)+1;
-
+	wsaBuf.len = sizeof(size)+size;
 	WSASend(a_receiver->descriptor, &wsaBuf, 1, NULL, 0, NULL, NULL);
 }
 
@@ -323,5 +325,5 @@ void CDharaniServerManager::Encrypt(int a_passwd, char *a_plainText, char *a_cip
 {
 	RC4_KEY rc4Key;
 	RC4_set_key(&rc4Key,strlen((char *)&a_passwd),(unsigned char *)&a_passwd);
-	RC4(&rc4Key, strlen(a_plainText), (unsigned char *)a_plainText, (unsigned char *)a_cipherText);
+	RC4(&rc4Key, strlen(a_plainText)+1, (unsigned char *)a_plainText, (unsigned char *)a_cipherText);
 }

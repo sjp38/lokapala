@@ -40,6 +40,7 @@ public :
 	virtual void ExecuteProcessOrderReceived(void *a_processName);
 	virtual void ReportExecutedProcess(CString *a_executedProcess);
 	virtual void ReportStatus(void *a_status);
+	virtual void UserTryingToKillMe(void);
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
