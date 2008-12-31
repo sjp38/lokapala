@@ -87,3 +87,10 @@ void CDecisionFacade::ReportStatus(void *a_status)
 {
 	CDecisionManager::Instance()->ReportStatus(a_status);
 }
+
+/**@brief	사용자가 프로그램을 종료하려 할 때.
+ */
+void CDecisionFacade::UserTryingToKillMe(void)
+{
+	CDecisionManager::Instance()->UserTryingToKillMe();
+}

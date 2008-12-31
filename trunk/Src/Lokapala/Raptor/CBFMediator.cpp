@@ -37,6 +37,24 @@ void *CCBFMediator::GetStatusReports()
 	return _interface->GetStatusReports();
 }
 
+/**@brief	현재 상태 정보를 파일(xml 포맷)로 저장한다.
+ * @param	a_fileName	파일 이름.
+ */
+void CCBFMediator::SaveStatusReportsToFile(CString a_filePath)
+{
+	CDataAdminBI *_interface = CDataAdminFacade::Instance();
+	_interface->SaveStatusReportsToFile(a_filePath);
+}
+
+/**@brief	특정 파일(xml 포맷)로부터 현재 상태 정보를 불러온다.
+ * @param	a_fileName	파일 이름.
+ */
+void CCBFMediator::LoadStatusReportsFromFile(CString a_filePath)
+{
+	CDataAdminBI *_interface = CDataAdminFacade::Instance();
+	_interface->LoadStatusReportsFromFile(a_filePath);
+}
+
 
 
 
@@ -129,6 +147,14 @@ void CCBFMediator::ReportStatus(void *a_status)
 {
 	CDecisionBI *_interface = CDecisionFacade::Instance();
 	_interface->ReportStatus(a_status);
+}
+
+/**@brief	사용자가 프로그램을 종료시키려 할 때.
+ */
+void CCBFMediator::UserTryingToKillMe()
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->UserTryingToKillMe();
 }
 
 

@@ -29,3 +29,17 @@ void *CDataAdminFacade::GetStatusReports()
 {
 	return CDataAdminManager::Instance()->GetStatusReports();
 }
+
+/**@brief	현재 상황 보고 내용을 파일로 저장한다.
+ */
+void CDataAdminFacade::SaveStatusReportsToFile(CString a_filePath)
+{
+	CDataAdminManager::Instance()->SaveStatusReportsToFile(a_filePath);
+}
+
+/**@brief	파일로부터 현재 상황 보고 내용을 읽어 온다.
+ */
+void CDataAdminFacade::LoadStatusReportsFromFile(CString a_filePath)
+{
+	CDataAdminManager::Instance()->LoadStatusReportsFromFile(a_filePath);
+}

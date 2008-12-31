@@ -36,6 +36,8 @@ public :
 	virtual void ReportExecutedProcess(CString *a_executedProcess) = 0;
 	/**@brief	상황 변화를 보고한다.	*/
 	virtual void ReportStatus(void *a_status) = 0;
+
+	virtual void UserTryingToKillMe() = 0;
 };
 
 #endif

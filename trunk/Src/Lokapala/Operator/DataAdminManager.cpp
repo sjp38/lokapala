@@ -86,6 +86,29 @@ void CDataAdminManager::LoadRuleDataFrom(void *a_xmlRoot)
 	}
 }
 
+/**@brief	파일로부터 고장 상태 데이터를 읽어들인다.
+ */
+void CDataAdminManager::LoadStatusReportsFrom(void *a_xmlRoot)
+{
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
+	TiXmlElement *statusReports = root->FirstChildElement("StatusReports");
+
+	TiXmlElement *statusReport = statusReports->FirstChildElement("StatusReport");
+	USES_CONVERSION;
+	for(statusReport; statusReport; statusReport = statusReport->NextSiblingElement())
+	{
+		CString hostAddress = A2W(statusReport->Attribute("hostAddress"));
+		int state;
+		statusReport->Attribute("state", &state);		
+		CString date = A2W(statusReport->Attribute("date"));
+		CString comment = A2W(statusReport->Attribute("comment"));
+
+		CStatusReportDTO newStateReport(hostAddress, (State)state, date, comment);
+		m_statusReports.AddReport(&newStateReport);
+	}
+
+}
+
 /**@brief	파일로부터 데이터를 읽는다.
  */
 void CDataAdminManager::LoadFromFile(CString *a_filePath)
@@ -103,6 +126,8 @@ void CDataAdminManager::LoadFromFile(CString *a_filePath)
 	LoadUserDataFrom(root);
 	LoadSeatDataFrom(root);
 	LoadRuleDataFrom(root);
+
+	LoadStatusReportsFrom(root);
 }
 
 /**@brief	사용자 정보를 특정 파일에 저장한다.
@@ -195,6 +220,29 @@ void CDataAdminManager::SaveRuleDataTo(void *a_xmlRoot)
 	}
 }
 
+void CDataAdminManager::SaveStatusReportsTo(void *a_xmlRoot)
+{
+	TiXmlElement *root = (TiXmlElement *)a_xmlRoot;
+
+	TiXmlComment *comment = new TiXmlComment();
+	comment->SetValue("data for status reports");
+	root->LinkEndChild(comment);
+
+	TiXmlElement *statusReports = new TiXmlElement("StatusReports");
+	root->LinkEndChild(statusReports);
+
+	USES_CONVERSION;
+	for(int i=0; i<m_statusReports.m_reports.GetCount(); i++)
+	{
+		TiXmlElement *statusReport = new TiXmlElement("StatusReport");
+		statusReports->LinkEndChild(statusReport);
+		statusReport->SetAttribute("hostAddress", W2A(m_statusReports.m_reports[i].m_hostAddress));
+		statusReport->SetAttribute("state", m_statusReports.m_reports[i].m_state);
+		statusReport->SetAttribute("date", W2A(m_statusReports.m_reports[i].m_date));
+		statusReport->SetAttribute("comment", W2A(m_statusReports.m_reports[i].m_comment));
+	}
+}
+
 /**@file	현재 데이터를 파일로 저장한다. 일단 xml 포맷만을 지원한다.
  */
 void CDataAdminManager::SaveToFile(CString *a_filePath)
@@ -209,6 +257,8 @@ void CDataAdminManager::SaveToFile(CString *a_filePath)
 	SaveUserDataTo(root);
 	SaveSeatDataTo(root);
 	SaveRuleDataTo(root);
+
+	SaveStatusReportsTo(root);
 	
 	USES_CONVERSION;
 	doc.SaveFile(W2A(*a_filePath));

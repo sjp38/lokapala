@@ -101,11 +101,7 @@ BOOL CLoginDlg::OnInitDialog()
 		file.Read(&address, sizeof(address));
 		m_operatorIPAddress.SetAddress(address);
 		file.Close();
-	}	
-
-	DWORD serverIp;
-	m_operatorIPAddress.GetAddress(serverIp);
-	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);	
+	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE

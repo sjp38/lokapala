@@ -78,6 +78,7 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_BN_CLICKED(IDC_SEND, &CRaptorDlg::OnBnClickedSend)
 	ON_BN_CLICKED(IDC_STATUS_REPORT, &CRaptorDlg::OnBnClickedStatusReport)
 	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CRaptorDlg::OnStatusChanged)
+	ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
 
@@ -117,6 +118,15 @@ BOOL CRaptorDlg::OnInitDialog()
 	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 
 	CCBFMediator::Instance()->RestraintUser();
+
+	DWORD address;
+	CFile file;
+	if( file.Open(_T("operatorAddress.cfg"), CFile::modeRead) )
+	{		
+		file.Read(&address, sizeof(address));
+		file.Close();
+	}
+	CCBFMediator::Instance()->InitiallizeCommunication(address);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -223,23 +233,6 @@ BOOL CRaptorDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-/**@brief	WM_CLOSE 메세지 이벤트 핸들러.
- *			순순히 죽어 주되, 현재 죽어선 안된다면 자신과 같은 프로세스를 하나 더 실행하고 죽는다.
- */
-void CRaptorDlg::OnClose()
-{
-	// TODO: Add your message handler code here and/or call default
-	if(CCBFMediator::Instance()->GetNeverDieState())
-	{
-		CCBFMediator::Instance()->CloseConnection();
-		WCHAR *selfPath = (WCHAR *)malloc(sizeof(WCHAR)*MAX_PATH);
-		GetModuleFileName(NULL,selfPath,MAX_PATH);
-		ShellExecute(NULL, _T("open"), selfPath, NULL, NULL, SW_SHOWNORMAL);
-	}
-
-	CDialog::OnClose();
-}
-
 /**@brief	프로세스 감시 시작 버튼을 눌렀을 때.
  */
 void CRaptorDlg::OnStartObservation()
@@ -333,4 +326,34 @@ void CRaptorDlg::Notify(CString a_message)
 	}
 
 	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);
+}
+
+
+/**@brief	WM_CLOSE 메세지 이벤트 핸들러.
+ */
+void CRaptorDlg::OnClose()
+{
+	// TODO: Add your message handler code here and/or call default
+
+	CDialog::OnClose();
+}
+
+/**@brief	WM_DESTROY 메세지 이벤트 핸들러.
+ *			WM_CLOSE 메세지 이벤트 핸들러와 같은 일을 한다.
+ */
+void CRaptorDlg::OnDestroy()
+{
+	CCBFMediator::Instance()->UserTryingToKillMe();
+	if(CCBFMediator::Instance()->GetNeverDieState())
+	{
+		CCBFMediator::Instance()->CloseConnection();
+		WCHAR *selfPath = (WCHAR *)malloc(sizeof(WCHAR)*MAX_PATH);
+		GetModuleFileName(NULL,selfPath,MAX_PATH);
+		ShellExecute(NULL, _T("open"), selfPath, NULL, NULL, SW_SHOWNORMAL);
+	}
+
+	//CDialog::OnClose();
+	CDialog::OnDestroy();
+
+	// TODO: Add your message handler code here
 }

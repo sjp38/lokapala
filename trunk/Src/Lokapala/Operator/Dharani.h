@@ -10,7 +10,7 @@
 #include <openssl/evp.h>
 #include <openssl/rc4.h>
 
-#define BUFSIZE	256
+#define BUFSIZE	1024
 #define CONCURRENT_THREAD_NUM 10
 #define SERVER_PORT 9987
 #define MAXCLIENT 128

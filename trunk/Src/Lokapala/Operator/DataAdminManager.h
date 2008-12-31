@@ -67,10 +67,12 @@ private :
 	void LoadUserDataFrom(void *a_xmlRoot);
 	void LoadSeatDataFrom(void *a_xmlRoot);
 	void LoadRuleDataFrom(void *a_xmlRoot);
+	void LoadStatusReportsFrom(void *a_xmlRoot);
 
 	void SaveUserDataTo(void *a_xmlRoot);
 	void SaveSeatDataTo(void *a_xmlRoot);
 	void SaveRuleDataTo(void *a_xmlRoot);
+	void SaveStatusReportsTo(void *a_xmlRoot);
 
 	CUsersDataDTO m_usersData;
 	CSeatsDataDTO m_seatsData;

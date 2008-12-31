@@ -55,6 +55,8 @@ public :
 	void RegistUser(void *a_userInfo);
 	void RegistUserLevel(int a_level);
 	void *GetStatusReports();
+	void SaveStatusReportsToFile(CString a_filePath);
+	void LoadStatusReportsFromFile(CString a_filePath);
 
 	//DCM
 	void LoginRequest(void *a_userInfo);
@@ -69,6 +71,8 @@ public :
 
 	void ReportExecutedProcess(CString *a_executedProcess);	
 	void ReportStatus(void *a_status);
+
+	void UserTryingToKillMe(void);
 
 	//CCM
 	void InitiallizeCommunication(DWORD a_ServerAddress);

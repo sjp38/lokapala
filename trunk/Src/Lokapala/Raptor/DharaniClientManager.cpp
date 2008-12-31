@@ -65,6 +65,42 @@ int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	return 0;
 }
 
+/**@brief	특정 소켓으로부터 특정 크기의 데이터를 완벽하게 받아낸다. tcp 특유의 데이터 분절 문제를 해결한다.
+ * @param	a_srcSocket	데이터를 받아 올 소켓
+ * @param	a_size		받아 올 데이터의 크기
+ * @param	a_target	받아 온 데이터를 넣어 줄 포인터.
+ */
+int CDharaniClientManager::Receive(SOCKET a_srcSocket, void *a_target, unsigned int a_size)
+{
+	int totalReceived = 0;
+	while(1)
+	{
+		int receivedBytes = recv(a_srcSocket, (char *)a_target+totalReceived, a_size - totalReceived, 0);
+		if(receivedBytes == SOCKET_ERROR)
+		{
+			//AfxMessageBox(_T("receive failed!"));
+			closesocket(a_srcSocket);
+			WSACleanup();
+			return 1;
+		}			
+		if(receivedBytes == 0)
+		{
+			//AfxMessageBox(_T("server connect failed!"));
+			closesocket(a_srcSocket);
+			WSACleanup();
+			return 1;
+		}
+
+		totalReceived += receivedBytes;
+
+		if(totalReceived == a_size)
+		{
+			break;
+		}
+	}
+	return 0;
+}
+
 /**@brief	쓰레드로 돌며 소켓으로 들어오는 값을 받는다.
  */
 unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
@@ -75,42 +111,16 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 	
 	while(1)
 	{
-		int totalReceived=0;
-		while(1)
+		int size;
+		int result;
+		result = Receive(serverSocket, &size, sizeof(size));
+		if( result != 0 )
 		{
-			int receivedBytes = recv(serverSocket, buffer+totalReceived, BUFSIZE, 0);
-			if(receivedBytes == SOCKET_ERROR)
-			{
-				AfxMessageBox(_T("receive failed!"));
-				closesocket(serverSocket);
-				WSACleanup();
-				return 0;
-			}			
-			if(receivedBytes == 0)
-			{
-				AfxMessageBox(_T("server connect failed!"));
-				closesocket(serverSocket);
-				WSACleanup();
-				return 0;
-			}
-
-			buffer[receivedBytes]='\0';
-
-			char size[3];
-			_itoa_s(buffer[0],size,16);
-			CDharaniExternSD::Instance()->NotifyReceived(size);
-			CDharaniExternSD::Instance()->NotifyReceived(buffer);	//테스트용.
-
-			CDharaniClientManager::Instance()->Decrypt(decrypted, buffer+1);
-			
-			totalReceived += receivedBytes;
-			if(totalReceived == buffer[0]+1)
-			{
-				decrypted[totalReceived]='\0';
-				break;
-			}
+			break;
 		}
-		CDharaniExternSD::Instance()->NotifyReceived(decrypted);
+		result = Receive(serverSocket, buffer, size);
+		CDharaniClientManager::Instance()->Decrypt(decrypted, buffer, size);
+		CDharaniExternSD::Instance()->NotifyReceived(decrypted);		
 	}
 	return 0;
 }
@@ -128,10 +138,13 @@ void CDharaniClientManager::CloseConnection()
  */
 void CDharaniClientManager::SendTextMessage(char *a_message)
 {
+	int size = strlen(a_message)+1;	
+
 	char encrypted[BUFSIZE];
-	encrypted[0] = (unsigned char)strlen(a_message);
-	this->Encrypt(a_message, encrypted+1);
-	send(m_serverSocket, encrypted, encrypted[0]+1, 0);
+	this->Encrypt(a_message, encrypted+sizeof(size));
+	memcpy(encrypted, &size, sizeof(size));
+	
+	send(m_serverSocket, encrypted, sizeof(size)+size, 0);
 }
 
 
@@ -143,16 +156,16 @@ void CDharaniClientManager::Encrypt(char *a_plainText, char *a_cipherText)
 {
 	RC4_KEY rc4Key;
 	RC4_set_key(&rc4Key, strlen((char *)&m_passwd),(unsigned char *)&m_passwd);
-	RC4(&rc4Key, strlen(a_plainText), (unsigned char *)a_plainText, (unsigned char *)a_cipherText);
+	RC4(&rc4Key, strlen(a_plainText)+1, (unsigned char *)a_plainText, (unsigned char *)a_cipherText);
 }
 
 /**@brief	특정 문자열을 복호화 한다. RC4 알고리즘을 사용한다.
  * @param	a_plainText	복호화 된 후의 문자열
  * @param	a_cipherText	복호화 될 오리지널 암호문자열
  */
-void CDharaniClientManager::Decrypt(char *a_plainText, char *a_cipherText)
+void CDharaniClientManager::Decrypt(char *a_plainText, char *a_cipherText, unsigned int a_size)
 {
 	RC4_KEY rc4Key;
 	RC4_set_key(&rc4Key, strlen((char *)&m_passwd),(unsigned char *)&m_passwd);
-	RC4(&rc4Key, strlen(a_cipherText), (unsigned char *)a_cipherText, (unsigned char *)a_plainText);
+	RC4(&rc4Key, a_size, (unsigned char *)a_cipherText, (unsigned char *)a_plainText);
 }
