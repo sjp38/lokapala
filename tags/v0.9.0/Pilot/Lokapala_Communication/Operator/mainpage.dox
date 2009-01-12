@@ -1,0 +1,86 @@
+/** @mainpage	LOKAPALA::OPERATOR
+   @section	intro project intro
+   	- Operator는 LOKAPALA를 구성하는 중앙 제어 프로그램이다.
+ 	
+ 	- Operator가 제공하는 기능은 다음과 같다.
+		-# 상태 통지 
+		-# 데이터 설정 
+			-# 사용자 추가/삭제/수정 
+			-# 금지된 프로세스 목록 추가/삭제/수정 
+			-# 데이터 파일 세이브/로드 
+			-# 통합 로그 관리 프로그램 주소 설정 
+		-# 상태 확인 및 대처 
+			-# 상태 확인 
+			-# 해당 컴퓨터 제어 
+		-# 메신저 
+ 	
+ 	@section definition System design definition
+ 	- Operator는 CBD 방법론에 의거해 설계된다. 하나의 mediator와 5개의 component로 구성된다.\n
+ 		각각의 component는 다음과 같다.
+ 		- Data Admin Manager(DAM)
+			- Operator가 관리해야 할 모든 데이터의 관리를 담당한다.
+			- 데이터는 사용자 정보, 규칙 정보, 현재 각 Raptor의 상태 정보 등이 포함된다.
+			- 데이터는 파일 형태로 Save/Load 가능해야 한다.
+			- 데이터 파일은 XML 포맷을 지킨다.
+			- 오로지 DCM으로부터 RW 요청을 받고, Save/Load 명령을 받는다.
+
+		- Decision Manager(DCM)
+			- Raptor로부터의 보고에 대해 DAM으로부터 얻어낸 데이터에 근거해 '판단'하고 판단 결과에 걸맞는 '처리'를 한다. 사용자로부터의 UI 요청 등의 명령 또한 여기서 처리한다.
+전달 받은 보고/명령과 그에 따른 판단 및 처리 내용은 로그를 남긴다.
+			- CCM으로부터 Raptor의 보고를 받고, Mediator 로부터 사용자 명령을 받는다.
+			- 판단 및 처리를 위해 DAM으로부터 데이터를 읽고, 쓰고, Save/Load 명령을 내린다.
+			- 처리를 위해 CCM에게 메세지 전송을 명령한다.
+			- 로그를 남기기 위해 LGM를 사용한다.
+
+		- Comunnication Manager(CCM)
+			- Raptor로부터의 소켓 연결을 수락, 소켓을 관리하며 Operator와 Raptor 간의 통신을 위한 메세지 전송/수신을 책임진다.
+			- 내부적으로 Dharani 프로토콜을 이용해 전송 데이터를 암호화 하고 데이터 불연속 가능성 문제를 처리한다.
+			- 또한, LOKAPALA 자체의 명령 및 보고 문법을 직접 해독, 적절한 컴포넌트에게 수신받은 메세지를 넘긴다.
+			- DCM 또는 MSM 의 요청에 의해 메세지를 보내며 수신한 메세지의 종류를 확인(해독), DCM 또는 MSM 중 적절한 컴포넌트에게 전달한다.
+
+		- Messenger Manager(MSM)
+			- 메신저 기능을 책임진다. 특정 주소로의 메시지/파일 전송, 연결된 모든 Raptor로의 메시지/파일 방송을 담당한다.
+			- Raptor 간의 메시지/파일 전송 또한 Operator의 MSM에서 중계해 준다.
+			- 메신저의 행동은 로그를 남긴다.
+			- 사용자 감시/제어 기능과 별도로 동작하므로 DCM의 관리를 받지 않고 직접 CCM과 통신한다.
+			- 역시 독립적으로 LGM를 통해 로그를 남긴다.
+
+		- Log Manager(LGM)
+			- 로그를 남기는 기능을 책임진다. 로그 데이터는 DAM이 아닌 LGM이 관리하며, 필요에 따라 파일 형태로 Save/Load 할 수 있다.
+			- 추후 Akashic Recorder가 개발될 경우, Akashic Recorder에게 주기적으로 자신이 받아서 관리하고 있는 로그를 넘겨주게 된다.
+			- DCM과 MSM으로부터 로그 기록 요청을 받는다.
+ 	
+ 	- 보다 자세한 사항은 http://netro.ajou.ac.kr/~siva/moniwiki/wiki.php/CategoryLOKAPALA 를 참고하도록 한다.
+ 
+   @section developer 개발자 정보
+   	- siva
+ 		- 전체 시스템 설계 및 구현
+ 
+   @section more 추가정보
+   	- 본 프로젝트의 진행은 구글 코드를 연동하여 이슈 트래킹, SVN 서비스를 사용한다. 구글 코드 프로젝트 진행 홈 주소는 http://code.google.com/p/lokapala 이다.
+ */
+ 
+ 
+ /**@defgroup	GroupMediator	Mediator
+  *		Mediator.
+  */
+  
+ /**@defgroup	GroupDAM		DataAdmin Manager
+  *		Data Admin Manager Component
+  */
+  
+ /**@defgroup	GroupDCM		Decision Manager
+  *		Decision Manager Component
+  */
+  
+ /**@defgroup	GroupCCM		Comminocation Manager
+  *		Communication Manager Component
+  */
+  
+ /**@defgroup	GroupLGM		Log Manager
+  *		Log Manager Component
+  */
+  
+ /**@defgroup	GroupMSM		Messenger Manager
+  *		Messenger Manager Component
+  */
