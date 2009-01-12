@@ -16,6 +16,7 @@
 #include "StatusReportsDTO.h"
 
 #include "CCDecisionSD.h"
+#include "CCMessengerSD.h"
 
 /**@brief	소켓을 생성한 후, 오퍼레이터에게 connect 한다.
  */
@@ -72,6 +73,7 @@ void CCommunicationManager::SendTextMessage(CString a_message)
  */
 void CCommunicationManager::NotifyReceived(CString a_message)
 {
+	CCBFMediator::Instance()->Notify(&a_message);
 	USES_CONVERSION;
 	TiXmlDocument doc;
 	doc.Parse(W2A(a_message));
@@ -111,14 +113,32 @@ void CCommunicationManager::NotifyReceived(CString a_message)
 		CCCDecisionSD::Instance()->ExecuteProcess( &argument );
 		break;
 	case MESSAGE :
-		//CCCMessengerSD::Instnace()->ReceiveTextMessageFrom( A2W(proot->Attribute("message")) );
+		CCCMessengerSD::Instance()->TexeMessageReceived( A2W(proot->Attribute("message")) );
 		break;
 	case STATUS_CHANGED :
-		StatusReportReceived(&a_message);
+		ChangeStatus(&a_message);
 		break;
+	case TERMINATE_RAPTOR :
+		CCCDecisionSD::Instance()->TerminateRaptor();
 	default :
 		break;
 	}
+}
+
+
+/**@brief	서버와 연결이 성공했다.
+ */
+void CCommunicationManager::Connected()
+{
+	CCBFMediator::Instance()->Connected();
+}
+
+/**@brief	서버와의 연결이 끊어졌다.
+ */
+void CCommunicationManager::Disconnected()
+{
+	m_connected = FALSE;
+	CCBFMediator::Instance()->Disconnected();
 }
 
 
@@ -191,7 +211,7 @@ void CCommunicationManager::SendExecutedProcessReport(CString *a_executedProcess
 
 
 /**@brief	메신저의 요청에 따라 텍스트 메세지를 오퍼레이터에게 전송한다.
- *			내부적으로 SendTextMessage 메서드를 사용하는데, 서로 다른 용도임을 주의할 것.
+ * @remarks	내부적으로 SendTextMessage 메서드를 사용하는데, 서로 다른 용도임을 주의할 것.
  */
 void CCommunicationManager::SendTextMessageToOperator(CString *a_message)
 {
@@ -238,7 +258,7 @@ void CCommunicationManager::SendStatusReport(void *a_statusReport)
 
 /**@brief	오퍼레이터로부터 상태 보고를 받았을 때.
  */
-void CCommunicationManager::StatusReportReceived(CString *a_message)
+void CCommunicationManager::ChangeStatus(CString *a_message)
 {
 	USES_CONVERSION;
 	TiXmlDocument doc;
@@ -255,8 +275,6 @@ void CCommunicationManager::StatusReportReceived(CString *a_message)
 	const char *comment = proot->Attribute("comment");
 
 	CStatusReportDTO statusReportData(state, A2W(date), A2W(comment));
-	CStatusReportsDTO *statusReportsData = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
-	statusReportsData->AddReport(&statusReportData);
 
-	CCBFMediator::Instance()->NotifyStatusReceived(&statusReportData);
+	CCCDecisionSD::Instance()->StatusReportReceived(&statusReportData);	
 }

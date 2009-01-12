@@ -6,7 +6,7 @@
 #ifndef DISPLAY_DTO_H
 #define DISPLAY_DTO_H
 
-enum DisplayState {LOGIN, LOGOUT, HW, SW, HWSW, FINE, CRIMINAL, INNOCENT, SEATRESIZE, SEATADD, SEATDELETE, DISPLAY_CONNECTED, DISPLAY_DISCONNECTED};
+enum DisplayState {LOGIN, LOGOUT, HW, SW, HWSW, FINE, CRIMINAL, INNOCENT, SEATRESIZE, SEATADD, SEATDELETE, DISPLAY_CONNECTED, DISPLAY_DISCONNECTED, MESSAGE_FROM_RAPTOR_RECEIVED, MESSAGE_TO_RAPTOR_SENDED};
 
 /**@ingroup	GroupMediator
  * @class	CDisplayDTO
@@ -22,13 +22,13 @@ public :
 	enum DisplayState m_displayState;
 	CString m_argument;
 
-	CDisplayDTO(CString a_seatId, enum DisplayState a_state, CString m_argument=_T(""), int a_seatMaxX=0, int a_seatMaxY=0)
+	CDisplayDTO(CString a_seatId, enum DisplayState a_state, CString a_argument=_T(""), int a_seatMaxX=0, int a_seatMaxY=0)
 	{
 		m_seatMaxX = a_seatMaxX;
 		m_seatMaxY = a_seatMaxY;
 		m_seatId = a_seatId;
 		m_displayState = a_state;
-		m_argument = m_argument;
+		m_argument = a_argument;
 	}
 	CDisplayDTO(){};
 	~CDisplayDTO(){};

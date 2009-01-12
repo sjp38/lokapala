@@ -8,6 +8,22 @@
 
 #include "DecisionManager.h"
 
+/**@brief	오퍼레이터와 연결 되었을 때.
+ */
+void CDecisionFacade::Connected()
+{
+	CDecisionManager::Instance()->Connected();
+}
+
+
+/**@brief	오퍼레이터와 연결이 끊겼을 때.
+ */
+void CDecisionFacade::Disconnected()
+{
+	CDecisionManager::Instance()->Disconnected();
+}
+
+
 /**@brief	오퍼레이터에게 로그인 요청을 한다.	*/
 void CDecisionFacade::LoginRequest(void *a_userInfo)
 {
@@ -69,6 +85,19 @@ void CDecisionFacade::KillProcessOrderReceived(void *a_processName)
 void CDecisionFacade::ExecuteProcessOrderReceived(void *a_processName)
 {
 	CDecisionManager::Instance()->ExecuteProcessOrderReceived(a_processName);
+}
+
+/**@brief	오퍼레이터로부터 상태 보고 받았을 때.
+ */
+void CDecisionFacade::StatusReportReceived(void *a_statusReport)
+{
+	CDecisionManager::Instance()->StatusReportReceived(a_statusReport);
+}
+
+/**@brief	오퍼레이터로부터 랩터 동작 정지 명령 받았을 때	*/
+void CDecisionFacade::RaptorTerminationOrderReceived()
+{
+	CDecisionManager::Instance()->RaptorTerminationOrderReceived();
 }
 
 

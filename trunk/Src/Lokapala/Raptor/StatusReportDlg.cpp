@@ -33,6 +33,8 @@ void CStatusReportDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CStatusReportDlg, CDialog)
 	ON_BN_CLICKED(IDC_REPORT, &CStatusReportDlg::OnBnClickedReport)
+	ON_WM_CTLCOLOR()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -84,10 +86,10 @@ void CStatusReportDlg::OnBnClickedReport()
 	m_commentCtrl.GetWindowTextW(comment);
 
 	CStatusReportDTO report(state, date, comment);
-	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
-	statusReports->AddReport(&report);
 
+	CCBFMediator::Instance()->AddStatusReport(&report);
 	CCBFMediator::Instance()->ReportStatus(&report);
+
 	DisplayStatusReports();
 }
 
@@ -119,6 +121,49 @@ void CStatusReportDlg::DisplayStatusReports()
 			state = _T("VERIFIED");
 			break;
 		}
-		m_statusList.AddString( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);	
+		CString message = _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment;
+		m_statusList.AddString( message );	
+
+		static int maxSize = 0;
+		CDC *pDc = m_statusList.GetDC();
+		int messageSize = (pDc->GetTextExtent(message)).cx;
+		if(maxSize < messageSize)
+		{
+			maxSize = messageSize;
+			m_statusList.SetHorizontalExtent(maxSize);
+			m_statusList.ReleaseDC(pDc);
+		}		
 	}
+}
+
+/**@brief	배경색 하얗게 수정
+ */
+HBRUSH CStatusReportDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(255,255,255));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
+}
+
+/**@brief	프레임 없는 상태에서 윈도우 이동 가능하도록
+ */
+void CStatusReportDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default	
+	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
+
+	CDialog::OnLButtonDown(nFlags, point);
 }

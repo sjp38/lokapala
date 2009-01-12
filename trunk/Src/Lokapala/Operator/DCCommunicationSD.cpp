@@ -70,3 +70,10 @@ void CDCCommunicationSD::SendStatusReport(void *a_statusReport)
 {
 	CCBFMediator::Instance()->SendStatusReport(a_statusReport);
 }
+
+/**@brief	특정 호스트로 랩터 동작 중지 명령을 날린다.
+ */
+void CDCCommunicationSD::SendRaptorTerminationInstruction(void *a_argument)
+{
+	CCBFMediator::Instance()->SendRaptorTerminationInstruction(a_argument);
+}

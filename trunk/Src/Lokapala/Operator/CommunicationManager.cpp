@@ -89,6 +89,7 @@ void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
  */
 void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp)
 {
+	CCBFMediator::Instance()->Notify(&a_message);
 	USES_CONVERSION;
 	TiXmlDocument doc;
 	doc.Parse(W2A(a_message));
@@ -322,6 +323,51 @@ void CCommunicationManager::SendStatusReport(void *a_statusReport)
 	const char *packet =	printer.CStr();
 
 	SendTextMessageTo(statusReport->m_hostAddress, A2W(packet));
+}
+
+/**@brief	특정 사용자에게 랩터 동작 중지 명령을 날린다.
+ */
+void CCommunicationManager::SendRaptorTerminationInstruction(void *a_argument)
+{
+	CControlActionDTO *argument = (CControlActionDTO *)a_argument;
+	CString targetHostAddress = argument->m_targetHostAddress;
+		
+	TiXmlDocument doc;
+	TiXmlElement *root = new TiXmlElement("Packet");
+	doc.LinkEndChild(root);
+	root->SetAttribute("Header", TERMINATE_RAPTOR);
+	USES_CONVERSION;
+	root->SetAttribute("argument", W2A(argument->m_reactionArgument));
+
+	TiXmlPrinter printer;
+	printer.SetStreamPrinting();
+	doc.Accept(&printer);
+	const char *packet = printer.CStr();
+	
+	SendTextMessageTo(targetHostAddress, A2W(packet));
+}
+
+/**@brief	메신저를 이용한 메세지를 전송한다.
+ * @remarks	메세지는 텍스트, 파일이 될 수 있으며, 현재 버전에서는 파일은 구현하지 않는다.
+ */
+void CCommunicationManager::SendTextMessageToRaptor(void *a_message)
+{
+	CMessageDTO *message = (CMessageDTO *)a_message;
+
+	USES_CONVERSION;	
+	TiXmlDocument doc;
+
+	TiXmlElement *root = new TiXmlElement("Packet");
+	doc.LinkEndChild(root);
+	root->SetAttribute("Header", MESSAGE);
+	root->SetAttribute("message", W2A(message->m_message));
+
+	TiXmlPrinter printer;
+	printer.SetStreamPrinting();
+	doc.Accept(&printer);
+	const char *packet =	printer.CStr();
+
+	SendTextMessageTo(message->m_hostAddress, A2W(packet));
 }
 
 

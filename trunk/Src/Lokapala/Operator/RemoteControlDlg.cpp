@@ -43,6 +43,7 @@ BEGIN_MESSAGE_MAP(CRemoteControlDlg, CDialog)
 	ON_WM_CTLCOLOR()
 	ON_WM_LBUTTONDOWN()
 	ON_BN_CLICKED(IDC_STATUS_REPORT, &CRemoteControlDlg::OnBnClickedStatusReport)
+	ON_BN_CLICKED(IDC_TERMINATE_RAPTOR, &CRemoteControlDlg::OnBnClickedTerminateRaptor)
 END_MESSAGE_MAP()
 
 
@@ -71,7 +72,8 @@ void CRemoteControlDlg::OnBnClickedExecuteProcess()
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->SendExecuteProcessInstruction(&action);
+		CCBFMediator::Instance()->ExecuteHostProcess(&action);
+		//CCBFMediator::Instance()->SendExecuteProcessInstruction(&action);
 	}
 }
 
@@ -88,7 +90,8 @@ void CRemoteControlDlg::OnBnClickedKillProcess()
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->SendKillProcessInstruction(&action);
+		CCBFMediator::Instance()->KillHostProcess(&action);
+		//CCBFMediator::Instance()->SendKillProcessInstruction(&action);
 	}
 }
 
@@ -105,7 +108,8 @@ void CRemoteControlDlg::OnBnClickedGenocideProcesses()
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->SendGenocideProcessInstruction(&action);
+		CCBFMediator::Instance()->GenocideHostProcess(&action);
+		//CCBFMediator::Instance()->SendGenocideProcessInstruction(&action);
 	}
 }
 
@@ -122,7 +126,8 @@ void CRemoteControlDlg::OnBnClickedShutdown()
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->SendShutdownInstruction(&action);
+		CCBFMediator::Instance()->ShutdownHost(&action);
+		//CCBFMediator::Instance()->SendShutdownInstruction(&action);
 	}
 }
 
@@ -139,7 +144,8 @@ void CRemoteControlDlg::OnBnClickedReboot()
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->SendRebootInstruction(&action);
+		CCBFMediator::Instance()->RebootHost(&action);
+		//CCBFMediator::Instance()->SendRebootInstruction(&action);
 	}
 }
 
@@ -156,7 +162,8 @@ void CRemoteControlDlg::OnBnClickedLogout()
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
 		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->SendBanUserInstruction(&action);
+		CCBFMediator::Instance()->BanUser(&action);
+		//CCBFMediator::Instance()->SendBanUserInstruction(&action);
 	}
 }
 
@@ -196,6 +203,26 @@ void CRemoteControlDlg::OnBnClickedStatusReport()
 		CCBFMediator::Instance()->SubmitStatusReportToHost(&report);
 	}
 }
+
+/**@brief	Terminate Raptor 버튼 클릭.
+ */
+void CRemoteControlDlg::OnBnClickedTerminateRaptor()
+{
+	// TODO: Add your control notification handler code here
+	CArray<int> selectedIndex;
+	GetSelectedTarget(&selectedIndex);
+
+	for(int i=0; i<selectedIndex.GetCount(); i++)
+	{
+		CControlActionDTO action;
+		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
+		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
+		CCBFMediator::Instance()->BanUser(&action);
+		
+		CCBFMediator::Instance()->TerminateRaptorOnHost(&action);
+	}
+}
+
 
 /**@brief	다이얼로그 초기화 시
  */

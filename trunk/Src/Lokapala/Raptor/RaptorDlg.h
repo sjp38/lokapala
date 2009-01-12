@@ -47,4 +47,6 @@ public:
 	CEdit m_input;
 	CListBox m_notifyList;
 	afx_msg void OnDestroy();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };

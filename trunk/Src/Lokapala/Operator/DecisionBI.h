@@ -42,6 +42,8 @@ public :
 	virtual void WarnHost(void *a_argument) = 0;
 	/**@brief	특정 호스트에게 상태 보고를 한다	*/
 	virtual void SubmitStatusReportToHost(void *a_statusReport) = 0;
+	/**@brief	특정 호스트의 랩터의 동작을 중지시킨다.	*/
+	virtual void TerminateRaptorOnHost(void *a_argument) = 0;
 };
 
 #endif

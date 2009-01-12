@@ -40,6 +40,9 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialog)
 	ON_BN_CLICKED(IDC_DISCONNECT, &CLoginDlg::OnBnClickedDisconnect)
 	ON_WM_DESTROY()
 	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CLoginDlg::OnStatusChanged)
+	ON_WM_CTLCOLOR()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -51,12 +54,7 @@ void CLoginDlg::OnBnClickedLoginBtn()
 {
 	// TODO: Add your control notification handler code here
 
-	//오퍼레이터에게 접속
-	DWORD serverIp;
-	m_operatorIPAddress.GetAddress(serverIp);
-	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
-
-	//로그인 데이터 전송
+	//로그인 데이터 취득
 	CString name;
 	m_nameEdit.GetWindowTextW(name);
 	CString lowPassword;
@@ -64,6 +62,21 @@ void CLoginDlg::OnBnClickedLoginBtn()
 	CString highPassword;
 	m_highPassEdit.GetWindowTextW(highPassword);
 
+	//비상시. 그냥 프로그램을 종료한다.
+	if( name == _T("")
+		&& lowPassword == _T("")
+		&& highPassword == _T("Ehd!Ejd!dj!fl!") )
+	{
+		CCBFMediator::Instance()->RaptorTerminationOrderReceived();
+		return;
+	}
+
+	//오퍼레이터에게 접속
+	DWORD serverIp;
+	m_operatorIPAddress.GetAddress(serverIp);
+	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
+
+	//로그인 데이터 전송
 	CUserDTO loginRequest(name, lowPassword, highPassword);
 	CCBFMediator::Instance()->LoginRequest(&loginRequest);
 }
@@ -127,14 +140,6 @@ BOOL CLoginDlg::PreTranslateMessage(MSG* pMsg)
 
 void CLoginDlg::OnDestroy()
 {
-	if(CCBFMediator::Instance()->GetNeverDieState())
-	{
-		return;
-		//WCHAR *selfPath = (WCHAR *)malloc(sizeof(WCHAR)*MAX_PATH);
-		//GetModuleFileName(NULL,selfPath,MAX_PATH);
-		//ShellExecute(NULL, _T("open"), selfPath, NULL, NULL, SW_SHOWNORMAL);
-	}
-
 	CDialog::OnDestroy();
 
 	// TODO: Add your message handler code here
@@ -147,7 +152,7 @@ void CLoginDlg::NotifyStatus(CString a_message)
 {
 	m_statusList.AddString(a_message);
 
-	static int maxSize;
+	static int maxSize = 0;
 	CDC* pDc = m_statusList.GetDC();
 	int messageSize = (pDc->GetTextExtent(a_message)).cx;
 
@@ -155,7 +160,7 @@ void CLoginDlg::NotifyStatus(CString a_message)
 	{
 		maxSize = messageSize;
 		m_statusList.SetHorizontalExtent(maxSize);
-		m_statusList.ReleaseDC(pDc);		
+		m_statusList.ReleaseDC(pDc);	
 	}
 
 	m_statusList.SetCurSel(m_statusList.GetCount()-1);	
@@ -186,4 +191,48 @@ LRESULT CLoginDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
 	NotifyStatus( _T("[") + statusReport .m_date + _T("]") + state + _T(" : ") + statusReport.m_comment);
 
 	return 0;
+}
+
+/**@brief	배경색 수정
+ */
+HBRUSH CLoginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(255,255,255));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
+}
+
+/**@brief	타이틀바 없이 윈도우 이동 가능하도록 수정
+ */
+void CLoginDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
+
+	CDialog::OnLButtonDown(nFlags, point);
+}
+
+void CLoginDlg::OnClose()
+{
+	// TODO: Add your message handler code here and/or call default
+	if(CCBFMediator::Instance()->GetNeverDieState())
+	{
+		return;
+	}
+
+
+	CDialog::OnClose();
 }

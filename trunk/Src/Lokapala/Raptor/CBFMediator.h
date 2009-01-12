@@ -55,10 +55,13 @@ public :
 	void RegistUser(void *a_userInfo);
 	void RegistUserLevel(int a_level);
 	void *GetStatusReports();
-	void SaveStatusReportsToFile(CString a_filePath);
-	void LoadStatusReportsFromFile(CString a_filePath);
+	void AddStatusReport(void *a_statusReport);
+	void SaveStatusReportsToFile(CString a_filePath=_T("statusReports.xml"));
+	void LoadStatusReportsFromFile(CString a_filePath=_T("statusReports.xml"));
 
 	//DCM
+	void Connected();
+	void Disconnected();
 	void LoginRequest(void *a_userInfo);
 	void LoginAccepted(int a_level);
 	void LoginOrderReceived(void *a_userInfo);
@@ -68,6 +71,8 @@ public :
 	void GenocideProcessesOrderReceived(void *a_message);
 	void KillProcessOrderReceived(void *a_processName);
 	void ExecuteProcessOrderReceived(void *a_processName);
+	void StatusReportReceived(void *a_statusReport);
+	void RaptorTerminationOrderReceived();
 
 	void ReportExecutedProcess(CString *a_executedProcess);	
 	void ReportStatus(void *a_status);
@@ -111,7 +116,7 @@ public :
 	//common
 	void Notify(CString *a_message);
 	void TrySuicide();
-	void NotifyStatusReceived(void *a_statusReport);
+	void NotifyStatusReceived(void *a_statusReport);	
 
 protected :
 	/**@breif	»ý¼ºÀÚ	*/

@@ -7,8 +7,8 @@
 
 //데이터 관리 다이얼로그
 #include "DataAdminDlg.h"
-//원격 제어 다이얼로그
-#include "RemoteControlDlg.h"
+
+
 
 #include "DisplayDTO.h"
 
@@ -128,6 +128,9 @@ BOOL COperatorDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+	m_remoteControlDlg = NULL;
+	m_messengerDlg = NULL;
+
 	CCBFMediator::Instance()->SetMainDlg(this);
 	CCBFMediator::Instance()->BeginCommunication();
 	m_imageListSetted = FALSE;
@@ -239,6 +242,10 @@ LRESULT COperatorDlg::OnControlClick(WPARAM wParam, LPARAM lParam)
  */
 LRESULT COperatorDlg::OnMessengerClick(WPARAM wParam, LPARAM lParam)
 {
+	m_messengerDlg = new CMessengerDlg;
+	m_messengerDlg->DoModal();
+	delete m_messengerDlg;
+	m_messengerDlg = NULL;
 	return 0;
 }
 
@@ -398,6 +405,19 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 		Notify(displayData->m_seatId + _T(" deleted"));
 		DisplayDeletedSeat(displayData->m_seatId);
 		break;	
+	case MESSAGE_FROM_RAPTOR_RECEIVED :		
+		Notify( _T("[") + displayData->m_seatId + _T("]") + displayData->m_argument);
+		if(m_messengerDlg)
+		{
+			m_messengerDlg->DisplayConversation(_T("[") + displayData->m_seatId + _T("]") + displayData->m_argument);
+		}
+		break;
+	case MESSAGE_TO_RAPTOR_SENDED :
+		Notify(_T("[to ") + displayData->m_seatId + _T("]") + displayData->m_argument);
+		if(m_messengerDlg)
+		{
+			m_messengerDlg->DisplayConversation(_T("[to ") + displayData->m_seatId + _T("]") + displayData->m_argument);
+		}
 	}
 
 	return 0;
@@ -704,9 +724,12 @@ void COperatorDlg::OnRemoteControl()
 	// TODO: Add your command handler code here
 	CArray<CString> target;
 	GetSelectedIconSeatId(&target);
-	CRemoteControlDlg remoteControlDlg;
-	remoteControlDlg.m_selectedTarget.Copy(target);
-	remoteControlDlg.DoModal();
+	
+	m_remoteControlDlg = new CRemoteControlDlg;
+	m_remoteControlDlg->m_selectedTarget.Copy(target);
+	m_remoteControlDlg->DoModal();
+	delete m_remoteControlDlg;
+	m_remoteControlDlg = NULL;
 }
 
 /**@brief	컨텍스트 메뉴에서 좌석 설정 선택
@@ -717,14 +740,6 @@ void COperatorDlg::OnSetSeat()
 	CDataAdminDlg dataAdminDlg;
 	dataAdminDlg.DoModal();
 }
-
-/**@brief	사이드바 클릭
- */
-//void COperatorDlg::OnStnClickedSidebar()
-//{
-//	// TODO: Add your control notification handler code here
-//	AfxMessageBox(_T("abc"));
-//}
 
 /**@brief	다이얼로그 배경색 지정
  */

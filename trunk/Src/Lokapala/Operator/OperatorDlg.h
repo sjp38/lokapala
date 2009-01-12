@@ -4,10 +4,18 @@
 #pragma once
 #include "afxwin.h"
 
+//원격 제어 다이얼로그
+#include "RemoteControlDlg.h"
+//메신저 다이얼로그
+#include "MessengerDlg.h"
+
 // COperatorDlg dialog
 class COperatorDlg : public CDialog
 {
 private :
+	CRemoteControlDlg *m_remoteControlDlg;
+	CMessengerDlg *m_messengerDlg;
+
 	bool m_imageListSetted;
 	CImageList m_stateImage;
 

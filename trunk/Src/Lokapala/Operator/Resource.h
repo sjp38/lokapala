@@ -22,6 +22,7 @@
 #define IDB_NOTIFY_TEXT                 150
 #define IDB_CONNECTED_TEXT              151
 #define IDB_PROCESS_TEXT                152
+#define IDB_MESSENGER_TITLE             154
 #define IDC_COMMAND                     1001
 #define IDC_BUTTONTEST                  1002
 #define IDC_CMD_EXECUTE                 1002
@@ -68,16 +69,19 @@
 #define IDC_STATE_VIEW                  1035
 #define IDC_STATE_DISPLAY               1035
 #define IDC_EXECUTE_PROCESS             1045
-#define IDC_EDIT2                       1045
+#define IDC_CONVERSATION_LIST           1045
 #define IDC_KILL_PROCESS                1046
-#define IDC_EDIT3                       1046
+#define IDC_INPUT                       1046
 #define IDC_GENOCIDE_PROCESSES          1047
-#define IDC_BUTTON1                     1047
+#define IDC_SEND                        1047
 #define IDC_SHUTDOWN                    1048
 #define IDC_SIDEBAR                     1048
 #define IDC_REBOOT                      1049
 #define IDC_LOGOUT                      1050
 #define IDC_STATUS_REPORT               1051
+#define IDC_STATUS_REPORT2              1052
+#define IDC_TERMINATE_RAPTOR            1052
+#define IDC_SELECT_ALL                  1053
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -102,9 +106,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        154
+#define _APS_NEXT_RESOURCE_VALUE        155
 #define _APS_NEXT_COMMAND_VALUE         32790
-#define _APS_NEXT_CONTROL_VALUE         1053
+#define _APS_NEXT_CONTROL_VALUE         1056
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -23,6 +23,8 @@ public :
 		return m_instance;
 	}
 
+	void Connected();
+	void Disconnected();
 	void LoginRequest(void *a_userInfo);
 	void LoginAccepted(int a_level);
 	void LoginOrderReceived(void *a_userInfo);
@@ -32,6 +34,8 @@ public :
 	void GenocideProcessesOrderReceived(void *a_message);
 	void KillProcessOrderReceived(void *a_processName);
 	void ExecuteProcessOrderReceived(void *a_processName);
+	void StatusReportReceived(void *a_statusReport);
+	void RaptorTerminationOrderReceived();
 
 	void ReportExecutedProcess(CString *a_executedProcess);
 	void ReportStatus(void *a_status);

@@ -79,6 +79,8 @@ BEGIN_MESSAGE_MAP(CRaptorDlg, CDialog)
 	ON_BN_CLICKED(IDC_STATUS_REPORT, &CRaptorDlg::OnBnClickedStatusReport)
 	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CRaptorDlg::OnStatusChanged)
 	ON_WM_DESTROY()
+	ON_WM_CTLCOLOR()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -112,21 +114,35 @@ BOOL CRaptorDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
+	TCHAR filePath[MAX_PATH];
+	GetModuleFileName(NULL, filePath, MAX_PATH);
+	CString directory = filePath;
+
+	int position = directory.ReverseFind('\\');
+	directory = directory.Left(position);
+	directory += "\\";
+	SetCurrentDirectory(directory);
+
+	SetWindowText(_T("Raptor"));
 	CCBFMediator::Instance()->SetMainDlg(this);
 	CCBFMediator::Instance()->StartNeverDie();
-	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
-	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
-
 	CCBFMediator::Instance()->RestraintUser();
+
+	CCBFMediator::Instance()->LoadStatusReportsFromFile();
 
 	DWORD address;
 	CFile file;
+	
 	if( file.Open(_T("operatorAddress.cfg"), CFile::modeRead) )
 	{		
 		file.Read(&address, sizeof(address));
 		file.Close();
+		CCBFMediator::Instance()->InitiallizeCommunication(address);
 	}
-	CCBFMediator::Instance()->InitiallizeCommunication(address);
+
+	//테스트용. 나중엔 지워라.
+	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
+	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -356,4 +372,36 @@ void CRaptorDlg::OnDestroy()
 	CDialog::OnDestroy();
 
 	// TODO: Add your message handler code here
+}
+
+/**@brief	배경색 흰색으로 교체
+ */
+HBRUSH CRaptorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  Change any attributes of the DC here
+	switch( nCtlColor ) 
+	{
+	case CTLCOLOR_DLG :
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // 원하는 색상코드를 입력한다.
+		break;
+	case CTLCOLOR_STATIC :
+		pDC->SetTextColor(RGB(0,0,0));
+		pDC->SetBkColor(RGB(255,255,255));
+		break;
+	}
+
+	// TODO:  Return a different brush if the default is not desired
+	return hbr;
+}
+
+/**@brief	프레임 없는 상태에서 윈도우 이동 가능하도록
+ */
+void CRaptorDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
+
+	CDialog::OnLButtonDown(nFlags, point);
 }

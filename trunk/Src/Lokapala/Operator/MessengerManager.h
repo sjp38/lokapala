@@ -23,8 +23,8 @@ public :
 		return m_instance;
 	}
 
-	void PostTextMessageTo(void *a_message);
-	void ReceiveTextMessageFrom(void *a_message);
+	void PostTextMessageTo(void *a_messageData);
+	void ReceiveTextMessageFrom(void *a_messageData);
 
 protected :
 	CMessengerManager(){}

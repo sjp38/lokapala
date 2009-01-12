@@ -25,10 +25,15 @@ public :
 
 	bool m_connected;
 
+	//raptor -> dharani
 	void Initiallize(DWORD a_ServerAddress);
 	void CloseConnection();
-	void SendTextMessage(CString a_message);	
+	void SendTextMessage(CString a_message);
+
+	//dharani -> raptor
 	void NotifyReceived(CString a_message);
+	void Connected();
+	void Disconnected();
 
 	//raptor -> operator
 	void SendLoginRequest(void *a_userInfo);
@@ -42,7 +47,7 @@ protected :
 
 private :
 	void LoginAccepted(CString *a_message);
-	void StatusReportReceived(CString *a_message);
+	void ChangeStatus(CString *a_message);
 
 	DWORD m_operatorAddress;
 	static CCommunicationManager *m_instance;

@@ -46,6 +46,8 @@ public :
 	void SendGenocideProcessInstruction(void *a_argument);
 	void SendWarningMessage(void *a_argument);
 	void SendStatusReport(void *a_statusReport);
+	void SendRaptorTerminationInstruction(void *a_argument);
+	void SendTextMessageToRaptor(void *a_message);
 
 protected :
 	CCommunicationManager(){}

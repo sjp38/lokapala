@@ -62,3 +62,17 @@ void CCCDecisionSD::ExecuteProcess(void *a_processName)
 {
 	CCBFMediator::Instance()->ExecuteProcessOrderReceived(a_processName);
 }
+
+/**@brief	상태 정보가 들어왔음을 알린다.
+ */
+void CCCDecisionSD::StatusReportReceived(void *a_statusReport)
+{
+	CCBFMediator::Instance()->StatusReportReceived(a_statusReport);
+}
+
+/**@brief	랩터 동작 중지 명령을 받았음을 알린다.
+ */
+void CCCDecisionSD::TerminateRaptor()
+{
+	CCBFMediator::Instance()->RaptorTerminationOrderReceived();
+}

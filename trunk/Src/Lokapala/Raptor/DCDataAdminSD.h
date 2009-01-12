@@ -27,10 +27,13 @@ public :
 		return m_instance;
 	}
 
+	void *GetStatusReportsDTO();
+
 	void RegistUser(void *a_userInfo);
 	void RegistUserLevel(int a_level);
 
-	void SaveStatusReportsToFile( CString a_fileName=_T("stateReports.cfg") );
+	void AddStatusReport(void *a_statusReport);
+	void SaveStatusReportsToFile();
 	
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

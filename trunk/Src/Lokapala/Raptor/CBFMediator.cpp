@@ -37,6 +37,14 @@ void *CCBFMediator::GetStatusReports()
 	return _interface->GetStatusReports();
 }
 
+/**@brief	상태 정보를 추가한다.
+ */
+void CCBFMediator::AddStatusReport(void *a_statusReport)
+{
+	CDataAdminBI *_interface = CDataAdminFacade::Instance();
+	_interface->AddStatusReport(a_statusReport);
+}
+
 /**@brief	현재 상태 정보를 파일(xml 포맷)로 저장한다.
  * @param	a_fileName	파일 이름.
  */
@@ -60,6 +68,22 @@ void CCBFMediator::LoadStatusReportsFromFile(CString a_filePath)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // DCM
+
+/**@brief	오퍼레이터와 연결이 되었을 때.
+ */
+void CCBFMediator::Connected()
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->Connected();
+}
+
+/**@brief	오퍼레이터와의 연결이 끊겼을 때.
+ */
+void CCBFMediator::Disconnected()
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->Disconnected();
+}
 
 /**@brief	로그인. DCM에게 로그인 부탁을 하도록 명령한다.
  */
@@ -131,6 +155,22 @@ void CCBFMediator::ExecuteProcessOrderReceived(void *a_userInfo)
 {
 	CDecisionBI *_interface = CDecisionFacade::Instance();
 	_interface->ExecuteProcessOrderReceived(a_userInfo);
+}
+
+/**@brief	오퍼레이터로부터 상태 보고가 내려왔을 때.
+ */
+void CCBFMediator::StatusReportReceived(void *a_statusReport)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->StatusReportReceived(a_statusReport);
+}
+
+/**@brief	오퍼레이터로부터 동작 정지 명령이 내려왔을 때.
+ */
+void CCBFMediator::RaptorTerminationOrderReceived()
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->RaptorTerminationOrderReceived();
 }
 
 /**@brief	실행된 프로세스 이름을 보고받는다.

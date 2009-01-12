@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void TexeMessageReceived(CString a_message);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CCCMessengerSD(){}

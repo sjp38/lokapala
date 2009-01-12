@@ -8,7 +8,7 @@
 
 /**@ingroup	GroupDharani
  * @class	CDharaniExternSD
- * @brief	Dharani 컴포넌트로부터 외부로의 SD. Dharani 컴포넌트를 사용하는 클라이언트 측에서 완성해야 한다.\n
+ * @brief	Dharani 컴포넌트로부터 외부로의 SD. 각 멤버함수의 구현은 Dharani 컴포넌트를 사용하는 클라이언트 측에서 완성해야 한다.\n
  *			Dharani에서 클라이언트 측으로의 통신 수단으로 사용된다. 구체적으로는 Read한 사항을 알릴 때 사용된다.
  */
 class CDharaniExternSD
@@ -22,6 +22,8 @@ public :
 		}
 		return m_instance;
 	}
+	void NotifyConnected();
+	void NotifyDisconnected();
 	void NotifyAccepted(in_addr *a_clientIp, in_addr *a_localIp);
 	void NotifyLeft(in_addr *a_globalIP, in_addr *a_localIp);
 	void NotifyReceived(char *a_receivedMessage);	

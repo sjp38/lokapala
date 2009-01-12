@@ -23,8 +23,6 @@ int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	}
 
 	m_serverSocket = WSASocket(PF_INET, SOCK_STREAM,0,NULL,0,WSA_FLAG_OVERLAPPED);
-	//int optionValue = 1;
-	//setsockopt(m_serverSocket, IPPROTO_TCP, TCP_NODELAY, (char *)&optionValue, sizeof(*optionValue));
 
 	SOCKADDR_IN serverAddr;
 	memset(&serverAddr, 0, sizeof(serverAddr));
@@ -62,6 +60,7 @@ int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	}
 
 	_beginthreadex(NULL,0,&CDharaniClientManager::ReceiverThread,(LPVOID)m_serverSocket, 0, NULL);
+	CDharaniExternSD::Instance()->NotifyConnected();
 	return 0;
 }
 
@@ -116,6 +115,7 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 		result = Receive(serverSocket, &size, sizeof(size));
 		if( result != 0 )
 		{
+			CDharaniExternSD::Instance()->NotifyDisconnected();
 			break;
 		}
 		result = Receive(serverSocket, buffer, size);

@@ -56,11 +56,12 @@ public :
 	void GenocideHostProcess(void *a_argument);
 	void WarnHost(void *a_argument);
 	void SubmitStatusReportToHost(void *a_statusReport);
+	void TerminateRaptorOnHost(void *a_argument);
 
 	//CCM
 	void BeginCommunication();
 	void BroadcastTextMessage(CString a_message);
-	void SendTextMessageTo(CString a_targetAddress, CString a_message);
+	void SendTextMessageTo(CString a_targetAddress, CString a_message);		//단순 텍스트 전송.(로카파라의 xml 포맷 패킷 형식을 갖지 않는다.)
 	void SendLoginAcceptedNotifyMessage(void *a_acceptedData);	//로그인 허용
 	void SendShutdownInstruction(void *a_argument);
 	void SendRebootInstruction(void *a_argument);
@@ -70,6 +71,8 @@ public :
 	void SendGenocideProcessInstruction(void *a_argument);
 	void SendWarningMessage(void *a_argument);
 	void SendStatusReport(void *a_statusReport);
+	void SendRaptorTerminationInstruction(void *a_argument);
+	void SendTextMessageToRaptor(void *a_message);	
 
 
 	//DAM
@@ -95,6 +98,7 @@ public :
 
 
 	//MSM
+	void PostTextMessgeTo(void *a_messageData);
 	void PresentMessage(void *a_messageData);
 
 
@@ -113,7 +117,9 @@ public :
 	void NotifySeatAdded(CString *a_seatId);
 	void NotifySeatDeleted(CString *a_seatId);
 
-	void InitStatusViewAs(int a_column, int a_row);
+	void NotifyRaptorMessageReceived(CString a_hostAddress, CString a_message);
+	void NotifyTextMessageToRaptorSended(CString a_hostAddress, CString a_message);
+
 	
 
 protected :

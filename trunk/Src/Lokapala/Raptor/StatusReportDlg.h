@@ -29,4 +29,6 @@ public:
 	CEdit m_commentCtrl;
 	afx_msg void OnBnClickedReport();
 	CListBox m_statusList;
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
