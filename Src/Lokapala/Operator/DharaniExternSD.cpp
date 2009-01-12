@@ -33,9 +33,7 @@ void CDharaniExternSD::NotifyReceived(char *a_receivedMessage, in_addr a_localIp
 	CString message = A2W(a_receivedMessage);
 	CString localIp = A2W(inet_ntoa(a_localIp));
 	CString globalIp = A2W(inet_ntoa(a_globalIp));
-	CCommunicationManager::Instance()->NotifyReceived(message, localIp, globalIp);
-
-	CCBFMediator::Instance()->Notify(&message);
+	CCommunicationManager::Instance()->NotifyReceived(message, localIp, globalIp);	
 }
 
 /**@brief	클라이언트로부터의 연결이 성사되었음을 알린다.

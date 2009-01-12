@@ -101,7 +101,7 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		//해당 소켓 전용 ioData를 동적 할당한다.
 		ioData = (PTR_IO_DATA)malloc(sizeof(IO_DATA));
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
-		ioData->wsaBuf.len = BUFSIZE;
+		ioData->wsaBuf.len = sizeof(int);
 		ioData->wsaBuf.buf = ioData->buffer;
 		ioData->formerReceivedBytes = 0;
 		DWORD Flags=0;
@@ -141,21 +141,28 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 		}
 
 		memcpy(&size, ioData->buffer, sizeof(size));
-		
+		if( sizeof(size) > bytesTransferred + ioData->formerReceivedBytes )
+		{
+			size = 0;
+		}		
 
 		//연속성 처리 : 데이터가 아직 다 들어오지 않았을 때
-		if( size > bytesTransferred )
+		if( size > bytesTransferred + ioData->formerReceivedBytes  ||  size == 0 )
 		{
 			/*USES_CONVERSION;
 			AfxMessageBox(A2W(ioData->buffer));*/
 			ioData->formerReceivedBytes += bytesTransferred;
 			memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
-			ioData->wsaBuf.len = BUFSIZE - ioData->formerReceivedBytes;
+			ioData->wsaBuf.len = size+sizeof(size) - ioData->formerReceivedBytes;
 			ioData->wsaBuf.buf = ioData->buffer + ioData->formerReceivedBytes;
 
 			flags=0;
 			WSARecv(socketData->descriptor, &(ioData->wsaBuf), 1, NULL, &flags, &(ioData->overlapped), NULL);
 			continue;
+		}
+		if(size < bytesTransferred)
+		{
+			AfxMessageBox(_T("flow"));
 		}
 
 		//데이터가 모두 들어왔을 때
@@ -166,7 +173,7 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 		CDharaniExternSD::Instance()->NotifyReceived(decrypted, socketData->localIp, socketData->addr.sin_addr);
 
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
-		ioData->wsaBuf.len = BUFSIZE;
+		ioData->wsaBuf.len = sizeof(size);
 		ioData->wsaBuf.buf = ioData->buffer;
 		ioData->formerReceivedBytes=0;
 

@@ -26,6 +26,8 @@ public :
 	virtual void SendGenocideProcessInstruction(void *a_argument) = 0;
 	virtual void SendWarningMessage(void *a_argument) = 0;
 	virtual void SendStatusReport(void *a_statusReport) = 0;
+	virtual void SendRaptorTerminationInstruction(void *a_argument) = 0;
+	virtual void SendTextMessageToRaptor(void *a_message) = 0;
 };
 
 #endif

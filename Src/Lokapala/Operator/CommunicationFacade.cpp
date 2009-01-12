@@ -105,3 +105,18 @@ void CCommunicationFacade::SendStatusReport(void *a_statusReport)
 {
 	CCommunicationManager::Instance()->SendStatusReport(a_statusReport);
 }
+
+/**@brief	특정 사용자에게 랩터 중지 명령을 날린다.
+ */
+void CCommunicationFacade::SendRaptorTerminationInstruction(void *a_argument)
+{
+	CCommunicationManager::Instance()->SendRaptorTerminationInstruction(a_argument);
+}
+
+/**@brief	특정 사용자에게 메신저 기능을 이용한 메세지를 보낸다.
+ * @remarks	단순히 문자열을 그모양 그대로 넘기는 SendTextMessageTo 와 헷갈리지 않도록.
+ */
+void CCommunicationFacade::SendTextMessageToRaptor(void *a_message)
+{
+	CCommunicationManager::Instance()->SendTextMessageToRaptor(a_message);
+}

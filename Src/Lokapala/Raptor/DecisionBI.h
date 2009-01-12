@@ -13,6 +13,10 @@
 class CDecisionBI
 {
 public :
+	/**@brief	오퍼레이터와 연결이 되었을 때.	*/
+	virtual void Connected() = 0;
+	/**@brief	오퍼레이터와의 연결이 끊겼을 때.	*/
+	virtual void Disconnected() = 0;
 	/**@brief	오퍼레이터에게 로그인 요청을 한다.	 */
 	virtual void LoginRequest(void *a_userInfo) = 0;
 	/**@brief	로그인 허용에 대해 서비스를 한다.	 */
@@ -31,6 +35,10 @@ public :
 	virtual void KillProcessOrderReceived(void *a_processName) = 0;
 	/**@brief	특정 프로세스 실행 명령을 받았을 때.	*/
 	virtual void ExecuteProcessOrderReceived(void *a_processName) = 0;
+	/**@brief	오퍼레이터로부터 상태 보고가 내려왔을 때.	*/
+	virtual void StatusReportReceived(void *a_statusReport) = 0;
+	/**@brief	오퍼레이터로부터 동작 정지 명령이 내려왔을 때.	*/
+	virtual void RaptorTerminationOrderReceived() = 0;
 
 	/**@brief	실행된 프로세스의 이름을 보고받는다.	*/
 	virtual void ReportExecutedProcess(CString *a_executedProcess) = 0;

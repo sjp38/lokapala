@@ -121,6 +121,14 @@ void CCBFMediator::SubmitStatusReportToHost(void *a_statusReport)
 	_interface->SubmitStatusReportToHost(a_statusReport);
 }
 
+/**@brief	특정 호스트의 랩터 동작을 멈춘다.
+ */
+void CCBFMediator::TerminateRaptorOnHost(void *a_argument)
+{
+	CDecisionBI *_interface = CDecisionFacade::Instance();
+	_interface->TerminateRaptorOnHost(a_argument);
+}
+
 
 
 
@@ -227,6 +235,23 @@ void CCBFMediator::SendStatusReport(void *a_statusReport)
 {
 	CCommunicationBI *_interface = CCommunicationFacade::Instance();
 	_interface->SendStatusReport(a_statusReport);
+}
+
+/**@brief	특정 호스트로 랩터 동작 중지 명령을 날린다.
+ */
+void CCBFMediator::SendRaptorTerminationInstruction(void *a_argument)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendRaptorTerminationInstruction(a_argument);
+}
+
+/**@brief	특정 호스트로 메세지를 날린다(로카파라의 xml 포맷 패킷으로 만들어서 날린다).
+ * @remarks	단순히 해당 문자열만을 날리는 SendTextMessageTo 와 구별하도록.
+ */
+void CCBFMediator::SendTextMessageToRaptor(void *a_message)
+{
+	CCommunicationBI *_interface = CCommunicationFacade::Instance();
+	_interface->SendTextMessageToRaptor(a_message);
 }
 
 
@@ -354,8 +379,18 @@ void *CCBFMediator::GetConnectedHosts()
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//DAM
+//MSM
 
+/**@brief	랩터에게 텍스트 메세지를 보낸다.
+ */
+void CCBFMediator::PostTextMessgeTo(void *a_messageData)
+{
+	CMessengerBI *_interface = CMessengerFacade::Instance();
+	_interface->PostTextMessageTo(a_messageData);
+}
+
+/**@brief	랩터로부터 텍스트 메세지를 받았음을 알린다.
+ */
 void CCBFMediator::PresentMessage(void *a_messageData)
 {
 	CMessengerBI *_interface = CMessengerFacade::Instance();
@@ -494,5 +529,21 @@ void CCBFMediator::NotifySeatAdded(CString *a_seatId)
 void CCBFMediator::NotifySeatDeleted(CString *a_seatId)
 {
 	CDisplayDTO display(*a_seatId, SEATDELETE);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
+}
+
+/**@brief	랩터로부터의 텍스트 메세지 도착을 유저에게 알린다.
+ */
+void CCBFMediator::NotifyRaptorMessageReceived(CString a_hostAddress, CString a_message)
+{
+	CDisplayDTO display(a_hostAddress, MESSAGE_FROM_RAPTOR_RECEIVED, a_message);
+	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
+}
+
+/**@brief	랩터에게 텍스트 메세지를 날렸음을 유저에게 알린다.
+ */
+void CCBFMediator::NotifyTextMessageToRaptorSended(CString a_hostAddress, CString a_message)
+{
+	CDisplayDTO display(a_hostAddress, MESSAGE_TO_RAPTOR_SENDED, a_message);
 	SendMessage(m_mainDlg->m_hWnd, LKPLM_SHOWCHANGED, (WPARAM)&display, NULL);
 }

@@ -30,6 +30,13 @@ void *CDataAdminFacade::GetStatusReports()
 	return CDataAdminManager::Instance()->GetStatusReports();
 }
 
+/**@brief	상태 보고를 추가한다.
+ */
+void CDataAdminFacade::AddStatusReport(void *a_statusReport)
+{
+	CDataAdminManager::Instance()->AddStatusReport(a_statusReport);
+}
+
 /**@brief	현재 상황 보고 내용을 파일로 저장한다.
  */
 void CDataAdminFacade::SaveStatusReportsToFile(CString a_filePath)

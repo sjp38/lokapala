@@ -19,6 +19,7 @@ public :
 	virtual void RegistUserLevel(int a_level) = 0;
 	virtual void *GetStatusReports() = 0;
 
+	virtual void AddStatusReport(void *a_statusReport) = 0;
 	virtual void SaveStatusReportsToFile(CString a_filePath) = 0;
 	virtual void LoadStatusReportsFromFile(CString a_filePath) = 0;
 };

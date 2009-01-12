@@ -28,7 +28,9 @@ public :
 		}
 		return m_instance;
 	}
-
+	
+	virtual void Connected();
+	virtual void Disconnected();
 	virtual void LoginRequest(void *a_userInfo);
 	virtual void LoginAccepted(int a_level);
 	virtual void LoginOrderReceived(void *a_userInfo);
@@ -38,6 +40,9 @@ public :
 	virtual void GenocideProcessesOrderReceived(void *a_message);
 	virtual void KillProcessOrderReceived(void *a_processName);
 	virtual void ExecuteProcessOrderReceived(void *a_processName);
+	virtual void StatusReportReceived(void *a_stautsReport);
+	virtual void RaptorTerminationOrderReceived();
+
 	virtual void ReportExecutedProcess(CString *a_executedProcess);
 	virtual void ReportStatus(void *a_status);
 	virtual void UserTryingToKillMe(void);

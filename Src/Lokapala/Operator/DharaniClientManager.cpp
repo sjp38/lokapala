@@ -98,8 +98,8 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 
 			char size[3];
 			_itoa_s(buffer[0],size,16);
-			CDharaniExternSD::Instance()->NotifyReceived(size);
-			CDharaniExternSD::Instance()->NotifyReceived(buffer);	//테스트용.
+			//CDharaniExternSD::Instance()->NotifyReceived(size);
+			//CDharaniExternSD::Instance()->NotifyReceived(buffer);	//테스트용.
 
 			CDharaniClientManager::Instance()->Decrypt(decrypted, buffer+1);
 			

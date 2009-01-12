@@ -29,8 +29,9 @@ public :
 	void RegistUserLevel(int a_level);
 	void *GetStatusReports();
 
-	void SaveStatusReportsToFile(CString a_filePath);
-	void LoadStatusReportsFromFile(CString a_filePath);
+	void AddStatusReport(void *a_statusReport);
+	void SaveStatusReportsToFile(CString a_filePath=_T("statusReports.xml"));
+	void LoadStatusReportsFromFile(CString a_filePath=_T("statusReports.xml"));
 
 protected :
 	CDataAdminManager(){}

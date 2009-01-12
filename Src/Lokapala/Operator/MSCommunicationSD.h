@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void SendTextMessageToRaptor(void *a_messageData);
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CMSCommunicationSD(){}

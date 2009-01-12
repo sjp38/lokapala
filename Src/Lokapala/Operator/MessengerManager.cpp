@@ -7,23 +7,24 @@
 #include "MessengerManager.h"
 
 #include "MessageDTO.h"
+#include "MSCommunicationSD.h"
 
 
-/**@brief	오퍼레이터에게 텍스트 메세지를 보낸다.
+/**@brief	랩터에게 텍스트 메세지를 보낸다.
  */
-void CMessengerManager::PostTextMessageTo(void *a_message)
-{
-	/*
-	CMessageDTO *messageData = (CMessageDTO *)a_message;
-	CMSCommunicationSD::Instance()->PostTextMessageToOperator(a_message);*/
+void CMessengerManager::PostTextMessageTo(void *a_messageData)
+{	
+	CMessageDTO *messageData = (CMessageDTO *)a_messageData;		//로그 데이터를 남길 때 쓴다.
+	CMSCommunicationSD::Instance()->SendTextMessageToRaptor(a_messageData);	
+
+	CCBFMediator::Instance()->NotifyTextMessageToRaptorSended(messageData->m_hostAddress, messageData->m_message);
 }
 
-/**@brief	오퍼레이터로부터 텍스트 메세지를 받았을 때 호출된다.
+/**@brief	랩터로부터 텍스트 메세지를 받았을 때 호출된다.
  */
-void CMessengerManager::ReceiveTextMessageFrom(void *a_message)
+void CMessengerManager::ReceiveTextMessageFrom(void *a_messageData)
 {
-	CMessageDTO *messageData = (CMessageDTO *)a_message;
-	CString message = messageData->m_hostAddress + _T(":") + messageData->m_message;
+	CMessageDTO *messageData = (CMessageDTO *)a_messageData;
 
-	CCBFMediator::Instance()->Notify(&message);
+	CCBFMediator::Instance()->NotifyRaptorMessageReceived(messageData->m_hostAddress, messageData->m_message);
 }

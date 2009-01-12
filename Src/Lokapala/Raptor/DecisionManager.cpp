@@ -9,6 +9,31 @@
 #include "DCCommunicationSD.h"
 #include "DCDataAdminSD.h"
 #include "DCControlSD.h"
+#include "DCNeverDieSD.h"
+
+#include "StatusReportsDTO.h"
+
+/**@brief	오퍼레이터와 연결 되었을 때.
+ *			현재 자신이 가지고 있는 상태 정보를 보낸다.
+ */
+void CDecisionManager::Connected()
+{
+	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CDCDataAdminSD::Instance()->GetStatusReportsDTO();
+	CStatusReportDTOArray nowReports;
+	nowReports.Copy(statusReports->m_reports);
+	for(int i=0; i<nowReports.GetCount(); i++)
+	{
+		ReportStatus(&nowReports[i]);
+	}
+}
+
+/**@brief	오퍼레이터와 연결이 끊겼을 때.
+ *			자기 자신을 죽인다.
+ */
+void CDecisionManager::Disconnected()
+{
+	AfxMessageBox(_T("disconnected!"));
+}
 
 /**@brief	오퍼레이터에게 로그인 요청을 한다.	*/
 void CDecisionManager::LoginRequest(void *a_userInfo)
@@ -74,6 +99,21 @@ void CDecisionManager::KillProcessOrderReceived(void *a_processName)
 void CDecisionManager::ExecuteProcessOrderReceived(void *a_processName)
 {
 	CDCControlSD::Instance()->ExecuteProcess(a_processName);
+}
+
+/**@brief	오퍼레이터로부터 상태 정보를 받았을 때.
+ */
+void CDecisionManager::StatusReportReceived(void *a_statusReport)
+{
+	CDCDataAdminSD::Instance()->AddStatusReport(a_statusReport);	
+}
+
+/**@brief	오퍼레이터로부터 랩터 동작 종료 명령을 받았을 때. 네버다이 모드를 풀고, 죽는다.
+ */
+void CDecisionManager::RaptorTerminationOrderReceived()
+{
+	CDCNeverDieSD::Instance()->StopNeverDie();
+	CCBFMediator::Instance()->TrySuicide();
 }
 
 

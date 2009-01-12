@@ -36,8 +36,8 @@ public :
 	void GenocideProcesses(void *a_processName);
 	void KillProcess(void *a_processName);
 	void ExecuteProcess(void *a_processName);
-	
-	//void StatusChange(void *a_statusReport);
+	void StatusReportReceived(void *a_statusReport);
+	void TerminateRaptor();
 
 protected :
 	/**@brief	»ý¼ºÀÚ	*/

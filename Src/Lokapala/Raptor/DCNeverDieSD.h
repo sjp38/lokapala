@@ -27,6 +27,8 @@ public :
 		return m_instance;
 	}
 
+	void StopNeverDie();
+
 protected :
 	/**@brief	»ý¼ºÀÚ	*/
 	CDCNeverDieSD(){}

@@ -7,7 +7,7 @@
 #define LOGIN_REQUEST		1
 #define PROCESS_EXECUTED	2
 #define MESSAGE				3
-#define STATUS_CHANGED		4
+#define STATUS_CHANGED		4	//이건 오퍼레이터->랩터에서도 사용됨
 
 //오퍼레이터 -> 랩터 헤더
 #define LOGIN_ACCEPT		5
@@ -19,5 +19,4 @@
 #define KILL				11
 #define EXECUTE				12
 #define WARN				13
-
-#define STATUS_CHANGE		13
+#define TERMINATE_RAPTOR	14

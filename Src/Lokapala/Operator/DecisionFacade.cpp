@@ -102,3 +102,10 @@ void CDecisionFacade::SubmitStatusReportToHost(void *a_statusReport)
 {
 	CDecisionManager::Instance()->SubmitStatusReportToHost(a_statusReport);
 }
+
+/**@brief	특정 호스트의 랩터를 동작 중지시킨다.
+ */
+void CDecisionFacade::TerminateRaptorOnHost(void *a_argument)
+{
+	CDecisionManager::Instance()->TerminateRaptorOnHost(a_argument);
+}

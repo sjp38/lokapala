@@ -27,6 +27,17 @@ void *CDataAdminManager::GetStatusReports()
 	return &m_statusReports;
 }
 
+/**@brief	상태 정보를 추가한다.
+ */
+void CDataAdminManager::AddStatusReport(void *a_statusReport)
+{
+	CStatusReportDTO *statusReport = (CStatusReportDTO *)a_statusReport;
+	m_statusReports.AddReport(statusReport);
+
+	CCBFMediator::Instance()->NotifyStatusReceived(a_statusReport);
+	SaveStatusReportsToFile();
+}
+
 /**@brief	현재 상황 변화 보고 내용을 파일로 저장한다.
  */
 void CDataAdminManager::SaveStatusReportsToFile(CString a_filePath)
@@ -80,5 +91,7 @@ void CDataAdminManager::LoadStatusReportsFromFile(CString a_filePath)
 
 		CStatusReportDTO newStateReport(hostAddress, (State)state, date, comment);
 		m_statusReports.AddReport(&newStateReport);
+
+		CCBFMediator::Instance()->NotifyStatusReceived(&newStateReport);
 	}
 }

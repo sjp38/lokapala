@@ -41,6 +41,7 @@ public :
 	void GenocideHostProcess(void *a_argument);
 	void WarnHost(void *a_argument);
 	void SubmitStatusReportToHost(void *a_statusReport);
+	void TerminateRaptorOnHost(void *a_argument);
 
 protected :
 	CDecisionManager(){}

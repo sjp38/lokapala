@@ -44,8 +44,8 @@ void CDecisionManager::HostDisconnected(void *a_hostData)
 /**@brief	특정 주소로 상태 보고를 날린다.
  */
 void CDecisionManager::ReportStatusTo(CString *a_hostAddress)
-{
-	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CCBFMediator::Instance()->GetStatusReports();
+{	
+	CStatusReportsDTO *statusReports = (CStatusReportsDTO *)CDCDataAdminSD::Instance()->GetStatusReportsDTO();
 	CStatusReportDTOArray nowReports;
 	statusReports->GetReportFrom(*a_hostAddress, &nowReports);
 	for(int i=0; i<nowReports.GetCount(); i++)
@@ -254,4 +254,11 @@ void CDecisionManager::SubmitStatusReportToHost(void *a_statusReport)
 	statusReports->GetReportFrom(statusReport->m_hostAddress, &statusReportArray);
 	CCBFMediator::Instance()->NotifyRaptorStatusChange(&statusReportArray);
 	CDCCommunicationSD::Instance()->SendStatusReport(a_statusReport);
+}
+
+/**@brief	특정 호스트의 랩터를 동작 정지시킨다.
+ */
+void CDecisionManager::TerminateRaptorOnHost(void *a_argument)
+{
+	CDCCommunicationSD::Instance()->SendRaptorTerminationInstruction(a_argument);
 }

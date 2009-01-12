@@ -40,4 +40,5 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	CComboBox m_statusInput;
 	afx_msg void OnBnClickedStatusReport();
+	afx_msg void OnBnClickedTerminateRaptor();
 };
