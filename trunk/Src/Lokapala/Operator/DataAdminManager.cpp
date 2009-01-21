@@ -27,7 +27,8 @@ void CDataAdminManager::LoadUserDataFrom(void *a_xmlRoot)
 		int level;
 		user->Attribute("level", &level);
 
-		CUserDataDTO newUser(lowPassword, name, lowPassword, level, highPassword);
+		CUserDataDTO newUser(lowPassword, name, lowPassword, level, highPassword);		
+		
 		CCBFMediator::Instance()->AddUser(&newUser);
 	}	
 }

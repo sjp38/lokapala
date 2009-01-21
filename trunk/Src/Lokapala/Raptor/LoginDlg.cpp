@@ -233,6 +233,5 @@ void CLoginDlg::OnClose()
 		return;
 	}
 
-
 	CDialog::OnClose();
 }
