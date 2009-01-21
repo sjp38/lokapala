@@ -216,9 +216,7 @@ void CRemoteControlDlg::OnBnClickedTerminateRaptor()
 	{
 		CControlActionDTO action;
 		m_targetList.GetText(selectedIndex[i], action.m_targetHostAddress);
-		m_argumentInput.GetWindowTextW(action.m_reactionArgument);
-		CCBFMediator::Instance()->BanUser(&action);
-		
+		m_argumentInput.GetWindowTextW(action.m_reactionArgument);		
 		CCBFMediator::Instance()->TerminateRaptorOnHost(&action);
 	}
 }

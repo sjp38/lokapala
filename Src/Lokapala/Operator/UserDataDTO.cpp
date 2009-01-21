@@ -22,7 +22,7 @@ CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelP
 	m_level = a_level;
 }
 
-/**@brief	생성자. high 레벨 패스워드가 이미 해싱된 데이터로 들어올 대 사용하기 위해 오버로드되었다.
+/**@brief	생성자. high 레벨 패스워드가 이미 해싱된 데이터로 들어올 때 사용하기 위해 오버로드되었다.
  */
 CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, int a_level, CString a_hashedHighLevelPassword)
 {
@@ -33,7 +33,12 @@ CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelP
 	}
 	m_name = a_name;
 	m_lowLevelPassword = a_lowLevelPassword;
+	if(a_hashedHighLevelPassword == _T(""))
+	{
+		a_hashedHighLevelPassword = HashMessage(a_lowLevelPassword);
+	}
 	m_highLevelPassword = a_hashedHighLevelPassword;
+	
 	m_level = a_level;
 }
 
