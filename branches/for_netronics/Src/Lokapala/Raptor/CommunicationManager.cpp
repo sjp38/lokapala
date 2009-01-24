@@ -73,7 +73,7 @@ void CCommunicationManager::SendTextMessage(CString a_message)
  */
 void CCommunicationManager::NotifyReceived(CString a_message)
 {
-	CCBFMediator::Instance()->Notify(&a_message);	//테스트용. 최종 버전에서는 지울 것.
+	//CCBFMediator::Instance()->Notify(&a_message);	//테스트용. 최종 버전에서는 지울 것.
 	USES_CONVERSION;
 	TiXmlDocument doc;
 	doc.Parse(W2A(a_message));

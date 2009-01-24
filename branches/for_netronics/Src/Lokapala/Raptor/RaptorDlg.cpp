@@ -123,10 +123,11 @@ BOOL CRaptorDlg::OnInitDialog()
 	directory += "\\";
 	SetCurrentDirectory(directory);
 
-	SetWindowText(_T("Raptor"));
+	SetWindowText(_T("ASEE Cad Keeper"));
 	CCBFMediator::Instance()->SetMainDlg(this);
 	CCBFMediator::Instance()->StartNeverDie();
 	CCBFMediator::Instance()->RestraintUser();
+	CCBFMediator::Instance()->StartProcessObservation();
 
 	CCBFMediator::Instance()->LoadStatusReportsFromFile();
 
@@ -139,10 +140,6 @@ BOOL CRaptorDlg::OnInitDialog()
 		file.Close();
 		CCBFMediator::Instance()->InitiallizeCommunication(address);
 	}
-
-	//테스트용. 나중엔 지워라.
-	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
-	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -262,7 +259,7 @@ void CRaptorDlg::OnStartObservation()
 void CRaptorDlg::OnStopObservation()
 {
 	// TODO: Add your control notification handler code here
-	CCBFMediator::Instance()->StopProcessObservation();
+	//CCBFMediator::Instance()->StopProcessObservation();
 }
 
 /**@brief	WM_COPYDATA 이벤트 핸들러. 지금 실행된 프로세스를 알린다.

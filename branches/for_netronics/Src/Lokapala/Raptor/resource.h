@@ -23,6 +23,8 @@
 #define IDC_BUTTON2                     1007
 #define IDC_STOPNEVERDIE_TEST           1007
 #define IDC_BUTTON1                     1008
+#define ID_OK                           1008
+#define IDC_LOGOUT                      1008
 #define IDC_BUTTON3                     1009
 #define IDC_EDIT1                       1010
 #define IDC_NAME                        1010
