@@ -41,7 +41,6 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialog)
 	ON_WM_DESTROY()
 	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CLoginDlg::OnStatusChanged)
 	ON_WM_CTLCOLOR()
-	ON_WM_LBUTTONDOWN()
 	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
@@ -213,16 +212,6 @@ HBRUSH CLoginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 	// TODO:  Return a different brush if the default is not desired
 	return hbr;
-}
-
-/**@brief	타이틀바 없이 윈도우 이동 가능하도록 수정
- */
-void CLoginDlg::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
-	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
-
-	CDialog::OnLButtonDown(nFlags, point);
 }
 
 void CLoginDlg::OnClose()

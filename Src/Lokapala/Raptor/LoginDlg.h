@@ -39,6 +39,5 @@ public:
 	afx_msg LRESULT OnStatusChanged(WPARAM wParam, LPARAM lParam);
 	CListBox m_statusList;
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnClose();
 };
