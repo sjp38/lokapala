@@ -39,8 +39,10 @@ protected :
 	~CDharaniServerManager(){}
 
 private :	
+	static unsigned int WINAPI DeathLordThread(LPVOID a_clientSockets);
 	static unsigned int WINAPI ReceiverThread(LPVOID a_hCompletionPort);
 	static unsigned int WINAPI AcceptorThread(LPVOID a_hCompletionPort);
+	void SetLifeSignal(SOCKET a_socket);
 	void RemoveFromClientSockets(SOCKET a_socket);
 	void AddToClientSockets(PTR_SOCKET_DATA a_socketData);
 	SOCKET_DATA GetSocketDataFromClientSockets(SOCKET a_socket);
@@ -52,7 +54,7 @@ private :
 	HANDLE	m_hCompletionPort;
 	SOCKET	m_hListenSocket;
 	SOCKET_DATA m_clientSockets[MAXCLIENT];	//클라이언트 소켓들
-	int m_socketCount;
+	static int m_socketCount;
 
 	HANDLE m_hMutex;		//뮤텍스 핸들	
 

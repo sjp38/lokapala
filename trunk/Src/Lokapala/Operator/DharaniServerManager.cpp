@@ -56,6 +56,55 @@ void CDharaniServerManager::Initiallize()
 
 	//accept 과정과 소켓/completion port의 연결 과정은 쓰레드로 분립시킨다.
 	_beginthreadex(NULL,0,&CDharaniServerManager::AcceptorThread,(LPVOID)m_hCompletionPort, 0, NULL);
+
+	//deathlord를 만든다.
+	_beginthreadex(NULL,0,&CDharaniServerManager::DeathLordThread,(LPVOID)m_clientSockets, 0, NULL);
+}
+
+int CDharaniServerManager::m_socketCount = 0;
+
+/**@brief	해당 소켓이 포함된 클라이언트 소켓 데이터에 생명신호를 받았음을 체크한다.
+ */
+void CDharaniServerManager::SetLifeSignal(SOCKET a_socket)
+{
+	for(int i=0; i<CDharaniServerManager::m_socketCount; i++)
+	{
+		if(m_clientSockets[i].descriptor == a_socket)
+		{
+			m_clientSockets[i].lifeSignalUnchecked = true;
+		}
+	}
+}
+
+/**@brief	주기적으로 클라이언트로부터의 생명 신호를 체크해, 3회 이상 생명 신호를 보내지 못한 클라이언트를 연결 끊겼다고 간주한다.
+ */
+unsigned int WINAPI CDharaniServerManager::DeathLordThread(LPVOID a_clientSockets)
+{
+	PTR_SOCKET_DATA clientSockets = (PTR_SOCKET_DATA)a_clientSockets;
+
+	while(1)
+	{
+		Sleep(2000);
+		for(int i=0; i<CDharaniServerManager::m_socketCount; i++)
+		{			
+			if(clientSockets[i].lifeSignal != true)
+			{
+				clientSockets[i].lifeSignalUnchecked++;
+			}
+			else
+			{
+				clientSockets[i].lifeSignalUnchecked = 0;
+				clientSockets[i].lifeSignal = false;
+			}
+
+			if(clientSockets[i].lifeSignalUnchecked > 3)
+			{
+				CDharaniServerManager::Instance()->RemoveFromClientSockets(clientSockets[i].descriptor);
+				
+			}
+		}
+	}
+	return 0;
 }
 
 /**@brief	리슨 소켓을 가지고 클라이언트로부터의 연결 요청을 허락하고 연결된 소켓을 completion port에 연결한다.
@@ -91,6 +140,9 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		memcpy(&(socketData->addr), &clientAddress, addrLen);
 		socketData->localIp = (in_addr)clientLocalIp;
 		socketData->passwd = passwd;
+		
+		socketData->lifeSignal = false;
+		socketData->lifeSignalUnchecked = 0;
 		
 		//completion port에 소켓을 연결.
 		CreateIoCompletionPort((HANDLE)hClientSocket, (HANDLE)a_hCompletionPort, (DWORD)socketData, 0);
@@ -170,6 +222,14 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 
 		char decrypted[BUFSIZE];
 		CDharaniServerManager::Instance()->Decrypt(socketData->passwd, size, decrypted, ioData->buffer+sizeof(size));
+
+		//생명 신호 처리
+		char lifeSignal[] = "tkfdkdlTdma";
+		if( !strcmp(decrypted, lifeSignal) )
+		{
+			CDharaniServerManager::Instance()->SetLifeSignal(socketData->descriptor);
+		}
+
 		CDharaniExternSD::Instance()->NotifyReceived(decrypted, socketData->localIp, socketData->addr.sin_addr);
 
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
