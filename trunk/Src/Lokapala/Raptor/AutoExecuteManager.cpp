@@ -7,7 +7,7 @@
 #include "AutoExecuteManager.h"
 
 /**@brief	생성자\n
-			부팅 시 자동 실행 설정, regedit 방지를 설정 할 수 있는 위치의 레지스트리를 연다.
+ *			부팅 시 자동 실행 설정, regedit 방지를 설정 할 수 있는 위치의 레지스트리를 연다.
  */
 CAutoExecuteManager::CAutoExecuteManager()
 {
