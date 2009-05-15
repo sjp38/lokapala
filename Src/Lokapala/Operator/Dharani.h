@@ -35,6 +35,8 @@ typedef struct
 	SOCKADDR_IN addr;
 	in_addr localIp;
 	int passwd;
+	bool lifeSignal;
+	int lifeSignalUnchecked;
 } SOCKET_DATA, *PTR_SOCKET_DATA;
 
 typedef struct

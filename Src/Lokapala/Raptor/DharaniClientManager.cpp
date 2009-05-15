@@ -60,7 +60,33 @@ int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	}
 
 	_beginthreadex(NULL,0,&CDharaniClientManager::ReceiverThread,(LPVOID)m_serverSocket, 0, NULL);
+	_beginthreadex(NULL,0,&CDharaniClientManager::LifeSignalSenderThread,(LPVOID)m_serverSocket, 0, NULL);
 	CDharaniExternSD::Instance()->NotifyConnected();
+	return 0;
+}
+
+
+
+int CDharaniClientManager::m_passwd = 0;
+
+/**@brief	쓰레드로 돌면서 1초마다 한번씩 서버측으로 생명 신호를 날린다.
+ */
+unsigned int WINAPI CDharaniClientManager::LifeSignalSenderThread(LPVOID a_serverSocket)
+{
+	SOCKET serverSocket = (SOCKET)a_serverSocket;
+	char lifeSignal[] = "tkfdkdlTdma";
+	while(1)
+	{
+		int size = strlen(lifeSignal)+1;	
+
+		char encrypted[BUFSIZE];
+		Encrypt(lifeSignal, encrypted+sizeof(size));
+		memcpy(encrypted, &size, sizeof(size));
+
+		send(serverSocket, encrypted, sizeof(size)+size, 0);
+
+		Sleep(1000);
+	}
 	return 0;
 }
 
