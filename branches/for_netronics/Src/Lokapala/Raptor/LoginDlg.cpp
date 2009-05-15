@@ -41,8 +41,8 @@ BEGIN_MESSAGE_MAP(CLoginDlg, CDialog)
 	ON_WM_DESTROY()
 	ON_MESSAGE(LKPLM_STATUS_CHANGED, &CLoginDlg::OnStatusChanged)
 	ON_WM_CTLCOLOR()
-	ON_WM_LBUTTONDOWN()
 	ON_WM_CLOSE()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -115,6 +115,8 @@ BOOL CLoginDlg::OnInitDialog()
 		m_operatorIPAddress.SetAddress(address);
 		file.Close();
 	}
+
+	SetTimer(0, 1000, NULL);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -215,16 +217,6 @@ HBRUSH CLoginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	타이틀바 없이 윈도우 이동 가능하도록 수정
- */
-void CLoginDlg::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
-	PostMessage(WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(point.x, point.y));
-
-	CDialog::OnLButtonDown(nFlags, point);
-}
-
 void CLoginDlg::OnClose()
 {
 	// TODO: Add your message handler code here and/or call default
@@ -234,4 +226,15 @@ void CLoginDlg::OnClose()
 	}
 
 	CDialog::OnClose();
+}
+
+/**@brief	1초마다 호출되어, 자신을 최상위 윈도우가 되도록 만든다.
+ */
+void CLoginDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: Add your message handler code here and/or call default
+	::SetWindowPos(this->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);	//윈도우를 최상위로 위치시킨다.
+	
+
+	CDialog::OnTimer(nIDEvent);
 }

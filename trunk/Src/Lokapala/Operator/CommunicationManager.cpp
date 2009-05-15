@@ -100,7 +100,7 @@ void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp,
 	}
 	CString address = a_globalIp + _T("/") + a_localIp;
 	const char *header = proot->Attribute("Header");
-		
+	
 	switch(atoi( header ))
 	{
 	case LOGIN_REQUEST :

@@ -89,7 +89,7 @@ void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
  */
 void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp)
 {
-	CCBFMediator::Instance()->Notify(&a_message);	//테스트용. 지저분하니 최종에는 지우도록.
+	//CCBFMediator::Instance()->Notify(&a_message);	//테스트용. 지저분하니 최종에는 지우도록.
 	USES_CONVERSION;
 	TiXmlDocument doc;
 	doc.Parse(W2A(a_message));
