@@ -1,5 +1,5 @@
-/**@file	NeverDieBI.h
- * @brief	NDMÀÇ BI Á¤ÀÇ.
+ï»¿/**@file	NeverDieBI.h
+ * @brief	NDMì˜ BI ì •ì˜.
  * @author	siva
  */
 
@@ -8,21 +8,21 @@
 
 /**@ingroup	GroupNDM
  * @class	CNeverDieBI
- * @brief	NeverDie Manager ÀÇ Button Interface.
- * @remarks	ÀÎÅÍÆäÀÌ´Ù.
+ * @brief	NeverDie Manager ì˜ Button Interface.
+ * @remarks	ì¸í„°í˜ì´ë‹¤.
  */
 class CNeverDieBI
 {
 public :
-	/**@brief	Àı´ë Á×Áö ¾Ê°Ô ÇÑ´Ù.
+	/**@brief	ì ˆëŒ€ ì£½ì§€ ì•Šê²Œ í•œë‹¤.
 	 */
 	virtual void StartNeverDie() = 0;
-	/**@brief	Á×À» ¼öµµ ÀÖ°Ô ÇÑ´Ù.
+	/**@brief	ì£½ì„ ìˆ˜ë„ ìˆê²Œ í•œë‹¤.
 	 */
 	virtual void StopNeverDie() = 0;
 
-	/**@brief	Á×À» ¼ö ÀÖ´ÂÁö Á×¾î¼± ¾ÈµÇ´ÂÁö ¾Ë·ÁÁØ´Ù.
-	 * @return	Á×¾î¼± ¾ÈµÈ´Ù¸é true, Á×¾îµµ µÈ´Ù¸é false
+	/**@brief	ì£½ì„ ìˆ˜ ìˆëŠ”ì§€ ì£½ì–´ì„  ì•ˆë˜ëŠ”ì§€ ì•Œë ¤ì¤€ë‹¤.
+	 * @return	ì£½ì–´ì„  ì•ˆëœë‹¤ë©´ true, ì£½ì–´ë„ ëœë‹¤ë©´ false
 	 */
 	virtual bool GetNeverDieState() = 0;
 };

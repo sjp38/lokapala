@@ -1,5 +1,5 @@
-/**@file	RulesDataDTO.h
- * @brief	¸ðµç ½ÇÇà ±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢À» °ü¸®ÇÑ´Ù.
+ï»¿/**@file	RulesDataDTO.h
+ * @brief	ëª¨ë“  ì‹¤í–‰ ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ì„ ê´€ë¦¬í•œë‹¤.
  * @author	siva
  */
 

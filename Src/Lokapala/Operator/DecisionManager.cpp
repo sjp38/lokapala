@@ -1,5 +1,5 @@
-/**@file	DecisionManager.cpp
- * @brief	CDecisionManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	DecisionManager.cpp
+ * @brief	CDecisionManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -18,7 +18,7 @@
 #include "ControlActionDTO.h"
 
 
-/**@brief	È£½ºÆ®ÀÇ Á¢¼Ó¿¡ ´ëÇØ Ã³¸®ÇÑ´Ù.
+/**@brief	í˜¸ìŠ¤íŠ¸ì˜ ì ‘ì†ì— ëŒ€í•´ ì²˜ë¦¬í•œë‹¤.
  */
 void CDecisionManager::HostConnected(void *a_hostData)
 {
@@ -30,7 +30,7 @@ void CDecisionManager::HostConnected(void *a_hostData)
 	ReportStatusTo(&host->m_hostAddress);
 }
 
-/**@brief	È£½ºÆ®ÀÇ Á¢¼Ó Á¾·á¿¡ ´ëÇØ Ã³¸®ÇÑ´Ù.
+/**@brief	í˜¸ìŠ¤íŠ¸ì˜ ì ‘ì† ì¢…ë£Œì— ëŒ€í•´ ì²˜ë¦¬í•œë‹¤.
  */
 void CDecisionManager::HostDisconnected(void *a_hostData)
 {
@@ -41,7 +41,7 @@ void CDecisionManager::HostDisconnected(void *a_hostData)
 	CCBFMediator::Instance()->NotifyRaptorLeaved(&host->m_hostAddress);
 }
 
-/**@brief	Æ¯Á¤ ÁÖ¼Ò·Î »óÅÂ º¸°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • ì£¼ì†Œë¡œ ìƒíƒœ ë³´ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDecisionManager::ReportStatusTo(CString *a_hostAddress)
 {	
@@ -55,15 +55,15 @@ void CDecisionManager::ReportStatusTo(CString *a_hostAddress)
 }
 
 
-/**@brief	»ç¿ëÀÚ ·Î±×ÀÎ Ã³¸®. ¿Ã¹Ù¸¥ »ç¿ëÀÚÀÎÁö È®ÀÎÇÑ´Ù.
- * @param	a_loginRequestData	»ç¿ëÀÚ ·Î±×ÀÎ Á¤º¸ÀÇ Æ÷ÀÎÅÍ. ÇØ´ç DTOÀÇ Æ÷ÀÎÅÍÀÌÁö¸¸ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ ÇØ »ç¿ëÇÑ´Ù.
+/**@brief	ì‚¬ìš©ì ë¡œê·¸ì¸ ì²˜ë¦¬. ì˜¬ë°”ë¥¸ ì‚¬ìš©ìì¸ì§€ í™•ì¸í•œë‹¤.
+ * @param	a_loginRequestData	ì‚¬ìš©ì ë¡œê·¸ì¸ ì •ë³´ì˜ í¬ì¸í„°. í•´ë‹¹ DTOì˜ í¬ì¸í„°ì´ì§€ë§Œ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… í•´ ì‚¬ìš©í•œë‹¤.
  */
 void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 {
 	CLoginRequestDTO *loginRequestData;
 	loginRequestData = (CLoginRequestDTO *)a_loginRequestData;
 
-	//SD¸¦ ÅëÇØ DAMÀ¸·ÎºÎÅÍ »ç¿ëÀÚ Á¤º¸¸¦ ¾ò¾î¿Í ´ëÁ¶ÇÑ´Ù.
+	//SDë¥¼ í†µí•´ DAMìœ¼ë¡œë¶€í„° ì‚¬ìš©ì ì •ë³´ë¥¼ ì–»ì–´ì™€ ëŒ€ì¡°í•œë‹¤.
 	CUsersDataDTO *usersData;
 	usersData = (CUsersDataDTO *)( CDCDataAdminSD::Instance()->GetUsersDataDTO() );
 	CUserDataDTO *userData;
@@ -85,13 +85,13 @@ void CDecisionManager::JudgeLoginRequest(void *a_loginRequestData)
 
 	loginRequestData->m_level = userData->m_level;
 
-	//DCCommunication SD¸¦ ÀÌ¿ëÇØ ·Î±×ÀÎ Çã¿ë ¸Ş¼¼Áö¸¦ ³¯¸°´Ù.
+	//DCCommunication SDë¥¼ ì´ìš©í•´ ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ë¥¼ ë‚ ë¦°ë‹¤.
 	CDCCommunicationSD::Instance()->NotifyAccepted(loginRequestData);		
 	CCBFMediator::Instance()->NotifyRaptorLogin(&user.m_hostAddress);	
 }
 
 
-/**@brief	·ê¿¡ ¸í½ÃµÈ ¹İÀÀÀ» ½ÇÁ¦·Î ÇàÇÑ´Ù.
+/**@brief	ë£°ì— ëª…ì‹œëœ ë°˜ì‘ì„ ì‹¤ì œë¡œ í–‰í•œë‹¤.
  */
 void CDecisionManager::ControlRaptor(/*void *a_executedProcess, */void *a_controlAction)
 {
@@ -129,7 +129,7 @@ void CDecisionManager::ControlRaptor(/*void *a_executedProcess, */void *a_contro
 	}	
 }
 
-/**@brief	·êµé¿¡ ¸í½ÃµÈ ¹İÀÀÀ» ½ÇÁ¦·Î ÇàÇÑ´Ù.
+/**@brief	ë£°ë“¤ì— ëª…ì‹œëœ ë°˜ì‘ì„ ì‹¤ì œë¡œ í–‰í•œë‹¤.
  */
 void CDecisionManager::DoReactionsTo(void *a_executedProcess, void *a_rules)
 {
@@ -151,7 +151,7 @@ void CDecisionManager::DoReactionsTo(void *a_executedProcess, void *a_rules)
 	}
 }
 
-/**@brief	·ê µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Í ½ÇÇàÇÑ ÇÁ·Î¼¼½º¿¡ ÇØ´çÇÏ´Â Ç×¸ñÀÌ ÀÖ´Â °æ¿ì, ·ê¿¡ ¸í½ÃµÈ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ë£° ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™€ ì‹¤í–‰í•œ í”„ë¡œì„¸ìŠ¤ì— í•´ë‹¹í•˜ëŠ” í•­ëª©ì´ ìˆëŠ” ê²½ìš°, ë£°ì— ëª…ì‹œëœ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::JudgeUserExecutedProcess(void *a_executedProcessData)
 {
@@ -165,8 +165,8 @@ void CDecisionManager::JudgeUserExecutedProcess(void *a_executedProcessData)
 }
 
 
-/**@brief	ÇöÀç »óÈ² º¸°í µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Í »õ·Î º¸°íµÈ ³»¿ëÀ» ³Ö´Â´Ù.
- *			Verified »óÅÂ¶ó¸é ÀÌÀüÀÇ ±â·ÏÀ» ¸ğµÎ ·Î±×·Î ³²±â°í, Áö¿î´Ù.
+/**@brief	í˜„ì¬ ìƒí™© ë³´ê³  ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™€ ìƒˆë¡œ ë³´ê³ ëœ ë‚´ìš©ì„ ë„£ëŠ”ë‹¤.
+ *			Verified ìƒíƒœë¼ë©´ ì´ì „ì˜ ê¸°ë¡ì„ ëª¨ë‘ ë¡œê·¸ë¡œ ë‚¨ê¸°ê³ , ì§€ìš´ë‹¤.
  */
 void CDecisionManager::PresentStatusReport(void *a_statusReportData)
 {
@@ -180,7 +180,7 @@ void CDecisionManager::PresentStatusReport(void *a_statusReportData)
 	CCBFMediator::Instance()->NotifyRaptorStatusChange(&targetStatusReports);
 }
 
-/**@brief	Æ¯Á¤ À¯Àú¸¦ ¿¬°áµÈ À¯Àú ¸ñ·Ï¿¡¼­ Á¦°ÅÇÑ´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ë¥¼ ì—°ê²°ëœ ìœ ì € ëª©ë¡ì—ì„œ ì œê±°í•œë‹¤.
  */
 void CDecisionManager::RemoveFromAcceptedUser(CString a_hostAddress)
 {
@@ -190,21 +190,21 @@ void CDecisionManager::RemoveFromAcceptedUser(CString a_hostAddress)
 }
 
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ÄÄÇ»ÅÍ¸¦ Á¾·á½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ì»´í“¨í„°ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::ShutdownHost(void *a_argument)
 {
 	CDCCommunicationSD::Instance()->SendShutdownInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ÄÄÇ»ÅÍ¸¦ ¸®ºÎÆÃ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ì»´í“¨í„°ë¥¼ ë¦¬ë¶€íŒ…ì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::RebootHost(void *a_argument)
 {
 	CDCCommunicationSD::Instance()->SendRebootInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯Àú¸¦ °­Á¦·Î ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ë¥¼ ê°•ì œë¡œ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::BanUser(void *a_argument)
 {
@@ -215,35 +215,35 @@ void CDecisionManager::BanUser(void *a_argument)
 	CCBFMediator::Instance()->NotifyRaptorLogout(&hostAddress);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::ExecuteHostProcess(void *a_argument)
 {
 	CDCCommunicationSD::Instance()->SendExecuteProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::KillHostProcess(void *a_argument)
 {
 	CDCCommunicationSD::Instance()->SendKillProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ¸ğµç ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::GenocideHostProcess(void *a_argument)
 {
 	CDCCommunicationSD::Instance()->SendGenocideProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô °æ°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ê²½ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDecisionManager::WarnHost(void *a_argument)
 {
 	CDCCommunicationSD::Instance()->SendWarningMessage(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô »óÅÂ º¸°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ìƒíƒœ ë³´ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDecisionManager::SubmitStatusReportToHost(void *a_statusReport)
 {
@@ -256,7 +256,7 @@ void CDecisionManager::SubmitStatusReportToHost(void *a_statusReport)
 	CDCCommunicationSD::Instance()->SendStatusReport(a_statusReport);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ·¦ÅÍ¸¦ µ¿ÀÛ Á¤Áö½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ë©í„°ë¥¼ ë™ì‘ ì •ì§€ì‹œí‚¨ë‹¤.
  */
 void CDecisionManager::TerminateRaptorOnHost(void *a_argument)
 {

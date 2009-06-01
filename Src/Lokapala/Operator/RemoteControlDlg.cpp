@@ -1,4 +1,4 @@
-// RemoteControlDlg.cpp : implementation file
+ï»¿// RemoteControlDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -47,8 +47,8 @@ BEGIN_MESSAGE_MAP(CRemoteControlDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-/**@brief	¼±ÅÃµÇ¾îÁø ¸ñÀû ÁÖ¼Ò¸¦ ¾ò¾î ¿Â´Ù.
- * @param	a_selectedIndex	ÀÌ°÷¿¡ ¼±ÅÃµÈ ÁÖ¼ÒÀÇ ¸®½ºÆ®¹Ú½º¿¡¼­ÀÇ ÀÎµ¦½ºµéÀ» ³Ö¾î ÁØ´Ù.
+/**@brief	ì„ íƒë˜ì–´ì§„ ëª©ì  ì£¼ì†Œë¥¼ ì–»ì–´ ì˜¨ë‹¤.
+ * @param	a_selectedIndex	ì´ê³³ì— ì„ íƒëœ ì£¼ì†Œì˜ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œì˜ ì¸ë±ìŠ¤ë“¤ì„ ë„£ì–´ ì¤€ë‹¤.
  */
 void CRemoteControlDlg::GetSelectedTarget(CArray<int> *a_selectedIndex)
 {
@@ -59,7 +59,7 @@ void CRemoteControlDlg::GetSelectedTarget(CArray<int> *a_selectedIndex)
 }
 
 // CRemoteControlDlg message handlers
-/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà
+/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰
  */
 void CRemoteControlDlg::OnBnClickedExecuteProcess()
 {
@@ -77,7 +77,7 @@ void CRemoteControlDlg::OnBnClickedExecuteProcess()
 	}
 }
 
-/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º Á¾·á
+/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ
  */
 void CRemoteControlDlg::OnBnClickedKillProcess()
 {
@@ -95,7 +95,7 @@ void CRemoteControlDlg::OnBnClickedKillProcess()
 	}
 }
 
-/**@brief	»ç¿ëÀÚÀÇ ¸ğµç ÇÁ·Î¼¼½º Á¾·á
+/**@brief	ì‚¬ìš©ìì˜ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ
  */
 void CRemoteControlDlg::OnBnClickedGenocideProcesses()
 {
@@ -113,7 +113,7 @@ void CRemoteControlDlg::OnBnClickedGenocideProcesses()
 	}
 }
 
-/**@brief	»ç¿ëÀÚ ÄÄÇ»ÅÍ Á¾·á
+/**@brief	ì‚¬ìš©ì ì»´í“¨í„° ì¢…ë£Œ
  */
 void CRemoteControlDlg::OnBnClickedShutdown()
 {
@@ -131,7 +131,7 @@ void CRemoteControlDlg::OnBnClickedShutdown()
 	}
 }
 
-/**@brief	»ç¿ëÀÚ ÄÄÇ»ÅÍ ¸®ºÎÆÃ
+/**@brief	ì‚¬ìš©ì ì»´í“¨í„° ë¦¬ë¶€íŒ…
  */
 void CRemoteControlDlg::OnBnClickedReboot()
 {
@@ -149,7 +149,7 @@ void CRemoteControlDlg::OnBnClickedReboot()
 	}
 }
 
-/**@brief	»ç¿ëÀÚ ·Î±×¾Æ¿ô
+/**@brief	ì‚¬ìš©ì ë¡œê·¸ì•„ì›ƒ
  */
 void CRemoteControlDlg::OnBnClickedLogout()
 {
@@ -167,7 +167,7 @@ void CRemoteControlDlg::OnBnClickedLogout()
 	}
 }
 
-/**@brief	ÇöÀç ½Ã°¢À» YYYY.MM.DD/HH:MM:SS Æ÷¸ËÀ¸·Î ¹İÈ¯ÇÑ´Ù.
+/**@brief	í˜„ì¬ ì‹œê°ì„ YYYY.MM.DD/HH:MM:SS í¬ë§·ìœ¼ë¡œ ë°˜í™˜í•œë‹¤.
  */
 CString CRemoteControlDlg::GetTime()
 {
@@ -179,7 +179,7 @@ CString CRemoteControlDlg::GetTime()
 	return nowTimeText;
 }
 
-/**@brief	½ºÅ×ÀÌÅÍ½º º¸°í
+/**@brief	ìŠ¤í…Œì´í„°ìŠ¤ ë³´ê³ 
  */
 void CRemoteControlDlg::OnBnClickedStatusReport()
 {
@@ -204,7 +204,7 @@ void CRemoteControlDlg::OnBnClickedStatusReport()
 	}
 }
 
-/**@brief	Terminate Raptor ¹öÆ° Å¬¸¯.
+/**@brief	Terminate Raptor ë²„íŠ¼ í´ë¦­.
  */
 void CRemoteControlDlg::OnBnClickedTerminateRaptor()
 {
@@ -222,7 +222,7 @@ void CRemoteControlDlg::OnBnClickedTerminateRaptor()
 }
 
 
-/**@brief	´ÙÀÌ¾ó·Î±× ÃÊ±âÈ­ ½Ã
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ì´ˆê¸°í™” ì‹œ
  */
 BOOL CRemoteControlDlg::OnInitDialog()
 {
@@ -248,7 +248,7 @@ BOOL CRemoteControlDlg::OnInitDialog()
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/**@brief	½ºÅ×ÀÌÅÍ½º µå·Ó´Ù¿î ¹Ú½º¿¡ ¼±ÅÃÇÒ »óÅÂ¸¦ ³Ö´Â´Ù.
+/**@brief	ìŠ¤í…Œì´í„°ìŠ¤ ë“œë¡­ë‹¤ìš´ ë°•ìŠ¤ì— ì„ íƒí•  ìƒíƒœë¥¼ ë„£ëŠ”ë‹¤.
  */
 void CRemoteControlDlg::SetStatusOnControl()
 {
@@ -258,7 +258,7 @@ void CRemoteControlDlg::SetStatusOnControl()
 	m_statusInput.AddString(_T("Verified"));
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»ö, ½ºÅÂÆ½ ÄÁÆ®·Ñ ¹è°æ»ö Á¶Á¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰, ìŠ¤íƒœí‹± ì»¨íŠ¸ë¡¤ ë°°ê²½ìƒ‰ ì¡°ì •
  */
 HBRUSH CRemoteControlDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -268,7 +268,7 @@ HBRUSH CRemoteControlDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ì…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -280,7 +280,7 @@ HBRUSH CRemoteControlDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	Å¸ÀÌÆ²¹Ù ¾øÀÌ ¿òÁ÷ÀÏ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+/**@brief	íƒ€ì´í‹€ë°” ì—†ì´ ì›€ì§ì¼ ìˆ˜ ìˆë„ë¡ í•œë‹¤.
  */
 void CRemoteControlDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {

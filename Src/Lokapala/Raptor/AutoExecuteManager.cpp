@@ -1,13 +1,13 @@
-/**@file	AutoExecuteManager.cpp
- * @brief	CAutoExecuteManagerÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	AutoExecuteManager.cpp
+ * @brief	CAutoExecuteManagerì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "AutoExecuteManager.h"
 
-/**@brief	»ı¼ºÀÚ\n
- *			ºÎÆÃ ½Ã ÀÚµ¿ ½ÇÇà ¼³Á¤, regedit ¹æÁö¸¦ ¼³Á¤ ÇÒ ¼ö ÀÖ´Â À§Ä¡ÀÇ ·¹Áö½ºÆ®¸®¸¦ ¿¬´Ù.
+/**@brief	ìƒì„±ì\n
+ *			ë¶€íŒ… ì‹œ ìë™ ì‹¤í–‰ ì„¤ì •, regedit ë°©ì§€ë¥¼ ì„¤ì • í•  ìˆ˜ ìˆëŠ” ìœ„ì¹˜ì˜ ë ˆì§€ìŠ¤íŠ¸ë¦¬ë¥¼ ì—°ë‹¤.
  */
 CAutoExecuteManager::CAutoExecuteManager()
 {
@@ -15,8 +15,8 @@ CAutoExecuteManager::CAutoExecuteManager()
 	m_hregeditEnable = OpenRegistry(_T("Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"));
 }
 
-/**@brief	¼Ò¸êÀÚ\n
- *			·¹Áö½ºÆ®¸® Å°¸¦ ´İ´Â´Ù.
+/**@brief	ì†Œë©¸ì\n
+ *			ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë‹«ëŠ”ë‹¤.
  */
 CAutoExecuteManager::~CAutoExecuteManager()
 {
@@ -24,9 +24,9 @@ CAutoExecuteManager::~CAutoExecuteManager()
 	RegCloseKey(m_hregeditEnable);
 }
 
-/**@brief	Æ¯Á¤ À§Ä¡ ·¹Áö½ºÆ®¸®¸¦ ¿­°í ±× Å°¸¦ ¹İ³³ÇÑ´Ù.
- * @param	a_path	¿­°íÀÚ ÇÏ´Â ·¹Áö½ºÆ®¸®ÀÇ °æ·Î
- * @return	¿¬ ·¹Áö½ºÆ®¸® Å°
+/**@brief	íŠ¹ì • ìœ„ì¹˜ ë ˆì§€ìŠ¤íŠ¸ë¦¬ë¥¼ ì—´ê³  ê·¸ í‚¤ë¥¼ ë°˜ë‚©í•œë‹¤.
+ * @param	a_path	ì—´ê³ ì í•˜ëŠ” ë ˆì§€ìŠ¤íŠ¸ë¦¬ì˜ ê²½ë¡œ
+ * @return	ì—° ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤
  */
 HKEY CAutoExecuteManager::OpenRegistry(CString a_path)
 {
@@ -39,8 +39,8 @@ HKEY CAutoExecuteManager::OpenRegistry(CString a_path)
 	return hKey;
 }
 
-/**@brief	ÄÄÇ»ÅÍ ºÎÆÃ ½Ã ÀÚµ¿À¸·Î ½ÇÇàµÇµµ·Ï ·¹Áö½ºÆ®¸®¸¦ ¼³Á¤ÇÑ´Ù.\n
- *			»ç¿ëÀÚÀÇ ·¹Áö½ºÆ®¸® ÀÓÀÇ ¼öÁ¤À» ¸·±â À§ÇØ regeditÀ» »ç¿ëÇÒ ¼ö ¾ø°Ô ¸¸µç´Ù.
+/**@brief	ì»´í“¨í„° ë¶€íŒ… ì‹œ ìë™ìœ¼ë¡œ ì‹¤í–‰ë˜ë„ë¡ ë ˆì§€ìŠ¤íŠ¸ë¦¬ë¥¼ ì„¤ì •í•œë‹¤.\n
+ *			ì‚¬ìš©ìì˜ ë ˆì§€ìŠ¤íŠ¸ë¦¬ ì„ì˜ ìˆ˜ì •ì„ ë§‰ê¸° ìœ„í•´ regeditì„ ì‚¬ìš©í•  ìˆ˜ ì—†ê²Œ ë§Œë“ ë‹¤.
  */
 void CAutoExecuteManager::SetAutoExecute()
 {
@@ -55,7 +55,7 @@ void CAutoExecuteManager::SetAutoExecute()
 	}
 }
 
-/**@brief	ÄÄÇ»ÅÍ ºÎÆÃ ½Ã ÀÚµ¿À¸·Î ½ÇÇàµÇÁö ¾Êµµ·Ï ·¹Áö½ºÆ®¸®¸¦ Àç¼³Á¤ÇÑ´Ù.
+/**@brief	ì»´í“¨í„° ë¶€íŒ… ì‹œ ìë™ìœ¼ë¡œ ì‹¤í–‰ë˜ì§€ ì•Šë„ë¡ ë ˆì§€ìŠ¤íŠ¸ë¦¬ë¥¼ ì¬ì„¤ì •í•œë‹¤.
  */
 void CAutoExecuteManager::ClearAutoExecute()
 {
@@ -69,7 +69,7 @@ void CAutoExecuteManager::ClearAutoExecute()
 }
 
 
-/**@brief	regedit¸¦ »ç¿ë °¡´ÉÇÏ°Ô ¸¸µç´Ù.
+/**@brief	regeditë¥¼ ì‚¬ìš© ê°€ëŠ¥í•˜ê²Œ ë§Œë“ ë‹¤.
  */
 void CAutoExecuteManager::SetRegEditAvailable()
 {
@@ -77,7 +77,7 @@ void CAutoExecuteManager::SetRegEditAvailable()
 	RegSetValueEx(m_hregeditEnable, _T("DisableRegistryTools"), 0, REG_DWORD, (const BYTE*)&regeditDisable, sizeof(DWORD));
 }
 
-/**@brief	regedit¸¦ »ç¿ë ºÒ°¡´ÉÇÏ°Ô ¸¸µç´Ù.
+/**@brief	regeditë¥¼ ì‚¬ìš© ë¶ˆê°€ëŠ¥í•˜ê²Œ ë§Œë“ ë‹¤.
  */
 void CAutoExecuteManager::SetRegEditDisable()
 {

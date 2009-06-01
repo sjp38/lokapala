@@ -1,5 +1,5 @@
-/**@file	CCMessengerSD.cpp
- * @brief	CCMÀÇ MessengerSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	CCMessengerSD.cpp
+ * @brief	CCMì˜ MessengerSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -7,7 +7,7 @@
 #include "CCMessengerSD.h"
 
 
-/**@brief	ÅØ½ºÆ® ¸Ş¼¼Áö ¼ö½Å. ±×³É È­¸é¿¡ »Ñ·ÁÁØ´Ù.
+/**@brief	í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ ìˆ˜ì‹ . ê·¸ëƒ¥ í™”ë©´ì— ë¿Œë ¤ì¤€ë‹¤.
  */
 void CCCMessengerSD::TexeMessageReceived(CString a_message)
 {

@@ -1,5 +1,5 @@
-/**@file	StatusReportsDTO.h
- * @brief	CStatusReportsDTO Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	StatusReportsDTO.h
+ * @brief	CStatusReportsDTO í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -12,8 +12,8 @@ typedef CArray<CStatusReportDTO> CStatusReportDTOArray;
 
 /**@ingroup	GroupDAM
  * @class	CStatusReportsDTO
- * @brief	º¸°í¹ŞÀº »óÈ² ÀüÃ¼¿¡ ´ëÇÑ Á¤º¸Ã¼.\n
- *			ÃÖ±ÙÀÇ »óÈ² Á¤º¸¸¸À» °¡Áö¸ç, VERIFIED µÈ °æ¿ì, ±âÁ¸ÀÇ ÇØ´ç À§Ä¡¿¡ ´ëÇÑ »óÈ² º¸°í´Â »èÁ¦ÇÑ´Ù.
+ * @brief	ë³´ê³ ë°›ì€ ìƒí™© ì „ì²´ì— ëŒ€í•œ ì •ë³´ì²´.\n
+ *			ìµœê·¼ì˜ ìƒí™© ì •ë³´ë§Œì„ ê°€ì§€ë©°, VERIFIED ëœ ê²½ìš°, ê¸°ì¡´ì˜ í•´ë‹¹ ìœ„ì¹˜ì— ëŒ€í•œ ìƒí™© ë³´ê³ ëŠ” ì‚­ì œí•œë‹¤.
  */
 class CStatusReportsDTO
 {

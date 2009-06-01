@@ -1,16 +1,16 @@
-/**@file	StatusReportsDTO.cpp
- * @brief	CStatusReportsDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	StatusReportsDTO.cpp
+ * @brief	CStatusReportsDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "StatusReportsDTO.h"
 
-/**@brief	»óÈ² º¸°í ³»¿ëÀ» Ãß°¡ÇÑ´Ù.\n
- *			ÃÖÁ¾ÀûÀ¸·Î VERIFIED µÈ ÀÌÀüÀÇ »óÅÂ º¸°í¶ó¸é ¹«½ÃÇÑ´Ù.\n
- *			¸¸¾à Ãß°¡µÇ´Â »óÈ²ÀÇ »óÅÂ°¡ VERIFIED, Áï °íÀå »óÅÂ ¼ö¸® ¿Ï·á¶ó¸é ÇØ´ç ÁÖ¼Ò¿¡ ´ëÇÑ ±âÁ¸ÀÇ »óÈ² º¸°í´Â »èÁ¦ÇÑ´Ù.\n
- *			¸¸¾à ±âÁ¸¿¡ ÀÖ´ø »óÈ² º¸°í¶ó¸é ¹«½ÃÇÑ´Ù.\n
- *			Ç×»ó ¹è¿­ ³»ÀÇ Ç×¸ñµéÀº ½Ã°£ ¼øÀ¸·Î Á¤·ÄµÈ´Ù.
+/**@brief	ìƒí™© ë³´ê³  ë‚´ìš©ì„ ì¶”ê°€í•œë‹¤.\n
+ *			ìµœì¢…ì ìœ¼ë¡œ VERIFIED ëœ ì´ì „ì˜ ìƒíƒœ ë³´ê³ ë¼ë©´ ë¬´ì‹œí•œë‹¤.\n
+ *			ë§Œì•½ ì¶”ê°€ë˜ëŠ” ìƒí™©ì˜ ìƒíƒœê°€ VERIFIED, ì¦‰ ê³ ì¥ ìƒíƒœ ìˆ˜ë¦¬ ì™„ë£Œë¼ë©´ í•´ë‹¹ ì£¼ì†Œì— ëŒ€í•œ ê¸°ì¡´ì˜ ìƒí™© ë³´ê³ ëŠ” ì‚­ì œí•œë‹¤.\n
+ *			ë§Œì•½ ê¸°ì¡´ì— ìˆë˜ ìƒí™© ë³´ê³ ë¼ë©´ ë¬´ì‹œí•œë‹¤.\n
+ *			í•­ìƒ ë°°ì—´ ë‚´ì˜ í•­ëª©ë“¤ì€ ì‹œê°„ ìˆœìœ¼ë¡œ ì •ë ¬ëœë‹¤.
  */
 void CStatusReportsDTO::AddReport(CStatusReportDTO *a_report)
 {		
@@ -48,7 +48,7 @@ void CStatusReportsDTO::AddReport(CStatusReportDTO *a_report)
 	m_reports.InsertAt(i, *a_report);
 }
 
-/**@brief	VERIFIED »óÅÂ º¸°í°¡ µé¾î¿ÔÀ» °æ¿ì. ÇØ´ç ÁÖ¼ÒÀÇ, ÀÌÀü ½Ã°¢ »óÅÂ º¸°í¸¦ Áö¿î´Ù.
+/**@brief	VERIFIED ìƒíƒœ ë³´ê³ ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°. í•´ë‹¹ ì£¼ì†Œì˜, ì´ì „ ì‹œê° ìƒíƒœ ë³´ê³ ë¥¼ ì§€ìš´ë‹¤.
  */
 void CStatusReportsDTO::DeleteVerifiedReports(CStatusReportDTO *a_report)
 {
@@ -61,7 +61,7 @@ void CStatusReportsDTO::DeleteVerifiedReports(CStatusReportDTO *a_report)
 	}
 }
 
-/**@brief	Æ¯Á¤ ÁÖ¼Ò·ÎºÎÅÍÀÇ »óÈ² º¸°í¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	íŠ¹ì • ì£¼ì†Œë¡œë¶€í„°ì˜ ìƒí™© ë³´ê³ ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CStatusReportsDTO::DeleteReportAt(CString a_hostAddress)
 {	
@@ -74,8 +74,8 @@ void CStatusReportsDTO::DeleteReportAt(CString a_hostAddress)
 	}
 }
 
-/**@brief	Æ¯Á¤ ÁÖ¼Ò·ÎºÎÅÍÀÇ »óÈ² º¸°í¸¦ °¡Á®¿Â´Ù.
- * @brief	a_dest	ÇØ´ç »óÈ² º¸°íµéÀ» ³Ö¾îÁÙ »óÈ² º¸°í Á¤º¸Ã¼ ¹è¿­ÀÇ ÁÖ¼Ò.
+/**@brief	íŠ¹ì • ì£¼ì†Œë¡œë¶€í„°ì˜ ìƒí™© ë³´ê³ ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+ * @brief	a_dest	í•´ë‹¹ ìƒí™© ë³´ê³ ë“¤ì„ ë„£ì–´ì¤„ ìƒí™© ë³´ê³  ì •ë³´ì²´ ë°°ì—´ì˜ ì£¼ì†Œ.
  */
 void CStatusReportsDTO::GetReportFrom(CString a_hostAddress, CStatusReportDTOArray *a_dest)
 {

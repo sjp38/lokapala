@@ -1,5 +1,5 @@
-/**@file	SeatDataDTO.h
- * @brief	ÀÚ¸® °ü·Ã Á¤º¸¸¦ ÀúÀåÇÏ´Â DTO¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	SeatDataDTO.h
+ * @brief	ìë¦¬ ê´€ë ¨ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” DTOë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -9,12 +9,12 @@
 
 /**@ingroup	GroupDAM
  * @class	CSeatDataDTO
- * @brief	°¢ ÀÚ¸®ÀÇ Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+ * @brief	ê° ìë¦¬ì˜ ì •ë³´ë¥¼ ì €ì¥í•œë‹¤.
  */
 class CSeatDataDTO
 {
 public :
-	/**@brief	{±Û·Î¹ú ip}/{·ÎÄÃ ip} ÀÇ ÇüÅÂ¸¦ °®´Â´Ù.	*/
+	/**@brief	{ê¸€ë¡œë²Œ ip}/{ë¡œì»¬ ip} ì˜ í˜•íƒœë¥¼ ê°–ëŠ”ë‹¤.	*/
 	CString m_seatId;
 	CString m_hostAddress;
 	CPoint m_position;

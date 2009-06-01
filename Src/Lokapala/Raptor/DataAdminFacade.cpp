@@ -1,5 +1,5 @@
-/**@file	DataAdminFacade.cpp
- * @brief	DAMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DataAdminFacade.cpp
+ * @brief	DAMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -8,43 +8,43 @@
 
 #include "DataAdminManager.h"
 
-/**@brief	»ç¿ëÀÚ Á¤º¸¸¦ ÀÔ·ÂÇÑ´Ù. »ç¿ëÀÚÀÇ ·Î±×ÀÎ ¿äÃ» ½Ã¿¡ ºÒ·ÁÁø´Ù.
+/**@brief	ì‚¬ìš©ì ì •ë³´ë¥¼ ì…ë ¥í•œë‹¤. ì‚¬ìš©ìì˜ ë¡œê·¸ì¸ ìš”ì²­ ì‹œì— ë¶ˆë ¤ì§„ë‹¤.
  */
 void CDataAdminFacade::RegistUser(void *a_userInfo)
 {
 	CDataAdminManager::Instance()->RegistUser(a_userInfo);
 }
 
-/**@brief	»ç¿ëÀÚÀÇ ·¹º§À» ÀÔ·ÂÇÑ´Ù. »ç¿ëÀÚÀÇ ·Î±×ÀÎ Çã¶ô ½Ã¿¡ ºÒ·ÁÁø´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ë ˆë²¨ì„ ì…ë ¥í•œë‹¤. ì‚¬ìš©ìì˜ ë¡œê·¸ì¸ í—ˆë½ ì‹œì— ë¶ˆë ¤ì§„ë‹¤.
  */
 void CDataAdminFacade::RegistUserLevel(int a_level)
 {
 	CDataAdminManager::Instance()->RegistUserLevel(a_level);
 }
 
-/**@brief	»óÈ² º¯È­ º¸°í¸¦ °¡Á®¿Â´Ù.
- * @return	»óÈ² º¯È­ º¸°í Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ.
+/**@brief	ìƒí™© ë³€í™” ë³´ê³ ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+ * @return	ìƒí™© ë³€í™” ë³´ê³  ì •ë³´ì²´ì˜ í¬ì¸í„°.
  */
 void *CDataAdminFacade::GetStatusReports()
 {
 	return CDataAdminManager::Instance()->GetStatusReports();
 }
 
-/**@brief	»óÅÂ º¸°í¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ìƒíƒœ ë³´ê³ ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDataAdminFacade::AddStatusReport(void *a_statusReport)
 {
 	CDataAdminManager::Instance()->AddStatusReport(a_statusReport);
 }
 
-/**@brief	ÇöÀç »óÈ² º¸°í ³»¿ëÀ» ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
+/**@brief	í˜„ì¬ ìƒí™© ë³´ê³  ë‚´ìš©ì„ íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
  */
 void CDataAdminFacade::SaveStatusReportsToFile(CString a_filePath)
 {
 	CDataAdminManager::Instance()->SaveStatusReportsToFile(a_filePath);
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ ÇöÀç »óÈ² º¸°í ³»¿ëÀ» ÀĞ¾î ¿Â´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° í˜„ì¬ ìƒí™© ë³´ê³  ë‚´ìš©ì„ ì½ì–´ ì˜¨ë‹¤.
  */
 void CDataAdminFacade::LoadStatusReportsFromFile(CString a_filePath)
 {

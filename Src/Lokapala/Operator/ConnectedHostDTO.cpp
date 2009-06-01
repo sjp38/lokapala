@@ -1,5 +1,5 @@
-/**@file	ConnectedHostDTO.cpp
- * @brief	CConnectedHostDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	ConnectedHostDTO.cpp
+ * @brief	CConnectedHostDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "ConnectedHostDTO.h"
 
-/**@brief	»ı¼ºÀÚ
+/**@brief	ìƒì„±ì
  */
 CConnectedHostDTO::CConnectedHostDTO(CString a_user, CString a_hostAddress)
 {

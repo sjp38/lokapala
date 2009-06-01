@@ -1,5 +1,5 @@
-/**@file	MSLogSD.h
- * @brief	MSM¿¡¼­ LGMÀ¸·ÎÀÇ Service Delegate Á¤ÀÇ.
+ï»¿/**@file	MSLogSD.h
+ * @brief	MSMì—ì„œ LGMìœ¼ë¡œì˜ Service Delegate ì •ì˜.
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup GroupMSM
  * @class	CMSLogSD
- * @brief	MSM¿¡¼­ LGMÀ¸·ÎÀÇ Service Delegate.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	MSMì—ì„œ LGMìœ¼ë¡œì˜ Service Delegate.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CMSLogSD
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CMSLogSD *Instance()
 	{
@@ -28,9 +28,9 @@ public :
 	}
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CMSLogSD(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CMSLogSD(){}
 private :
 	/**@brief	singleton.	*/

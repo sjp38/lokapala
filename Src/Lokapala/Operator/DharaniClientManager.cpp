@@ -1,5 +1,5 @@
-/**@file	DharaniClientManager.cpp
- * @brief	CDharaniClientManagerÀÇ ¸â¹ö ÇÔ¼ö¸¦ ±¸Çö
+ï»¿/**@file	DharaniClientManager.cpp
+ * @brief	CDharaniClientManagerì˜ ë©¤ë²„ í•¨ìˆ˜ë¥¼ êµ¬í˜„
  * @author	siva
  */
 
@@ -10,8 +10,8 @@
 #include "DharaniClientManager.h"
 
 
-/**@brief	Å¬¶óÀÌ¾ğÆ®ÀÇ ÇüÅÂ·Î ¼ÒÄÏ »óÅÂ µîÀ» ÃÊ±âÈ­ÇÏ°í ÇÁ·ÎÅäÄİ ÃÊ±â ÇàÀ§(¾ÏÈ£È­ Å° ±³È¯ µî)¸¦ ÇÑ´Ù.
- * @return	Á¤»óÀûÀ¸·Î ÃÊ±âÈ­¸¦ ¸¶ÃÆÀ» °æ¿ì 0, ¹®Á¦°¡ ÀÖÀ» °æ¿ì -1
+/**@brief	í´ë¼ì´ì–¸íŠ¸ì˜ í˜•íƒœë¡œ ì†Œì¼“ ìƒíƒœ ë“±ì„ ì´ˆê¸°í™”í•˜ê³  í”„ë¡œí† ì½œ ì´ˆê¸° í–‰ìœ„(ì•”í˜¸í™” í‚¤ êµí™˜ ë“±)ë¥¼ í•œë‹¤.
+ * @return	ì •ìƒì ìœ¼ë¡œ ì´ˆê¸°í™”ë¥¼ ë§ˆì³¤ì„ ê²½ìš° 0, ë¬¸ì œê°€ ìˆì„ ê²½ìš° -1
  */
 int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 {
@@ -65,7 +65,7 @@ int CDharaniClientManager::Initiallize(DWORD a_ServerAddress)
 	return 0;
 }
 
-/**@brief	¾²·¹µå·Î µ¹¸ç ¼ÒÄÏÀ¸·Î µé¾î¿À´Â °ªÀ» ¹Ş´Â´Ù.
+/**@brief	ì“°ë ˆë“œë¡œ ëŒë©° ì†Œì¼“ìœ¼ë¡œ ë“¤ì–´ì˜¤ëŠ” ê°’ì„ ë°›ëŠ”ë‹¤.
  */
 unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 {
@@ -99,7 +99,7 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 			char size[3];
 			_itoa_s(buffer[0],size,16);
 			//CDharaniExternSD::Instance()->NotifyReceived(size);
-			//CDharaniExternSD::Instance()->NotifyReceived(buffer);	//Å×½ºÆ®¿ë.
+			//CDharaniExternSD::Instance()->NotifyReceived(buffer);	//í…ŒìŠ¤íŠ¸ìš©.
 
 			CDharaniClientManager::Instance()->Decrypt(decrypted, buffer+1);
 			
@@ -115,7 +115,7 @@ unsigned int WINAPI CDharaniClientManager::ReceiverThread(LPVOID a_serverSocket)
 	return 0;
 }
 
-/**@brief	¼­¹ö¿ÍÀÇ ¿¬°áÀ» ²÷´Â´Ù.
+/**@brief	ì„œë²„ì™€ì˜ ì—°ê²°ì„ ëŠëŠ”ë‹¤.
  */
 void CDharaniClientManager::CloseConnection()
 {
@@ -123,8 +123,8 @@ void CDharaniClientManager::CloseConnection()
 	WSACleanup();
 }
 
-/**@brief	¸Ş¼¼Áö¸¦ ¼­¹ö¿¡°Ô ³¯¸°´Ù.
- * @param	a_message	º¸³¾ ¸Ş¼¼Áö
+/**@brief	ë©”ì„¸ì§€ë¥¼ ì„œë²„ì—ê²Œ ë‚ ë¦°ë‹¤.
+ * @param	a_message	ë³´ë‚¼ ë©”ì„¸ì§€
  */
 void CDharaniClientManager::SendTextMessage(char *a_message)
 {
@@ -135,9 +135,9 @@ void CDharaniClientManager::SendTextMessage(char *a_message)
 }
 
 
-/**@brief	Æ¯Á¤ ¹®ÀÚ¿­À» ¾ÏÈ£È­ ÇÑ´Ù. RC4 ¾Ë°í¸®ÁòÀ» »ç¿ëÇÑ´Ù.
- * @param	a_plainText	¾ÏÈ£È­ µÉ, ¿À¸®Áö³Î ¹®ÀÚ¿­
- * @param	a_cipherText	¾ÏÈ£È­ µÈ ÈÄÀÇ ¹®ÀÚ¿­
+/**@brief	íŠ¹ì • ë¬¸ìì—´ì„ ì•”í˜¸í™” í•œë‹¤. RC4 ì•Œê³ ë¦¬ì¦˜ì„ ì‚¬ìš©í•œë‹¤.
+ * @param	a_plainText	ì•”í˜¸í™” ë , ì˜¤ë¦¬ì§€ë„ ë¬¸ìì—´
+ * @param	a_cipherText	ì•”í˜¸í™” ëœ í›„ì˜ ë¬¸ìì—´
  */
 void CDharaniClientManager::Encrypt(char *a_plainText, char *a_cipherText)
 {
@@ -146,9 +146,9 @@ void CDharaniClientManager::Encrypt(char *a_plainText, char *a_cipherText)
 	RC4(&rc4Key, strlen(a_plainText), (unsigned char *)a_plainText, (unsigned char *)a_cipherText);
 }
 
-/**@brief	Æ¯Á¤ ¹®ÀÚ¿­À» º¹È£È­ ÇÑ´Ù. RC4 ¾Ë°í¸®ÁòÀ» »ç¿ëÇÑ´Ù.
- * @param	a_plainText	º¹È£È­ µÈ ÈÄÀÇ ¹®ÀÚ¿­
- * @param	a_cipherText	º¹È£È­ µÉ ¿À¸®Áö³Î ¾ÏÈ£¹®ÀÚ¿­
+/**@brief	íŠ¹ì • ë¬¸ìì—´ì„ ë³µí˜¸í™” í•œë‹¤. RC4 ì•Œê³ ë¦¬ì¦˜ì„ ì‚¬ìš©í•œë‹¤.
+ * @param	a_plainText	ë³µí˜¸í™” ëœ í›„ì˜ ë¬¸ìì—´
+ * @param	a_cipherText	ë³µí˜¸í™” ë  ì˜¤ë¦¬ì§€ë„ ì•”í˜¸ë¬¸ìì—´
  */
 void CDharaniClientManager::Decrypt(char *a_plainText, char *a_cipherText)
 {

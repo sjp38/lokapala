@@ -1,5 +1,5 @@
-/**@file	ObserveBI.h
- * @brief	OSMÀÇ BI Á¤ÀÇ.
+ï»¿/**@file	ObserveBI.h
+ * @brief	OSMì˜ BI ì •ì˜.
  * @author	siva
  */
 
@@ -8,17 +8,17 @@
 
 /**@ingroup	GroupOSM
  * @class	CObserveBI
- * @brief	Observe Manager ÀÇ Button Interface.
- * @remarks	ÀÎÅÍÆäÀÌ´Ù.
+ * @brief	Observe Manager ì˜ Button Interface.
+ * @remarks	ì¸í„°í˜ì´ë‹¤.
  */
 class CObserveBI
 {
 public :
-	/**@brief	ÇÁ·Î¼¼½º ½ÇÇà °¨½Ã¸¦ ½ÃÀÛÇÑ´Ù.	*/
+	/**@brief	í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ê°ì‹œë¥¼ ì‹œì‘í•œë‹¤.	*/
 	virtual void StartProcessObservation() = 0;
-	/**@brief	ÇÁ·Î¼¼½º ½ÇÇà °¨½Ã¸¦ ÁßÁöÇÑ´Ù.	*/
+	/**@brief	í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ê°ì‹œë¥¼ ì¤‘ì§€í•œë‹¤.	*/
 	virtual void StopProcessObservation() = 0;
-	/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» OSM¿¡°Ô ¾Ë¸°´Ù.	*/
+	/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ OSMì—ê²Œ ì•Œë¦°ë‹¤.	*/
 	virtual void ReceiveExecutedProcess(CString a_executedProcess) = 0;
 };
 

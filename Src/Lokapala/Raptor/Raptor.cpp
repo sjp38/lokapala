@@ -1,4 +1,4 @@
-// Raptor.cpp : Defines the class behaviors for the application.
+﻿// Raptor.cpp : Defines the class behaviors for the application.
 //
 
 #include "stdafx.h"

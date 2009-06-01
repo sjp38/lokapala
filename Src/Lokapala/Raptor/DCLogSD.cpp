@@ -1,5 +1,5 @@
-/**@file	DCLogSD.cpp
- * @brief	DCMÀÇ LogSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCLogSD.cpp
+ * @brief	DCMì˜ LogSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 

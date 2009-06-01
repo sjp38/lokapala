@@ -1,5 +1,5 @@
-/**@file	DharaniInterface.h
- * @brief	Dharani Protocol Åë½Å ÄÄÆ÷³ÍÆ®ÀÇ ÀÎÅÍÆäÀÌ½º
+ï»¿/**@file	DharaniInterface.h
+ * @brief	Dharani Protocol í†µì‹  ì»´í¬ë„ŒíŠ¸ì˜ ì¸í„°í˜ì´ìŠ¤
  * @author	siva
  */
 
@@ -10,22 +10,22 @@
 
 /**@ingroup	GroupDharani
  * @class	CDharaniInterface
- * @brief	Dharani ÄÄÆ÷³ÍÆ®ÀÇ ¿ÜºÎ·Î ³ëÃâµÇ´Â ÀÎÅÍÆäÀÌ½º.
+ * @brief	Dharani ì»´í¬ë„ŒíŠ¸ì˜ ì™¸ë¶€ë¡œ ë…¸ì¶œë˜ëŠ” ì¸í„°í˜ì´ìŠ¤.
  */
 class CDharaniInterface
 {
 public :
-	/**@brief	¿øÇÏ´Â address·Î ¿øÇÏ´Â ¸Ş¼¼Áö¸¦ º¸³½´Ù. non-blocking µÈ´Ù.
-	 * @param	a_sendData	º¸³»°íÀÚ ÇÏ´Â µ¥ÀÌÅÍ. CDharaniDTO Æ÷ÀÎÅÍ·Î, ¹®ÀÚ¿Í ÁÖ¼Ò¸¦ °®´Â´Ù.
+	/**@brief	ì›í•˜ëŠ” addressë¡œ ì›í•˜ëŠ” ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤. non-blocking ëœë‹¤.
+	 * @param	a_sendData	ë³´ë‚´ê³ ì í•˜ëŠ” ë°ì´í„°. CDharaniDTO í¬ì¸í„°ë¡œ, ë¬¸ìì™€ ì£¼ì†Œë¥¼ ê°–ëŠ”ë‹¤.
 	 */
 	virtual void DharaniSendTextMessageTo(CDharaniDTO *a_sendData) = 0;
-	/**@brief	¿¬°áµÈ ¸ğµç Å¬¶óÀÌ¾ğÆ®¿¡°Ô ¸Ş¼¼Áö¸¦ º¸³½´Ù.
-	 * @param a_sendData	º¸³»°íÀÚ ÇÏ´Â µ¥ÀÌÅÍ. CDharaniDTO Æ÷ÀÎÅÍ·Î, ¹®ÀÚ¿Í ÁÖ¼Ò¸¦ °®´Â´Ù. ÁÖ¼Ò´Â ÀÇ¹Ì°¡ ¾ø´Ù.
+	/**@brief	ì—°ê²°ëœ ëª¨ë“  í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
+	 * @param a_sendData	ë³´ë‚´ê³ ì í•˜ëŠ” ë°ì´í„°. CDharaniDTO í¬ì¸í„°ë¡œ, ë¬¸ìì™€ ì£¼ì†Œë¥¼ ê°–ëŠ”ë‹¤. ì£¼ì†ŒëŠ” ì˜ë¯¸ê°€ ì—†ë‹¤.
 	 */
 	virtual void DharaniBroadcastTextMessage(CDharaniDTO *a_sendData) = 0;
 	virtual void DharaniSendTextToServer(CDharaniDTO *a_sendData) = 0;
 
-	/**@brief	ÃÊ±âÈ­. tcp ±â¹İÀ¸·Î ¸®½¼ ¼ÒÄÏÀ» ¸¸µé°í IOCP ¸ğµ¨¸µ ¹æ½Ä¿¡ ¸Â°Ô ¸ğµç ÃÊ±âÈ­ ºÎºĞÀ» ¼öÇàÇÑ´Ù.
+	/**@brief	ì´ˆê¸°í™”. tcp ê¸°ë°˜ìœ¼ë¡œ ë¦¬ìŠ¨ ì†Œì¼“ì„ ë§Œë“¤ê³  IOCP ëª¨ë¸ë§ ë°©ì‹ì— ë§ê²Œ ëª¨ë“  ì´ˆê¸°í™” ë¶€ë¶„ì„ ìˆ˜í–‰í•œë‹¤.
 	 * @return	void
 	 */
 	virtual void DharaniServerInitiallize() = 0;
@@ -36,5 +36,5 @@ public :
 
 
 /**@defgroup	GroupDharani	Dharani protocol communication component
-  *				Dharani ÇÁ·ÎÅäÄİÀ» »ç¿ëÇÏ´Â communication component.
+  *				Dharani í”„ë¡œí† ì½œì„ ì‚¬ìš©í•˜ëŠ” communication component.
   */

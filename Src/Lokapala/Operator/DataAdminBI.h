@@ -1,5 +1,5 @@
-/**@file	DataAdminBI.h
- * @brief	DAMÀÇ Button Interface Á¤ÀÇ
+ï»¿/**@file	DataAdminBI.h
+ * @brief	DAMì˜ Button Interface ì •ì˜
  * @author	siva
  */
 
@@ -8,66 +8,66 @@
 
 /**@ingroup GroupDAM
  * @class	CDataAdminBI
- * @brief	Communication ManagerÀÇ Button Interface.\n
-			Mediator¿¡°Ô ÀÚ½ÅÀ» ³ëÃâÇÏ¿© Mediator·ÎºÎÅÍ CCMÀ¸·ÎÀÇ ÀÎÅÍÆäÀÌ½º¸¦ °ø°³ÇÑ´Ù.
- * @remarks	ÀÎÅÍÆäÀÌ½ºÀÏ »ÓÀ¸·Î, Facade°¡ »ó¼ÓÇÑ´Ù.
+ * @brief	Communication Managerì˜ Button Interface.\n
+			Mediatorì—ê²Œ ìžì‹ ì„ ë…¸ì¶œí•˜ì—¬ Mediatorë¡œë¶€í„° CCMìœ¼ë¡œì˜ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ê³µê°œí•œë‹¤.
+ * @remarks	ì¸í„°íŽ˜ì´ìŠ¤ì¼ ë¿ìœ¼ë¡œ, Facadeê°€ ìƒì†í•œë‹¤.
  */
 class CDataAdminBI
 {
 public :
-	/**@brief	ÆÄÀÏ¿¡ ÇöÀç µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù.	*/
+	/**@brief	íŒŒì¼ì— í˜„ìž¬ ë°ì´í„°ë¥¼ ì €ìž¥í•œë‹¤.	*/
 	virtual void SaveDataAs(CString *a_filePath) = 0;
 
-	/**@brief	ÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ÀÐ¾îµéÀÎ´Ù.	*/
+	/**@brief	íŒŒì¼ë¡œë¶€í„° ë°ì´í„°ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.	*/
 	virtual void LoadDataFrom(CString *a_filePath) = 0;
 
 	//user
-	/**@breif	À¯Àú¸¦ Ãß°¡ÇÑ´Ù.	*/
+	/**@breif	ìœ ì €ë¥¼ ì¶”ê°€í•œë‹¤.	*/
 	virtual void AddUser(void *a_user) = 0;
-	/**@brief	Æ¯Á¤ idÀÇ À¯Àú¸¦ »èÁ¦ÇÑ´Ù.	*/
+	/**@brief	íŠ¹ì • idì˜ ìœ ì €ë¥¼ ì‚­ì œí•œë‹¤.	*/
 	virtual void DeleteUser(CString *a_id) = 0;
-	/**@brief	À¯Àú Á¤º¸ ÀüÃ¼¸¦ ¾Ë·ÁÁØ´Ù.\n
-	 *			½ÇÁ¦ À¯Àú Á¤º¸Ã¼ÀÇ ±¸Á¶¸¦ ¸ðµç °÷¿¡¼­ ¾Ë°Ô µÉ ÇÊ¿ä´Â ¾øÀ¸¹Ç·Î Æ÷ÀÎÅÍ´Â void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÈ´Ù.\n
-	 *			ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ À¯Àú Á¤º¸Ã¼ÀÇ ±¸Á¶¸¦ ¾Ë¸é(À¯Àú Á¤º¸Ã¼ Çì´õ¸¦ ÀÎÅ¬·çµå) µÈ´Ù.
-	 * @return	void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÈ À¯Àú Á¤º¸ ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+	/**@brief	ìœ ì € ì •ë³´ ì „ì²´ë¥¼ ì•Œë ¤ì¤€ë‹¤.\n
+	 *			ì‹¤ì œ ìœ ì € ì •ë³´ì²´ì˜ êµ¬ì¡°ë¥¼ ëª¨ë“  ê³³ì—ì„œ ì•Œê²Œ ë  í•„ìš”ëŠ” ì—†ìœ¼ë¯€ë¡œ í¬ì¸í„°ëŠ” void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ëœë‹¤.\n
+	 *			ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ìœ ì € ì •ë³´ì²´ì˜ êµ¬ì¡°ë¥¼ ì•Œë©´(ìœ ì € ì •ë³´ì²´ í—¤ë”ë¥¼ ì¸í´ë£¨ë“œ) ëœë‹¤.
+	 * @return	void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ëœ ìœ ì € ì •ë³´ êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 	 */
 	virtual void *GetUsers() = 0;
 
 
 	//seat
-	/**@brief	ÁÂ¼®ÀÇ ÀüÃ¼ Å©±â¸¦ ¼³Á¤ÇÑ´Ù.	*/
+	/**@brief	ì¢Œì„ì˜ ì „ì²´ í¬ê¸°ë¥¼ ì„¤ì •í•œë‹¤.	*/
 	virtual void SetSeats(int a_x, int a_y) = 0;
-	/**@brief	ÁÂ¼® Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.	*/
+	/**@brief	ì¢Œì„ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.	*/
 	virtual void AddSeat(void *a_seat) = 0;
-	/**@brief	ÁÂ¼® Á¤º¸¸¦ »èÁ¦ÇÑ´Ù.	*/
+	/**@brief	ì¢Œì„ ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.	*/
 	virtual void DeleteSeat(void *a_seat) = 0;
-	/**@brief	ÀüÃ¼ ÁÂ¼® Á¤º¸¸¦ ¾ò´Â´Ù.
-	 *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ ÁÂ¼® Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+	/**@brief	ì „ì²´ ì¢Œì„ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+	 *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì¢Œì„ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
 	 */
 	virtual void *GetSeats() = 0;
 
 
 	//rule
-	/**@brief	±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ Ãß°¡ÇÑ´Ù.	*/
+	/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì¶”ê°€í•œë‹¤.	*/
 	virtual void AddRule(void *a_rule) = 0;
-	/**@brief	±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ »èÁ¦ÇÑ´Ù.	*/
+	/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì‚­ì œí•œë‹¤.	*/
 	virtual void DeleteRule(void *a_rule) = 0;
-	/**@brief	ÀüÃ¼ ±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢À» ¾ò´Â´Ù.
-	 *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ ÁÂ¼® Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+	/**@brief	ì „ì²´ ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ì„ ì–»ëŠ”ë‹¤.
+	 *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì¢Œì„ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
 	 */
 	virtual void *GetRules() = 0;
 
 
 	//status reports
-	/**@brief	ÇöÀç °íÀå »óÅÂ °ü·Ã Á¤º¸¸¦ ¾ò´Â´Ù.
-	 *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+	/**@brief	í˜„ìž¬ ê³ ìž¥ ìƒíƒœ ê´€ë ¨ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+	 *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
 	 */
 	virtual void *GetStatusReports() = 0;
 
 
 	//connected users
-	/**@brief	ÇöÀç Á¢¼ÓµÈ ÀüÃ¼ »ç¿ëÀÚ Á¤º¸¸¦ ¾ò´Â´Ù.
-	 *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ ÁÂ¼® Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+	/**@brief	í˜„ìž¬ ì ‘ì†ëœ ì „ì²´ ì‚¬ìš©ìž ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+	 *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì¢Œì„ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
 	 */
 	virtual void *GetConnectedHosts() = 0;
 

@@ -1,4 +1,4 @@
-// RaptorDlg.cpp : implementation file
+ï»¿// RaptorDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -140,7 +140,7 @@ BOOL CRaptorDlg::OnInitDialog()
 		CCBFMediator::Instance()->InitiallizeCommunication(address);
 	}
 
-	//Å×½ºÆ®¿ë. ³ªÁß¿£ Áö¿ö¶ó.
+	//í…ŒìŠ¤íŠ¸ìš©. ë‚˜ì¤‘ì—” ì§€ì›Œë¼.
 	(CButton *)(GetDlgItem(IDC_STARTNEVERDIE_TEST))->EnableWindow(0);
 	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 
@@ -197,7 +197,7 @@ HCURSOR CRaptorDlg::OnQueryDragIcon()
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·Î Á¢¼Ó ¹öÆ° Å¬¸¯
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œ ì ‘ì† ë²„íŠ¼ í´ë¦­
  */
 void CRaptorDlg::OnBnClickedConnectbutton()
 {
@@ -208,7 +208,7 @@ void CRaptorDlg::OnBnClickedConnectbutton()
 	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
 }
 
-/**@brief	³×¹ö´ÙÀÌ ¸ðµå ½ºÅ¸Æ® ¹öÆ° Å¬¸¯
+/**@brief	ë„¤ë²„ë‹¤ì´ ëª¨ë“œ ìŠ¤íƒ€íŠ¸ ë²„íŠ¼ í´ë¦­
  */
 void CRaptorDlg::OnBnClickedStartneverdieTest()
 {
@@ -218,7 +218,7 @@ void CRaptorDlg::OnBnClickedStartneverdieTest()
 	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(1);
 }
 
-/**@brief	³×¹ö´ÙÀÌ ¸ðµå ÁßÁö ¹öÆ° Å¬¸¯
+/**@brief	ë„¤ë²„ë‹¤ì´ ëª¨ë“œ ì¤‘ì§€ ë²„íŠ¼ í´ë¦­
  */
 void CRaptorDlg::OnBnClickedStopneverdieTest()
 {
@@ -228,8 +228,8 @@ void CRaptorDlg::OnBnClickedStopneverdieTest()
 	(CButton *)(GetDlgItem(IDC_STOPNEVERDIE_TEST))->EnableWindow(0);
 }
 
-/**@brief	PreTranslateMessageÀÇ ¿À¹ö¶óÀÌµå.\n
- *			esc, returnÀÇ ÀÔ·Â ½Ã ÀÚµ¿À¸·Î Á¾·áµÇ´Â ´ÙÀÌ¾ó·Î±× º£ÀÌ½ºµå ±â¹ÝÀÇ ¹®Á¦¸¦ ¿©±â¼­ ÇØ°áÇÑ´Ù.
+/**@brief	PreTranslateMessageì˜ ì˜¤ë²„ë¼ì´ë“œ.\n
+ *			esc, returnì˜ ìž…ë ¥ ì‹œ ìžë™ìœ¼ë¡œ ì¢…ë£Œë˜ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ ë² ì´ìŠ¤ë“œ ê¸°ë°˜ì˜ ë¬¸ì œë¥¼ ì—¬ê¸°ì„œ í•´ê²°í•œë‹¤.
  */
 BOOL CRaptorDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -249,7 +249,7 @@ BOOL CRaptorDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
-/**@brief	ÇÁ·Î¼¼½º °¨½Ã ½ÃÀÛ ¹öÆ°À» ´­·¶À» ¶§.
+/**@brief	í”„ë¡œì„¸ìŠ¤ ê°ì‹œ ì‹œìž‘ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ.
  */
 void CRaptorDlg::OnStartObservation()
 {
@@ -257,7 +257,7 @@ void CRaptorDlg::OnStartObservation()
 	CCBFMediator::Instance()->StartProcessObservation();
 }
 
-/**@brief	ÇÁ·Î¼¼½º °¨½Ã ÁßÁö ¹öÆ°À» ´­·¶À» ¶§.
+/**@brief	í”„ë¡œì„¸ìŠ¤ ê°ì‹œ ì¤‘ì§€ ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ.
  */
 void CRaptorDlg::OnStopObservation()
 {
@@ -265,7 +265,7 @@ void CRaptorDlg::OnStopObservation()
 	CCBFMediator::Instance()->StopProcessObservation();
 }
 
-/**@brief	WM_COPYDATA ÀÌº¥Æ® ÇÚµé·¯. Áö±Ý ½ÇÇàµÈ ÇÁ·Î¼¼½º¸¦ ¾Ë¸°´Ù.
+/**@brief	WM_COPYDATA ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬. ì§€ê¸ˆ ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ë¥¼ ì•Œë¦°ë‹¤.
  */
 BOOL CRaptorDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 {
@@ -277,7 +277,7 @@ BOOL CRaptorDlg::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 	return CDialog::OnCopyData(pWnd, pCopyDataStruct);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ¸Þ¼¼Áö Àü¼Û ¹öÆ° ´­·¶À» ¶§
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë©”ì„¸ì§€ ì „ì†¡ ë²„íŠ¼ ëˆŒë €ì„ ë•Œ
  */
 void CRaptorDlg::OnBnClickedSend()
 {
@@ -287,7 +287,7 @@ void CRaptorDlg::OnBnClickedSend()
 	CCBFMediator::Instance()->PostTextMessageToOperator(&message);
 }
 
-/**@brief	½ºÅ×ÀÌÅÍ½º ·¹Æ÷Æ® ¹öÆ° Å¬¸¯
+/**@brief	ìŠ¤í…Œì´í„°ìŠ¤ ë ˆí¬íŠ¸ ë²„íŠ¼ í´ë¦­
  */
 void CRaptorDlg::OnBnClickedStatusReport()
 {
@@ -297,7 +297,7 @@ void CRaptorDlg::OnBnClickedStatusReport()
 }
 
 
-/**@brief	»óÅÂ º¯È­ º¸°í¸¦ ¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ¹Þ¾ÒÀ» ¶§.
+/**@brief	ìƒíƒœ ë³€í™” ë³´ê³ ë¥¼ ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ë°›ì•˜ì„ ë•Œ.
 */
 LRESULT CRaptorDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
 {
@@ -324,7 +324,7 @@ LRESULT CRaptorDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
 }
 
 
-/**@brief	¸ÞÀÎ ´ÙÀÌ¾ó·Î±×¸¦ ÅëÇØ ¸Þ¼¼Áö¸¦ »Ñ¸°´Ù.
+/**@brief	ë©”ì¸ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ í†µí•´ ë©”ì„¸ì§€ë¥¼ ë¿Œë¦°ë‹¤.
  */
 void CRaptorDlg::Notify(CString a_message)
 {
@@ -345,7 +345,7 @@ void CRaptorDlg::Notify(CString a_message)
 }
 
 
-/**@brief	WM_CLOSE ¸Þ¼¼Áö ÀÌº¥Æ® ÇÚµé·¯.
+/**@brief	WM_CLOSE ë©”ì„¸ì§€ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬.
  */
 void CRaptorDlg::OnClose()
 {
@@ -354,8 +354,8 @@ void CRaptorDlg::OnClose()
 	CDialog::OnClose();
 }
 
-/**@brief	WM_DESTROY ¸Þ¼¼Áö ÀÌº¥Æ® ÇÚµé·¯.
- *			WM_CLOSE ¸Þ¼¼Áö ÀÌº¥Æ® ÇÚµé·¯¿Í °°Àº ÀÏÀ» ÇÑ´Ù.
+/**@brief	WM_DESTROY ë©”ì„¸ì§€ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬.
+ *			WM_CLOSE ë©”ì„¸ì§€ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ì™€ ê°™ì€ ì¼ì„ í•œë‹¤.
  */
 void CRaptorDlg::OnDestroy()
 {
@@ -374,7 +374,7 @@ void CRaptorDlg::OnDestroy()
 	// TODO: Add your message handler code here
 }
 
-/**@brief	¹è°æ»ö Èò»öÀ¸·Î ±³Ã¼
+/**@brief	ë°°ê²½ìƒ‰ í°ìƒ‰ìœ¼ë¡œ êµì²´
  */
 HBRUSH CRaptorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -384,7 +384,7 @@ HBRUSH CRaptorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ìž…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -396,7 +396,7 @@ HBRUSH CRaptorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	ÇÁ·¹ÀÓ ¾ø´Â »óÅÂ¿¡¼­ À©µµ¿ì ÀÌµ¿ °¡´ÉÇÏµµ·Ï
+/**@brief	í”„ë ˆìž„ ì—†ëŠ” ìƒíƒœì—ì„œ ìœˆë„ìš° ì´ë™ ê°€ëŠ¥í•˜ë„ë¡
  */
 void CRaptorDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {

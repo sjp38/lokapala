@@ -1,5 +1,5 @@
-/**@file	SeatsDataDTO.cpp
- * @brief	CSeatsDataDTO ÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	SeatsDataDTO.cpp
+ * @brief	CSeatsDataDTO ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -8,7 +8,7 @@
 
 #include "DataAdminConstant.h"
 
-/**@brief	»ı¼ºÀÚ. ÁÂ¼® Á¤º¸ ±¸Á¶Ã¼ÀÇ ÀüÃ¼ Å©±â¸¦ Àâ´Â´Ù.	*/
+/**@brief	ìƒì„±ì. ì¢Œì„ ì •ë³´ êµ¬ì¡°ì²´ì˜ ì „ì²´ í¬ê¸°ë¥¼ ì¡ëŠ”ë‹¤.	*/
 CSeatsDataDTO::CSeatsDataDTO()
 {
 	m_maxX = 5;
@@ -16,9 +16,9 @@ CSeatsDataDTO::CSeatsDataDTO()
 	m_seats.InitHashTable(MAX_SEAT_X*MAX_SEAT_Y+1);
 }
 
-/**@brief	ÀüÃ¼ ÁÂ¼®ÀÇ Å©±â¸¦ Á¤ÇÑ´Ù.
- * @param	a_maxX	ÀüÃ¼ ÁÂ¼®ÀÇ °¡·Î ±æÀÌ
- * @param	a_maxY	ÀüÃ¼ ÁÂ¼®ÀÇ ¼¼·Î ±æÀÌ
+/**@brief	ì „ì²´ ì¢Œì„ì˜ í¬ê¸°ë¥¼ ì •í•œë‹¤.
+ * @param	a_maxX	ì „ì²´ ì¢Œì„ì˜ ê°€ë¡œ ê¸¸ì´
+ * @param	a_maxY	ì „ì²´ ì¢Œì„ì˜ ì„¸ë¡œ ê¸¸ì´
  */
 void CSeatsDataDTO::SetSeats(int a_maxX, int a_maxY)
 {
@@ -34,14 +34,14 @@ void CSeatsDataDTO::SetSeats(int a_maxX, int a_maxY)
 	CCBFMediator::Instance()->NotifySeatResized(a_maxX, a_maxY);
 }
 
-/**@brief	ÁÂ¼® Á¤º¸¸¦ ¸ğµÎ »èÁ¦ÇÑ´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ë¥¼ ëª¨ë‘ ì‚­ì œí•œë‹¤.
  */
 void CSeatsDataDTO::ClearSeats()
 {
 	m_seats.RemoveAll();
 }
 
-/**@brief	ÁÂ¼® Á¤º¸¸¦ ÇÏ³ª ¸¸µç´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ë¥¼ í•˜ë‚˜ ë§Œë“ ë‹¤.
  */
 void CSeatsDataDTO::AddSeat(CSeatDataDTO *a_seat)
 {
@@ -59,7 +59,7 @@ void CSeatsDataDTO::AddSeat(CSeatDataDTO *a_seat)
 	CCBFMediator::Instance()->NotifySeatAdded(&a_seat->m_seatId);
 }
 
-/**@brief	ÁÂ¼® Á¤º¸¸¦ ÇÏ³ª Áö¿î´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ë¥¼ í•˜ë‚˜ ì§€ìš´ë‹¤.
  */
 void CSeatsDataDTO::DeleteSeat(CString *a_seatId)
 {
@@ -71,7 +71,7 @@ void CSeatsDataDTO::DeleteSeat(CString *a_seatId)
 }
 
 
-/**@brief	Æ¯Á¤ ¾ÆÀÌµğÀÇ ÀÚ¸® Á¤º¸¸¦ °¡Á®¿Â´Ù.
+/**@brief	íŠ¹ì • ì•„ì´ë””ì˜ ìë¦¬ ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
  */
 CSeatDataDTO *CSeatsDataDTO::GetSeatById(CString a_seatId)
 {
@@ -84,7 +84,7 @@ CSeatDataDTO *CSeatsDataDTO::GetSeatById(CString a_seatId)
 	return &(pCursor->value);
 }
 
-/**@brief	ÁÂÇ¥·Î ÁÂ¼® id¸¦ ¾ò¾î¿Í ¹İÈ¯ÇÑ´Ù.
+/**@brief	ì¢Œí‘œë¡œ ì¢Œì„ idë¥¼ ì–»ì–´ì™€ ë°˜í™˜í•œë‹¤.
  */
 CString CSeatsDataDTO::GetSeatIdByAxis(int a_x, int a_y)
 {
@@ -104,7 +104,7 @@ CString CSeatsDataDTO::GetSeatIdByAxis(int a_x, int a_y)
 }
 
 
-/**@brief	ÁÂÇ¥·Î ÁÂ¼® ÀÌ¸§À» ¾ò¾î¿Í ¹İÈ¯ÇÑ´Ù.
+/**@brief	ì¢Œí‘œë¡œ ì¢Œì„ ì´ë¦„ì„ ì–»ì–´ì™€ ë°˜í™˜í•œë‹¤.
  */
 CString CSeatsDataDTO::GetSeatNicknameByAxis(int a_x, int a_y)
 {
@@ -124,8 +124,8 @@ CString CSeatsDataDTO::GetSeatNicknameByAxis(int a_x, int a_y)
 }
 
 
-/**@brief	µî·ÏµÈ ¸ğµç ÁÂ¼®ÀÇ ÁÂ¼® id¸¦ ¾ò¾î¿Â´Ù.
- * @param	a_dest	¾ò¾î¿Â ÁÂ¼® id¸¦ ÀúÀåÇÒ °÷ÀÇ Æ÷ÀÎÅÍ.
+/**@brief	ë“±ë¡ëœ ëª¨ë“  ì¢Œì„ì˜ ì¢Œì„ idë¥¼ ì–»ì–´ì˜¨ë‹¤.
+ * @param	a_dest	ì–»ì–´ì˜¨ ì¢Œì„ idë¥¼ ì €ì¥í•  ê³³ì˜ í¬ì¸í„°.
  */
 void CSeatsDataDTO::GetEntireSeatId(CArray<CString> *a_dest)
 {
@@ -140,8 +140,8 @@ void CSeatsDataDTO::GetEntireSeatId(CArray<CString> *a_dest)
 }
 
 
-/**@brief	ÁÂ¼®Á¤º¸ÀÇ ¾ÈÀü¼ºÀ» ´Ù½Ã±İ Ã¬±ä´Ù.
- *			ÀüÃ¼ ÁÂ¼® Å©±â¿¡ ¾î±ß³ª´Â, Àß¸øµÈ Á¤º¸¸¦ ¾ø¾Ø´Ù.
+/**@brief	ì¢Œì„ì •ë³´ì˜ ì•ˆì „ì„±ì„ ë‹¤ì‹œê¸ˆ ì±™ê¸´ë‹¤.
+ *			ì „ì²´ ì¢Œì„ í¬ê¸°ì— ì–´ê¸‹ë‚˜ëŠ”, ì˜ëª»ëœ ì •ë³´ë¥¼ ì—†ì•¤ë‹¤.
  */
 void CSeatsDataDTO::ResetSeats()
 {	
@@ -158,8 +158,8 @@ void CSeatsDataDTO::ResetSeats()
 	}
 }
 
-/**@brief	µ¿ÀÏÇÑ ÁÖ¼ÒÀÇ ÁÂ¼® Á¤º¸°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
- *			ÁÂ¼® id´Â ip ÁÖ¼Ò¸¸ »ç¿ëÇÏ¹Ç·Î, µ¿ÀÏ ÁÂÇ¥ÀÎÁö¸¸ È®ÀÎÇÑ´Ù.
+/**@brief	ë™ì¼í•œ ì£¼ì†Œì˜ ì¢Œì„ ì •ë³´ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+ *			ì¢Œì„ idëŠ” ip ì£¼ì†Œë§Œ ì‚¬ìš©í•˜ë¯€ë¡œ, ë™ì¼ ì¢Œí‘œì¸ì§€ë§Œ í™•ì¸í•œë‹¤.
  */
 BOOL CSeatsDataDTO::ExistSameAddress(CSeatDataDTO *a_seat)
 {

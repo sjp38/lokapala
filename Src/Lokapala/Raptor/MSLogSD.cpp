@@ -1,5 +1,5 @@
-/**@file	MSLogSD.cpp
- * @brief	MSMÀÇ LogSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	MSLogSD.cpp
+ * @brief	MSMì˜ LogSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 

@@ -1,5 +1,5 @@
-/**@file	DCCommunicationSD.cpp
- * @brief	DCMÀÇ CommunicationSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCCommunicationSD.cpp
+ * @brief	DCMì˜ CommunicationSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -7,21 +7,21 @@
 #include "DCCommunicationSD.h"
 
 
-/**@brief	Ä¿¹Â´ÏÄÉÀÌ¼Ç ÄÄÆ÷³ÍÆ®¿¡°Ô ·Î±×ÀÎ ½ÅÈ£¸¦ º¸³»µµ·Ï ÇÑ´Ù.
+/**@brief	ì»¤ë®¤ë‹ˆì¼€ì´ì…˜ ì»´í¬ë„ŒíŠ¸ì—ê²Œ ë¡œê·¸ì¸ ì‹ í˜¸ë¥¼ ë³´ë‚´ë„ë¡ í•œë‹¤.
  */
 void CDCCommunicationSD::LoginRequest(void *a_userInfo)
 {
 	CCBFMediator::Instance()->SendLoginRequest(a_userInfo);
 }
 
-/**@brief	CCM¿¡°Ô ½ÇÇà ÇÁ·Î¼¼½º º¸°í¸¦ º¸³»µµ·Ï ÇÑ´Ù.
+/**@brief	CCMì—ê²Œ ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤ ë³´ê³ ë¥¼ ë³´ë‚´ë„ë¡ í•œë‹¤.
  */
 void CDCCommunicationSD::ReportExecutedProcess(CString *a_executedProcess)
 {
 	CCBFMediator::Instance()->SendExecutedProcessReport(a_executedProcess);
 }
 
-/**@brief	CCM¿¡°Ô º¯°æµÈ »óÈ²¸¦ º¸°íÇÑ´Ù.
+/**@brief	CCMì—ê²Œ ë³€ê²½ëœ ìƒí™©ë¥¼ ë³´ê³ í•œë‹¤.
  */
 void CDCCommunicationSD::ReportStatus(void *a_status)
 {

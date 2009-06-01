@@ -1,5 +1,5 @@
-/**@file	LogBI.h
- * @brief	LGMÀÇ BI Á¤ÀÇ.
+ï»¿/**@file	LogBI.h
+ * @brief	LGMì˜ BI ì •ì˜.
  * @author	siva
  */
 
@@ -8,8 +8,8 @@
 
 /**@ingroup	GroupLGM
  * @class	CLogBI
- * @brief	Log Manager ÀÇ Button Interface.
- * @remarks	ÀÎÅÍÆäÀÌ´Ù.
+ * @brief	Log Manager ì˜ Button Interface.
+ * @remarks	ì¸í„°í˜ì´ë‹¤.
  */
 class CLogBI
 {

@@ -1,5 +1,5 @@
-/**@file	ObserveFacade.cpp
- * @brief	OSMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	ObserveFacade.cpp
+ * @brief	OSMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * author	siva
  */
 
@@ -9,7 +9,7 @@
 #include "OSDecisionSD.h"
 #include "ProcessObserverExport.h"
 
-/**@brief	½ÇÇà ÇÁ·Î¼¼½º °¨½Ã¸¦ ½ÃÀÛÇÑ´Ù.
+/**@brief	ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤ ê°ì‹œë¥¼ ì‹œì‘í•œë‹¤.
  */
 void CObserveFacade::StartProcessObservation()
 {
@@ -27,7 +27,7 @@ void CObserveFacade::StartProcessObservation()
 	ObserveRunningProcesses(true, NULL);
 }
 
-/**@brief	½ÇÇà ÇÁ·Î¼¼½º °¨½Ã¸¦ Áß´ÜÇÑ´Ù.
+/**@brief	ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤ ê°ì‹œë¥¼ ì¤‘ë‹¨í•œë‹¤.
  */
 void CObserveFacade::StopProcessObservation()
 {
@@ -35,7 +35,7 @@ void CObserveFacade::StopProcessObservation()
 }
 
 
-/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º¸¦ OSM ÀÚ½Å¿¡°Ô ¾Ë¸°´Ù.
+/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ë¥¼ OSM ìì‹ ì—ê²Œ ì•Œë¦°ë‹¤.
  */
 void CObserveFacade::ReceiveExecutedProcess(CString a_executedProcess)
 {

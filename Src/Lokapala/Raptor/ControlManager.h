@@ -1,5 +1,5 @@
-/**@file	ControlManager.h
- * @brief	CControlManager Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	ControlManager.h
+ * @brief	CControlManager í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -10,7 +10,7 @@
 
 /**@ingroup	GroupCTM
  * @class	CControlManager
- * @brief	»ç¿ëÀÚÀÇ ¹æÇØ, ¹æÇØ ÇØÁ¦, Æ¯Á¤/ÀüÃ¼ ÇÁ·Î¼¼½º Á¾·á, ÄÄÇ»ÅÍ °­Á¦ shut down, Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà µîÀÇ »ç¿ëÀÚ ÄÁÆ®·ÑÀ» ÇÑ´Ù.
+ * @brief	ì‚¬ìš©ìì˜ ë°©í•´, ë°©í•´ í•´ì œ, íŠ¹ì •/ì „ì²´ í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ, ì»´í“¨í„° ê°•ì œ shut down, íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ë“±ì˜ ì‚¬ìš©ì ì»¨íŠ¸ë¡¤ì„ í•œë‹¤.
  */
 class CControlManager
 {
@@ -46,7 +46,7 @@ private :
 	static CControlManager *m_instance;
 
 	CLoginDlg *m_loginDlg;
-	BOOL m_restraint;	//»ç¿ëÀÚ Á¦ÇÑÀ» °É°í ÀÖ´ÂÁö Ç®¾ú´ÂÁö ¿©ºÎ.
+	BOOL m_restraint;	//ì‚¬ìš©ì ì œí•œì„ ê±¸ê³  ìˆëŠ”ì§€ í’€ì—ˆëŠ”ì§€ ì—¬ë¶€.
 
 	void ShowLoginWindow();
 	void HideLoginWindow();

@@ -1,11 +1,11 @@
-// stdafx.cpp : source file that includes just the standard includes
+ï»¿// stdafx.cpp : source file that includes just the standard includes
 // Raptor.pch will be the pre-compiled header
 // stdafx.obj will contain the pre-compiled type information
 
 #include "stdafx.h"
 
 
-/**@brief	instanceµéÀÇ ÃÊ±â°ªÀ» null·Î Àâ¾ÆÁØ´Ù.
+/**@brief	instanceë“¤ì˜ ì´ˆê¸°ê°’ì„ nullë¡œ ì¡ì•„ì¤€ë‹¤.
  */
 #include "CBFMediator.h"
 

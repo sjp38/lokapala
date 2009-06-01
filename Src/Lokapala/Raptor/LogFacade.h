@@ -1,5 +1,5 @@
-/**@file	LogFacade.h
- * @brief	Log ManagerÀÇ Facade Á¤ÀÇ.
+ï»¿/**@file	LogFacade.h
+ * @brief	Log Managerì˜ Facade ì •ì˜.
  * author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup GroupLGM
  * @class	CLogFacade
- * @brief	LGMÀÇ Facade.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	LGMì˜ Facade.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CLogFacade : public CLogBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CLogFacade *Instance()
 	{
@@ -29,9 +29,9 @@ public :
 		return m_instance;
 	}
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CLogFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CLogFacade(){}
 private :
 	/**@brief	singleton	*/

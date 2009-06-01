@@ -1,5 +1,5 @@
-/**@file	APIHookingManager.cpp
- * @brief	CAPIHookingManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼öµéÀ» ±¸Çö
+ï»¿/**@file	APIHookingManager.cpp
+ * @brief	CAPIHookingManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë“¤ì„ êµ¬í˜„
  * @author	siva
  */
 
@@ -7,7 +7,7 @@
 #include "APIHookingManager.h"
 #include "APIHookExport.h"
 
-/**@brief	ÀÚ½ÅÀÇ ½ÇÇà °æ·Î¸¦ ¾Ë¾Æ³»¼­ ¸Ş¸ğ¸®¿¡ ÀúÀåÇØ µĞ´Ù.
+/**@brief	ìì‹ ì˜ ì‹¤í–‰ ê²½ë¡œë¥¼ ì•Œì•„ë‚´ì„œ ë©”ëª¨ë¦¬ì— ì €ì¥í•´ ë‘”ë‹¤.
  */
 void CAPIHookingManager::WriteSelfPathToMemory()
 {	
@@ -28,7 +28,7 @@ void CAPIHookingManager::WriteSelfPathToMemory()
 	free(selfPath);
 }
 
-/**@brief	APILib dllÀ» ÀÌ¿ëÇØ TerminateProcess¸¦ ±Û·Î¹ú ÈÄÅ·ÇÑ´Ù.
+/**@brief	APILib dllì„ ì´ìš©í•´ TerminateProcessë¥¼ ê¸€ë¡œë²Œ í›„í‚¹í•œë‹¤.
  */
 void CAPIHookingManager::StartAPIHooking()
 {
@@ -37,7 +37,7 @@ void CAPIHookingManager::StartAPIHooking()
 }
 
 
-/**@brief	APILib dllÀ» ÀÌ¿ëÇØ TerminateProcessÀÇ ±Û·Î¹ú ÈÄÅ·À» ÇØÁ¦ÇÑ´Ù.
+/**@brief	APILib dllì„ ì´ìš©í•´ TerminateProcessì˜ ê¸€ë¡œë²Œ í›„í‚¹ì„ í•´ì œí•œë‹¤.
  */
 void CAPIHookingManager::StopAPIHooking()
 {

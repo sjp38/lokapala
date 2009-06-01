@@ -1,5 +1,5 @@
-/**@file	DCLogSD.h
- * @brief	DCM¿¡¼­ LGMÀ¸·ÎÀÇ Service Delegate Á¤ÀÇ.
+ï»¿/**@file	DCLogSD.h
+ * @brief	DCMì—ì„œ LGMìœ¼ë¡œì˜ Service Delegate ì •ì˜.
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup GroupDCM
  * @class	CDCLogSD
- * @brief	DCM¿¡¼­ LGMÀ¸·ÎÀÇ Service Delegate.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	DCMì—ì„œ LGMìœ¼ë¡œì˜ Service Delegate.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDCLogSD
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDCLogSD *Instance()
 	{
@@ -28,9 +28,9 @@ public :
 	}
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDCLogSD(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDCLogSD(){}
 private :
 	/**@brief	singleton.	*/

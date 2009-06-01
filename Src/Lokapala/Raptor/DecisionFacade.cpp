@@ -1,5 +1,5 @@
-/**@file	DecisionFacade.cpp
- * @brief	DCMÀÇ FacadeÀÇ ¸â¹ö ÇÔ¼ö ±¸Çö
+ï»¿/**@file	DecisionFacade.cpp
+ * @brief	DCMì˜ Facadeì˜ ë©¤ë²„ í•¨ìˆ˜ êµ¬í˜„
  * author	siva
  */
 
@@ -8,7 +8,7 @@
 
 #include "DecisionManager.h"
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿Í ¿¬°á µÇ¾úÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ ì—°ê²° ë˜ì—ˆì„ ë•Œ.
  */
 void CDecisionFacade::Connected()
 {
@@ -16,7 +16,7 @@ void CDecisionFacade::Connected()
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿Í ¿¬°áÀÌ ²÷°åÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ ì—°ê²°ì´ ëŠê²¼ì„ ë•Œ.
  */
 void CDecisionFacade::Disconnected()
 {
@@ -24,77 +24,77 @@ void CDecisionFacade::Disconnected()
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ·Î±×ÀÎ ¿äÃ»À» ÇÑ´Ù.	*/
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ì„ í•œë‹¤.	*/
 void CDecisionFacade::LoginRequest(void *a_userInfo)
 {
 	CDecisionManager::Instance()->LoginRequest(a_userInfo);
 }
 
 
-/**@brief	·Î±×ÀÎ Çã¿ë ¸Ş¼¼Áö¿¡ ÀÀÇÏ´Â ¼­ºñ½º¸¦ ÇÑ´Ù.(»ç¿ëÀÚ ¹æÇØ Á¦°Å)
+/**@brief	ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ì— ì‘í•˜ëŠ” ì„œë¹„ìŠ¤ë¥¼ í•œë‹¤.(ì‚¬ìš©ì ë°©í•´ ì œê±°)
  */
 void CDecisionFacade::LoginAccepted(int a_level)
 {
 	CDecisionManager::Instance()->LoginAccepted(a_level);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ·Î±×ÀÎ ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ë¡œê·¸ì¸ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::LoginOrderReceived(void *a_message)
 {
 	CDecisionManager::Instance()->LoginOrderReceived(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ·Î±×¾Æ¿ô ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ë¡œê·¸ì•„ì›ƒ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::LogoutOrderReceived(void *a_message)
 {
 	CDecisionManager::Instance()->LogoutOrderReceived(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ÄÄÇ»ÅÍ Á¾·á ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ì»´í“¨í„° ì¢…ë£Œ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::ShutdownOrderReceived(void *a_message)
 {
 	CDecisionManager::Instance()->ShutdownOrderReceived(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ÄÄÇ»ÅÍ ¸®ºÎÆÃ ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ì»´í“¨í„° ë¦¬ë¶€íŒ… ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::RebootOrderReceived(void *a_message)
 {
 	CDecisionManager::Instance()->RebootOrderReceived(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ ½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º Á¾·á ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::GenocideProcessesOrderReceived(void *a_message)
 {
 	CDecisionManager::Instance()->GenocideProcessesOrderReceived(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º Á¾·á ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::KillProcessOrderReceived(void *a_processName)
 {
 	CDecisionManager::Instance()->KillProcessOrderReceived(a_processName);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionFacade::ExecuteProcessOrderReceived(void *a_processName)
 {
 	CDecisionManager::Instance()->ExecuteProcessOrderReceived(a_processName);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ »óÅÂ º¸°í ¹Ş¾ÒÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ìƒíƒœ ë³´ê³  ë°›ì•˜ì„ ë•Œ.
  */
 void CDecisionFacade::StatusReportReceived(void *a_statusReport)
 {
 	CDecisionManager::Instance()->StatusReportReceived(a_statusReport);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ·¦ÅÍ µ¿ÀÛ Á¤Áö ¸í·É ¹Ş¾ÒÀ» ¶§	*/
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ë©í„° ë™ì‘ ì •ì§€ ëª…ë ¹ ë°›ì•˜ì„ ë•Œ	*/
 void CDecisionFacade::RaptorTerminationOrderReceived()
 {
 	CDecisionManager::Instance()->RaptorTerminationOrderReceived();
@@ -102,7 +102,7 @@ void CDecisionFacade::RaptorTerminationOrderReceived()
 
 
 
-/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» º¸°í¹Ş´Â´Ù.
+/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ë³´ê³ ë°›ëŠ”ë‹¤.
  */
 void CDecisionFacade::ReportExecutedProcess(CString *a_executedProcess)
 {
@@ -110,14 +110,14 @@ void CDecisionFacade::ReportExecutedProcess(CString *a_executedProcess)
 }
 
 
-/**@brief	»óÈ² º¯È­¸¦ º¸°íÇÑ´Ù.
+/**@brief	ìƒí™© ë³€í™”ë¥¼ ë³´ê³ í•œë‹¤.
  */
 void CDecisionFacade::ReportStatus(void *a_status)
 {
 	CDecisionManager::Instance()->ReportStatus(a_status);
 }
 
-/**@brief	»ç¿ëÀÚ°¡ ÇÁ·Î±×·¥À» Á¾·áÇÏ·Á ÇÒ ¶§.
+/**@brief	ì‚¬ìš©ìê°€ í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•˜ë ¤ í•  ë•Œ.
  */
 void CDecisionFacade::UserTryingToKillMe(void)
 {

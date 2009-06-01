@@ -1,5 +1,5 @@
-/**@file	MessengerBI.h
- * @brief	Messenger ManagerÀÇ Button Interface Á¤ÀÇ
+ï»¿/**@file	MessengerBI.h
+ * @brief	Messenger Managerì˜ Button Interface ì •ì˜
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup	GroupMSM
  * @class	CMessengerBI
- * @brief	Messenger ManagerÀÇ Button Interface.
+ * @brief	Messenger Managerì˜ Button Interface.
  * @author	siva
  */
 class CMessengerBI
 {
 public :
-	/**@brief	ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Àü¼ÛÇÑ´Ù.	*/
+	/**@brief	í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì „ì†¡í•œë‹¤.	*/
 	virtual void PostTextMessageToOperator(CString *a_message) = 0;
-	/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¹Ş´Â´Ù.	*/
+	/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë°›ëŠ”ë‹¤.	*/
 	virtual void ReceiveTextMessageFromOperator(CString *a_message) = 0;
 };
 

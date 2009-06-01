@@ -1,4 +1,4 @@
-// RaptorDlg.h : header file
+﻿// RaptorDlg.h : header file
 //
 
 #pragma once

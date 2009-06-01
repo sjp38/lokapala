@@ -1,5 +1,5 @@
-/**@file	UserDataDTO.cpp
- * @brief	CUserDataDTOÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	UserDataDTO.cpp
+ * @brief	CUserDataDTOì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -8,7 +8,7 @@
 
 #include <openssl/sha.h>
 
-/**@brief	»ı¼ºÀÚ. high ·¹º§ ÆĞ½º¿öµå´Â sha1 ¾Ë°í¸®ÁòÀ» ÅëÇØ ÇØ½Ì ÇØ¼­ °ü¸®ÇÑ´Ù.	*/
+/**@brief	ìƒì„±ì. high ë ˆë²¨ íŒ¨ìŠ¤ì›Œë“œëŠ” sha1 ì•Œê³ ë¦¬ì¦˜ì„ í†µí•´ í•´ì‹± í•´ì„œ ê´€ë¦¬í•œë‹¤.	*/
 CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, CString a_highLevelPassword, int a_level)
 {
 	m_userId = a_userId;
@@ -22,7 +22,7 @@ CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelP
 	m_level = a_level;
 }
 
-/**@brief	»ı¼ºÀÚ. high ·¹º§ ÆĞ½º¿öµå°¡ ÀÌ¹Ì ÇØ½ÌµÈ µ¥ÀÌÅÍ·Î µé¾î¿Ã ¶§ »ç¿ëÇÏ±â À§ÇØ ¿À¹ö·ÎµåµÇ¾ú´Ù.
+/**@brief	ìƒì„±ì. high ë ˆë²¨ íŒ¨ìŠ¤ì›Œë“œê°€ ì´ë¯¸ í•´ì‹±ëœ ë°ì´í„°ë¡œ ë“¤ì–´ì˜¬ ë•Œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì˜¤ë²„ë¡œë“œë˜ì—ˆë‹¤.
  */
 CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelPassword, int a_level, CString a_hashedHighLevelPassword)
 {
@@ -42,9 +42,9 @@ CUserDataDTO::CUserDataDTO(CString a_userId, CString a_name, CString a_lowLevelP
 	m_level = a_level;
 }
 
-/**@brief	´Ü¹æÇâ ÇØ½ÌÀ» ÇÑ´Ù. sha1 ¾Ë°í¸®ÁòÀ» »ç¿ëÇÑ´Ù.
- * @param	a_message	ÇØ½ÌÀ» ÇÏ°íÀÚ ÇÏ´Â ¸Ş¼¼Áö
- * @return	ÇØ½ÌµÈ ¸Ş¼¼Áö
+/**@brief	ë‹¨ë°©í–¥ í•´ì‹±ì„ í•œë‹¤. sha1 ì•Œê³ ë¦¬ì¦˜ì„ ì‚¬ìš©í•œë‹¤.
+ * @param	a_message	í•´ì‹±ì„ í•˜ê³ ì í•˜ëŠ” ë©”ì„¸ì§€
+ * @return	í•´ì‹±ëœ ë©”ì„¸ì§€
  */
 CString CUserDataDTO::HashMessage(CString a_message)
 {

@@ -1,5 +1,5 @@
-/**@file	DharaniFacade.cpp
- * @brief	DharaniFacadeÀÇ ¸â¹ö ÇÔ¼öµéÀ» ±¸Çö
+ï»¿/**@file	DharaniFacade.cpp
+ * @brief	DharaniFacadeì˜ ë©¤ë²„ í•¨ìˆ˜ë“¤ì„ êµ¬í˜„
  * @author	siva
  */
 
@@ -8,30 +8,30 @@
 #include "DharaniServerManager.h"
 #include "DharaniFacade.h"
 
-/**@brief	dharani ÄÄÆ÷³ÍÆ®ÀÇ ¼­¹ö ¸ğµ¨ ÃÊ±âÈ­. ¸®½¼ ¼ÒÄÏÀ» ¸¸µé°í IOCP¸¦ À§ÇÑ ÁØºñ ´Ü°è¸¦ ¼öÇàÇÑ´Ù.
+/**@brief	dharani ì»´í¬ë„ŒíŠ¸ì˜ ì„œë²„ ëª¨ë¸ ì´ˆê¸°í™”. ë¦¬ìŠ¨ ì†Œì¼“ì„ ë§Œë“¤ê³  IOCPë¥¼ ìœ„í•œ ì¤€ë¹„ ë‹¨ê³„ë¥¼ ìˆ˜í–‰í•œë‹¤.
  */
 void CDharaniFacade::DharaniServerInitiallize()
 {
 	CDharaniServerManager::Instance()->Initiallize();
 }
 
-/**@brief	dharani ÄÄÆ÷³ÍÆ®ÀÇ Å¬¶óÀÌ¾ğÆ® ¸ğµ¨ ÃÊ±âÈ­.
- * @return	Á¤»óÀûÀ¸·Î ÃÊ±âÈ­ ÇßÀ» ¶§ 0, ¹®Á¦°¡ ¹ß»ı ÇßÀ» ¶§ -1
+/**@brief	dharani ì»´í¬ë„ŒíŠ¸ì˜ í´ë¼ì´ì–¸íŠ¸ ëª¨ë¸ ì´ˆê¸°í™”.
+ * @return	ì •ìƒì ìœ¼ë¡œ ì´ˆê¸°í™” í–ˆì„ ë•Œ 0, ë¬¸ì œê°€ ë°œìƒ í–ˆì„ ë•Œ -1
  */
 int CDharaniFacade::DharaniClientInitiallize(DWORD a_ServerAddress)
 {
 	return CDharaniClientManager::Instance()->Initiallize(a_ServerAddress);
 }
 
-/**@brief	¼­¹ö¿ÍÀÇ ¿¬°áÀ» Á¾·áÇÑ´Ù.
+/**@brief	ì„œë²„ì™€ì˜ ì—°ê²°ì„ ì¢…ë£Œí•œë‹¤.
  */
 void CDharaniFacade::DharaniCloseServerConnection()
 {
 	CDharaniClientManager::Instance()->CloseConnection();
 }
 
-/**@brief	Æ¯Á¤ Å¬¶óÀÌ¾ğÆ®¿¡°Ô ¸Ş¼¼Áö¸¦ ³¯¸°´Ù.
- * @param	a_sendData	º¸³¾ ¸Ş¼¼Áö¿Í ¸ñÀû Å¬¶óÀÌ¾ğÆ®ÀÇ ÁÖ¼Ò¸¦ °¡Áö°í ÀÖ´Ù.
+/**@brief	íŠ¹ì • í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë‚ ë¦°ë‹¤.
+ * @param	a_sendData	ë³´ë‚¼ ë©”ì„¸ì§€ì™€ ëª©ì  í´ë¼ì´ì–¸íŠ¸ì˜ ì£¼ì†Œë¥¼ ê°€ì§€ê³  ìˆë‹¤.
  */
 void CDharaniFacade::DharaniSendTextMessageTo(CDharaniDTO *a_sendData)
 {
@@ -39,15 +39,15 @@ void CDharaniFacade::DharaniSendTextMessageTo(CDharaniDTO *a_sendData)
 	CDharaniServerManager::Instance()->SendMessageTo(destiny, a_sendData->m_message);
 }
 
-/**@brief	¿¬°áµÇ¾î ÀÖ´Â ¸ğµç Å¬¶óÀÌ¾ğÆ®¿¡°Ô ¸Ş¼¼Áö¸¦ ³¯¸°´Ù.
- * @param	a_sendData	º¸³¾ ¸Ş¼¼Áö¸¦ °¡Áö°í ÀÖ´Ù.
+/**@brief	ì—°ê²°ë˜ì–´ ìˆëŠ” ëª¨ë“  í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë‚ ë¦°ë‹¤.
+ * @param	a_sendData	ë³´ë‚¼ ë©”ì„¸ì§€ë¥¼ ê°€ì§€ê³  ìˆë‹¤.
  */
 void CDharaniFacade::DharaniBroadcastTextMessage(CDharaniDTO *a_sendData)
 {
 	CDharaniServerManager::Instance()->BroadcastTextMessage(a_sendData->m_message);
 }
 
-/**@brief	¼­¹ö¿¡°Ô ¸Ş¼¼Áö¸¦ ³¯¸°´Ù.
+/**@brief	ì„œë²„ì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDharaniFacade::DharaniSendTextToServer(CDharaniDTO *a_sendData)
 {

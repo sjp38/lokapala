@@ -1,5 +1,5 @@
-/**@file	ControlManager.cpp
- * @brief	CControlManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	ControlManager.cpp
+ * @brief	CControlManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -9,7 +9,7 @@
 #include "Psapi.h"
 
 
-/**@brief	»ı¼ºÀÚ. ·Î±×ÀÎ ´ÙÀÌ¾ó·Î±×¸¦ »ı¼ºÇÏ°í À§Ä¡¸¦ Àâ´Â´Ù.
+/**@brief	ìƒì„±ì. ë¡œê·¸ì¸ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ìƒì„±í•˜ê³  ìœ„ì¹˜ë¥¼ ì¡ëŠ”ë‹¤.
  */
 CControlManager::CControlManager()
 {
@@ -19,18 +19,18 @@ CControlManager::CControlManager()
 	int screeny = GetSystemMetrics(SM_CYSCREEN);
 	m_loginDlg->MoveWindow(0,0,screenx, screeny);
 	
-	::SetWindowPos(m_loginDlg->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_SHOWWINDOW);	//À©µµ¿ì¸¦ ÃÖ»óÀ§·Î À§Ä¡½ÃÅ²´Ù.
+	::SetWindowPos(m_loginDlg->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE|SWP_SHOWWINDOW);	//ìœˆë„ìš°ë¥¼ ìµœìƒìœ„ë¡œ ìœ„ì¹˜ì‹œí‚¨ë‹¤.
 	CCBFMediator::Instance()->SetLoginDlg(m_loginDlg);
 }
 
-/**@brief	·Î±×ÀÎ À©µµ¿ì¸¦ È­¸é ÃÖ»ó´Ü¿¡ È­¸é Å©±â·Î º¸ÀÌ°Ô ÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸ ìœˆë„ìš°ë¥¼ í™”ë©´ ìµœìƒë‹¨ì— í™”ë©´ í¬ê¸°ë¡œ ë³´ì´ê²Œ í•œë‹¤.
  */
 void CControlManager::ShowLoginWindow()
 {
 	m_loginDlg->ShowWindow(SW_SHOW);
 }
 
-/**@brief	·Î±×ÀÎ À©µµ¿ì¸¦ »ç¶óÁö°Ô ÇØ »ç¿ëÀÚÀÇ ÄÄÇ»ÅÍ ÀÌ¿ë Á¦ÇÑÀ» ÇØÁ¦ÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸ ìœˆë„ìš°ë¥¼ ì‚¬ë¼ì§€ê²Œ í•´ ì‚¬ìš©ìì˜ ì»´í“¨í„° ì´ìš© ì œí•œì„ í•´ì œí•œë‹¤.
  */
 void CControlManager::HideLoginWindow()
 {
@@ -40,8 +40,8 @@ void CControlManager::HideLoginWindow()
 	}
 }
 
-/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀû ÄÄÇ»ÅÍ »ç¿ëÀ» Á¦ÇÑÇÑ´Ù.
- *			·Î±×ÀÎ Ã¢À» È­¸é ÃÖ»ó´Ü¿¡ È­¸é Å©±â·Î º¸ÀÌ°Ô ÇØ »ç¿ëÀÚÀÇ Á¤»óÀû ÄÄÇ»ÅÍ ÀÌ¿ëÀ» Á¦ÇÑÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì  ì»´í“¨í„° ì‚¬ìš©ì„ ì œí•œí•œë‹¤.
+ *			ë¡œê·¸ì¸ ì°½ì„ í™”ë©´ ìµœìƒë‹¨ì— í™”ë©´ í¬ê¸°ë¡œ ë³´ì´ê²Œ í•´ ì‚¬ìš©ìì˜ ì •ìƒì  ì»´í“¨í„° ì´ìš©ì„ ì œí•œí•œë‹¤.
  */
 void CControlManager::RestraintUser()
 {
@@ -49,8 +49,8 @@ void CControlManager::RestraintUser()
 	ShowLoginWindow();
 }
 
-/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀû ÄÄÇ»ÅÍ »ç¿ëÀ» °¡´ÉÇÏ°Ô ¸¸µç´Ù.
- *			·Î±×ÀÎ Ã¢À» ¾ø¾Ø´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì  ì»´í“¨í„° ì‚¬ìš©ì„ ê°€ëŠ¥í•˜ê²Œ ë§Œë“ ë‹¤.
+ *			ë¡œê·¸ì¸ ì°½ì„ ì—†ì•¤ë‹¤.
  */
 void CControlManager::ReleaseUser()
 {
@@ -58,7 +58,7 @@ void CControlManager::ReleaseUser()
 	HideLoginWindow();
 }
 
-/**@brief	°­Á¦·Î »ç¿ëÀÚ¸¦ ·Î±×ÀÎ ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìë¥¼ ë¡œê·¸ì¸ ì‹œí‚¨ë‹¤.
  */
 void CControlManager::Login(void *a_userInfo)
 {
@@ -67,7 +67,7 @@ void CControlManager::Login(void *a_userInfo)
 	//AfxMessageBox(_T("violent login!"));
 }
 
-/**@brief	°­Á¦·Î »ç¿ëÀÚ¸¦ ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìë¥¼ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CControlManager::Logout(void *a_argument)
 {
@@ -76,7 +76,7 @@ void CControlManager::Logout(void *a_argument)
 	CCBFMediator::Instance()->TrySuicide();
 }
 
-/**@brief	ÄÄÇ»ÅÍ¸¦ Á¾·á½ÃÅ²´Ù. NT °è¿­ Àü¿ë.
+/**@brief	ì»´í“¨í„°ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤. NT ê³„ì—´ ì „ìš©.
  */
 void CControlManager::Shutdown(void *a_argument)
 {
@@ -86,18 +86,18 @@ void CControlManager::Shutdown(void *a_argument)
 	HANDLE h_token;
 	TOKEN_PRIVILEGES privilege_info;
 
-	// ÇöÀç ÇÁ·Î¼¼½ºÀÇ ±ÇÇÑ°ú °ü·ÃµÈ Á¤º¸¸¦ º¯°æÇÏ±â À§ÇØ ÅäÅ«Á¤º¸¸¦ ¿¬´Ù.
+	// í˜„ì¬ í”„ë¡œì„¸ìŠ¤ì˜ ê¶Œí•œê³¼ ê´€ë ¨ëœ ì •ë³´ë¥¼ ë³€ê²½í•˜ê¸° ìœ„í•´ í† í°ì •ë³´ë¥¼ ì—°ë‹¤.
 	if(!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &h_token) ) 
 	{
 		return;
 	}
 
-	// ÇöÀç ÇÁ·Î¼¼½º°¡ SE_SHUTDOWN_NAME ±ÇÇÑÀ» »ç¿ëÇÒ¼ö ÀÖµµ·Ï ¼³Á¤ÇÑ´Ù.
+	// í˜„ì¬ í”„ë¡œì„¸ìŠ¤ê°€ SE_SHUTDOWN_NAME ê¶Œí•œì„ ì‚¬ìš©í• ìˆ˜ ìˆë„ë¡ ì„¤ì •í•œë‹¤.
 	LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME, &privilege_info.Privileges[0].Luid);
 	privilege_info.PrivilegeCount = 1;
 	privilege_info.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
-	// ÁöÁ¤ÇÑ °ªÀ¸·Î ±ÇÇÑÀ» Á¶Á¤ÇÑ´Ù.
+	// ì§€ì •í•œ ê°’ìœ¼ë¡œ ê¶Œí•œì„ ì¡°ì •í•œë‹¤.
 	AdjustTokenPrivileges(h_token, FALSE, &privilege_info, 0, (PTOKEN_PRIVILEGES)NULL, 0);
 	if(GetLastError() != ERROR_SUCCESS)
 	{
@@ -106,7 +106,7 @@ void CControlManager::Shutdown(void *a_argument)
 	ExitWindowsEx(EWX_FORCE | EWX_POWEROFF, 0);
 }
 
-/**@brief	ÄÄÇ»ÅÍ¸¦ ¸®ºÎÆÃ½ÃÅ²´Ù. NT °è¿­ Àü¿ë.
+/**@brief	ì»´í“¨í„°ë¥¼ ë¦¬ë¶€íŒ…ì‹œí‚¨ë‹¤. NT ê³„ì—´ ì „ìš©.
  */
 void CControlManager::Reboot(void *a_argument)
 {
@@ -116,18 +116,18 @@ void CControlManager::Reboot(void *a_argument)
 	HANDLE h_token;
 	TOKEN_PRIVILEGES privilege_info;
 
-	// ÇöÀç ÇÁ·Î¼¼½ºÀÇ ±ÇÇÑ°ú °ü·ÃµÈ Á¤º¸¸¦ º¯°æÇÏ±â À§ÇØ ÅäÅ«Á¤º¸¸¦ ¿¬´Ù.
+	// í˜„ì¬ í”„ë¡œì„¸ìŠ¤ì˜ ê¶Œí•œê³¼ ê´€ë ¨ëœ ì •ë³´ë¥¼ ë³€ê²½í•˜ê¸° ìœ„í•´ í† í°ì •ë³´ë¥¼ ì—°ë‹¤.
 	if(!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &h_token) ) 
 	{
 		return;
 	}
 
-	// ÇöÀç ÇÁ·Î¼¼½º°¡ SE_SHUTDOWN_NAME ±ÇÇÑÀ» »ç¿ëÇÒ¼ö ÀÖµµ·Ï ¼³Á¤ÇÑ´Ù.
+	// í˜„ì¬ í”„ë¡œì„¸ìŠ¤ê°€ SE_SHUTDOWN_NAME ê¶Œí•œì„ ì‚¬ìš©í• ìˆ˜ ìˆë„ë¡ ì„¤ì •í•œë‹¤.
 	LookupPrivilegeValue(NULL, SE_SHUTDOWN_NAME, &privilege_info.Privileges[0].Luid);
 	privilege_info.PrivilegeCount = 1;
 	privilege_info.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
-	// ÁöÁ¤ÇÑ °ªÀ¸·Î ±ÇÇÑÀ» Á¶Á¤ÇÑ´Ù.
+	// ì§€ì •í•œ ê°’ìœ¼ë¡œ ê¶Œí•œì„ ì¡°ì •í•œë‹¤.
 	AdjustTokenPrivileges(h_token, FALSE, &privilege_info, 0, (PTOKEN_PRIVILEGES)NULL, 0);
 	if(GetLastError() != ERROR_SUCCESS)
 	{
@@ -136,7 +136,7 @@ void CControlManager::Reboot(void *a_argument)
 	ExitWindowsEx(EWX_FORCE | EWX_REBOOT, 0);
 }
 
-/**@brief	½ÇÇàµÇ°í ÀÖ´Â ¸ğµç ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.
+/**@brief	ì‹¤í–‰ë˜ê³  ìˆëŠ” ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
  */
 void CControlManager::GenocideProcesses(void *a_argument)
 {
@@ -145,7 +145,7 @@ void CControlManager::GenocideProcesses(void *a_argument)
 
 	DWORD runprocess[512], cb, nProcesses;
 	unsigned int i;
-	EnumProcesses(runprocess,sizeof(runprocess),&cb);	//ÇöÀç ¼öÇàÁßÀÎ ÇÁ·Î¼¼½º¸¦ ¾ò¾î¿Â´Ù.
+	EnumProcesses(runprocess,sizeof(runprocess),&cb);	//í˜„ì¬ ìˆ˜í–‰ì¤‘ì¸ í”„ë¡œì„¸ìŠ¤ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	nProcesses = cb/sizeof(DWORD);
 
 	for(i=0;i<nProcesses;i++) {
@@ -157,8 +157,8 @@ void CControlManager::GenocideProcesses(void *a_argument)
 	}
 }
 
-/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.
- * @param	a_processName	Á¾·á½ÃÅ°°íÀÚ ÇÏ´Â ÇÁ·Î¼¼½ºÀÇ ÀÌ¸§
+/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
+ * @param	a_processName	ì¢…ë£Œì‹œí‚¤ê³ ì í•˜ëŠ” í”„ë¡œì„¸ìŠ¤ì˜ ì´ë¦„
  */
 void CControlManager::KillProcess(void *a_argument)
 {
@@ -169,7 +169,7 @@ void CControlManager::KillProcess(void *a_argument)
 
 	DWORD runprocess[512], cb, nProcesses;
 	unsigned int i;
-	EnumProcesses(runprocess,sizeof(runprocess),&cb);	//ÇöÀç ¼öÇàÁßÀÎ ÇÁ·Î¼¼½º¸¦ ¾ò¾î¿Â´Ù.
+	EnumProcesses(runprocess,sizeof(runprocess),&cb);	//í˜„ì¬ ìˆ˜í–‰ì¤‘ì¸ í”„ë¡œì„¸ìŠ¤ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	nProcesses = cb/sizeof(DWORD);
 
 	WCHAR name[MAX_PATH];
@@ -195,8 +195,8 @@ void CControlManager::KillProcess(void *a_argument)
 	}
 }
 
-/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
- * @param	a_processName	½ÇÇàÇÏ°íÀÚ ÇÏ´Â ÇÁ·Î¼¼½ºÀÇ ÀÌ¸§
+/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
+ * @param	a_processName	ì‹¤í–‰í•˜ê³ ì í•˜ëŠ” í”„ë¡œì„¸ìŠ¤ì˜ ì´ë¦„
  */
 void CControlManager::ExecuteProcess(void *a_argument)
 {

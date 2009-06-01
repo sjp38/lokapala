@@ -1,5 +1,5 @@
-/**@file	MessengerManager.h
- * @brief	CMessengerManager Å¬·¡½º¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	MessengerManager.h
+ * @brief	CMessengerManager í´ë˜ìŠ¤ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -8,7 +8,7 @@
 
 /**@ingroup	GroupMSM
  * @class	CMessengerManager
- * @brief	¸Ş½ÅÀú ÄÄÆ÷³ÍÆ®ÀÇ ½ÇÁúÀû µ¿ÀÛÀ» Ã¥ÀÓÁø´Ù.
+ * @brief	ë©”ì‹ ì € ì»´í¬ë„ŒíŠ¸ì˜ ì‹¤ì§ˆì  ë™ì‘ì„ ì±…ì„ì§„ë‹¤.
  */
 class CMessengerManager
 {

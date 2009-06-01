@@ -1,5 +1,5 @@
-/**@file	DCDataAdminSD.h
- * @brief	DCM¿¡¼­ DAMÀ¸·ÎÀÇ Service Delegate Á¤ÀÇ.
+ï»¿/**@file	DCDataAdminSD.h
+ * @brief	DCMì—ì„œ DAMìœ¼ë¡œì˜ Service Delegate ì •ì˜.
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup GroupDCM
  * @class	CDCDataAdminSD
- * @brief	DCM¿¡¼­ DAMÀ¸·ÎÀÇ Service Delegate. DCM¿¡¼­ DAMÀ¸·Î ¿ä±¸ÇÏ´Â ¹Ù°¡ ÀÖÀ» ¶§ »ç¿ëµÈ´Ù.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	DCMì—ì„œ DAMìœ¼ë¡œì˜ Service Delegate. DCMì—ì„œ DAMìœ¼ë¡œ ìš”êµ¬í•˜ëŠ” ë°”ê°€ ìˆì„ ë•Œ ì‚¬ìš©ëœë‹¤.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDCDataAdminSD
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDCDataAdminSD *Instance()
 	{
@@ -34,9 +34,9 @@ public :
 	void *GetStatusReportsDTO();
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDCDataAdminSD(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDCDataAdminSD(){}
 private :
 	/**@brief	singleton.	*/

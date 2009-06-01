@@ -1,9 +1,9 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "DataAdminManager.h"
 
 #include "tinyxml.h"
 
-/**@brief	»ç¿ëÀÚ Á¤º¸¸¦ ÀúÀåÇÑ´Ù. ·Î±×ÀÎ ¿äÃ» ÇÒ ¶§ ºÒ·ÁÁø´Ù.
+/**@brief	ì‚¬ìš©ì ì •ë³´ë¥¼ ì €ì¥í•œë‹¤. ë¡œê·¸ì¸ ìš”ì²­ í•  ë•Œ ë¶ˆë ¤ì§„ë‹¤.
  */
 void CDataAdminManager::RegistUser(void *a_user)
 {
@@ -11,7 +11,7 @@ void CDataAdminManager::RegistUser(void *a_user)
 	m_user = *user;
 }
 
-/**@brief	»ç¿ëÀÚ ·¹º§À» ÀúÀåÇÑ´Ù. ·Î±×ÀÎ ¿äÃ» Çã¶ô µÇ¾úÀ» ¶§ ºÒ·ÁÁø´Ù.
+/**@brief	ì‚¬ìš©ì ë ˆë²¨ì„ ì €ì¥í•œë‹¤. ë¡œê·¸ì¸ ìš”ì²­ í—ˆë½ ë˜ì—ˆì„ ë•Œ ë¶ˆë ¤ì§„ë‹¤.
  */
 void CDataAdminManager::RegistUserLevel(int a_level)
 {
@@ -19,15 +19,15 @@ void CDataAdminManager::RegistUserLevel(int a_level)
 }
 
 
-/**@brief	ÇöÀç »óÈ² º¯È­ º¸°í Á¤º¸Ã¼¸¦ °¡Á®¿Â´Ù.
- * @return	»óÈ² º¯È­ º¸°í Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ.
+/**@brief	í˜„ì¬ ìƒí™© ë³€í™” ë³´ê³  ì •ë³´ì²´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+ * @return	ìƒí™© ë³€í™” ë³´ê³  ì •ë³´ì²´ì˜ í¬ì¸í„°.
  */
 void *CDataAdminManager::GetStatusReports()
 {
 	return &m_statusReports;
 }
 
-/**@brief	»óÅÂ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ìƒíƒœ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDataAdminManager::AddStatusReport(void *a_statusReport)
 {
@@ -38,7 +38,7 @@ void CDataAdminManager::AddStatusReport(void *a_statusReport)
 	SaveStatusReportsToFile();
 }
 
-/**@brief	ÇöÀç »óÈ² º¯È­ º¸°í ³»¿ëÀ» ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
+/**@brief	í˜„ì¬ ìƒí™© ë³€í™” ë³´ê³  ë‚´ìš©ì„ íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
  */
 void CDataAdminManager::SaveStatusReportsToFile(CString a_filePath)
 {
@@ -66,7 +66,7 @@ void CDataAdminManager::SaveStatusReportsToFile(CString a_filePath)
 	doc.SaveFile(W2A(a_filePath));
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ »óÈ² º¯È­ º¸°í ³»¿ëÀ» ÀĞ¾îµéÀÎ´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° ìƒí™© ë³€í™” ë³´ê³  ë‚´ìš©ì„ ì½ì–´ë“¤ì¸ë‹¤.
  */
 void CDataAdminManager::LoadStatusReportsFromFile(CString a_filePath)
 {

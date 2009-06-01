@@ -1,5 +1,5 @@
-/**@file	ConnectedHostsDTO.h
- * @brief	CConnectedHostsDTO Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	ConnectedHostsDTO.h
+ * @brief	CConnectedHostsDTO í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -10,7 +10,7 @@
 
 /**@ingroup	GroupDAM
  * @class	CConnectedHostsDTO
- * @brief	¿¬°áµÈ À¯Àú ÀüÃ¼¿¡ ´ëÇÑ µ¥ÀÌÅÍ¸¦ °ü¸®ÇÑ´Ù.
+ * @brief	ì—°ê²°ëœ ìœ ì € ì „ì²´ì— ëŒ€í•œ ë°ì´í„°ë¥¼ ê´€ë¦¬í•œë‹¤.
  */
 class CConnectedHostsDTO
 {

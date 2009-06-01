@@ -1,5 +1,5 @@
-/**@file	SeatDataDTO.cpp
- * @brief	CSeatDataDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	SeatDataDTO.cpp
+ * @brief	CSeatDataDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 

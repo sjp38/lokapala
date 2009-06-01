@@ -1,13 +1,13 @@
-/**@file	UsersDataDTO.cpp
- * @brief	UsersDataDTOÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸Çö
+ï»¿/**@file	UsersDataDTO.cpp
+ * @brief	UsersDataDTOì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "UsersDataDTO.h"
 
-/**@brief	»ı¼ºÀÚ\n
- *			À¯Àú µ¥ÀÌÅÍ ¸ÊÀÇ Å©±â¸¦ Àâ´Â´Ù.
+/**@brief	ìƒì„±ì\n
+ *			ìœ ì € ë°ì´í„° ë§µì˜ í¬ê¸°ë¥¼ ì¡ëŠ”ë‹¤.
  */
 CUsersDataDTO::CUsersDataDTO()
 {
@@ -15,14 +15,14 @@ CUsersDataDTO::CUsersDataDTO()
 }
 
 
-/**@brief	»õ·Î¿î À¯Àú¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ìƒˆë¡œìš´ ìœ ì €ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CUsersDataDTO::AddUser(CUserDataDTO *a_user)
 {
 	m_users.SetAt(a_user->m_userId, *a_user);
 }
 
-/**@brief	À¯Àú¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	ìœ ì €ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CUsersDataDTO::DeleteUser(CString *a_id)
 {
@@ -33,7 +33,7 @@ void CUsersDataDTO::DeleteUser(CString *a_id)
 }
 
 
-/**@brief	ÀüÃ¼ »ç¿ëÀÚ Á¤º¸¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	ì „ì²´ ì‚¬ìš©ì ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CUsersDataDTO::ClearUsers()
 {
@@ -41,8 +41,8 @@ void CUsersDataDTO::ClearUsers()
 }
 
 
-/**@brief	idÀ» °¡Áö°í ÇØ´ç À¯Àú¸¦ Ã£¾Æ³½´Ù.
- * @return	id·Î Ã£¾Æ³½ À¯ÀúÀÇ µ¥ÀÌÅÍ DTO
+/**@brief	idì„ ê°€ì§€ê³  í•´ë‹¹ ìœ ì €ë¥¼ ì°¾ì•„ë‚¸ë‹¤.
+ * @return	idë¡œ ì°¾ì•„ë‚¸ ìœ ì €ì˜ ë°ì´í„° DTO
  */
 CUserDataDTO *CUsersDataDTO::GetUserById(CString a_userId)
 {
@@ -55,8 +55,8 @@ CUserDataDTO *CUsersDataDTO::GetUserById(CString a_userId)
 	return NULL;
 }
 
-/**@brief	µ¿ÀÏÇÑ idÀÇ À¯Àú°¡ ÀÖ´ÂÁö Ã£¾Æº»´Ù.
- * @return	µ¿ÀÏÇÑ idÀÇ À¯Àú°¡ ÀÖ´Ù¸é TRUE, ¾ø´Ù¸é FALSE
+/**@brief	ë™ì¼í•œ idì˜ ìœ ì €ê°€ ìˆëŠ”ì§€ ì°¾ì•„ë³¸ë‹¤.
+ * @return	ë™ì¼í•œ idì˜ ìœ ì €ê°€ ìˆë‹¤ë©´ TRUE, ì—†ë‹¤ë©´ FALSE
  */
 BOOL CUsersDataDTO::AlreadyExist(CString a_userId)
 {

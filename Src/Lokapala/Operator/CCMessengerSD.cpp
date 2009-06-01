@@ -1,12 +1,12 @@
-/**@file	CCMessengerSD.cpp
- * @brief	CCMÀÇ MessengerSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	CCMessengerSD.cpp
+ * @brief	CCMì˜ MessengerSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "CCMessengerSD.h"
 
-/**@brief	MSM¿¡°Ô ¸Ş¼¼Áö¸¦ Àü´ŞÇÑ´Ù.
+/**@brief	MSMì—ê²Œ ë©”ì„¸ì§€ë¥¼ ì „ë‹¬í•œë‹¤.
  */
 void CCCMessengerSD::PresentMessage(void *a_messageData)
 {

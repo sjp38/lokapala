@@ -1,5 +1,5 @@
-/**@file	DataAdminManager.h
- * @brief	½ÇÁúÀûÀ¸·Î µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´Â CDataAdminManager Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	DataAdminManager.h
+ * @brief	ì‹¤ì§ˆì ìœ¼ë¡œ ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ëŠ” CDataAdminManager í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -18,7 +18,7 @@
 
 /**@ingroup	GroupDAM
  * @class	CDataAdminManager
- * @brief	½ÇÁúÀûÀÎ µ¥ÀÌÅÍ °ü¸®¸¦ ÇÑ´Ù.
+ * @brief	ì‹¤ì§ˆì ì¸ ë°ì´í„° ê´€ë¦¬ë¥¼ í•œë‹¤.
  */
 class CDataAdminManager
 {

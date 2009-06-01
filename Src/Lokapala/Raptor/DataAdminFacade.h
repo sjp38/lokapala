@@ -1,5 +1,5 @@
-/**@file	DataAdminFacade.h
- * @brief	DAMÀÇ Facade Á¤ÀÇ.
+ï»¿/**@file	DataAdminFacade.h
+ * @brief	DAMì˜ Facade ì •ì˜.
  * @author	siva
  */
 #ifndef DATA_ADMIN_FACADE_H
@@ -8,16 +8,16 @@
 #include "DataAdminBI.h"
 /**@ingroup GroupDAM
  * @class	CDataAdminFacade
- * @brief	DAMÀÇ Facade.\n
- *			½ÇÁúÀûÀÎ DAMÀ¸·ÎÀÇ ÀÔ±¸. Button Interface¸¦ »ó¼ÓÇÏ¸ç, ³»ºÎ ÄÄÆ÷³ÍÆ® ³»ºÎ Å¬·¡½ºµéÀ» »ç¿ëÇØ BI¿¡¼­ Á¤ÀÇµÈ ÀÎÅÍÆäÀÌ½º ÇÔ¼öµéÀ» ±¸ÇöÇÑ´Ù.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù. 
+ * @brief	DAMì˜ Facade.\n
+ *			ì‹¤ì§ˆì ì¸ DAMìœ¼ë¡œì˜ ì…êµ¬. Button Interfaceë¥¼ ìƒì†í•˜ë©°, ë‚´ë¶€ ì»´í¬ë„ŒíŠ¸ ë‚´ë¶€ í´ë˜ìŠ¤ë“¤ì„ ì‚¬ìš©í•´ BIì—ì„œ ì •ì˜ëœ ì¸í„°í˜ì´ìŠ¤ í•¨ìˆ˜ë“¤ì„ êµ¬í˜„í•œë‹¤.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤. 
  */
 class CDataAdminFacade : public CDataAdminBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDataAdminFacade *Instance()
 	{
@@ -37,9 +37,9 @@ public :
 	void LoadStatusReportsFromFile(CString a_filePath);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDataAdminFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDataAdminFacade(){}
 private :
 	/**@brief	singleton	*/

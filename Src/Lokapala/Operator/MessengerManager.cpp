@@ -1,5 +1,5 @@
-/**@file	MessengerManager.cpp
- * @brief	CMessengerManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	MessengerManager.cpp
+ * @brief	CMessengerManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -10,17 +10,17 @@
 #include "MSCommunicationSD.h"
 
 
-/**@brief	·¦ÅÍ¿¡°Ô ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ º¸³½´Ù.
+/**@brief	ë©í„°ì—ê²Œ í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
  */
 void CMessengerManager::PostTextMessageTo(void *a_messageData)
 {	
-	CMessageDTO *messageData = (CMessageDTO *)a_messageData;		//·Î±× µ¥ÀÌÅÍ¸¦ ³²±æ ¶§ ¾´´Ù.
+	CMessageDTO *messageData = (CMessageDTO *)a_messageData;		//ë¡œê·¸ ë°ì´í„°ë¥¼ ë‚¨ê¸¸ ë•Œ ì“´ë‹¤.
 	CMSCommunicationSD::Instance()->SendTextMessageToRaptor(a_messageData);	
 
 	CCBFMediator::Instance()->NotifyTextMessageToRaptorSended(messageData->m_hostAddress, messageData->m_message);
 }
 
-/**@brief	·¦ÅÍ·ÎºÎÅÍ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¹Ş¾ÒÀ» ¶§ È£ÃâµÈ´Ù.
+/**@brief	ë©í„°ë¡œë¶€í„° í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë°›ì•˜ì„ ë•Œ í˜¸ì¶œëœë‹¤.
  */
 void CMessengerManager::ReceiveTextMessageFrom(void *a_messageData)
 {

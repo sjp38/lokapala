@@ -1,5 +1,5 @@
-/**@file	UserDTO.h
- * @brief	CUserDTO Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	UserDTO.h
+ * @brief	CUserDTO í´ëž˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -8,7 +8,7 @@
 
 /**@ingroup	GroupDAM
  * @class	CUserDTO
- * @brief	»ç¿ëÀÚ °ü·Ã Á¤º¸¸¦ °®´Â´Ù. ÇöÀç »ç¿ëÀÚ Á¤º¸¸¦ À¯ÁöÇÏ´Âµ¥µµ »ç¿ëµÇ¸ç, ·Î±×ÀÎ ¿äÃ»¿ëÀ¸·Îµµ »ç¿ëµÈ´Ù.
+ * @brief	ì‚¬ìš©ìž ê´€ë ¨ ì •ë³´ë¥¼ ê°–ëŠ”ë‹¤. í˜„ìž¬ ì‚¬ìš©ìž ì •ë³´ë¥¼ ìœ ì§€í•˜ëŠ”ë°ë„ ì‚¬ìš©ë˜ë©°, ë¡œê·¸ì¸ ìš”ì²­ìš©ìœ¼ë¡œë„ ì‚¬ìš©ëœë‹¤.
  */
 class CUserDTO
 {

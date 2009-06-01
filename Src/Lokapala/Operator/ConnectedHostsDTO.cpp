@@ -1,12 +1,12 @@
-/**@file	ConnectedHostsDTO.cpp
- * @brief	CConnectedHostsDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	ConnectedHostsDTO.cpp
+ * @brief	CConnectedHostsDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "ConnectedHostsDTO.h"
 
-/**@brief	»õ·Î ¿¬°áµÈ À¯ÀúÀÇ Á¤º¸¸¦ µî·ÏÇÑ´Ù.
+/**@brief	ìƒˆë¡œ ì—°ê²°ëœ ìœ ì €ì˜ ì •ë³´ë¥¼ ë“±ë¡í•œë‹¤.
  */
 void CConnectedHostsDTO::RegistConnected(CConnectedHostDTO *a_connected)
 {
@@ -15,8 +15,8 @@ void CConnectedHostsDTO::RegistConnected(CConnectedHostDTO *a_connected)
 	m_connected.Add(*a_connected);
 }
 
-/**@brief	¿¬°áµÈ ¸ñ·Ï¿¡¼­ Æ¯Á¤ µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÑ´Ù.
- * @param	a_key	»èÁ¦ÇÏ°íÀÚ ÇÏ´Â µ¥ÀÌÅÍÀÇ »ç¿ëÀÚ ¶Ç´Â ÁÂ¼® id.
+/**@brief	ì—°ê²°ëœ ëª©ë¡ì—ì„œ íŠ¹ì • ë°ì´í„°ë¥¼ ì‚­ì œí•œë‹¤.
+ * @param	a_key	ì‚­ì œí•˜ê³ ì í•˜ëŠ” ë°ì´í„°ì˜ ì‚¬ìš©ì ë˜ëŠ” ì¢Œì„ id.
  */
 void CConnectedHostsDTO::RemoveConnected(CString *a_key)
 {
@@ -32,9 +32,9 @@ void CConnectedHostsDTO::RemoveConnected(CString *a_key)
 	return;
 }
 
-/**@brief	¿¬°áµÈ ¸ñ·Ï¿¡¼­ ¿øÇÏ´Â ¿¬°á »çÇ×À» ¾ò´Â´Ù.
- * @param	a_key	Ã£°íÀÚ ÇÏ´Â ¿¬°á Ç×¸ñÀÇ À¯Àú id ¶Ç´Â È£½ºÆ® ¾îµå·¹½º
- * @return	Ã£Àº °æ¿ì, ÇØ´ç ¿¬°á »çÇ×ÀÇ Æ÷ÀÎÅÍ, Ã£Áö ¸øÇÑ °æ¿ì, NULL
+/**@brief	ì—°ê²°ëœ ëª©ë¡ì—ì„œ ì›í•˜ëŠ” ì—°ê²° ì‚¬í•­ì„ ì–»ëŠ”ë‹¤.
+ * @param	a_key	ì°¾ê³ ì í•˜ëŠ” ì—°ê²° í•­ëª©ì˜ ìœ ì € id ë˜ëŠ” í˜¸ìŠ¤íŠ¸ ì–´ë“œë ˆìŠ¤
+ * @return	ì°¾ì€ ê²½ìš°, í•´ë‹¹ ì—°ê²° ì‚¬í•­ì˜ í¬ì¸í„°, ì°¾ì§€ ëª»í•œ ê²½ìš°, NULL
  */
 void *CConnectedHostsDTO::GetConnected(CString *a_key)
 {
@@ -46,8 +46,8 @@ void *CConnectedHostsDTO::GetConnected(CString *a_key)
 	return &m_connected[index];
 }
 
-/**@brief	¿¬°áµÈ ¸ñ·Ï¿¡¼­ ¿øÇÏ´Â ¿¬°á »çÇ×À» Ã£´Â´Ù.
- * @param	a_key	Ã£°íÀÚ ÇÏ´Â ¿¬°á Ç×¸ñÀÇ À¯Àú id ¶Ç´Â ÁÂ¼® id.
+/**@brief	ì—°ê²°ëœ ëª©ë¡ì—ì„œ ì›í•˜ëŠ” ì—°ê²° ì‚¬í•­ì„ ì°¾ëŠ”ë‹¤.
+ * @param	a_key	ì°¾ê³ ì í•˜ëŠ” ì—°ê²° í•­ëª©ì˜ ìœ ì € id ë˜ëŠ” ì¢Œì„ id.
  */
 int CConnectedHostsDTO::FindConnected(CString *a_key)
 {

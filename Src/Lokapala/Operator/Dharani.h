@@ -1,5 +1,5 @@
-/**@file	Dharani.h
- * @brief	Dharani component ¿¡¼­ »ç¿ëµÇ´Â ÀÚ·áÇü ¹× »ó¼ö µéÀ» Á¤ÀÇ
+ï»¿/**@file	Dharani.h
+ * @brief	Dharani component ì—ì„œ ì‚¬ìš©ë˜ëŠ” ìë£Œí˜• ë° ìƒìˆ˜ ë“¤ì„ ì •ì˜
  * @author	siva
  */
 
@@ -16,7 +16,7 @@
 #define MAXCLIENT 128
 
 
-//Çì´õ
+//í—¤ë”
 #define LOCAL_IP 7
 #define ACK_LOCAL_IP 8
 #define HELLO 1

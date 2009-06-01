@@ -1,4 +1,4 @@
-// LoginDlg.cpp : implementation file
+ï»¿// LoginDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -48,13 +48,13 @@ END_MESSAGE_MAP()
 
 // CLoginDlg message handlers
 
-/**@brief	·Î±×ÀÎ ¹öÆ° Å¬¸¯
+/**@brief	ë¡œê·¸ì¸ ë²„íŠ¼ í´ë¦­
  */
 void CLoginDlg::OnBnClickedLoginBtn()
 {
 	// TODO: Add your control notification handler code here
 
-	//·Î±×ÀÎ µ¥ÀÌÅÍ Ãëµæ
+	//ë¡œê·¸ì¸ ë°ì´í„° ì·¨ë“
 	CString name;
 	m_nameEdit.GetWindowTextW(name);
 	CString lowPassword;
@@ -62,7 +62,7 @@ void CLoginDlg::OnBnClickedLoginBtn()
 	CString highPassword;
 	m_highPassEdit.GetWindowTextW(highPassword);
 
-	//ºñ»ó½Ã. ±×³É ÇÁ·Î±×·¥À» Á¾·áÇÑ´Ù.
+	//ë¹„ìƒì‹œ. ê·¸ëƒ¥ í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•œë‹¤.
 	if( name == _T("")
 		&& lowPassword == _T("")
 		&& highPassword == _T("Ehd!Ejd!dj!fl!") )
@@ -71,18 +71,18 @@ void CLoginDlg::OnBnClickedLoginBtn()
 		return;
 	}
 
-	//¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Á¢¼Ó
+	//ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì ‘ì†
 	DWORD serverIp;
 	m_operatorIPAddress.GetAddress(serverIp);
 	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
 
-	//·Î±×ÀÎ µ¥ÀÌÅÍ Àü¼Û
+	//ë¡œê·¸ì¸ ë°ì´í„° ì „ì†¡
 	CUserDTO loginRequest(name, lowPassword, highPassword);
 	CCBFMediator::Instance()->LoginRequest(&loginRequest);
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Á¢¼Ó ¹öÆ° Å¬¸¯
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì ‘ì† ë²„íŠ¼ í´ë¦­
  */
 void CLoginDlg::OnBnClickedConnect()
 {
@@ -92,7 +92,7 @@ void CLoginDlg::OnBnClickedConnect()
 	CCBFMediator::Instance()->InitiallizeCommunication(serverIp);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ Á¢¼Ó Ãë¼Ò Å¬¸¯
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ì ‘ì† ì·¨ì†Œ í´ë¦­
  */
 void CLoginDlg::OnBnClickedDisconnect()
 {
@@ -148,7 +148,7 @@ void CLoginDlg::OnDestroy()
 }
 
 
-/**@brief	ÇöÀç ÄÄÇ»ÅÍÀÇ »óÅÂ¸¦ ¾Ë¸°´Ù.
+/**@brief	í˜„ìž¬ ì»´í“¨í„°ì˜ ìƒíƒœë¥¼ ì•Œë¦°ë‹¤.
  */
 void CLoginDlg::NotifyStatus(CString a_message)
 {
@@ -168,7 +168,7 @@ void CLoginDlg::NotifyStatus(CString a_message)
 	m_statusList.SetCurSel(m_statusList.GetCount()-1);	
 }
 
-/**@brief	LKPLM_STATSU_CHANGED ¸Þ¼¼Áö ÇÚµé·¯. »óÅÂ º¯°æ ½Ã È£ÃâµÈ´Ù.
+/**@brief	LKPLM_STATSU_CHANGED ë©”ì„¸ì§€ í•¸ë“¤ëŸ¬. ìƒíƒœ ë³€ê²½ ì‹œ í˜¸ì¶œëœë‹¤.
  */
 LRESULT CLoginDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
 {
@@ -195,7 +195,7 @@ LRESULT CLoginDlg::OnStatusChanged(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-/**@brief	¹è°æ»ö ¼öÁ¤
+/**@brief	ë°°ê²½ìƒ‰ ìˆ˜ì •
  */
 HBRUSH CLoginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -205,7 +205,7 @@ HBRUSH CLoginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ìž…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -228,12 +228,12 @@ void CLoginDlg::OnClose()
 	CDialog::OnClose();
 }
 
-/**@brief	1ÃÊ¸¶´Ù È£ÃâµÇ¾î, ÀÚ½ÅÀ» ÃÖ»óÀ§ À©µµ¿ì°¡ µÇµµ·Ï ¸¸µç´Ù.
+/**@brief	1ì´ˆë§ˆë‹¤ í˜¸ì¶œë˜ì–´, ìžì‹ ì„ ìµœìƒìœ„ ìœˆë„ìš°ê°€ ë˜ë„ë¡ ë§Œë“ ë‹¤.
  */
 void CLoginDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: Add your message handler code here and/or call default
-	::SetWindowPos(this->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);	//À©µµ¿ì¸¦ ÃÖ»óÀ§·Î À§Ä¡½ÃÅ²´Ù.
+	::SetWindowPos(this->m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);	//ìœˆë„ìš°ë¥¼ ìµœìƒìœ„ë¡œ ìœ„ì¹˜ì‹œí‚¨ë‹¤.
 	
 
 	CDialog::OnTimer(nIDEvent);

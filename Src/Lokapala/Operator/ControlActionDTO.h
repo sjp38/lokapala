@@ -1,5 +1,5 @@
-/**@file	ControlActionDTO.h
- * @brief	ฟภฦÛทนภฬลอทฮบฮลอ ทฆลอทฮภว ฦฏมค วเตฟฟก ด๋วั มคบธธฆ ดใดย CControlActionDTO ลฌทกฝบธฆ มคภววัดู.
+๏ปฟ/**@file	ControlActionDTO.h
+ * @brief	์คํผ๋ ์ดํฐ๋ก๋ถ€ํฐ ๋ฉํฐ๋ก์ ํน์ • ํ–๋์— ๋€ํ• ์ •๋ณด๋ฅผ ๋ด๋” CControlActionDTO ํด๋์ค๋ฅผ ์ •์ํ•๋ค.
  * @author	siva
  */
 
@@ -9,7 +9,7 @@
 
 /**@ingourp	GroupDAM
  * @class	CControlActionDTO
- * @brief	ฟภฦÛทนภฬลอทฮบฮลอ ทฆลอทฮภว มฆพ๎ วเตฟฟก ด๋วั มคบธธฆ ดใดยดู.
+ * @brief	์คํผ๋ ์ดํฐ๋ก๋ถ€ํฐ ๋ฉํฐ๋ก์ ์ ์–ด ํ–๋์— ๋€ํ• ์ •๋ณด๋ฅผ ๋ด๋”๋ค.
  */
 class CControlActionDTO
 {

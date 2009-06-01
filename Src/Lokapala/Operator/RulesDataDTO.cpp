@@ -1,5 +1,5 @@
-/**@file	RulesDataDTO.cpp
- * @brief	CRulesDataDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	RulesDataDTO.cpp
+ * @brief	CRulesDataDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -7,7 +7,7 @@
 #include "RulesDataDTO.h"
 
 
-/**@brief	±İÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CRulesDataDTO::AddRule(CRuleDataDTO *a_rule)
 {
@@ -19,7 +19,7 @@ void CRulesDataDTO::AddRule(CRuleDataDTO *a_rule)
 	m_rules.Add(*a_rule);
 }
 
-/**@brief	±İÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ Á¦°ÅÇÑ´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì œê±°í•œë‹¤.
  */
 void CRulesDataDTO::DeleteRule(CRuleDataDTO *a_targetRule)
 {
@@ -33,8 +33,8 @@ void CRulesDataDTO::DeleteRule(CRuleDataDTO *a_targetRule)
 	return;
 }
 
-/**@brief	±İÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ Á¦°ÅÇÑ´Ù. ¹è¿­ ³»¿¡¼­ÀÇ À§Ä¡¸¦ ÀÌ¿ëÇÏµµ·Ï ¿À¹ö·ÎµåµÇ¾ú´Ù.
- * @param	a_position	±ÔÄ¢ ¹è¿­ ³»¿¡¼­ Á¦°ÅÇÏ°íÀÚ ÇÏ´Â ±ÔÄ¢ÀÇ ÀÎµ¦½º
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì œê±°í•œë‹¤. ë°°ì—´ ë‚´ì—ì„œì˜ ìœ„ì¹˜ë¥¼ ì´ìš©í•˜ë„ë¡ ì˜¤ë²„ë¡œë“œë˜ì—ˆë‹¤.
+ * @param	a_position	ê·œì¹™ ë°°ì—´ ë‚´ì—ì„œ ì œê±°í•˜ê³ ì í•˜ëŠ” ê·œì¹™ì˜ ì¸ë±ìŠ¤
  */
 void CRulesDataDTO::DeleteRule(int a_position)
 {
@@ -42,8 +42,8 @@ void CRulesDataDTO::DeleteRule(int a_position)
 }
 
 
-/**@brief	Æ¯Á¤ ½ÇÇàµÈ ÇÁ·Î¼¼½º¿¡ ´ëÇØ, ÇØ´çÇÏ´Â ±ÔÄ¢À» °Ë»öÇØ¼­ ¾Ë·ÁÁØ´Ù.
- * @param	a_searchedRules	°Ë»öµÈ ±ÔÄ¢À» ¹Ş¾Æ °¥ Æ÷ÀÎÅÍ.
+/**@brief	íŠ¹ì • ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ì— ëŒ€í•´, í•´ë‹¹í•˜ëŠ” ê·œì¹™ì„ ê²€ìƒ‰í•´ì„œ ì•Œë ¤ì¤€ë‹¤.
+ * @param	a_searchedRules	ê²€ìƒ‰ëœ ê·œì¹™ì„ ë°›ì•„ ê°ˆ í¬ì¸í„°.
  */
 void CRulesDataDTO::GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRulesDataDTO *a_searchedRules)
 {
@@ -58,7 +58,7 @@ void CRulesDataDTO::GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRul
 			|| m_rules[i].m_targetSeatId.Find(seatId) != -1 )
 			/*&&
 			( m_rules[i].m_targetUserId == _T("")
-			|| m_rules[i].m_targetUserId.Find() != -1 )*/	//ÀÏ´Ü target user´Â À¯º¸.
+			|| m_rules[i].m_targetUserId.Find() != -1 )*/	//ì¼ë‹¨ target userëŠ” ìœ ë³´.
 		  )
 		{
 			a_searchedRules->AddRule(&m_rules[i]);
@@ -67,7 +67,7 @@ void CRulesDataDTO::GetReactionsFor(CExecutedProcessDTO *a_executedProcess, CRul
 }
 
 
-/**@brief	Æ¯Á¤ ±İÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢À» Ã£¾Æ³½´Ù.
+/**@brief	íŠ¹ì • ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ì„ ì°¾ì•„ë‚¸ë‹¤.
  */
 int CRulesDataDTO::FindRule(CRuleDataDTO *a_targetRule)
 {

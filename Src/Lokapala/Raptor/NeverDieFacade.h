@@ -1,5 +1,5 @@
-/**@file	NeverDieFacade.h
- * @brief	NeverDie ManagerÀÇ Facade Á¤ÀÇ.
+ï»¿/**@file	NeverDieFacade.h
+ * @brief	NeverDie Managerì˜ Facade ì •ì˜.
  * author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup GroupNDM
  * @class	CNeverDieFacade
- * @brief	NDMÀÇ Facade.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	NDMì˜ Facade.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CNeverDieFacade : public CNeverDieBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CNeverDieFacade *Instance()
 	{
@@ -33,12 +33,12 @@ public :
 	virtual void StopNeverDie();
 	virtual bool GetNeverDieState();
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CNeverDieFacade(){m_state = false;}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CNeverDieFacade(){}
 private :
-	/**@brief	ÇöÀç ÇÁ·Î±×·¥ÀÌ Á×¾îµµ µÇ´ÂÁö ¾ÈµÇ´ÂÁö	*/
+	/**@brief	í˜„ì¬ í”„ë¡œê·¸ë¨ì´ ì£½ì–´ë„ ë˜ëŠ”ì§€ ì•ˆë˜ëŠ”ì§€	*/
 	bool m_state;
 	/**@brief	singleton	*/
 	static CNeverDieFacade *m_instance;

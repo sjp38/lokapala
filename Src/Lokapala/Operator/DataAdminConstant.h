@@ -1,11 +1,11 @@
-/**@file	DataAdminConstant.h
- * @brief	DAM¿¡¼­ »ç¿ëµÇ´Â °¢Á¾ »ó¼ö¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	DataAdminConstant.h
+ * @brief	DAMì—ì„œ ì‚¬ìš©ë˜ëŠ” ê°ì¢… ìƒìˆ˜ë¥¼ ì •ì˜í•œë‹¤.
  */
 
-/**@brief	ÃÖ´ë »ç¿ëÀÚ ¼ö	*/
+/**@brief	ìµœëŒ€ ì‚¬ìš©ì ìˆ˜	*/
 #define USER_MAX	1023
 
-/**@brief	ÃÖ´ë ÁÂ¼® °¡·Î ¼ö	*/
+/**@brief	ìµœëŒ€ ì¢Œì„ ê°€ë¡œ ìˆ˜	*/
 #define MAX_SEAT_X	150
-/**@brief	ÃÖ´ë ÁÂ¼® ¼¼·Î ¼ö	*/
+/**@brief	ìµœëŒ€ ì¢Œì„ ì„¸ë¡œ ìˆ˜	*/
 #define MAX_SEAT_Y	150

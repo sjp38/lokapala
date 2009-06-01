@@ -1,61 +1,61 @@
-/**@file	DCControlSD.cpp
- * @brief	DCMÀÇ ControlSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCControlSD.cpp
+ * @brief	DCMì˜ ControlSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "DCControlSD.h"
 
-/**@brief	»ç¿ëÀÚ¸¦ ÀÚÀ¯·Ó°Ô ÄÄÇ»ÅÍ¸¦ »ç¿ë ÇÒ ¼ö ÀÖµµ·Ï ÇØÁØ´Ù.
+/**@brief	ì‚¬ìš©ìžë¥¼ ìžìœ ë¡­ê²Œ ì»´í“¨í„°ë¥¼ ì‚¬ìš© í•  ìˆ˜ ìžˆë„ë¡ í•´ì¤€ë‹¤.
  */
 void CDCControlSD::ReleaseUser()
 {
 	CCBFMediator::Instance()->ReleaseUser();
 }
 
-/**@brief	°­Á¦·Î ·Î±×ÀÎ ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ë¡œê·¸ì¸ ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::Login(void *a_userInfo)
 {
 	CCBFMediator::Instance()->Login(a_userInfo);
 }
 
-/**@brief	°­Á¦·Î ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::Logout(void *a_message)
 {
 	CCBFMediator::Instance()->Logout(a_message);
 }
 
-/**@brief	°­Á¦·Î ÄÄÇ»ÅÍ Á¾·á ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì»´í“¨í„° ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::Shutdown(void *a_message)
 {
 	CCBFMediator::Instance()->Shutdown(a_message);
 }
 
-/**@brief	°­Á¦·Î ¸®ºÎÆÃ ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ë¦¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::Reboot(void *a_message)
 {
 	CCBFMediator::Instance()->Reboot(a_message);
 }
 
-/**@brief	°­Á¦·Î ½ÇÇàÁßÀÎ ¸ðµç ÇÁ·Î¼¼½º¸¦ Á¾·á ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::GenocideProcesses(void *a_message)
 {
 	CCBFMediator::Instance()->GenocideProcesses(a_message);
 }
 
-/**@brief	°­Á¦·Î ½ÇÇàÁßÀÎ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì‹¤í–‰ì¤‘ì¸ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::KillProcess(void *a_processName)
 {
 	CCBFMediator::Instance()->KillProcess(a_processName);
 }
 
-/**@brief	°­Á¦·Î Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ ì‹œí‚¨ë‹¤.
  */
 void CDCControlSD::ExecuteProcess(void *a_processName)
 {

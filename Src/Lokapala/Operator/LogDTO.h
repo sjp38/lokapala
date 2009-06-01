@@ -1,5 +1,5 @@
-/**@file	LogDTO.h
- * @brief	·Î±× °ü·Ã Á¤º¸¸¦ ´ã´Â Á¤º¸Ã¼ Å¬·¡½º CLogDTO¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	LogDTO.h
+ * @brief	ë¡œê·¸ ê´€ë ¨ ì •ë³´ë¥¼ ë‹´ëŠ” ì •ë³´ì²´ í´ëž˜ìŠ¤ CLogDTOë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -12,7 +12,7 @@
 
 /**@ingroup	GroupLGM
  * @class	CLogDTO
- * @brief	½ÇÇà ±â·Ï¿¡ °üÇÑ Á¤º¸¸¦ ´ã´Â´Ù.
+ * @brief	ì‹¤í–‰ ê¸°ë¡ì— ê´€í•œ ì •ë³´ë¥¼ ë‹´ëŠ”ë‹¤.
  */
 class CLogDTO
 {

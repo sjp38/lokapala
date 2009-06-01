@@ -1,5 +1,5 @@
-/**@file	DataAdminBI.h
- * @brief	DAMÀÇ Button Interface Á¤ÀÇ
+ï»¿/**@file	DataAdminBI.h
+ * @brief	DAMì˜ Button Interface ì •ì˜
  * @author	siva
  */
 
@@ -8,9 +8,9 @@
 
 /**@ingroup GroupDAM
  * @class	CDataAdminBI
- * @brief	Communication ManagerÀÇ Button Interface.\n
-			Mediator¿¡°Ô ÀÚ½ÅÀ» ³ëÃâÇÏ¿© Mediator·ÎºÎÅÍ CCMÀ¸·ÎÀÇ ÀÎÅÍÆäÀÌ½º¸¦ °ø°³ÇÑ´Ù.
- * @remarks	ÀÎÅÍÆäÀÌ½ºÀÏ »ÓÀ¸·Î, Facade°¡ »ó¼ÓÇÑ´Ù.
+ * @brief	Communication Managerì˜ Button Interface.\n
+			Mediatorì—ê²Œ ìì‹ ì„ ë…¸ì¶œí•˜ì—¬ Mediatorë¡œë¶€í„° CCMìœ¼ë¡œì˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ ê³µê°œí•œë‹¤.
+ * @remarks	ì¸í„°í˜ì´ìŠ¤ì¼ ë¿ìœ¼ë¡œ, Facadeê°€ ìƒì†í•œë‹¤.
  */
 class CDataAdminBI
 {

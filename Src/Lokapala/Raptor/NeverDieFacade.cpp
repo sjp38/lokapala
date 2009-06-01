@@ -1,5 +1,5 @@
-/**@file	NeverDieFacade.cpp
- * @brief	NDMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	NeverDieFacade.cpp
+ * @brief	NDMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * author	siva
  */
 
@@ -8,13 +8,13 @@
 #include "APIHookingManager.h"
 #include "AutoExecuteManager.h"
 
-/**@brief	ºô¾î¸ÔÀ» À©µµ¿ì ±âº» µð¹ö°Å¸¦ ¸·±â À§ÇÑ ÃÖ¾ÇÀÇ ÄÚµåÀÇ ½ÃÀÛ¤Ñ¤Ì Àü¿ªº¯¼ö¶ó´Ï!
+/**@brief	ë¹Œì–´ë¨¹ì„ ìœˆë„ìš° ê¸°ë³¸ ë””ë²„ê±°ë¥¼ ë§‰ê¸° ìœ„í•œ ìµœì•…ì˜ ì½”ë“œì˜ ì‹œìž‘ã…¡ã…œ ì „ì—­ë³€ìˆ˜ë¼ë‹ˆ!
  */
 BYTE defaultDebugger[512];
 DWORD defaultDebuggerLength = MAX_PATH;
-/**@brief	¾î¶² °æ¿ì¿¡µµ ·¦ÅÍ°¡ Á×Áö ¾Ê°Ô ¸¸µç´Ù.\n
- *			³»ºÎÀûÀ¸·Î ±Û·Î¹ú api ÈÄÅ·À¸·Î TerminateProcess¸¦ ÈÄÅ·ÇÏ°í, ÄÄÇ»ÅÍ ºÎÆÃ ½Ã ÀÚµ¿ ½ÇÇàÀÌ µÇµµ·Ï ·¹Áö½ºÆ®¸®¸¦ ¸¸Áø ÈÄ,
- *			·¹Áö½ºÆ®¸® Á¢±ÙÀ» ¸·°í, WM_CLOSE µîÀÇ Á¾·á ¸Þ¼¼Áöµé¿¡ ´ëÀÀÇÑ´Ù.
+/**@brief	ì–´ë–¤ ê²½ìš°ì—ë„ ëž©í„°ê°€ ì£½ì§€ ì•Šê²Œ ë§Œë“ ë‹¤.\n
+ *			ë‚´ë¶€ì ìœ¼ë¡œ ê¸€ë¡œë²Œ api í›„í‚¹ìœ¼ë¡œ TerminateProcessë¥¼ í›„í‚¹í•˜ê³ , ì»´í“¨í„° ë¶€íŒ… ì‹œ ìžë™ ì‹¤í–‰ì´ ë˜ë„ë¡ ë ˆì§€ìŠ¤íŠ¸ë¦¬ë¥¼ ë§Œì§„ í›„,
+ *			ë ˆì§€ìŠ¤íŠ¸ë¦¬ ì ‘ê·¼ì„ ë§‰ê³ , WM_CLOSE ë“±ì˜ ì¢…ë£Œ ë©”ì„¸ì§€ë“¤ì— ëŒ€ì‘í•œë‹¤.
  */
 void CNeverDieFacade::StartNeverDie()
 {
@@ -22,7 +22,7 @@ void CNeverDieFacade::StartNeverDie()
 	CAPIHookingManager::Instance()->StartAPIHooking();
 	CAutoExecuteManager::Instance()->SetAutoExecute();
 
-	//ºô¾î¸ÔÀ» À©µµ¿ì ±âº» µð¹ö°Å¸¦ ¸·±â À§ÇÑ ÃÖ¾ÇÀÇ ÄÚµå¤Ñ¤Ì ·¹Áö½ºÆ®¸® °ªÀ» °Çµç´Ù. ÃßÈÄ, ¹Ýµå½Ã ¿©±æ ¼öÁ¤ÇÒ °Í.
+	//ë¹Œì–´ë¨¹ì„ ìœˆë„ìš° ê¸°ë³¸ ë””ë²„ê±°ë¥¼ ë§‰ê¸° ìœ„í•œ ìµœì•…ì˜ ì½”ë“œã…¡ã…œ ë ˆì§€ìŠ¤íŠ¸ë¦¬ ê°’ì„ ê±´ë“ ë‹¤. ì¶”í›„, ë°˜ë“œì‹œ ì—¬ê¸¸ ìˆ˜ì •í•  ê²ƒ.
 	HKEY hDebugRegKey;
 	if( RegCreateKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\Microsoft\\Windows NT\\CurrentVersion\\AeDebug"),
 		0, 0, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, 0, &hDebugRegKey, 0) != ERROR_SUCCESS)
@@ -37,7 +37,7 @@ void CNeverDieFacade::StartNeverDie()
 }
 
 
-/**@brief	·¦ÅÍ°¡ Á×À» ¼ö ÀÖ°Ô ¸¸µç´Ù.\n
+/**@brief	ëž©í„°ê°€ ì£½ì„ ìˆ˜ ìžˆê²Œ ë§Œë“ ë‹¤.\n
  */
 void CNeverDieFacade::StopNeverDie()
 {
@@ -45,7 +45,7 @@ void CNeverDieFacade::StopNeverDie()
 	CAPIHookingManager::Instance()->StopAPIHooking();
 	CAutoExecuteManager::Instance()->ClearAutoExecute();
 
-	//ºô¾î¸ÔÀ» À©µµ¿ì ±âº» µð¹ö°Å¸¦ ¸·±â À§ÇÑ ÃÖ¾ÇÀÇ ÄÚµå¤Ñ¤Ì ·¹Áö½ºÆ®¸® °ªÀ» º¹±¸ÇÑ´Ù. ÃßÈÄ, ¹Ýµå½Ã ¿©±æ ¼öÁ¤ÇÒ °Í.
+	//ë¹Œì–´ë¨¹ì„ ìœˆë„ìš° ê¸°ë³¸ ë””ë²„ê±°ë¥¼ ë§‰ê¸° ìœ„í•œ ìµœì•…ì˜ ì½”ë“œã…¡ã…œ ë ˆì§€ìŠ¤íŠ¸ë¦¬ ê°’ì„ ë³µêµ¬í•œë‹¤. ì¶”í›„, ë°˜ë“œì‹œ ì—¬ê¸¸ ìˆ˜ì •í•  ê²ƒ.
 	HKEY hDebugRegKey;
 	if( RegCreateKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\Microsoft\\Windows NT\\CurrentVersion\\AeDebug"),
 		0, 0, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, 0, &hDebugRegKey, 0) != ERROR_SUCCESS)
@@ -57,8 +57,8 @@ void CNeverDieFacade::StopNeverDie()
 }
 
 
-/**@brief	ÇöÀç ·¦ÅÍ°¡ Á×¾îµµ µÇ´ÂÁö ¾ÈµÇ´ÂÁö¸¦ ¸®ÅÏ°ªÀ» ÅëÇØ ¾Ë·ÁÁØ´Ù.
- * @return	Á×¾î¼± ¾ÈµÈ´Ù¸é true, Á×¾îµµ µÈ´Ù¸é false¸¦ ¸®ÅÏÇÑ´Ù.
+/**@brief	í˜„ìž¬ ëž©í„°ê°€ ì£½ì–´ë„ ë˜ëŠ”ì§€ ì•ˆë˜ëŠ”ì§€ë¥¼ ë¦¬í„´ê°’ì„ í†µí•´ ì•Œë ¤ì¤€ë‹¤.
+ * @return	ì£½ì–´ì„  ì•ˆëœë‹¤ë©´ true, ì£½ì–´ë„ ëœë‹¤ë©´ falseë¥¼ ë¦¬í„´í•œë‹¤.
  */
 bool CNeverDieFacade::GetNeverDieState()
 {

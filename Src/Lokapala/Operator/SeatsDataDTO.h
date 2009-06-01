@@ -1,5 +1,5 @@
-/**@file	SeatsDataDTO.h
- * @brief	ÀÚ¸®µé¿¡ ´ëÇÑ Á¤º¸¸¦ °ü¸®ÇÏ´Â CSeatsDataDTO¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	SeatsDataDTO.h
+ * @brief	ìë¦¬ë“¤ì— ëŒ€í•œ ì •ë³´ë¥¼ ê´€ë¦¬í•˜ëŠ” CSeatsDataDTOë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -10,7 +10,7 @@
 
 /**@ingroup	GroupDAM
  * @class	CSeatsDataDTO
- * @brief	¸ğµç ÀÚ¸®µé¿¡ ´ëÇÑ Á¤º¸¸¦ °ü¸®ÇÑ´Ù.
+ * @brief	ëª¨ë“  ìë¦¬ë“¤ì— ëŒ€í•œ ì •ë³´ë¥¼ ê´€ë¦¬í•œë‹¤.
  */
 class CSeatsDataDTO
 {

@@ -1,5 +1,5 @@
-/**@file	NDDecisionSD.cpp
- * @brief	NDMÀÇ DecisionSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	NDDecisionSD.cpp
+ * @brief	NDMì˜ DecisionSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 

@@ -1,4 +1,4 @@
-// MessengerDlg.cpp : implementation file
+ï»¿// MessengerDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -39,7 +39,7 @@ END_MESSAGE_MAP()
 
 
 // CMessengerDlg message handlers
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»öÀ» Èò»öÀ¸·Î ¼öÁ¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰ì„ í°ìƒ‰ìœ¼ë¡œ ìˆ˜ì •
  */
 HBRUSH CMessengerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -49,7 +49,7 @@ HBRUSH CMessengerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ì…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -61,7 +61,7 @@ HBRUSH CMessengerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	Å¸ÀÌÆ²¹Ù ¾øÀÌ ¿òÁ÷ÀÏ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+/**@brief	íƒ€ì´í‹€ë°” ì—†ì´ ì›€ì§ì¼ ìˆ˜ ìˆë„ë¡ í•œë‹¤.
  */
 void CMessengerDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
@@ -70,7 +70,7 @@ void CMessengerDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	CDialog::OnLButtonDown(nFlags, point);
 }
 
-/**@brief	¸Ş¼¼Áö Àü¼Û ¹öÆ° Å¬¸¯.
+/**@brief	ë©”ì„¸ì§€ ì „ì†¡ ë²„íŠ¼ í´ë¦­.
  */
 void CMessengerDlg::OnBnClickedSend()
 {
@@ -90,7 +90,7 @@ void CMessengerDlg::OnBnClickedSend()
 	}	
 }
 
-/**@brief	ÃÖÃÊ ´ÙÀÌ¾ó·Î±× »ı¼º ½Ã, ÇöÀç ¿¬°áµÈ È£½ºÆ® ÁÖ¼Ò¸¦ ¿¬°á ¸ñ·Ï¿¡ ¼±ÅÃÇÑ´Ù.
+/**@brief	ìµœì´ˆ ë‹¤ì´ì–¼ë¡œê·¸ ìƒì„± ì‹œ, í˜„ì¬ ì—°ê²°ëœ í˜¸ìŠ¤íŠ¸ ì£¼ì†Œë¥¼ ì—°ê²° ëª©ë¡ì— ì„ íƒí•œë‹¤.
  */
 BOOL CMessengerDlg::OnInitDialog()
 {
@@ -108,7 +108,7 @@ BOOL CMessengerDlg::OnInitDialog()
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/**@brief	´ëÈ­ ³»¿ëÀ» Ç¥½ÃÇÑ´Ù.
+/**@brief	ëŒ€í™” ë‚´ìš©ì„ í‘œì‹œí•œë‹¤.
  */
 void CMessengerDlg::DisplayConversation(CString a_message)
 {	

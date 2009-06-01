@@ -1,5 +1,5 @@
-/**@file	DharaniClientManager.h
- * @brief	CDharaniClientManager¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	DharaniClientManager.h
+ * @brief	CDharaniClientManagerë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -13,15 +13,15 @@
 
 /**@ingroup GroupDharani
  * @class	CDharaniClientManager
- * @brief	Dharani ÄÄÆ÷³ÍÆ®¿¡¼­ Å¬¶óÀÌ¾ğÆ® ¿ªÇÒÀ» ´ã´çÇÑ´Ù.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	Dharani ì»´í¬ë„ŒíŠ¸ì—ì„œ í´ë¼ì´ì–¸íŠ¸ ì—­í• ì„ ë‹´ë‹¹í•œë‹¤.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDharaniClientManager
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDharaniClientManager *Instance()
 	{
@@ -37,9 +37,9 @@ public :
 	void SendTextMessage(char *a_message);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDharaniClientManager(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDharaniClientManager(){}
 
 private :
@@ -48,11 +48,11 @@ private :
 	void Decrypt(char *a_plainText, char *a_cipherText);
 
 	/**@brief	completion port kernel object handle	*/
-	SOCKET m_serverSocket;	//¼­¹ö ¼ÒÄÏ µğ½ºÅ©¸³ÅÍ
+	SOCKET m_serverSocket;	//ì„œë²„ ì†Œì¼“ ë””ìŠ¤í¬ë¦½í„°
 	int m_passwd;
 	in_addr m_selfAddress;	
 
-	/**@brief	½Ì±ÛÅæ	*/
+	/**@brief	ì‹±ê¸€í†¤	*/
 	static CDharaniClientManager *m_instance;
 
 };

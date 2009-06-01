@@ -1,5 +1,5 @@
-/**@file	LoginRequestDTO.h
- * @brief	·Î±×ÀÎ ¿äÃ» Á¤º¸¸¦ ´ã´Â CLoginRequestDTO Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	LoginRequestDTO.h
+ * @brief	ë¡œê·¸ì¸ ìš”ì²­ ì •ë³´ë¥¼ ë‹´ëŠ” CLoginRequestDTO í´ëž˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -8,8 +8,8 @@
 
 /**@ingroup	GroupCCM
  * @class	CLoginRequestDTO
- * @brief	·Î±×ÀÎ ¿äÃ» ½Ã »ç¿ëµÇ´Â Á¤º¸¸¦ ´ã´Â´Ù. UserDataDTO¿¡¼­ ´Ù·ç´Â µ¥ÀÌÅÍ¿¡ ·Î±×ÀÎ ¿äÃ» µé¾î¿Â °÷ÀÇ ÁÖ¼Ò Á¤º¸°¡ Æ÷ÇÔµÈ´Ù.\n
- *			m_levelÀº DCM¿¡°Ô ·Î±×ÀÎ ¿äÃ» Çã¿ë ¿©ºÎ Ã³¸®¸¦ ºÎÅ¹ÇÒ ¶§ -1ÀÇ °ªÀ¸·Î ÃÊ±âÈ­ µÇ¸ç, DCMÀÌ ·Î±×ÀÎ Çã¿ë ¸Þ¼¼Áö¸¦ º¸³»¶ó°í ÇÒ ¶© ½ÇÁ¦ ·¹º§ °ªÀÌ µé¾î°£´Ù.
+ * @brief	ë¡œê·¸ì¸ ìš”ì²­ ì‹œ ì‚¬ìš©ë˜ëŠ” ì •ë³´ë¥¼ ë‹´ëŠ”ë‹¤. UserDataDTOì—ì„œ ë‹¤ë£¨ëŠ” ë°ì´í„°ì— ë¡œê·¸ì¸ ìš”ì²­ ë“¤ì–´ì˜¨ ê³³ì˜ ì£¼ì†Œ ì •ë³´ê°€ í¬í•¨ëœë‹¤.\n
+ *			m_levelì€ DCMì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ í—ˆìš© ì—¬ë¶€ ì²˜ë¦¬ë¥¼ ë¶€íƒí•  ë•Œ -1ì˜ ê°’ìœ¼ë¡œ ì´ˆê¸°í™” ë˜ë©°, DCMì´ ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ë¼ê³  í•  ë• ì‹¤ì œ ë ˆë²¨ ê°’ì´ ë“¤ì–´ê°„ë‹¤.
  */
 class CLoginRequestDTO
 {

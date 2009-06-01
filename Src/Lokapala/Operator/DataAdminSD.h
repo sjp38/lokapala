@@ -1,4 +1,4 @@
-#ifndef DATA_ADMIN_SD_H
+﻿#ifndef DATA_ADMIN_SD_H
 #define DATA_ADMIN_SD_H
 
 class CDataAdminSD

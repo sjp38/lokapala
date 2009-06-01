@@ -1,4 +1,4 @@
-// Operator.h : main header file for the PROJECT_NAME application
+﻿// Operator.h : main header file for the PROJECT_NAME application
 //
 
 #pragma once

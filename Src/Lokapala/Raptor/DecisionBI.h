@@ -1,5 +1,5 @@
-/**@file	DecisionBI.h
- * @brief	DCMÀÇ Button Interface Á¤ÀÇ
+ï»¿/**@file	DecisionBI.h
+ * @brief	DCMì˜ Button Interface ì •ì˜
  * @author	siva
  */
 #ifndef DECISION_BI_H
@@ -7,42 +7,42 @@
 
 /**@ingroup	GroupDCM
  * @class	CDecisionBI
- * @brief	DCMÀÇ Button Interface.
- * @remarks	ÀÎÅÍÆäÀÌ½ºÀÏ »ÓÀÌ´Ù.
+ * @brief	DCMì˜ Button Interface.
+ * @remarks	ì¸í„°í˜ì´ìŠ¤ì¼ ë¿ì´ë‹¤.
  */
 class CDecisionBI
 {
 public :
-	/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿Í ¿¬°áÀÌ µÇ¾úÀ» ¶§.	*/
+	/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ ì—°ê²°ì´ ë˜ì—ˆì„ ë•Œ.	*/
 	virtual void Connected() = 0;
-	/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿ÍÀÇ ¿¬°áÀÌ ²÷°åÀ» ¶§.	*/
+	/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ì˜ ì—°ê²°ì´ ëŠê²¼ì„ ë•Œ.	*/
 	virtual void Disconnected() = 0;
-	/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ·Î±×ÀÎ ¿äÃ»À» ÇÑ´Ù.	 */
+	/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ì„ í•œë‹¤.	 */
 	virtual void LoginRequest(void *a_userInfo) = 0;
-	/**@brief	·Î±×ÀÎ Çã¿ë¿¡ ´ëÇØ ¼­ºñ½º¸¦ ÇÑ´Ù.	 */
+	/**@brief	ë¡œê·¸ì¸ í—ˆìš©ì— ëŒ€í•´ ì„œë¹„ìŠ¤ë¥¼ í•œë‹¤.	 */
 	virtual void LoginAccepted(int a_level) = 0;
-	/**@brief	°­Á¦ ·Î±×ÀÎ ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	ê°•ì œ ë¡œê·¸ì¸ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void LoginOrderReceived(void *a_userInfo) = 0;
-	/**@brief	°­Á¦ ·Î±×¾Æ¿ô ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	ê°•ì œ ë¡œê·¸ì•„ì›ƒ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void LogoutOrderReceived(void *a_message) = 0;	
-	/**@brief	°­Á¦ ÄÄÇ»ÅÍ Á¾·á ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	ê°•ì œ ì»´í“¨í„° ì¢…ë£Œ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void ShutdownOrderReceived(void *a_message) = 0;
-	/**@brief	°­Á¦ ÄÄÇ»ÅÍ ¸®ºÎÆÃ ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	ê°•ì œ ì»´í“¨í„° ë¦¬ë¶€íŒ… ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void RebootOrderReceived(void *a_message) = 0;
-	/**@brief	½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º Á¾·á ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void GenocideProcessesOrderReceived(void *a_message) = 0;
-	/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º Á¾·á ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void KillProcessOrderReceived(void *a_processName) = 0;
-	/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§.	*/
+	/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ.	*/
 	virtual void ExecuteProcessOrderReceived(void *a_processName) = 0;
-	/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ »óÅÂ º¸°í°¡ ³»·Á¿ÔÀ» ¶§.	*/
+	/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ìƒíƒœ ë³´ê³ ê°€ ë‚´ë ¤ì™”ì„ ë•Œ.	*/
 	virtual void StatusReportReceived(void *a_statusReport) = 0;
-	/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ µ¿ÀÛ Á¤Áö ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.	*/
+	/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ë™ì‘ ì •ì§€ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.	*/
 	virtual void RaptorTerminationOrderReceived() = 0;
 
-	/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½ºÀÇ ÀÌ¸§À» º¸°í¹Ş´Â´Ù.	*/
+	/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ì˜ ì´ë¦„ì„ ë³´ê³ ë°›ëŠ”ë‹¤.	*/
 	virtual void ReportExecutedProcess(CString *a_executedProcess) = 0;
-	/**@brief	»óÈ² º¯È­¸¦ º¸°íÇÑ´Ù.	*/
+	/**@brief	ìƒí™© ë³€í™”ë¥¼ ë³´ê³ í•œë‹¤.	*/
 	virtual void ReportStatus(void *a_status) = 0;
 
 	virtual void UserTryingToKillMe() = 0;

@@ -1,4 +1,4 @@
-// StatusReportDlg.cpp : implementation file
+ï»¿// StatusReportDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -53,7 +53,7 @@ BOOL CStatusReportDlg::OnInitDialog()
 }
 
 
-/**@brief	½ºÅ×ÀÌÅÍ½º ÄŞº¸¹Ú½º¿¡ ½ºÅ×ÀÌÅÍ½º Á¾·ù¸¦ Ã¤¿ö ³Ö´Â´Ù.
+/**@brief	ìŠ¤í…Œì´í„°ìŠ¤ ì½¤ë³´ë°•ìŠ¤ì— ìŠ¤í…Œì´í„°ìŠ¤ ì¢…ë¥˜ë¥¼ ì±„ì›Œ ë„£ëŠ”ë‹¤.
  */
 void CStatusReportDlg::SetStatusOnControl()
 {
@@ -63,7 +63,7 @@ void CStatusReportDlg::SetStatusOnControl()
 	m_statusCtrl.AddString(_T("Verified"));
 }
 
-/**@brief	ÇöÀç ½Ã°£À» ½ºÅ×ÀÌÅÍ½º º¸°í Çü½Ä¿¡ ¸Â°Ô ¸ÂÃç¼­ ¹®ÀÚ¿­À» ¸®ÅÏÇÑ´Ù.
+/**@brief	í˜„ì¬ ì‹œê°„ì„ ìŠ¤í…Œì´í„°ìŠ¤ ë³´ê³  í˜•ì‹ì— ë§ê²Œ ë§ì¶°ì„œ ë¬¸ìì—´ì„ ë¦¬í„´í•œë‹¤.
  */
 CString CStatusReportDlg::GetTime()
 {
@@ -75,7 +75,7 @@ CString CStatusReportDlg::GetTime()
 	return nowTimeText;
 }
 
-/**@brief	½ºÅ×ÀÌÅÍ½º º¸°í ¹öÆ°À» ´­·¶À» ¶§.
+/**@brief	ìŠ¤í…Œì´í„°ìŠ¤ ë³´ê³  ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ.
  */
 void CStatusReportDlg::OnBnClickedReport()
 {
@@ -94,7 +94,7 @@ void CStatusReportDlg::OnBnClickedReport()
 }
 
 
-/**@brief	¸®½ºÆ®¹Ú½º¿¡ ÇöÀç »óÅÂ¸¦ º¸¿©ÁØ´Ù.
+/**@brief	ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì— í˜„ì¬ ìƒíƒœë¥¼ ë³´ì—¬ì¤€ë‹¤.
  */
 void CStatusReportDlg::DisplayStatusReports()
 {
@@ -136,7 +136,7 @@ void CStatusReportDlg::DisplayStatusReports()
 	}
 }
 
-/**@brief	¹è°æ»ö ÇÏ¾é°Ô ¼öÁ¤
+/**@brief	ë°°ê²½ìƒ‰ í•˜ì–—ê²Œ ìˆ˜ì •
  */
 HBRUSH CStatusReportDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -146,7 +146,7 @@ HBRUSH CStatusReportDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ì…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -158,7 +158,7 @@ HBRUSH CStatusReportDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	ÇÁ·¹ÀÓ ¾ø´Â »óÅÂ¿¡¼­ À©µµ¿ì ÀÌµ¿ °¡´ÉÇÏµµ·Ï
+/**@brief	í”„ë ˆì„ ì—†ëŠ” ìƒíƒœì—ì„œ ìœˆë„ìš° ì´ë™ ê°€ëŠ¥í•˜ë„ë¡
  */
 void CStatusReportDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
