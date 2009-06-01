@@ -1,5 +1,5 @@
-/**@file	ControlFacade.cpp
- * @brief	CTMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	ControlFacade.cpp
+ * @brief	CTMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * author	siva
  */
 
@@ -8,63 +8,63 @@
 
 #include "ControlManager.h"
 
-/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀûÀÎ ÄÄÇ»ÅÍ »ç¿ëÀ» Á¦ÇÑÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì ì¸ ì»´í“¨í„° ì‚¬ìš©ì„ ì œí•œí•œë‹¤.
  */
 void CControlFacade::RestraintUser()
 {
 	CControlManager::Instance()->RestraintUser();
 }
 
-/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀûÀÎ ÄÄÇ»ÅÍ »ç¿ëÀ» Çã¶ôÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì ì¸ ì»´í“¨í„° ì‚¬ìš©ì„ í—ˆë½í•œë‹¤.
  */
 void CControlFacade::ReleaseUser()
 {
 	CControlManager::Instance()->ReleaseUser();
 }
 
-/**@brief	°­Á¦·Î »ç¿ëÀÚÀÇ ·Î±×ÀÎÀ» ÇØÁØ´Ù.
+/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìì˜ ë¡œê·¸ì¸ì„ í•´ì¤€ë‹¤.
  */
 void CControlFacade::Login(void *a_userInfo)
 {
 	CControlManager::Instance()->Login(a_userInfo);
 }
 
-/**@brief	°­Á¦·Î »ç¿ëÀÚ¸¦ ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìë¥¼ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CControlFacade::Logout(void *a_message)
 {
 	CControlManager::Instance()->Logout(a_message);
 }
 
-/**@brief	ÄÄÇ»ÅÍ¸¦ ²¨¹ö¸°´Ù.
+/**@brief	ì»´í“¨í„°ë¥¼ êº¼ë²„ë¦°ë‹¤.
  */
 void CControlFacade::Shutdown(void *a_message)
 {
 	CControlManager::Instance()->Shutdown(a_message);
 }
 
-/**@brief	ÄÄÇ»ÅÍ¸¦ ÀçºÎÆÃ ½ÃÅ²´Ù.
+/**@brief	ì»´í“¨í„°ë¥¼ ì¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
  */
 void CControlFacade::Reboot(void *a_message)
 {
 	CControlManager::Instance()->Reboot(a_message);
 }
 
-/**@brief	½ÇÇà ÁßÀÎ ÇÁ·Î¼¼½º¸¦ ¸ğÁ¶¸® Á×¿©¹ö¸°´Ù.
+/**@brief	ì‹¤í–‰ ì¤‘ì¸ í”„ë¡œì„¸ìŠ¤ë¥¼ ëª¨ì¡°ë¦¬ ì£½ì—¬ë²„ë¦°ë‹¤.
  */
 void CControlFacade::GenocideProcesses(void *a_message)
 {
 	CControlManager::Instance()->GenocideProcesses(a_message);
 }
 
-/**@brief	Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·Î¼¼½º¸¦ Á×ÀÎ´Ù.
+/**@brief	íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œì„¸ìŠ¤ë¥¼ ì£½ì¸ë‹¤.
  */
 void CControlFacade::KillProcess(void *a_processName)
 {
 	CControlManager::Instance()->KillProcess(a_processName);
 }
 
-/**@brief	Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
  */
 void CControlFacade::ExecuteProcess(void *a_processName)
 {

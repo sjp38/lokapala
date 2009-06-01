@@ -1,5 +1,5 @@
-/**@file	MSCommunicationSD.cpp
- * @brief	MSMÀÇ CommunicationSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	MSCommunicationSD.cpp
+ * @brief	MSMì˜ CommunicationSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -7,7 +7,7 @@
 #include "MSCommunicationSD.h"
 
 
-/**@brief	CCMÀ» ÀÌ¿ëÇØ¼­ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ·¦ÅÍ¿¡°Ô º¸³½´Ù.
+/**@brief	CCMì„ ì´ìš©í•´ì„œ í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë©í„°ì—ê²Œ ë³´ë‚¸ë‹¤.
  */
 void CMSCommunicationSD::SendTextMessageToRaptor(void *a_messageData)
 {

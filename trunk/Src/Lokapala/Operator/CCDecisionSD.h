@@ -1,5 +1,5 @@
-/**@file	CCDecisionSD.h
- * @brief	CCM¿¡¼­ DCMÀ¸·ÎÀÇ Service Delegate Á¤ÀÇ.
+ï»¿/**@file	CCDecisionSD.h
+ * @brief	CCMì—ì„œ DCMìœ¼ë¡œì˜ Service Delegate ì •ì˜.
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup GroupCCM
  * @class	CCCDecisionSD
- * @brief	CCM¿¡¼­ DCMÀ¸·ÎÀÇ Service Delegate.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	CCMì—ì„œ DCMìœ¼ë¡œì˜ Service Delegate.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CCCDecisionSD
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CCCDecisionSD *Instance()
 	{
@@ -32,9 +32,9 @@ public :
 	void PresentStatusReport(void *a_statusReportData);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CCCDecisionSD(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CCCDecisionSD(){}
 private :
 	/**@brief	singleton.	*/

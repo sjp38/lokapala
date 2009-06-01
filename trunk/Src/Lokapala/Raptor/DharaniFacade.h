@@ -1,5 +1,5 @@
-/**@file	DharaniFacade.h
- * @brief	Dharani componentÀÇ facade
+ï»¿/**@file	DharaniFacade.h
+ * @brief	Dharani componentì˜ facade
  * @author	siva
  */
 
@@ -11,7 +11,7 @@
 
 /**@ingroup	GroupDharani
  * @class	CDharaniFacade
- * @brief	Dharani ComponentÀÇ Facade. Interface¸¦ »ó¼Ó¹Ş¾Æ ½ÇÁúÀûÀÎ Çàµ¿À» ÇÑ´Ù.
+ * @brief	Dharani Componentì˜ Facade. Interfaceë¥¼ ìƒì†ë°›ì•„ ì‹¤ì§ˆì ì¸ í–‰ë™ì„ í•œë‹¤.
  */
 class CDharaniFacade : public CDharaniInterface
 {

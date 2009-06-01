@@ -1,5 +1,5 @@
-/**@file	MessgeDTO.h
- * @brief	Ä¿¹Â´ÏÄÉÀÌ¼Ç ÄÄÆ÷³ÍÆ®·Î º¸³¾ ¸Þ¼¼Áö °ü·Ã Á¤º¸¸¦ ´ã´Â´Ù.
+ï»¿/**@file	MessgeDTO.h
+ * @brief	ì»¤ë®¤ë‹ˆì¼€ì´ì…˜ ì»´í¬ë„ŒíŠ¸ë¡œ ë³´ë‚¼ ë©”ì„¸ì§€ ê´€ë ¨ ì •ë³´ë¥¼ ë‹´ëŠ”ë‹¤.
  * @author	siva
  */
 
@@ -8,7 +8,7 @@
 
 /**@ingroup	DAM
  * @class	CMessageDTO
- * @brief	Ä¿¹Â´ÏÄÉÀÌ¼Ç ÄÄÆ÷³ÍÆ®·Î º¸³¾ ¸Þ¼¼Áö °ü·Ã Á¤º¸¸¦ ´ã´Â´Ù.
+ * @brief	ì»¤ë®¤ë‹ˆì¼€ì´ì…˜ ì»´í¬ë„ŒíŠ¸ë¡œ ë³´ë‚¼ ë©”ì„¸ì§€ ê´€ë ¨ ì •ë³´ë¥¼ ë‹´ëŠ”ë‹¤.
  */
 class CMessageDTO
 {

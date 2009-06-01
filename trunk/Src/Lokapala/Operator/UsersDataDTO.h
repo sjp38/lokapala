@@ -1,5 +1,5 @@
-/**@file	UsersDataDTO.h
- * @brief	¸ğµç »ç¿ëÀÚÀÇ Á¤º¸µéÀ» ´ã´Â DTO¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	UsersDataDTO.h
+ * @brief	ëª¨ë“  ì‚¬ìš©ìì˜ ì •ë³´ë“¤ì„ ë‹´ëŠ” DTOë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -12,8 +12,8 @@
 
 /**@ingroup	DAM
  * @class	CUsersDataDTO
- * @brief	¸ğµç À¯ÀúÀÇ Á¤º¸¸¦ °®´Â´Ù.\n
- *			³»ºÎÀûÀ¸·Î CUserDataDTOÀÇ ¸ÊÀ» °®´Â´Ù.
+ * @brief	ëª¨ë“  ìœ ì €ì˜ ì •ë³´ë¥¼ ê°–ëŠ”ë‹¤.\n
+ *			ë‚´ë¶€ì ìœ¼ë¡œ CUserDataDTOì˜ ë§µì„ ê°–ëŠ”ë‹¤.
  */
 class CUsersDataDTO
 {

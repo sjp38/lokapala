@@ -1,5 +1,5 @@
-//#############################################################################
-//		 2007.7. coded by siva.		API ÈÄÅ· ¶óÀÌºê·¯¸® Á¦°ø °´Ã¼ ±¸ÇöÄÚµå.
+ï»¿//#############################################################################
+//		 2007.7. coded by siva.		API í›„í‚¹ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì œê³µ ê°ì²´ êµ¬í˜„ì½”ë“œ.
 //			reference document : Jeffery Ritcher's code
 //#############################################################################
 
@@ -22,7 +22,7 @@
 
 
 // The highest private memory address (used for Windows 98 only)
-//PVOID CAPIHook::sm_pvMaxAppAddr = NULL;	//À©µµ98 Àü¿ë ºÎºÐ
+//PVOID CAPIHook::sm_pvMaxAppAddr = NULL;	//ìœˆë„98 ì „ìš© ë¶€ë¶„
 //const BYTE cPushOpCode = 0x68;   // The PUSH opcode on x86 platforms
 
 
@@ -35,11 +35,11 @@ CAPIHook* CAPIHook::sm_pHead = NULL;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//»ý¼ºÀÚ.
+//ìƒì„±ìž.
 CAPIHook::CAPIHook(PSTR pszCalleeModName, PSTR pszFuncName, PROC pfnHook, 
    BOOL fExcludeAPIHookMod) {
 
-	//À©µµ 98 Àü¿ë ºÎºÐ.
+	//ìœˆë„ 98 ì „ìš© ë¶€ë¶„.
 	/*
    if (sm_pvMaxAppAddr == NULL) {
       // Functions with address above lpMaximumApplicationAddress require
@@ -50,16 +50,16 @@ CAPIHook::CAPIHook(PSTR pszCalleeModName, PSTR pszFuncName, PROC pfnHook,
    }
    */
 
-	m_pNext  = sm_pHead;   // ´ÙÀ½ ³ëµå·Î ÇöÀç Çìµå¸¦ ÁÖ°í
-	sm_pHead = this;       // ÇöÀç ³ëµå¸¦ Çìµå·Î ´ëÃ¼
+	m_pNext  = sm_pHead;   // ë‹¤ìŒ ë…¸ë“œë¡œ í˜„ìž¬ í—¤ë“œë¥¼ ì£¼ê³ 
+	sm_pHead = this;       // í˜„ìž¬ ë…¸ë“œë¥¼ í—¤ë“œë¡œ ëŒ€ì²´
 
-	// °¢ ÆÐ·¯¹ÌÅÍ¸¦ °´Ã¼ ³» ¸â¹öº¯¼ö·Î ÀúÀå.
+	// ê° íŒ¨ëŸ¬ë¯¸í„°ë¥¼ ê°ì²´ ë‚´ ë©¤ë²„ë³€ìˆ˜ë¡œ ì €ìž¥.
 	m_pszCalleeModName   = pszCalleeModName;
 	m_pszFuncName        = pszFuncName;
 	m_pfnHook            = pfnHook;
 	m_fExcludeAPIHookMod = fExcludeAPIHookMod;
 	m_pfnOrig            = GetProcAddressRaw(GetModuleHandleA(pszCalleeModName), m_pszFuncName);
-	chASSERT(m_pfnOrig != NULL);  // ¿øº»ÇÔ¼ö´Â Á¸ÀçÇß¾î¾ß ÇÔ.
+	chASSERT(m_pfnOrig != NULL);  // ì›ë³¸í•¨ìˆ˜ëŠ” ì¡´ìž¬í–ˆì–´ì•¼ í•¨.
 
 	/*
 	if (m_pfnOrig > sm_pvMaxAppAddr) {
@@ -72,7 +72,7 @@ CAPIHook::CAPIHook(PSTR pszCalleeModName, PSTR pszFuncName, PROC pfnHook,
 		}
 	}
 	*/
-	//ÇöÀçÀÇ ¸ðµç ¸ðµâ¿¡ ÈÅÀ» °É¾îÁØ´Ù.
+	//í˜„ìž¬ì˜ ëª¨ë“  ëª¨ë“ˆì— í›…ì„ ê±¸ì–´ì¤€ë‹¤.
 	ReplaceIATEntryInAllMods(m_pszCalleeModName, m_pfnOrig, m_pfnHook, 
 		m_fExcludeAPIHookMod);
 }
@@ -80,20 +80,20 @@ CAPIHook::CAPIHook(PSTR pszCalleeModName, PSTR pszFuncName, PROC pfnHook,
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//¼Ò¸êÀÚ
+//ì†Œë©¸ìž
 CAPIHook::~CAPIHook() {
 
-	//ÈÄÅ©ÇÔ¼ö, ¿øº»ÇÔ¼ö¸¦ °Å²Ù·Î ÈÄÅ©°É¾î ÈÄÅ© ÇØÁ¦.
+	//í›„í¬í•¨ìˆ˜, ì›ë³¸í•¨ìˆ˜ë¥¼ ê±°ê¾¸ë¡œ í›„í¬ê±¸ì–´ í›„í¬ í•´ì œ.
 	ReplaceIATEntryInAllMods(m_pszCalleeModName, m_pfnHook, m_pfnOrig, 
 		m_fExcludeAPIHookMod);
 
-	//¸µÅ©µå¸®½ºÆ®·ÎºÎÅÍ Á¦°Å
+	//ë§í¬ë“œë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì œê±°
 	CAPIHook* p = sm_pHead; 
 	if (p == this) {     // Removing the head node
 		sm_pHead = p->m_pNext; 
 	} else {
 		BOOL fFound = FALSE;
-		// Next°¡ NULLÀÏ ¶§±îÁö, Áï ¸ðÁ¶¸® ¸®½ºÆ®¿¡¼­ Á¦°Å.
+		// Nextê°€ NULLì¼ ë•Œê¹Œì§€, ì¦‰ ëª¨ì¡°ë¦¬ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°.
 		for (; !fFound && (p->m_pNext != NULL); p = p->m_pNext) {
 			if (p->m_pNext == this) {
 				// Make the node that points to us point to the our next node
@@ -118,11 +118,11 @@ FARPROC CAPIHook::GetProcAddressRaw(HMODULE hmod, PCSTR pszProcName) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-//ÁöÁ¤µÈ ¸Þ¸ð¸® Æ÷ÇÔ HMODULE ¸®ÅÏ
+//ì§€ì •ëœ ë©”ëª¨ë¦¬ í¬í•¨ HMODULE ë¦¬í„´
 static HMODULE ModuleFromAddress(PVOID pv) {
 	MEMORY_BASIC_INFORMATION mbi;
-	return((VirtualQuery(pv, &mbi, sizeof(mbi)) != 0)	//ÇØ´ç Á¤º¸¸¦ ¾ò°í
-		? (HMODULE) mbi.AllocationBase : NULL);	//º£ÀÌ½º(module)À» ¸®ÅÏ.
+	return((VirtualQuery(pv, &mbi, sizeof(mbi)) != 0)	//í•´ë‹¹ ì •ë³´ë¥¼ ì–»ê³ 
+		? (HMODULE) mbi.AllocationBase : NULL);	//ë² ì´ìŠ¤(module)ì„ ë¦¬í„´.
 }
 
 
@@ -132,19 +132,19 @@ static HMODULE ModuleFromAddress(PVOID pv) {
 void CAPIHook::ReplaceIATEntryInAllMods(PCSTR pszCalleeModName, 
    PROC pfnCurrent, PROC pfnNew, BOOL fExcludeAPIHookMod) {
 
-	//ÀÌ ÇÔ¼ö°¡ ¼Ò¼ÓµÈ ¸ðµâ ÇÚµéÀ» ½Àµæ
+	//ì´ í•¨ìˆ˜ê°€ ì†Œì†ëœ ëª¨ë“ˆ í•¸ë“¤ì„ ìŠµë“
 	HMODULE hmodThisMod = fExcludeAPIHookMod 
 		? ModuleFromAddress(ReplaceIATEntryInAllMods) : NULL;
 	
-	//ÇÁ·Î¼¼½º ³» ¸ðµâµéÀÇ ¸®½ºÆ®¸¦ ½Àµæ
+	//í”„ë¡œì„¸ìŠ¤ ë‚´ ëª¨ë“ˆë“¤ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ìŠµë“
 	CToolhelp th(TH32CS_SNAPMODULE, GetCurrentProcessId());
 
 	MODULEENTRY32 me = { sizeof(me) };
-	//¸ðµç ¸ðµâµéÀ» °Ë»çÇÏ¸ç
+	//ëª¨ë“  ëª¨ë“ˆë“¤ì„ ê²€ì‚¬í•˜ë©°
 	for (BOOL fOk = th.ModuleFirst(&me); fOk; fOk = th.ModuleNext(&me)) {
-		// ReplaceIATEntryInAllMods ÀÚ½ÅÀÇ ¸ðµâÀ» Á¦¿ÜÇÏ°í
+		// ReplaceIATEntryInAllMods ìžì‹ ì˜ ëª¨ë“ˆì„ ì œì™¸í•˜ê³ 
 		if (me.hModule != hmodThisMod) {
-			// °¢°¢ ÈÄÅ©¸¦ °É¾îÁØ´Ù.
+			// ê°ê° í›„í¬ë¥¼ ê±¸ì–´ì¤€ë‹¤.
 			ReplaceIATEntryInOneMod(pszCalleeModName, pfnCurrent, pfnNew, me.hModule);
 		}
 	}
@@ -158,34 +158,34 @@ void CAPIHook::ReplaceIATEntryInOneMod(PCSTR pszCalleeModName, PROC pfnCurrent,
 									   PROC pfnNew, HMODULE hmodCaller) {
 	// Get the address of the module's import section
 	ULONG ulSize;
-	//ÄÝ·¯ ¸ðµâÀÇ ÀÓÆ÷Æ® µð½ºÅ©¸³ÅÍ È¹µæ.
+	//ì½œëŸ¬ ëª¨ë“ˆì˜ ìž„í¬íŠ¸ ë””ìŠ¤í¬ë¦½í„° íšë“.
 	PIMAGE_IMPORT_DESCRIPTOR pImportDesc = (PIMAGE_IMPORT_DESCRIPTOR)
 		ImageDirectoryEntryToData(hmodCaller, TRUE, IMAGE_DIRECTORY_ENTRY_IMPORT, &ulSize);
 	
 	if (pImportDesc == NULL)
 		return;  // This module has no import section
 
-	//ÀÓÆ÷Æ® µð½ºÅ©¸³ÅÍ Áß ÄÝ¸® ¸ðµâÀÇ ÀÓÆ÷Æ®µð½ºÅ©¸³ÅÍ¸¦ Ã£´Â´Ù
+	//ìž„í¬íŠ¸ ë””ìŠ¤í¬ë¦½í„° ì¤‘ ì½œë¦¬ ëª¨ë“ˆì˜ ìž„í¬íŠ¸ë””ìŠ¤í¬ë¦½í„°ë¥¼ ì°¾ëŠ”ë‹¤
 	for (; pImportDesc->Name; pImportDesc++) {
 		PSTR pszModName = (PSTR) ((PBYTE) hmodCaller + pImportDesc->Name);
 		if (lstrcmpiA(pszModName, pszCalleeModName) == 0)
 			break;   // Found
 	}
-	if (pImportDesc->Name == 0)	//ÇØ´ç ÄÝ¸® ¸ðµâÀÇ ÀÓÆ÷Æ® µð½ºÅ©¸³ÅÍ°¡ Á¸ÀçÄ¡ ¾ÊÀ½
+	if (pImportDesc->Name == 0)	//í•´ë‹¹ ì½œë¦¬ ëª¨ë“ˆì˜ ìž„í¬íŠ¸ ë””ìŠ¤í¬ë¦½í„°ê°€ ì¡´ìž¬ì¹˜ ì•ŠìŒ
 		return;
 
-	//ÄÝ¸®ÀÇ ÀÓÆ÷Æ® µð½ºÅ©¸³ÅÍÀÇ First Thunk È¹µæ
+	//ì½œë¦¬ì˜ ìž„í¬íŠ¸ ë””ìŠ¤í¬ë¦½í„°ì˜ First Thunk íšë“
 	PIMAGE_THUNK_DATA pThunk = (PIMAGE_THUNK_DATA)((PBYTE) hmodCaller + pImportDesc->FirstThunk);
 	
-	//Ã»Å©¸¦ µÚÁ®°¡¸ç ÇÇÈÄÅ· ÇÔ¼öÀÇ Ã»Å©¸¦ °Ë»ö
+	//ì²­í¬ë¥¼ ë’¤ì ¸ê°€ë©° í”¼í›„í‚¹ í•¨ìˆ˜ì˜ ì²­í¬ë¥¼ ê²€ìƒ‰
 	for (; pThunk->u1.Function; pThunk++) {
-		//ÇØ´ç Ã»Å©°¡ °¡¸®Å°´Â ÇÔ¼ö¿Í ÇÇÈÄÅ·ÇÔ¼ö ºñ±³
+		//í•´ë‹¹ ì²­í¬ê°€ ê°€ë¦¬í‚¤ëŠ” í•¨ìˆ˜ì™€ í”¼í›„í‚¹í•¨ìˆ˜ ë¹„êµ
 		PROC* ppfn = (PROC*) &pThunk->u1.Function;
 		BOOL fFound = (*ppfn == pfnCurrent);
 		
 		/*
-		//ÇÇÈÄÅ·ÇÔ¼öÀÇ Ã»Å©°¡ ¾Æ´ÏÁö¸¸ DLL°ø°£ ³»¿¡ ÀÖ´Ù¸é(DLL, APP°¡ µû·Î ÀÖ´Â 98 ¸Þ¸ð¸® ±¸Á¶),
-		//Á¦´ë·Î µÈ Ã»Å©°¡ °¡¸®Å°´Â ÇÔ¼ö ¾îµå·¹½º¸¦ ±¸ÇÑ´Ù.
+		//í”¼í›„í‚¹í•¨ìˆ˜ì˜ ì²­í¬ê°€ ì•„ë‹ˆì§€ë§Œ DLLê³µê°„ ë‚´ì— ìžˆë‹¤ë©´(DLL, APPê°€ ë”°ë¡œ ìžˆëŠ” 98 ë©”ëª¨ë¦¬ êµ¬ì¡°),
+		//ì œëŒ€ë¡œ ëœ ì²­í¬ê°€ ê°€ë¦¬í‚¤ëŠ” í•¨ìˆ˜ ì–´ë“œë ˆìŠ¤ë¥¼ êµ¬í•œë‹¤.
 		if (!fFound && (*ppfn > sm_pvMaxAppAddr)) {
 			// If this is not the function and the address is in a shared DLL, 
 			// then maybe we're running under a debugger on Windows 98. In this 
@@ -193,7 +193,7 @@ void CAPIHook::ReplaceIATEntryInOneMod(PCSTR pszCalleeModName, PROC pfnCurrent,
 			// correct address.
 			PBYTE pbInFunc = (PBYTE) *ppfn;
 			if (pbInFunc[0] == cPushOpCode) {
-				// Çª½Ã ¸í·ÉÀÌ ÀÖ¾ú´Ù¸é ±× ´ÙÀ½ °ªÀ» ºñ±³, ½ÇÁ¦ ÇÔ¼ö ¾îµå·¹½º È¹µæ
+				// í‘¸ì‹œ ëª…ë ¹ì´ ìžˆì—ˆë‹¤ë©´ ê·¸ ë‹¤ìŒ ê°’ì„ ë¹„êµ, ì‹¤ì œ í•¨ìˆ˜ ì–´ë“œë ˆìŠ¤ íšë“
 				ppfn = (PROC*) &pbInFunc[1];
 				// Is this the function we're looking for?
 				fFound = (*ppfn == pfnCurrent);
@@ -201,9 +201,9 @@ void CAPIHook::ReplaceIATEntryInOneMod(PCSTR pszCalleeModName, PROC pfnCurrent,
 		}
 		*/
 
-		//¾îÂîµÆ°Ç ÇÇÈÄÅ·ÇÔ¼öÀÇ Ã»Å©¸¦ Ã£¾Ò´Ù¸é
+		//ì–´ì°Œëê±´ í”¼í›„í‚¹í•¨ìˆ˜ì˜ ì²­í¬ë¥¼ ì°¾ì•˜ë‹¤ë©´
 		if (fFound) {
-			//ÀÓÆ÷Æ®¼½¼Ç ¾îµå·¹½º¸¦ ´ëÃ¼ÇÔ¼ö·Î ±³Ã¼(¸Þ¸ð¸® ¿À¹ö¶óÀÌÆ®)
+			//ìž„í¬íŠ¸ì„¹ì…˜ ì–´ë“œë ˆìŠ¤ë¥¼ ëŒ€ì²´í•¨ìˆ˜ë¡œ êµì²´(ë©”ëª¨ë¦¬ ì˜¤ë²„ë¼ì´íŠ¸)
 			WriteProcessMemory(GetCurrentProcess(), ppfn, &pfnNew, sizeof(pfnNew), NULL);
 			return;
 		}
@@ -216,8 +216,8 @@ void CAPIHook::ReplaceIATEntryInOneMod(PCSTR pszCalleeModName, PROC pfnCurrent,
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
-// LoadLibrary ÇÔ¼ö, GetProcAddress ÇÔ¼ö°¡ ÀÌÈÄ »ç¿ëµÇ¾î ÈÄÅ©¸¦ Áö³ªÃÄ°¥ ¼ö ÀÖ´Ù.
-// ÀÌµéÀ» ¸ðÁ¶¸® ÈÄÅ©.
+// LoadLibrary í•¨ìˆ˜, GetProcAddress í•¨ìˆ˜ê°€ ì´í›„ ì‚¬ìš©ë˜ì–´ í›„í¬ë¥¼ ì§€ë‚˜ì³ê°ˆ ìˆ˜ ìžˆë‹¤.
+// ì´ë“¤ì„ ëª¨ì¡°ë¦¬ í›„í¬.
 
 CAPIHook CAPIHook::sm_LoadLibraryA  ("Kernel32.dll", "LoadLibraryA",   
    (PROC) CAPIHook::LoadLibraryA, TRUE);
@@ -239,7 +239,7 @@ CAPIHook CAPIHook::sm_GetProcAddress("Kernel32.dll", "GetProcAddress",
 
 
 void CAPIHook::FixupNewlyLoadedModule(HMODULE hmod, DWORD dwFlags) {
-	//LoadLibrary·Î »õ·Î¿î ¸ðµâÀÌ ·ÎµåµÈ °æ¿ì, ´Ù½ÃÇÑ¹ø ¸ðÁ¶¸® ÈÄÅ·ÇÑ´Ù.
+	//LoadLibraryë¡œ ìƒˆë¡œìš´ ëª¨ë“ˆì´ ë¡œë“œëœ ê²½ìš°, ë‹¤ì‹œí•œë²ˆ ëª¨ì¡°ë¦¬ í›„í‚¹í•œë‹¤.
 	if ((hmod != NULL) && ((dwFlags & LOAD_LIBRARY_AS_DATAFILE) == 0)) {
 		for (CAPIHook* p = sm_pHead; p != NULL; p = p->m_pNext) {
 			ReplaceIATEntryInOneMod(p->m_pszCalleeModName, p->m_pfnOrig, p->m_pfnHook, hmod);
@@ -292,14 +292,14 @@ HMODULE WINAPI CAPIHook::LoadLibraryExW(PCWSTR pszModulePath, HANDLE hFile, DWOR
 
 
 FARPROC WINAPI CAPIHook::GetProcAddress(HMODULE hmod, PCSTR pszProcName) {
-	// ÇÔ¼öÀÇ ½ÇÁÖ¼Ò È¹µæ
+	// í•¨ìˆ˜ì˜ ì‹¤ì£¼ì†Œ íšë“
 	FARPROC pfn = GetProcAddressRaw(hmod, pszProcName);
 
 	CAPIHook* p = sm_pHead;
-	// GetProcAddress·Î ºÒ·¯¿Â ÇÔ¼ö¿Í ÇÇÈÄÅ© ÇÔ¼ö¸ñ·ÏÀ» ´ëÁ¶
+	// GetProcAddressë¡œ ë¶ˆëŸ¬ì˜¨ í•¨ìˆ˜ì™€ í”¼í›„í¬ í•¨ìˆ˜ëª©ë¡ì„ ëŒ€ì¡°
 	for (; (pfn != NULL) && (p != NULL); p = p->m_pNext) {
 		if (pfn == p->m_pfnOrig) {
-			//ÇÇÈÄÅ©ÇÔ¼ö¿Í µ¿ÀÏÇÏ´Ù¸é ÈÄÅ©ÇÔ¼ö·Î ´ëÄ¡
+			//í”¼í›„í¬í•¨ìˆ˜ì™€ ë™ì¼í•˜ë‹¤ë©´ í›„í¬í•¨ìˆ˜ë¡œ ëŒ€ì¹˜
 			pfn = p->m_pfnHook;
 			break;
 		}

@@ -1,5 +1,5 @@
-/**@file	ExecutedProcessDTO
- * @brief	½ÇÇàµÈ ÇÁ·Î¼¼½º º¸°í °ü·Ã Á¤º¸¸¦ ´ã´Â CExecutedProcessDTO Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	ExecutedProcessDTO
+ * @brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ë³´ê³  ê´€ë ¨ ì •ë³´ë¥¼ ë‹´ëŠ” CExecutedProcessDTO í´ëž˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -9,7 +9,7 @@
 
 /**@ingroup	GroupDAM
  * @class	CExecutedProcessDTO
- * @brief	½ÇÇàµÈ ÇÁ·Î¼¼½ºÀÇ º¸°í¿¡ °ü·ÃµÈ Á¤º¸¸¦ ´ã´Â Á¤º¸Ã¼.
+ * @brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ì˜ ë³´ê³ ì— ê´€ë ¨ëœ ì •ë³´ë¥¼ ë‹´ëŠ” ì •ë³´ì²´.
  */
 class CExecutedProcessDTO
 {

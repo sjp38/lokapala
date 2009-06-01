@@ -1,5 +1,5 @@
-/**@file	DharaniDTO.h
- * @brief	DharaniDTO¸¦ Á¤ÀÇ
+ï»¿/**@file	DharaniDTO.h
+ * @brief	DharaniDTOë¥¼ ì •ì˜
  * @author	siva
  */
 
@@ -8,8 +8,8 @@
 
 /**@ingroup GroupDharani
  * @class	CDharaniDTO
- * @brief	¿ÜºÎ¿Í Dharani ÄÄÆ÷³ÍÆ® »çÀÌÀÇ Åë½Å¿¡¼­ »ç¿ëµÇ´Â µ¥ÀÌÅÍ ±¸Á¶.
- *			¸Ş¼¼Áö¿Í ÁÖ¼Ò·Î ±¸¼ºµÇ¸ç, ÁÖ¼Ò´Â »ç¼³ ip¿Í °ø¿ë ip(°øÀ¯±âÀÇ ip)·Î ±¸¼ºµÈ´Ù.
+ * @brief	ì™¸ë¶€ì™€ Dharani ì»´í¬ë„ŒíŠ¸ ì‚¬ì´ì˜ í†µì‹ ì—ì„œ ì‚¬ìš©ë˜ëŠ” ë°ì´í„° êµ¬ì¡°.
+ *			ë©”ì„¸ì§€ì™€ ì£¼ì†Œë¡œ êµ¬ì„±ë˜ë©°, ì£¼ì†ŒëŠ” ì‚¬ì„¤ ipì™€ ê³µìš© ip(ê³µìœ ê¸°ì˜ ip)ë¡œ êµ¬ì„±ëœë‹¤.
  */
 class CDharaniDTO
 {

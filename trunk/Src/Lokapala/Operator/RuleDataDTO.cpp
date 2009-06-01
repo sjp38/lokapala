@@ -1,12 +1,12 @@
-/**@file	RuleDataDTO.cpp
- * @brief	CRuleDataDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	RuleDataDTO.cpp
+ * @brief	CRuleDataDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "RuleDataDTO.h"
 
-/**@brief	»ı¼ºÀÚ.	*/
+/**@brief	ìƒì„±ì.	*/
 CRuleDataDTO::CRuleDataDTO(CString a_processName, CString a_caption,
 						   CString a_targetSeatId, CString a_targetUserId, int a_targetLevel,
 						   Reactions a_reaction, CString a_reactionArgument)
@@ -20,7 +20,7 @@ CRuleDataDTO::CRuleDataDTO(CString a_processName, CString a_caption,
 	m_reactionArgument = a_reactionArgument;
 }
 
-/**@brief	RulesData ¿¡¼­ ÇÁ·Î¼¼½º ÀÌ¸§¸¸ °¡Áö°í ·êÀ» °Ë»öÇÏ°íÀÚ ·êÀ» ¸¸µé ¶§ÀÇ »ı¼ºÀÚ.
+/**@brief	RulesData ì—ì„œ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ë§Œ ê°€ì§€ê³  ë£°ì„ ê²€ìƒ‰í•˜ê³ ì ë£°ì„ ë§Œë“¤ ë•Œì˜ ìƒì„±ì.
  */
 CRuleDataDTO::CRuleDataDTO(CString a_processName)
 {

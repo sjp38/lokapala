@@ -1,12 +1,12 @@
-/**@file	MSCommunicationSD.cpp
- * @brief	MSMÀÇ CommunicationSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	MSCommunicationSD.cpp
+ * @brief	MSMì˜ CommunicationSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "MSCommunicationSD.h"
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ³Ñ±ä´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë„˜ê¸´ë‹¤.
  */
 void CMSCommunicationSD::PostTextMessageToOperator(CString *a_message)
 {

@@ -1,13 +1,13 @@
-/**@file	DCDataAdminSD.cpp
- * @brief	DCMÀÇ AdminSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCDataAdminSD.cpp
+ * @brief	DCMì˜ AdminSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "DCDataAdminSD.h"
 
-/**@brief	DAMÀ¸·ÎºÎÅÍ »ç¿ëÀÚ ÀüÃ¼ Á¤º¸¸¦ ¾ò¾î¿Â´Ù.
- * @return	»ç¿ëÀÚ ÀüÃ¼ Á¤º¸ DTOÀÇ Æ÷ÀÎÅÍ.
+/**@brief	DAMìœ¼ë¡œë¶€í„° ì‚¬ìš©ì ì „ì²´ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
+ * @return	ì‚¬ìš©ì ì „ì²´ ì •ë³´ DTOì˜ í¬ì¸í„°.
  */
 void *CDCDataAdminSD::GetUsersDataDTO()
 {
@@ -15,29 +15,29 @@ void *CDCDataAdminSD::GetUsersDataDTO()
 }
 
 
-/**@brief	DAMÀ¸·ÎºÎÅÍ Á¢¼ÓµÈ »ç¿ëÀÚ ÀüÃ¼ Á¤º¸¸¦ ¾ò¾î¿Â´Ù.
- * @return	Á¢¼ÓµÈ »ç¿ëÀÚ ÀüÃ¼ Á¤º¸ DTO ÀÇ Æ÷ÀÎÅÍ.
+/**@brief	DAMìœ¼ë¡œë¶€í„° ì ‘ì†ëœ ì‚¬ìš©ì ì „ì²´ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
+ * @return	ì ‘ì†ëœ ì‚¬ìš©ì ì „ì²´ ì •ë³´ DTO ì˜ í¬ì¸í„°.
  */
 void *CDCDataAdminSD::GetConnectedUsersDTO()
 {
 	return CCBFMediator::Instance()->GetConnectedHosts();
 }
 
-/**@brief	DAMÀ¸·ÎºÎÅÍ ±ÔÄ¢ Á¤º¸ ÀüÃ¼¸¦ ¾ò¾î¿Â´Ù.
+/**@brief	DAMìœ¼ë¡œë¶€í„° ê·œì¹™ ì •ë³´ ì „ì²´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
  */
 void *CDCDataAdminSD::GetRulesDataDTO()
 {
 	return CCBFMediator::Instance()->GetRules();
 }
 
-/**@brief	DAMÀ¸·ÎºÎÅÍ ÁÂ¼® Á¤º¸ ÀüÃ¼¸¦ ¾ò¾î¿Â´Ù.
+/**@brief	DAMìœ¼ë¡œë¶€í„° ì¢Œì„ ì •ë³´ ì „ì²´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
  */
 void *CDCDataAdminSD::GetSeatsDataDTO()
 {
 	return CCBFMediator::Instance()->GetSeats();
 }
 
-/**@brief	DAMÀ¸·ÎºÎÅÍ °íÀå»óÅÂ Á¤º¸ ÀüÃ¼¸¦ ¾ò¾î¿Â´Ù.
+/**@brief	DAMìœ¼ë¡œë¶€í„° ê³ ì¥ìƒíƒœ ì •ë³´ ì „ì²´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
  */
 void *CDCDataAdminSD::GetStatusReportsDTO()
 {

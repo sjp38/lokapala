@@ -1,5 +1,5 @@
-/**@file	APIHookExport.h
- * @brief	API �۷ι� ��ŷ�� ���� dll�κ��� �Լ��� �ҷ����δ�.
+﻿/**@file	APIHookExport.h
+ * @brief	API 글로벌 후킹을 위한 dll로부터 함수를 불러들인다.
  * @author	siva
  */
 

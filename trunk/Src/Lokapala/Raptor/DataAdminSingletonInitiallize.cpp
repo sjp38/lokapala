@@ -1,5 +1,5 @@
-/**@file	DataAdminSingletonInitiallize.cpp
- * @brief	Data Admin ÄÄÆ÷³ÍÆ®ÀÇ ¸ğµç singletonÀ» ÃÊ±âÈ­ÇÑ´Ù.
+ï»¿/**@file	DataAdminSingletonInitiallize.cpp
+ * @brief	Data Admin ì»´í¬ë„ŒíŠ¸ì˜ ëª¨ë“  singletonì„ ì´ˆê¸°í™”í•œë‹¤.
  * @author	siva
  */
 

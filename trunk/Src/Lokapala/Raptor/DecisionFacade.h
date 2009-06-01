@@ -1,5 +1,5 @@
-/**@file	DecisionFacade.h
- * @brief	DCM ÀÇ Facade Á¤ÀÇ
+ï»¿/**@file	DecisionFacade.h
+ * @brief	DCM ì˜ Facade ì •ì˜
  * @author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup GroupDCM
  * @class	CDecisionFacade
- * @brief	DCMÀÇ Facade.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	DCMì˜ Facade.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDecisionFacade : public CDecisionBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDecisionFacade *Instance()
 	{
@@ -48,9 +48,9 @@ public :
 	virtual void UserTryingToKillMe(void);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDecisionFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDecisionFacade(){}
 private :
 	/**@brief	singleton	*/

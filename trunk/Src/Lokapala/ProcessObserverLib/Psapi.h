@@ -1,5 +1,5 @@
-/**@file	Psapi.h
- * @brief	Psapi dllÀ» »ç¿ëÇÏ±â À§ÇÑ Çì´õ. À¥¿¡¼­ ¹èÆ÷µÇ´Â ¹öÀüÀÓ.
+ï»¿/**@file	Psapi.h
+ * @brief	Psapi dllì„ ì‚¬ìš©í•˜ê¸° ìœ„í•œ í—¤ë”. ì›¹ì—ì„œ ë°°í¬ë˜ëŠ” ë²„ì „ì„.
  */
 
 /*++ BUILD Version: 0001    // Increment this if a change has global effects

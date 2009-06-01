@@ -1,12 +1,12 @@
-/**@file	StatusReportDTO.cpp
- * @brief	CStatusReportDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	StatusReportDTO.cpp
+ * @brief	CStatusReportDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "StatusReportDTO.h"
 
-/**@brief	»ı¼ºÀÚ	*/
+/**@brief	ìƒì„±ì	*/
 CStatusReportDTO::CStatusReportDTO(CString a_hostAddress, State a_state, CString a_date, CString a_comment)
 {
 	m_hostAddress = a_hostAddress;

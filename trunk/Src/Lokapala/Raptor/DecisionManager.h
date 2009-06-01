@@ -1,5 +1,5 @@
-/**@file	DecisionManager.h
- * @brief	½ÇÁúÀû DCMÀÇ Çàµ¿À» ÇÏ´Â CDecisionManager Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	DecisionManager.h
+ * @brief	ì‹¤ì§ˆì  DCMì˜ í–‰ë™ì„ í•˜ëŠ” CDecisionManager í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -9,7 +9,7 @@
 
 /**@ingroup	GroupDCM
  * @class	CDecisionManager
- * @brief	·¦ÅÍÀÇ ÀüÃ¼Àû µ¿ÀÛÀ» °áÁ¤/Çàµ¿ÇÑ´Ù.
+ * @brief	ë©í„°ì˜ ì „ì²´ì  ë™ì‘ì„ ê²°ì •/í–‰ë™í•œë‹¤.
  */
 class CDecisionManager
 {

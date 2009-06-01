@@ -1,5 +1,5 @@
-/**@file	StatusReportDTO.h
- * @brief	CStatusReportDTO Å¬·¡½ºÀÇ Á¤ÀÇ
+ï»¿/**@file	StatusReportDTO.h
+ * @brief	CStatusReportDTO í´ë˜ìŠ¤ì˜ ì •ì˜
  * @author	siva
  */
 
@@ -11,7 +11,7 @@ enum State {HW_DEFECT, SW_DEFECT, REPAIRED, VERIFIED};
 
 /**@ingroup	GroupDAM
  * @class	CStatusReportDTO
- * @brief	°íÀå »óÅÂ¿¡ ´ëÇÑ Á¤º¸Ã¼
+ * @brief	ê³ ì¥ ìƒíƒœì— ëŒ€í•œ ì •ë³´ì²´
  */
 class CStatusReportDTO
 {

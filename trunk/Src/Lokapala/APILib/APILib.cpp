@@ -1,5 +1,5 @@
-//#############################################################################
-//		 2008.9. coded by siva.		API ÈÄÅ· ¶óÀÌºê·¯¸® Á¦°ø DLL.
+ï»¿//#############################################################################
+//		 2008.9. coded by siva.		API í›„í‚¹ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì œê³µ DLL.
 //			reference document : Jeffery Ritcher's code
 //#############################################################################
 
@@ -14,7 +14,7 @@
 #include "APIHook.h"
 
 
-//export ¼±¾ğÀÚ µğÆÄÀÎ
+//export ì„ ì–¸ì ë””íŒŒì¸
 #define APILIBFUNCTION extern "C" __declspec(dllexport)
 
 APILIBFUNCTION BOOL WINAPI TerminateProcessGlobalHook(BOOL fInstall, 
@@ -36,17 +36,17 @@ extern CAPIHook g_TerminateProcess;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//TerminateProcess ´ëÃ¼ÇÔ¼ö
+//TerminateProcess ëŒ€ì²´í•¨ìˆ˜
 BOOL WINAPI Hook_TerminateProcess( HANDLE hProcess, UINT uExitCode ) {
     HANDLE outProcess;
-	//outProcess ÇÚµé·Î ±ÇÇÑ ³ô¿©¼­ ÇÚµé º¹»ç.
+	//outProcess í•¸ë“¤ë¡œ ê¶Œí•œ ë†’ì—¬ì„œ í•¸ë“¤ ë³µì‚¬.
     BOOL res = DuplicateHandle(GetCurrentProcess(), hProcess, GetCurrentProcess(),
 		&outProcess,PROCESS_ALL_ACCESS, FALSE, 0);
 
     if(res) {
-        //outProcess·Î ¿øÇÏ´Â ÇÁ·Î¼¼½º Á¤º¸¸¦ ¸ğµÎ °¡Á®¿Ã¼ö ÀÖ´Ù.
+        //outProcessë¡œ ì›í•˜ëŠ” í”„ë¡œì„¸ìŠ¤ ì •ë³´ë¥¼ ëª¨ë‘ ê°€ì ¸ì˜¬ìˆ˜ ìˆë‹¤.
 
-		//ÇöÀç Á×ÀÌ·Á´Â ÇÁ·Î¼¼½ºÀÇ °æ·Î
+		//í˜„ì¬ ì£½ì´ë ¤ëŠ” í”„ë¡œì„¸ìŠ¤ì˜ ê²½ë¡œ
         char szFileName[ MAX_PATH ] ;
         HMODULE hMods[1024];
         DWORD cbNeeded; 
@@ -56,16 +56,16 @@ BOOL WINAPI Hook_TerminateProcess( HANDLE hProcess, UINT uExitCode ) {
 			//GetModuleFileNameEx : Retrieves the fully-qualified path for the file
 			//containing the specified module
             GetModuleFileNameEx(outProcess, NULL, szFileName, sizeof( szFileName ));
-            //szFileNameÀÌ Á¾·áµÇ´Â ÇÁ·Î¼¼½ºÀÇ ½ÇÇàÆÄÀÏ Ç® ÆĞ½º
+            //szFileNameì´ ì¢…ë£Œë˜ëŠ” í”„ë¡œì„¸ìŠ¤ì˜ ì‹¤í–‰íŒŒì¼ í’€ íŒ¨ìŠ¤
 			
-			//raptorÀÇ ½ÇÇà°æ·Î°¡ ±â·ÏµÈ ¸Ş¸ğ¸® ¸Ê ÆÄÀÏ ¿ÀÇÂ
+			//raptorì˜ ì‹¤í–‰ê²½ë¡œê°€ ê¸°ë¡ëœ ë©”ëª¨ë¦¬ ë§µ íŒŒì¼ ì˜¤í”ˆ
 			HANDLE map = OpenFileMapping(FILE_MAP_READ,FALSE,"raptorSelfPath");
 			if(!map)
 			{
 				MessageBox(NULL,"file mapping object open fail!!","failure",MB_OK);
 			}
 			char *selfPath = (char *)malloc(sizeof(char)*MAX_PATH);
-			selfPath = (char *)MapViewOfFile(map,FILE_MAP_READ,0,0,0);	//¸Ş¸ğ¸® ¸Ê ÆÄÀÏ ¸®µå
+			selfPath = (char *)MapViewOfFile(map,FILE_MAP_READ,0,0,0);	//ë©”ëª¨ë¦¬ ë§µ íŒŒì¼ ë¦¬ë“œ
 
 			//MessageBox(NULL,szFileName,"name of target",MB_OK);
 			//MessageBox(NULL,selfPath,"name of client",MB_OK);
@@ -77,7 +77,7 @@ BOOL WINAPI Hook_TerminateProcess( HANDLE hProcess, UINT uExitCode ) {
 			}
         }
     }
-	//¿ø·¡ÀÇ TerminateProcess È£Ãâ.
+	//ì›ë˜ì˜ TerminateProcess í˜¸ì¶œ.
     return TerminateProcess( hProcess, uExitCode );
 }
 
@@ -85,7 +85,7 @@ BOOL WINAPI Hook_TerminateProcess( HANDLE hProcess, UINT uExitCode ) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-// TerminateProcess, MessageBoxW °´Ã¼ »ı¼º, ÈÄÅ·.
+// TerminateProcess, MessageBoxW ê°ì²´ ìƒì„±, í›„í‚¹.
 CAPIHook g_TerminateProcess("Kernel32.dll", "TerminateProcess", 
    (PROC) Hook_TerminateProcess, TRUE);
 
@@ -97,12 +97,12 @@ HHOOK g_hhook = NULL;
 #pragma data_seg()
 #pragma comment(linker, "/Section:Shared,rws")
 */
-HHOOK g_hhook=NULL;	//ÈÅ °É·ÁÀÖ´ÂÁö ¾Æ´ÑÁö ÇÃ·¡±×.
+HHOOK g_hhook=NULL;	//í›… ê±¸ë ¤ìˆëŠ”ì§€ ì•„ë‹Œì§€ í”Œë˜ê·¸.
 
 ///////////////////////////////////////////////////////////////////////////////
 
 
-//Àü¿ª À©µµ¿ì ÈÅ. ¿òÁ÷ÀÓ¸¸ °¨ÁöÇÏ°í º°´Ù¸¥ ÇàÀ§ ÃëÇÏÁö ¾Ê°í µÇµ¹·ÁÁØ´Ù.
+//ì „ì—­ ìœˆë„ìš° í›…. ì›€ì§ì„ë§Œ ê°ì§€í•˜ê³  ë³„ë‹¤ë¥¸ í–‰ìœ„ ì·¨í•˜ì§€ ì•Šê³  ë˜ëŒë ¤ì¤€ë‹¤.
 static LRESULT WINAPI GetMsgProc(int code, WPARAM wParam, LPARAM lParam) {
 	
 	return(CallNextHookEx(g_hhook, code, wParam, lParam));
@@ -112,10 +112,10 @@ static LRESULT WINAPI GetMsgProc(int code, WPARAM wParam, LPARAM lParam) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-//ÇØ´ç ¸Ş¸ğ¸® ÁÖ¼Ò »ç¿ëÇÏ´Â ¸ğµâÀÇ ÇÚµé ¸®ÅÏ
+//í•´ë‹¹ ë©”ëª¨ë¦¬ ì£¼ì†Œ ì‚¬ìš©í•˜ëŠ” ëª¨ë“ˆì˜ í•¸ë“¤ ë¦¬í„´
 static HMODULE ModuleFromAddress(PVOID pv) {
    MEMORY_BASIC_INFORMATION mbi;
-   //ÁÖ¼Ò Á¤º¸¸¦ È¹µæÇÑ ÈÄ ÁÖ¼ÒÁ¤º¸ Áß Base °ª(¸ğµâÀÇ ÇÚµé)À» ¸®ÅÏ.
+   //ì£¼ì†Œ ì •ë³´ë¥¼ íšë“í•œ í›„ ì£¼ì†Œì •ë³´ ì¤‘ Base ê°’(ëª¨ë“ˆì˜ í•¸ë“¤)ì„ ë¦¬í„´.
    return((VirtualQuery(pv, &mbi, sizeof(mbi)) != 0) 
       ? (HMODULE) mbi.AllocationBase : NULL);
 }
@@ -123,25 +123,25 @@ static HMODULE ModuleFromAddress(PVOID pv) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//App¿¡¼­ ÀÓÆ÷Æ®ÇÏ´Â ÇÔ¼ö. ÀÌ¸¦ ½ÃÀÛÀ¸·Î Àü¿ª api ÈÅÀ» °Ç´Ù.
+//Appì—ì„œ ì„í¬íŠ¸í•˜ëŠ” í•¨ìˆ˜. ì´ë¥¼ ì‹œì‘ìœ¼ë¡œ ì „ì—­ api í›…ì„ ê±´ë‹¤.
 BOOL WINAPI TerminateProcessGlobalHook(BOOL fInstall, DWORD dwThreadId) {
 
    BOOL fOk;
 
-   if (fInstall) {	//ÈÅÀ» ¼³Ä¡ÇÏ°íÀÚ ÇÏ´Â °æ¿ì
-	   if(g_hhook==NULL) {	//¹Ì¸® ¼³Ä¡µÇ¾î ÀÖÁö ¾Ê´Ù¸é ¼³Ä¡ÇÑ´Ù.
-		   //chASSERT(g_hhook == NULL); //°ãÃÄ¼­ ¼³Ä¡ÇÏÁø ¾Ê´Â´Ù.
+   if (fInstall) {	//í›…ì„ ì„¤ì¹˜í•˜ê³ ì í•˜ëŠ” ê²½ìš°
+	   if(g_hhook==NULL) {	//ë¯¸ë¦¬ ì„¤ì¹˜ë˜ì–´ ìˆì§€ ì•Šë‹¤ë©´ ì„¤ì¹˜í•œë‹¤.
+		   //chASSERT(g_hhook == NULL); //ê²¹ì³ì„œ ì„¤ì¹˜í•˜ì§„ ì•ŠëŠ”ë‹¤.
 
-		   // GetMsgProcÀ¸·Î Àü¿ª À©µµ ÈÅ ¼³Ä¡
+		   // GetMsgProcìœ¼ë¡œ ì „ì—­ ìœˆë„ í›… ì„¤ì¹˜
 		   g_hhook = SetWindowsHookEx(WH_GETMESSAGE, GetMsgProc, 
 			   ModuleFromAddress(TerminateProcessGlobalHook), dwThreadId);
 		   fOk = (g_hhook != NULL);
 	   }
-   } else {		//ÈÅÀ» ÇØÁ¦ÇÏ°íÀÚ ÇÏ´Â °æ¿ì
-	   if(g_hhook!=NULL) {	//¹Ì¸® ¼³Ä¡µÇ¾î ÀÖ´Ù¸é ÇØÁ¦ÇÑ´Ù.
-		   //chASSERT(g_hhook != NULL); // ¹Ì¸® ¼³Ä¡µÇ¾î ÀÖÀ» ¶§¸¸ ÇØÁ¦
-		   fOk = UnhookWindowsHookEx(g_hhook);	//À©µµ ÈÅ ÇØÁ¦
-		   g_hhook = NULL;	//ÈÅ ÇÚµé ÃÊ±âÈ­
+   } else {		//í›…ì„ í•´ì œí•˜ê³ ì í•˜ëŠ” ê²½ìš°
+	   if(g_hhook!=NULL) {	//ë¯¸ë¦¬ ì„¤ì¹˜ë˜ì–´ ìˆë‹¤ë©´ í•´ì œí•œë‹¤.
+		   //chASSERT(g_hhook != NULL); // ë¯¸ë¦¬ ì„¤ì¹˜ë˜ì–´ ìˆì„ ë•Œë§Œ í•´ì œ
+		   fOk = UnhookWindowsHookEx(g_hhook);	//ìœˆë„ í›… í•´ì œ
+		   g_hhook = NULL;	//í›… í•¸ë“¤ ì´ˆê¸°í™”
 	   }
 	}
 

@@ -1,5 +1,5 @@
-/**@file	DataAdminFacade.cpp
- * @brief	DAMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DataAdminFacade.cpp
+ * @brief	DAMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -9,38 +9,38 @@
 #include "DataAdminManager.h"
 
 
-/**@brief	ÇöÀç µ¥ÀÌÅÍ¸¦ ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
+/**@brief	í˜„ìž¬ ë°ì´í„°ë¥¼ íŒŒì¼ë¡œ ì €ìž¥í•œë‹¤.
  */
 void CDataAdminFacade::SaveDataAs(CString *a_filePath)
 {
 	CDataAdminManager::Instance()->SaveToFile(a_filePath);
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ÀÐ¾îµéÀÎ´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° ë°ì´í„°ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.
  */
 void CDataAdminFacade::LoadDataFrom(CString *a_filePath)
 {
 	CDataAdminManager::Instance()->LoadFromFile(a_filePath);
 }
 
-/**@brief	À¯Àú ÇÏ³ª¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ìœ ì € í•˜ë‚˜ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDataAdminFacade::AddUser(void *a_user)
 {
 	CDataAdminManager::Instance()->AddUser(a_user);
 }
 
-/**@brief	À¯Àú ÇÏ³ª¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	ìœ ì € í•˜ë‚˜ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CDataAdminFacade::DeleteUser(CString *a_id)
 {
 	CDataAdminManager::Instance()->DeleteUser(a_id);
 }
 
-/**@brief	À¯Àú Á¤º¸ ÀüÃ¼¸¦ ¾Ë·ÁÁØ´Ù.\n
- *			½ÇÁ¦ À¯Àú Á¤º¸Ã¼ÀÇ ±¸Á¶¸¦ ¸ðµç °÷¿¡¼­ ¾Ë°Ô µÉ ÇÊ¿ä´Â ¾øÀ¸¹Ç·Î Æ÷ÀÎÅÍ´Â void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÈ´Ù.\n
- *			ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ À¯Àú Á¤º¸Ã¼ÀÇ ±¸Á¶¸¦ ¾Ë¸é(À¯Àú Á¤º¸Ã¼ Çì´õ¸¦ ÀÎÅ¬·çµå) µÈ´Ù.
- * @return	void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÈ À¯Àú Á¤º¸ ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	ìœ ì € ì •ë³´ ì „ì²´ë¥¼ ì•Œë ¤ì¤€ë‹¤.\n
+ *			ì‹¤ì œ ìœ ì € ì •ë³´ì²´ì˜ êµ¬ì¡°ë¥¼ ëª¨ë“  ê³³ì—ì„œ ì•Œê²Œ ë  í•„ìš”ëŠ” ì—†ìœ¼ë¯€ë¡œ í¬ì¸í„°ëŠ” void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ëœë‹¤.\n
+ *			ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ìœ ì € ì •ë³´ì²´ì˜ êµ¬ì¡°ë¥¼ ì•Œë©´(ìœ ì € ì •ë³´ì²´ í—¤ë”ë¥¼ ì¸í´ë£¨ë“œ) ëœë‹¤.
+ * @return	void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ëœ ìœ ì € ì •ë³´ êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
  */
 void *CDataAdminFacade::GetUsers()
 {
@@ -52,29 +52,29 @@ void *CDataAdminFacade::GetUsers()
 
 
 
-/**@brief	ÀüÃ¼ ÁÂ¼® Å©±â¸¦ ¼³Á¤ÇÑ´Ù.
+/**@brief	ì „ì²´ ì¢Œì„ í¬ê¸°ë¥¼ ì„¤ì •í•œë‹¤.
  */
 void CDataAdminFacade::SetSeats(int a_x, int a_y)
 {
 	CDataAdminManager::Instance()->SetSeats(a_x, a_y);
 }
 
-/**@brief	ÁÂ¼® Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDataAdminFacade::AddSeat(void *a_seat)
 {
 	CDataAdminManager::Instance()->AddSeat(a_seat);
 }
 
-/**@brief	ÁÂ¼® Á¤º¸¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CDataAdminFacade::DeleteSeat(void *a_seat)
 {
 	CDataAdminManager::Instance()->DeleteSeat(a_seat);
 }
 
-/**@brief	ÀüÃ¼ ÁÂ¼® Á¤º¸¸¦ ¾ò´Â´Ù.
- *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ ÁÂ¼® Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+/**@brief	ì „ì²´ ì¢Œì„ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+ *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì¢Œì„ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
  */
 void *CDataAdminFacade::GetSeats()
 {
@@ -85,7 +85,7 @@ void *CDataAdminFacade::GetSeats()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/**@brief	±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDataAdminFacade::AddRule(void *a_rule)
 {
@@ -93,39 +93,39 @@ void CDataAdminFacade::AddRule(void *a_rule)
 }
 
 
-/**@brief	±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CDataAdminFacade::DeleteRule(void *a_rule)
 {
 	CDataAdminManager::Instance()->DeleteRule(a_rule);
 }
 
-/**@brief	±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÀüÃ¼¸¦ ¹ÝÈ¯ÇÑ´Ù.
- *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ ÁÂ¼® Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ ì „ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
+ *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì¢Œì„ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
  */
 void *CDataAdminFacade::GetRules()
 {
 	return CDataAdminManager::Instance()->GetRules();
 }
 
-/**@brief	°íÀå »óÅÂ º¸°í Á¤º¸ ÀüÃ¼¸¦ ¹ÝÈ¯ÇÑ´Ù.
- *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ °íÀå »óÅÂ º¸°í Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+/**@brief	ê³ ìž¥ ìƒíƒœ ë³´ê³  ì •ë³´ ì „ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
+ *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ê³ ìž¥ ìƒíƒœ ë³´ê³  ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
  */
 void *CDataAdminFacade::GetStatusReports()
 {
 	return CDataAdminManager::Instance()->GetStatusReports();
 }
 
-/**@brief	ÇöÀç Á¢¼ÓµÈ ÀüÃ¼ »ç¿ëÀÚ Á¤º¸¸¦ ¾ò´Â´Ù.
- *			void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ÞµÇ¹Ç·Î ÃÖÁ¾ Å¬¶óÀÌ¾ðÆ® ÄÚµå¿¡¼­¸¸ ½ÇÁ¦ ÁÂ¼® Á¤º¸Ã¼ ±¸Á¶¸¦ ¾Ë¸é µÈ´Ù.
+/**@brief	í˜„ìž¬ ì ‘ì†ëœ ì „ì²´ ì‚¬ìš©ìž ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+ *			void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ë˜ë¯€ë¡œ ìµœì¢… í´ë¼ì´ì–¸íŠ¸ ì½”ë“œì—ì„œë§Œ ì‹¤ì œ ì¢Œì„ ì •ë³´ì²´ êµ¬ì¡°ë¥¼ ì•Œë©´ ëœë‹¤.
  */
 void *CDataAdminFacade::GetConnectedHosts()
 {
 	return CDataAdminManager::Instance()->GetConnectedHosts();
 }
 
-/**@brief	ÄÄÆ÷³ÍÆ® °£ Åë½ÅÀ» Å×½ºÆ® ÇÏ±â À§ÇÑ ¸â¹ö ÇÔ¼ö.\n
- *			DAMÀ¸·ÎºÎÅÍ µ¥ÀÌÅÍ ¸®µå¸¦ ÇÏ´Â ¿ªÇÒ. ´Ù¸¥ ÄÄÆ÷³ÍÆ®¿¡¼­ SD¸¦ ÅëÇØ mediator¿¡ ¿äÃ»ÇÏ¸é, mediator¿¡¼­ DAMÀÇ BI¸¦ ÅëÇØ È£ÃâÇÑ´Ù.
+/**@brief	ì»´í¬ë„ŒíŠ¸ ê°„ í†µì‹ ì„ í…ŒìŠ¤íŠ¸ í•˜ê¸° ìœ„í•œ ë©¤ë²„ í•¨ìˆ˜.\n
+ *			DAMìœ¼ë¡œë¶€í„° ë°ì´í„° ë¦¬ë“œë¥¼ í•˜ëŠ” ì—­í• . ë‹¤ë¥¸ ì»´í¬ë„ŒíŠ¸ì—ì„œ SDë¥¼ í†µí•´ mediatorì— ìš”ì²­í•˜ë©´, mediatorì—ì„œ DAMì˜ BIë¥¼ í†µí•´ í˜¸ì¶œí•œë‹¤.
  */
 void CDataAdminFacade::Read()
 {

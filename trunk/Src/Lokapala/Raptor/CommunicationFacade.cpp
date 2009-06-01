@@ -1,5 +1,5 @@
-/**@file	CommunicationFacade.cpp
- * @brief	CCMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	CommunicationFacade.cpp
+ * @brief	CCMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -8,14 +8,14 @@
 
 #include "CommunicationManager.h"
 
-/**@brief	¼ÒÄÏÀ» »ı¼ºÇÑ ÈÄ, ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô connect ÇÑ´Ù.
+/**@brief	ì†Œì¼“ì„ ìƒì„±í•œ í›„, ì˜¤í¼ë ˆì´í„°ì—ê²Œ connect í•œë‹¤.
  */
 void CCommunicationFacade::Initiallize(DWORD a_ServerAddress)
 {
 	CCommunicationManager::Instance()->Initiallize(a_ServerAddress);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿ÍÀÇ ¿¬°áÀ» ²÷´Â´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ì˜ ì—°ê²°ì„ ëŠëŠ”ë‹¤.
  */
 void CCommunicationFacade::CloseConnection()
 {
@@ -23,7 +23,7 @@ void CCommunicationFacade::CloseConnection()
 }
 
 
-/**@brief	ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô º¸³½´Ù.
+/**@brief	í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë³´ë‚¸ë‹¤.
  */
 void CCommunicationFacade::SendTextMessageToOperator(CString *a_message)
 {
@@ -31,7 +31,7 @@ void CCommunicationFacade::SendTextMessageToOperator(CString *a_message)
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ·Î±×ÀÎ ¿äÃ»À» º¸³½´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ì„ ë³´ë‚¸ë‹¤.
  */
 void CCommunicationFacade::SendLoginRequest(void *a_userInfo)
 {
@@ -39,7 +39,7 @@ void CCommunicationFacade::SendLoginRequest(void *a_userInfo)
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» º¸³½´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ë³´ë‚¸ë‹¤.
  */
 void CCommunicationFacade::SendExecutedProcessReport(CString *a_executedProcess)
 {
@@ -47,7 +47,7 @@ void CCommunicationFacade::SendExecutedProcessReport(CString *a_executedProcess)
 }
 
 
-/**@brief	»óÈ² º¸°í¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Àü¼ÛÇÑ´Ù.
+/**@brief	ìƒí™© ë³´ê³ ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì „ì†¡í•œë‹¤.
  */
 void CCommunicationFacade::SendStatusReport(void *a_statusReport)
 {

@@ -1,12 +1,12 @@
-// OperatorDlg.h : header file
+ï»¿// OperatorDlg.h : header file
 //
 
 #pragma once
 #include "afxwin.h"
 
-//¿ø°İ Á¦¾î ´ÙÀÌ¾ó·Î±×
+//ì›ê²© ì œì–´ ë‹¤ì´ì–¼ë¡œê·¸
 #include "RemoteControlDlg.h"
-//¸Ş½ÅÀú ´ÙÀÌ¾ó·Î±×
+//ë©”ì‹ ì € ë‹¤ì´ì–¼ë¡œê·¸
 #include "MessengerDlg.h"
 
 // COperatorDlg dialog

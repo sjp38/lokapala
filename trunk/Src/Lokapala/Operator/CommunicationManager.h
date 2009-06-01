@@ -1,5 +1,5 @@
-/**@file	CommunicationManager.h
- * @brief	CCommunicationManager Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	CommunicationManager.h
+ * @brief	CCommunicationManager í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -13,7 +13,7 @@
 
 /**@ingroup	GroupCCM
  * @class	CCommunicationManager
- * @brief	CCMÀÇ ½ÇÁúÀûÀÎ µ¿ÀÛ. ´Ù¶ó´Ï ÄÄÆ÷³ÍÆ®´Â ¿©±â¼­¸¸ »ç¿ëÇÑ´Ù.
+ * @brief	CCMì˜ ì‹¤ì§ˆì ì¸ ë™ì‘. ë‹¤ë¼ë‹ˆ ì»´í¬ë„ŒíŠ¸ëŠ” ì—¬ê¸°ì„œë§Œ ì‚¬ìš©í•œë‹¤.
  */
 class CCommunicationManager
 {

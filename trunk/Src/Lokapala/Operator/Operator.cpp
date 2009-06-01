@@ -1,4 +1,4 @@
-// Operator.cpp : Defines the class behaviors for the application.
+﻿// Operator.cpp : Defines the class behaviors for the application.
 //
 
 #include "stdafx.h"

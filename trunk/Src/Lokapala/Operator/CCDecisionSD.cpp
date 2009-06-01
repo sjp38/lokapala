@@ -1,13 +1,13 @@
-/**@file	CCDecisionSD.cpp
- * @brief	CCMÀÇ DecisionSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	CCDecisionSD.cpp
+ * @brief	CCMì˜ DecisionSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "CCDecisionSD.h"
 
-/**@brief	»ç¿ëÀÚÀÇ ·Î±×ÀÎ Á¤º¸¿¡ ´ëÇØ À¯È¿ÇÑ »ç¿ëÀÚÀÎÁö È®ÀÎÇÑ´Ù.
- * @param	a_loginRequestData	»ç¿ëÀÚ ·Î±×ÀÎ Á¤º¸ÀÇ Æ÷ÀÎÅÍ. ÇØ´ç DTOÀÇ Æ÷ÀÎÅÍÀÌÁö¸¸ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ ÇØ »ç¿ëÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìžì˜ ë¡œê·¸ì¸ ì •ë³´ì— ëŒ€í•´ ìœ íš¨í•œ ì‚¬ìš©ìžì¸ì§€ í™•ì¸í•œë‹¤.
+ * @param	a_loginRequestData	ì‚¬ìš©ìž ë¡œê·¸ì¸ ì •ë³´ì˜ í¬ì¸í„°. í•´ë‹¹ DTOì˜ í¬ì¸í„°ì´ì§€ë§Œ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… í•´ ì‚¬ìš©í•œë‹¤.
  */
 void CCCDecisionSD::UserLogin(void *a_loginRequestData)
 {
@@ -15,8 +15,8 @@ void CCCDecisionSD::UserLogin(void *a_loginRequestData)
 }
 
 
-/**@brief	»ç¿ëÀÚÀÇ ½ÇÇàÇÑ ÇÁ·Î¼¼½º °¨½Ã º¸°í¿¡ ´ëÇØ, ½ÇÇàÇØµµ µÇ´Â ÇÁ·Î¼¼½ºÀÎÁö ¾î¶²Áö È®ÀÎ, Ã³¸®ÇØÁØ´Ù.
- * @param	a_executedProcessData	»ç¿ëÀÚ°¡ ½ÇÇàÇÑ ÇÁ·Î¼¼½º¿¡ ´ëÇÑ Á¤º¸ÀÇ Æ÷ÀÎÅÍ. ÇØ´ç DTOÀÇ Æ÷ÀÎÅÍÀÌÁö¸¸ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ ÇØ »ç¿ëÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìžì˜ ì‹¤í–‰í•œ í”„ë¡œì„¸ìŠ¤ ê°ì‹œ ë³´ê³ ì— ëŒ€í•´, ì‹¤í–‰í•´ë„ ë˜ëŠ” í”„ë¡œì„¸ìŠ¤ì¸ì§€ ì–´ë–¤ì§€ í™•ì¸, ì²˜ë¦¬í•´ì¤€ë‹¤.
+ * @param	a_executedProcessData	ì‚¬ìš©ìžê°€ ì‹¤í–‰í•œ í”„ë¡œì„¸ìŠ¤ì— ëŒ€í•œ ì •ë³´ì˜ í¬ì¸í„°. í•´ë‹¹ DTOì˜ í¬ì¸í„°ì´ì§€ë§Œ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… í•´ ì‚¬ìš©í•œë‹¤.
  */
 void CCCDecisionSD::JudgeUserExecutedProcess(void *a_executedProcessData)
 {
@@ -24,8 +24,8 @@ void CCCDecisionSD::JudgeUserExecutedProcess(void *a_executedProcessData)
 }
 
 
-/**@brief	»ç¿ëÀÚ·ÎºÎÅÍÀÇ °íÀå »óÅÂ º¸°í¿¡ ´ëÇÑ Ã³¸®.
- * @param	a_statusReportData	»ç¿ëÀÚ°¡ º¸°íÇÑ °íÀå »óÅÂ º¸°í ³»¿ë¿¡ ´ëÇÑ Á¤º¸ÀÇ Æ÷ÀÎÅÍ. ÇØ´ç DTOÀÇ Æ÷ÀÎÅÍÀÌÁö¸¸ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ ÇØ »ç¿ëÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìžë¡œë¶€í„°ì˜ ê³ ìž¥ ìƒíƒœ ë³´ê³ ì— ëŒ€í•œ ì²˜ë¦¬.
+ * @param	a_statusReportData	ì‚¬ìš©ìžê°€ ë³´ê³ í•œ ê³ ìž¥ ìƒíƒœ ë³´ê³  ë‚´ìš©ì— ëŒ€í•œ ì •ë³´ì˜ í¬ì¸í„°. í•´ë‹¹ DTOì˜ í¬ì¸í„°ì´ì§€ë§Œ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… í•´ ì‚¬ìš©í•œë‹¤.
  */
 void CCCDecisionSD::PresentStatusReport(void *a_statusReportData)
 {

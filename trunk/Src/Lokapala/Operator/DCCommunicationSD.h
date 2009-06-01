@@ -1,5 +1,5 @@
-/**@file	DCCommunicationSD.h
- * @brief	DCM¿¡¼­ CCMÀ¸·ÎÀÇ Service Delegate Á¤ÀÇ.
+ï»¿/**@file	DCCommunicationSD.h
+ * @brief	DCMì—ì„œ CCMìœ¼ë¡œì˜ Service Delegate ì •ì˜.
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup GroupDCM
  * @class	CDCCommunicationSD
- * @brief	DCM¿¡¼­ CCMÀ¸·ÎÀÇ Service Delegate.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	DCMì—ì„œ CCMìœ¼ë¡œì˜ Service Delegate.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDCCommunicationSD
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDCCommunicationSD *Instance()
 	{
@@ -40,9 +40,9 @@ public :
 	void SendRaptorTerminationInstruction(void *a_argument);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDCCommunicationSD(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDCCommunicationSD(){}
 private :
 	/**@brief	singleton.	*/

@@ -1,5 +1,5 @@
-/** @file	CBFMediator.h
- *	@brief	Common Business Framework Mediator¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/** @file	CBFMediator.h
+ *	@brief	Common Business Framework Mediatorë¥¼ ì •ì˜í•œë‹¤.
  *	@author	siva
  */
 
@@ -27,16 +27,16 @@
 
 /**@ingroup GroupMediator
  * @class	CCBFMediator
- * @brief	Mediator.\n ¸ğµç ÄÄÆ÷³ÍÆ®´Â ¿ÀÁ÷ ÀÌ ¸Şµğ¿¡ÀÌÅÍ¿Í Åë½ÅÇÑ´Ù.
- * @remarks	°¢ ÄÄÆ÷³ÍÆ®ÀÇ Button Interface¸¦ ÅëÇØ ÄÄÆ÷³ÍÆ®¿¡°Ô ¸í·ÉÀ» ³»¸®°í, Service Delegate·Î ¸í·ÉÀ» ¹Ş´Â´Ù.\n
- *			singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	Mediator.\n ëª¨ë“  ì»´í¬ë„ŒíŠ¸ëŠ” ì˜¤ì§ ì´ ë©”ë””ì—ì´í„°ì™€ í†µì‹ í•œë‹¤.
+ * @remarks	ê° ì»´í¬ë„ŒíŠ¸ì˜ Button Interfaceë¥¼ í†µí•´ ì»´í¬ë„ŒíŠ¸ì—ê²Œ ëª…ë ¹ì„ ë‚´ë¦¬ê³ , Service Delegateë¡œ ëª…ë ¹ì„ ë°›ëŠ”ë‹¤.\n
+ *			singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CCBFMediator
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
-	 * @return	CCBFMediator Æ÷ÀÎÅÍ Å¸ÀÔÀÇ singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
+	 * @return	CCBFMediator í¬ì¸í„° íƒ€ì…ì˜ singleton
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CCBFMediator *Instance()
 	{
@@ -82,13 +82,13 @@ public :
 	//CCM
 	void InitiallizeCommunication(DWORD a_ServerAddress);
 	void CloseConnection();
-	void SendTextMessageToOperator(CString *a_message);	//MSM¿¡ ÀÇÇØ ºÒ·ÁÁø´Ù.
+	void SendTextMessageToOperator(CString *a_message);	//MSMì— ì˜í•´ ë¶ˆë ¤ì§„ë‹¤.
 	void SendLoginRequest(void *a_userInfo);
 	void SendExecutedProcessReport(CString *a_executedProcess);
 	void SendStatusReport(void *a_statusReport);
 
 	//MSM
-	void PostTextMessageToOperator(CString *a_message);			//¾îÂ·°Å³ª send¶ó´Â µ¿»ç´Â CCM¸¸ ¾µ ¼ö ÀÖ´Ù.
+	void PostTextMessageToOperator(CString *a_message);			//ì–´ì¨Œê±°ë‚˜ sendë¼ëŠ” ë™ì‚¬ëŠ” CCMë§Œ ì“¸ ìˆ˜ ìˆë‹¤.
 	void ReceiveTextMessageFromOperator(CString *a_message);
 
 	//NDM
@@ -119,12 +119,12 @@ public :
 	void NotifyStatusReceived(void *a_statusReport);	
 
 protected :
-	/**@breif	»ı¼ºÀÚ	*/
+	/**@breif	ìƒì„±ì	*/
 	CCBFMediator(){}
-	/**@breif	¼Ò¸êÀÚ	*/
+	/**@breif	ì†Œë©¸ì	*/
 	~CCBFMediator(){}
 private :
-	/**@brief	singleton. ¾ğÁ¦³ª ´Ü ÇÏ³ª¸¸ Á¸ÀçÇÑ´Ù.	*/
+	/**@brief	singleton. ì–¸ì œë‚˜ ë‹¨ í•˜ë‚˜ë§Œ ì¡´ì¬í•œë‹¤.	*/
 	static CCBFMediator *m_instance;
 	CDialog *m_mainDlg;
 	CDialog *m_loginDlg;

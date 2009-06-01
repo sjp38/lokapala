@@ -1,4 +1,4 @@
-/**@brief	DAM���� ����ϴ� �̱������ �ʱ�ȭ
+﻿/**@brief	DAM에서 사용하는 싱글톤들을 초기화
  */
 
 #include "stdafx.h"

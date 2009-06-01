@@ -1,5 +1,5 @@
-/**@file	LogFacade.cpp
- * @brief	LGMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	LogFacade.cpp
+ * @brief	LGMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * author	siva
  */
 

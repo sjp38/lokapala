@@ -1,5 +1,5 @@
-/**@file	MessengerFacade.cpp
- * @brief	MSMÀÇ FacadeÀÇ ¸â¹ö ÇÔ¼ö ±¸Çö.
+ï»¿/**@file	MessengerFacade.cpp
+ * @brief	MSMì˜ Facadeì˜ ë©¤ë²„ í•¨ìˆ˜ êµ¬í˜„.
  * @author	siva
  */
 
@@ -8,14 +8,14 @@
 
 #include "MessengerManager.h"
 
-/**@brief	ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô º¸³½´Ù.
+/**@brief	í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë³´ë‚¸ë‹¤.
  */
 void CMessengerFacade::PostTextMessageToOperator(CString *a_message)
 {
 	CMessengerManager::Instance()->PostTextMessageToOperator(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¹Ş´Â´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë°›ëŠ”ë‹¤.
  */
 void CMessengerFacade::ReceiveTextMessageFromOperator(CString *a_message)
 {

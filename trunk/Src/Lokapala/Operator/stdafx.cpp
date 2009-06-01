@@ -1,4 +1,4 @@
-// stdafx.cpp : source file that includes just the standard includes
+ï»¿// stdafx.cpp : source file that includes just the standard includes
 // Operator.pch will be the pre-compiled header
 // stdafx.obj will contain the pre-compiled type information
 
@@ -9,7 +9,7 @@
 #include "CBFMediator.h"
 
 
-/**@brief	CBFMediatorÀÇ instance ÃÊ±â°ªÀ» null·Î Àâ¾ÆÁØ´Ù.
+/**@brief	CBFMediatorì˜ instance ì´ˆê¸°ê°’ì„ nullë¡œ ì¡ì•„ì¤€ë‹¤.
  */
 CCBFMediator *CCBFMediator::m_instance = NULL;
 

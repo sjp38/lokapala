@@ -1,18 +1,18 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "MessengerManager.h"
 
 #include "MSCommunicationSD.h"
 #include "MSLogSD.h"
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ º¸³½´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
  */
 void CMessengerManager::PostTextMessageToOperator(CString *a_message)
 {
 	CMSCommunicationSD::Instance()->PostTextMessageToOperator(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¹Ş¾ÒÀ» ¶§ È£ÃâµÈ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë°›ì•˜ì„ ë•Œ í˜¸ì¶œëœë‹¤.
  */
 void CMessengerManager::ReceiveTextMessageFromOperator(CString *a_message)
 {

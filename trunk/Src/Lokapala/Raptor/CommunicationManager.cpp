@@ -1,5 +1,5 @@
-/**@file	CommunicationManager.cpp
- * @brief	CCommunicationManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	CommunicationManager.cpp
+ * @brief	CCommunicationManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -18,7 +18,7 @@
 #include "CCDecisionSD.h"
 #include "CCMessengerSD.h"
 
-/**@brief	¼ÒÄÏÀ» »ı¼ºÇÑ ÈÄ, ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô connect ÇÑ´Ù.
+/**@brief	ì†Œì¼“ì„ ìƒì„±í•œ í›„, ì˜¤í¼ë ˆì´í„°ì—ê²Œ connect í•œë‹¤.
  */
 void CCommunicationManager::Initiallize(DWORD a_ServerAddress)
 {
@@ -40,7 +40,7 @@ void CCommunicationManager::Initiallize(DWORD a_ServerAddress)
 	}
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿ÍÀÇ ¿¬°áÀ» ²÷´Â´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ì˜ ì—°ê²°ì„ ëŠëŠ”ë‹¤.
  */
 void CCommunicationManager::CloseConnection()
 {
@@ -55,7 +55,7 @@ void CCommunicationManager::CloseConnection()
 }
 
 
-/**@brief	ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô º¸³½´Ù.
+/**@brief	í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë³´ë‚¸ë‹¤.
  */
 void CCommunicationManager::SendTextMessage(CString a_message)
 {
@@ -68,12 +68,12 @@ void CCommunicationManager::SendTextMessage(CString a_message)
 }
 
 
-/**@brief	´Ù¶ó´Ï ÄÄÆ÷³ÍÆ®·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ Àü¼Û¹Ş¾ÒÀ½À» µè´Â´Ù.
- *			Àü¼Û¹ŞÀº ¸Ş¼¼Áö¸¦ ºĞ¼®, ÇàÀ§¿¡ ¸Â´Â ¼­ºñ½º¸¦ DCM ¶Ç´Â MSM¿¡°Ô ¿äÃ»ÇÑ´Ù.
+/**@brief	ë‹¤ë¼ë‹ˆ ì»´í¬ë„ŒíŠ¸ë¡œë¶€í„° ë°ì´í„°ë¥¼ ì „ì†¡ë°›ì•˜ìŒì„ ë“£ëŠ”ë‹¤.
+ *			ì „ì†¡ë°›ì€ ë©”ì„¸ì§€ë¥¼ ë¶„ì„, í–‰ìœ„ì— ë§ëŠ” ì„œë¹„ìŠ¤ë¥¼ DCM ë˜ëŠ” MSMì—ê²Œ ìš”ì²­í•œë‹¤.
  */
 void CCommunicationManager::NotifyReceived(CString a_message)
 {
-	CCBFMediator::Instance()->Notify(&a_message);	//Å×½ºÆ®¿ë. ÃÖÁ¾ ¹öÀü¿¡¼­´Â Áö¿ï °Í.
+	CCBFMediator::Instance()->Notify(&a_message);	//í…ŒìŠ¤íŠ¸ìš©. ìµœì¢… ë²„ì „ì—ì„œëŠ” ì§€ìš¸ ê²ƒ.
 	USES_CONVERSION;
 	TiXmlDocument doc;
 	doc.Parse(W2A(a_message));
@@ -126,14 +126,14 @@ void CCommunicationManager::NotifyReceived(CString a_message)
 }
 
 
-/**@brief	¼­¹ö¿Í ¿¬°áÀÌ ¼º°øÇß´Ù.
+/**@brief	ì„œë²„ì™€ ì—°ê²°ì´ ì„±ê³µí–ˆë‹¤.
  */
 void CCommunicationManager::Connected()
 {
 	CCBFMediator::Instance()->Connected();
 }
 
-/**@brief	¼­¹ö¿ÍÀÇ ¿¬°áÀÌ ²÷¾îÁ³´Ù.
+/**@brief	ì„œë²„ì™€ì˜ ì—°ê²°ì´ ëŠì–´ì¡Œë‹¤.
  */
 void CCommunicationManager::Disconnected()
 {
@@ -144,8 +144,8 @@ void CCommunicationManager::Disconnected()
 
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ·Î±×ÀÎ ¿äÃ»À» º¸³½´Ù.
- * @param	a_userInfo	CUserDTO Æ÷ÀÎÅÍ·Î ÀÌ¸§, ºñ¹Ğ¹øÈ£ µîÀÇ Á¤º¸¸¦ °®´Â´Ù. void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ µÇ¾î Àü´ŞµÈ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ì„ ë³´ë‚¸ë‹¤.
+ * @param	a_userInfo	CUserDTO í¬ì¸í„°ë¡œ ì´ë¦„, ë¹„ë°€ë²ˆí˜¸ ë“±ì˜ ì •ë³´ë¥¼ ê°–ëŠ”ë‹¤. void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… ë˜ì–´ ì „ë‹¬ëœë‹¤.
  */
 void CCommunicationManager::SendLoginRequest(void *a_userInfo)
 {
@@ -158,7 +158,7 @@ void CCommunicationManager::SendLoginRequest(void *a_userInfo)
 	root->SetAttribute("Header", LOGIN_REQUEST);
 	root->SetAttribute("name", W2A(userInfo->m_name));
 	root->SetAttribute("lowPassword", W2A(userInfo->m_lowLevelPassword));
-	root->SetAttribute("highPassword", W2A(userInfo->m_highLevelPassword+_T("temp")));	//ÇØ½ÌµÈ °ªÀÇ ºÒ±ÕÇü¼ºÀ¸·Î ÅäÅ©³ªÀÌÂ¡ÀÌ ¾ÈµÇ´Â Á¡À» °¨¾ÈÇØ ¸¶Áö¸·¿¡  temp¶ó´Â ¹®ÀÚ¿­À» ³Ö´Â´Ù.
+	root->SetAttribute("highPassword", W2A(userInfo->m_highLevelPassword+_T("temp")));	//í•´ì‹±ëœ ê°’ì˜ ë¶ˆê· í˜•ì„±ìœ¼ë¡œ í† í¬ë‚˜ì´ì§•ì´ ì•ˆë˜ëŠ” ì ì„ ê°ì•ˆí•´ ë§ˆì§€ë§‰ì—  tempë¼ëŠ” ë¬¸ìì—´ì„ ë„£ëŠ”ë‹¤.
 
 	TiXmlPrinter printer;
 	printer.SetStreamPrinting();
@@ -169,8 +169,8 @@ void CCommunicationManager::SendLoginRequest(void *a_userInfo)
 }
 
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ·Î±×ÀÎ Çã¿ë ¸Ş¼¼Áö¸¦ ¹Ş¾ÒÀ» ¶§.
- *			DCMÀ¸·ÎÀÇ SD¸¦ ÅëÇØ DCM¿¡¼­ ·Î±×ÀÎ °ü·Ã ¼­ºñ½º¸¦ ÇØÁÖ½Ç ¿äÃ»ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ë¥¼ ë°›ì•˜ì„ ë•Œ.
+ *			DCMìœ¼ë¡œì˜ SDë¥¼ í†µí•´ DCMì—ì„œ ë¡œê·¸ì¸ ê´€ë ¨ ì„œë¹„ìŠ¤ë¥¼ í•´ì£¼ì‹¤ ìš”ì²­í•œë‹¤.
  */
 void CCommunicationManager::LoginAccepted(CString *a_message)
 {
@@ -189,7 +189,7 @@ void CCommunicationManager::LoginAccepted(CString *a_message)
 }
 
 
-/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ¾Ë¸°´Ù.
+/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì•Œë¦°ë‹¤.
  */
 void CCommunicationManager::SendExecutedProcessReport(CString *a_executedProcess)
 {
@@ -210,8 +210,8 @@ void CCommunicationManager::SendExecutedProcessReport(CString *a_executedProcess
 }
 
 
-/**@brief	¸Ş½ÅÀúÀÇ ¿äÃ»¿¡ µû¶ó ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Àü¼ÛÇÑ´Ù.
- * @remarks	³»ºÎÀûÀ¸·Î SendTextMessage ¸Ş¼­µå¸¦ »ç¿ëÇÏ´Âµ¥, ¼­·Î ´Ù¸¥ ¿ëµµÀÓÀ» ÁÖÀÇÇÒ °Í.
+/**@brief	ë©”ì‹ ì €ì˜ ìš”ì²­ì— ë”°ë¼ í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì „ì†¡í•œë‹¤.
+ * @remarks	ë‚´ë¶€ì ìœ¼ë¡œ SendTextMessage ë©”ì„œë“œë¥¼ ì‚¬ìš©í•˜ëŠ”ë°, ì„œë¡œ ë‹¤ë¥¸ ìš©ë„ì„ì„ ì£¼ì˜í•  ê²ƒ.
  */
 void CCommunicationManager::SendTextMessageToOperator(CString *a_message)
 {
@@ -232,7 +232,7 @@ void CCommunicationManager::SendTextMessageToOperator(CString *a_message)
 }
 
 
-/**@brief	»óÈ² º¸°í¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Àü¼ÛÇÑ´Ù.
+/**@brief	ìƒí™© ë³´ê³ ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì „ì†¡í•œë‹¤.
  */
 void CCommunicationManager::SendStatusReport(void *a_statusReport)
 {
@@ -256,7 +256,7 @@ void CCommunicationManager::SendStatusReport(void *a_statusReport)
 	SendTextMessage(A2W(packet));
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ »óÅÂ º¸°í¸¦ ¹Ş¾ÒÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ìƒíƒœ ë³´ê³ ë¥¼ ë°›ì•˜ì„ ë•Œ.
  */
 void CCommunicationManager::ChangeStatus(CString *a_message)
 {

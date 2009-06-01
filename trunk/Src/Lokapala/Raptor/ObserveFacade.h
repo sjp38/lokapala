@@ -1,5 +1,5 @@
-/**@file	ObserveFacade.h
- * @brief	Observe ManagerÀÇ Facade Á¤ÀÇ.
+ï»¿/**@file	ObserveFacade.h
+ * @brief	Observe Managerì˜ Facade ì •ì˜.
  * author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup GroupOSM
  * @class	CObserveFacade
- * @brief	OSMÀÇ Facade.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	OSMì˜ Facade.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CObserveFacade : public CObserveBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CObserveFacade *Instance()
 	{
@@ -33,9 +33,9 @@ public :
 	virtual void StopProcessObservation();
 	virtual void ReceiveExecutedProcess(CString a_executedProcess);
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CObserveFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CObserveFacade(){}
 private :
 	/**@brief	singleton	*/

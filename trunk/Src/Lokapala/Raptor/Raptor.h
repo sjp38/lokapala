@@ -1,4 +1,4 @@
-// Raptor.h : main header file for the PROJECT_NAME application
+﻿// Raptor.h : main header file for the PROJECT_NAME application
 //
 
 #pragma once

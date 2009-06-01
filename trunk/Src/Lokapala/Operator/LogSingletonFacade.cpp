@@ -1,4 +1,4 @@
-/**@brief	DCM���� ����ϴ� �̱������ �ʱ�ȭ
+﻿/**@brief	DCM에서 사용하는 싱글톤들을 초기화
  */
 
 #include "stdafx.h"

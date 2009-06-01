@@ -1,11 +1,11 @@
-// OperatorDlg.cpp : implementation file
+ï»¿// OperatorDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
 #include "Operator.h"
 #include "OperatorDlg.h"
 
-//µ¥ÀÌÅÍ °ü¸® ´ÙÀÌ¾ó·Î±×
+//ë°ì´í„° ê´€ë¦¬ ë‹¤ì´ì–¼ë¡œê·¸
 #include "DataAdminDlg.h"
 
 
@@ -190,7 +190,7 @@ HCURSOR COperatorDlg::OnQueryDragIcon()
 }
 
 
-/**@brief	Ä¿¸Çµå ¹öÆ° Å¬¸¯	*/
+/**@brief	ì»¤ë§¨ë“œ ë²„íŠ¼ í´ë¦­	*/
 void COperatorDlg::OnBnClickedCmdExecute()
 {
 	// TODO: Add your control notification handler code here
@@ -217,7 +217,7 @@ void COperatorDlg::OnBnClickedCmdExecute()
 }
 
 
-/**@brief	µ¥ÀÌÅÍ °ü¸® ¹öÆ° Å¬¸¯
+/**@brief	ë°ì´í„° ê´€ë¦¬ ë²„íŠ¼ í´ë¦­
  */
 LRESULT COperatorDlg::OnOptionClick(WPARAM wParam, LPARAM lParam)
 {
@@ -226,7 +226,7 @@ LRESULT COperatorDlg::OnOptionClick(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-/**@brief	¿ø°İ Á¦¾î ¹öÆ° Å¬¸¯
+/**@brief	ì›ê²© ì œì–´ ë²„íŠ¼ í´ë¦­
  */
 LRESULT COperatorDlg::OnControlClick(WPARAM wParam, LPARAM lParam)
 {
@@ -238,7 +238,7 @@ LRESULT COperatorDlg::OnControlClick(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-/**@brief	¸Ş½ÅÀú ¹öÆ° Å¬¸¯
+/**@brief	ë©”ì‹ ì € ë²„íŠ¼ í´ë¦­
  */
 LRESULT COperatorDlg::OnMessengerClick(WPARAM wParam, LPARAM lParam)
 {
@@ -250,7 +250,7 @@ LRESULT COperatorDlg::OnMessengerClick(WPARAM wParam, LPARAM lParam)
 }
 
 
-/**@brief	°øÁö Ã¢¿¡ ¸Ş¼¼Áö¸¦ ¶ç¿î´Ù.
+/**@brief	ê³µì§€ ì°½ì— ë©”ì„¸ì§€ë¥¼ ë„ìš´ë‹¤.
  */
 void COperatorDlg::Notify(CString a_message)
 {
@@ -270,7 +270,7 @@ void COperatorDlg::Notify(CString a_message)
 	m_notifyList.SetCurSel(m_notifyList.GetCount()-1);	
 }
 
-/**@brief	¿¬°á »óÅÂ Ç¥½Ã Ã¢¿¡ ¸Ş¼¼Áö¸¦ ¶ç¿î´Ù.
+/**@brief	ì—°ê²° ìƒíƒœ í‘œì‹œ ì°½ì— ë©”ì„¸ì§€ë¥¼ ë„ìš´ë‹¤.
  */
 void COperatorDlg::NotifyConnected(CString a_message)
 {	
@@ -288,7 +288,7 @@ void COperatorDlg::NotifyConnected(CString a_message)
 	}
 }
 
-/**@brief	½ÇÇà ±İÁö ÇÁ·Î¼¼½º ½ÇÇà °øÁö Ã¢¿¡ ¸Ş¼¼Áö¸¦ ¶ç¿î´Ù.
+/**@brief	ì‹¤í–‰ ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ê³µì§€ ì°½ì— ë©”ì„¸ì§€ë¥¼ ë„ìš´ë‹¤.
  */
 void COperatorDlg::NotifyCriminal(CString a_message)
 {
@@ -309,8 +309,8 @@ void COperatorDlg::NotifyCriminal(CString a_message)
 }
 
 
-/**@brief	LKPLM_NOTIFYMESSAGE  ¸Ş¼¼Áö ÇÚµé·¯.
- *			°øÁö ¸®½ºÆ®¹Ú½º¿¡ ¸Ş¼¼Áö¸¦ ¶ç¿î´Ù.
+/**@brief	LKPLM_NOTIFYMESSAGE  ë©”ì„¸ì§€ í•¸ë“¤ëŸ¬.
+ *			ê³µì§€ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì— ë©”ì„¸ì§€ë¥¼ ë„ìš´ë‹¤.
  */
 LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 {
@@ -333,7 +333,7 @@ LRESULT COperatorDlg::OnNotifyMessage(WPARAM wParam, LPARAM lParam)
 }
 
 
-/**@brief	LKPLM_SHOWCHANGED  ¸Ş¼¼Áö ÇÚµé·¯
+/**@brief	LKPLM_SHOWCHANGED  ë©”ì„¸ì§€ í•¸ë“¤ëŸ¬
  */
 LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 {
@@ -423,7 +423,7 @@ LRESULT COperatorDlg::OnShowChanged(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-/**@brief	LKPLM_SHOWSTATUS  ¸Ş¼¼Áö ÇÚµé·¯
+/**@brief	LKPLM_SHOWSTATUS  ë©”ì„¸ì§€ í•¸ë“¤ëŸ¬
  */
 LRESULT COperatorDlg::OnShowStatus(WPARAM wParam, LPARAM lParam)
 {
@@ -431,7 +431,7 @@ LRESULT COperatorDlg::OnShowStatus(WPARAM wParam, LPARAM lParam)
 }
 
 
-/**@brief	ÁÂ¼® ¹øÈ£·Î ÇØ´ç ÁÂ¼®ÀÇ ¸®½ºÆ® ÄÁÆ®·Ñ ³» ÀÎµ¦½º¸¦ ¾ò¾î¿Â´Ù.
+/**@brief	ì¢Œì„ ë²ˆí˜¸ë¡œ í•´ë‹¹ ì¢Œì„ì˜ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ë‚´ ì¸ë±ìŠ¤ë¥¼ ì–»ì–´ì˜¨ë‹¤.
  */
 int COperatorDlg::GetIconIndexBySeatId(CString a_seatId)
 {
@@ -444,16 +444,16 @@ int COperatorDlg::GetIconIndexBySeatId(CString a_seatId)
 	return (seat->m_position.y - 1) * seatData->m_maxX + seat->m_position.x - 1;
 }
 
-/**@brief	ÁÂ¼® Å©±â°¡ º¯ÇßÀ½À» Ç¥½ÃÇÑ´Ù.
- * @brief	a_maxX	»õ·Î¿î, ÁÂ¼®ÀÇ °¡·Î Å©±â
- * @brief	a_maxY	»õ·Î¿î, ÁÂ¼®ÀÇ ¼¼·Î Å©±â
+/**@brief	ì¢Œì„ í¬ê¸°ê°€ ë³€í–ˆìŒì„ í‘œì‹œí•œë‹¤.
+ * @brief	a_maxX	ìƒˆë¡œìš´, ì¢Œì„ì˜ ê°€ë¡œ í¬ê¸°
+ * @brief	a_maxY	ìƒˆë¡œìš´, ì¢Œì„ì˜ ì„¸ë¡œ í¬ê¸°
  */
 void COperatorDlg::DisplayChangedSeatSize(int a_maxX, int a_maxY)
 {	
 	InitiallizeStatusListCtrl();
 }
 
-/**@brief	»õ·Î¿î ÁÂ¼®ÀÇ Ãß°¡¸¦ ³ªÅ¸³½´Ù.
+/**@brief	ìƒˆë¡œìš´ ì¢Œì„ì˜ ì¶”ê°€ë¥¼ ë‚˜íƒ€ë‚¸ë‹¤.
  */
 void COperatorDlg::DisplayAddedSeat(CString a_seatId)
 {
@@ -484,18 +484,18 @@ void COperatorDlg::DisplayAddedSeat(CString a_seatId)
 	}
 }
 
-/**@brief	»õ·Î¿î ÁÂ¼®ÀÇ »èÁ¦¸¦ ³ªÅ¸³½´Ù.
+/**@brief	ìƒˆë¡œìš´ ì¢Œì„ì˜ ì‚­ì œë¥¼ ë‚˜íƒ€ë‚¸ë‹¤.
  */
 void COperatorDlg::DisplayDeletedSeat(CString a_seatId)
 {
 	int seatNumber = GetIconIndexBySeatId(a_seatId);
-	m_stateDisplayList.SetItemText(seatNumber, 0, _T(""));				//ÀÌ¸§ ¹Ù²Ù°í
-	m_stateDisplayList.SetItemState( seatNumber, LVIS_CUT, LVIS_CUT);	//·Î±×¾Æ¿ô ½ÃÅ°°í
-	DisplayIconAsNormal(a_seatId);		//Á¤»ó »óÅÂ·Î ¹Ù²Û´Ù.
+	m_stateDisplayList.SetItemText(seatNumber, 0, _T(""));				//ì´ë¦„ ë°”ê¾¸ê³ 
+	m_stateDisplayList.SetItemState( seatNumber, LVIS_CUT, LVIS_CUT);	//ë¡œê·¸ì•„ì›ƒ ì‹œí‚¤ê³ 
+	DisplayIconAsNormal(a_seatId);		//ì •ìƒ ìƒíƒœë¡œ ë°”ê¾¼ë‹¤.
 }
 
 
-/**@brief	·Î±×ÀÎ µÇ¾úÀ½À» ¸®½ºÆ® ÄÁÆ®·ÑÀÇ ¾ÆÀÌÄÜÀ¸·Î Ç¥½ÃÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸ ë˜ì—ˆìŒì„ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì˜ ì•„ì´ì½˜ìœ¼ë¡œ í‘œì‹œí•œë‹¤.
  */
 void COperatorDlg::DisplayIconAsLogin(CString a_seatId)
 {
@@ -507,7 +507,7 @@ void COperatorDlg::DisplayIconAsLogin(CString a_seatId)
 	m_stateDisplayList.SetItemState( seatNumber, 0, LVIS_CUT);
 }
 
-/**@brief	·Î±×¾Æ¿ô µÇ¾úÀ½À» ¸®½ºÆ® ÄÁÆ®·ÑÀÇ ¾ÆÀÌÄÜÀ¸·Î Ç¥½ÃÇÑ´Ù.
+/**@brief	ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŒì„ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì˜ ì•„ì´ì½˜ìœ¼ë¡œ í‘œì‹œí•œë‹¤.
  */
 void COperatorDlg::DisplayIconAsLogout(CString a_seatId)
 {
@@ -515,7 +515,7 @@ void COperatorDlg::DisplayIconAsLogout(CString a_seatId)
 	m_stateDisplayList.SetItemState( seatNumber, LVIS_CUT, LVIS_CUT);
 }
 
-/**@brief	Á¤»ó »óÅÂ°¡ µÇ¾úÀ½À» ¸®½ºÆ® ÄÁÆ®·ÑÀÇ ¾ÆÀÌÄÜÀ¸·Î Ç¥½ÃÇÑ´Ù.
+/**@brief	ì •ìƒ ìƒíƒœê°€ ë˜ì—ˆìŒì„ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì˜ ì•„ì´ì½˜ìœ¼ë¡œ í‘œì‹œí•œë‹¤.
  */
 void COperatorDlg::DisplayIconAsNormal(CString a_seatId)
 {
@@ -535,7 +535,7 @@ void COperatorDlg::DisplayIconAsNormal(CString a_seatId)
 	m_stateDisplayList.SetItem( &item);
 }
 
-/**@brief	ºñÁ¤»ó »óÅÂ°¡ µÇ¾úÀ½À» ¸®½ºÆ® ÄÁÆ®·ÑÀÇ ¾ÆÀÌÄÜÀ¸·Î Ç¥½ÃÇÑ´Ù.
+/**@brief	ë¹„ì •ìƒ ìƒíƒœê°€ ë˜ì—ˆìŒì„ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì˜ ì•„ì´ì½˜ìœ¼ë¡œ í‘œì‹œí•œë‹¤.
  */
 void COperatorDlg::DisplayIconAsAbnormal(CString a_seatId)
 {
@@ -556,7 +556,7 @@ void COperatorDlg::DisplayIconAsAbnormal(CString a_seatId)
 }
 
 
-/**@brief	¾ÆÀÌÄÜÀ» ¼±ÅÃ »óÅÂ·Î ¸¸µé¾î ÁÖ¸ñÇÏ°Ô ¸¸µç´Ù.
+/**@brief	ì•„ì´ì½˜ì„ ì„ íƒ ìƒíƒœë¡œ ë§Œë“¤ì–´ ì£¼ëª©í•˜ê²Œ ë§Œë“ ë‹¤.
  */
 void COperatorDlg::DisplayIconAsAttention(CString a_seatId)
 {
@@ -567,7 +567,7 @@ void COperatorDlg::DisplayIconAsAttention(CString a_seatId)
 }
 
 
-/**@brief	¸®½ºÆ® ÄÁÆ®·Ñ¿¡ ÀÌ¹ÌÁö ¸®½ºÆ®¸¦ ¼¼ÆÃÇÑ´Ù.
+/**@brief	ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì— ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ë¥¼ ì„¸íŒ…í•œë‹¤.
  */
 void COperatorDlg::SetImageList()
 {
@@ -586,7 +586,7 @@ void COperatorDlg::SetImageList()
 	}
 }
 
-/**@brief	»óÅÂ Ç¥½Ã ¸®½ºÆ® ÄÁÆ®·ÑÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+/**@brief	ìƒíƒœ í‘œì‹œ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì„ ì´ˆê¸°í™” í•œë‹¤.
  */
 void COperatorDlg::InitiallizeStatusListCtrl()
 {
@@ -622,7 +622,7 @@ void COperatorDlg::InitiallizeStatusListCtrl()
 	}
 }
 
-/**@brief	¸®½ºÆ® ¹Ú½º¿¡¼­ ¾ÆÀÌÅÛ ¼±ÅÃ ½Ã. ÇØ´ç ÀÚ¸®ÀÇ state report Á¤º¸¸¦ notify ¸®½ºÆ®¹Ú½º¸¦ ÅëÇØ º¸¿©ÁØ´Ù.
+/**@brief	ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ì—ì„œ ì•„ì´í…œ ì„ íƒ ì‹œ. í•´ë‹¹ ìë¦¬ì˜ state report ì •ë³´ë¥¼ notify ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ë¥¼ í†µí•´ ë³´ì—¬ì¤€ë‹¤.
  */
 void COperatorDlg::OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
 {
@@ -675,7 +675,7 @@ void COperatorDlg::OnLvnItemchangedStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
-/**@brief	¸®½ºÆ®¹Ú½º¿¡¼­ ¿ìÅ¬¸¯
+/**@brief	ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ìš°í´ë¦­
  */
 void COperatorDlg::OnNMRClickStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
 {
@@ -695,8 +695,8 @@ void COperatorDlg::OnNMRClickStateDisplay(NMHDR *pNMHDR, LRESULT *pResult)
 }
 
 
-/**@brief	»óÅÂ Ç¥½Ã ¸®½ºÆ® ÄÁÆ®·Ñ¿¡¼­ ¼±ÅÃµÈ Ç×¸ñµéÀÇ ÁÂ¼® id¸¦ ¾ò¾î¿Â´Ù.
- * @param	a_target	¼±ÅÃµÈ Ç×¸ñµéÀÇ ÁÂ¼® id¸¦ ³Ö¾îÁÙ Æ÷ÀÎÅÍ.
+/**@brief	ìƒíƒœ í‘œì‹œ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì—ì„œ ì„ íƒëœ í•­ëª©ë“¤ì˜ ì¢Œì„ idë¥¼ ì–»ì–´ì˜¨ë‹¤.
+ * @param	a_target	ì„ íƒëœ í•­ëª©ë“¤ì˜ ì¢Œì„ idë¥¼ ë„£ì–´ì¤„ í¬ì¸í„°.
  */
 void COperatorDlg::GetSelectedIconSeatId(CArray<CString> *a_target)
 {
@@ -717,7 +717,7 @@ void COperatorDlg::GetSelectedIconSeatId(CArray<CString> *a_target)
 	}	
 }
 
-/**@brief	ÄÁÅØ½ºÆ® ¸Ş´º¿¡¼­ ¿ø°İ Á¦¾î ¼±ÅÃ
+/**@brief	ì»¨í…ìŠ¤íŠ¸ ë©”ë‰´ì—ì„œ ì›ê²© ì œì–´ ì„ íƒ
  */
 void COperatorDlg::OnRemoteControl()
 {
@@ -732,7 +732,7 @@ void COperatorDlg::OnRemoteControl()
 	m_remoteControlDlg = NULL;
 }
 
-/**@brief	ÄÁÅØ½ºÆ® ¸Ş´º¿¡¼­ ÁÂ¼® ¼³Á¤ ¼±ÅÃ
+/**@brief	ì»¨í…ìŠ¤íŠ¸ ë©”ë‰´ì—ì„œ ì¢Œì„ ì„¤ì • ì„ íƒ
  */
 void COperatorDlg::OnSetSeat()
 {
@@ -741,7 +741,7 @@ void COperatorDlg::OnSetSeat()
 	dataAdminDlg.DoModal();
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»ö ÁöÁ¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰ ì§€ì •
  */
 HBRUSH COperatorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -751,7 +751,7 @@ HBRUSH COperatorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ì…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -763,26 +763,26 @@ HBRUSH COperatorDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±×¸¦ Å¬¸¯ ÇßÀ» ¶§.
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ í´ë¦­ í–ˆì„ ë•Œ.
  */
 void COperatorDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
 	if(point.x > 1140 && point.x < 1190)
 	{
-		if(point.y > 10 && point.y < 30)		//Á¾·á ¹öÆ°
+		if(point.y > 10 && point.y < 30)		//ì¢…ë£Œ ë²„íŠ¼
 		{
 			PostMessage(WM_CLOSE);
 		}
-		if(point.y > 300 && point.y < 350)		//¼³Á¤ ¹öÆ°
+		if(point.y > 300 && point.y < 350)		//ì„¤ì • ë²„íŠ¼
 		{
 			PostMessage(LKPLM_OPTION_CLICK);			
 		}
-		if(point.y > 380 && point.y < 430)		//Á¶ÀÛ ¹öÆ°
+		if(point.y > 380 && point.y < 430)		//ì¡°ì‘ ë²„íŠ¼
 		{
 			PostMessage(LKPLM_CONTROL_CLICK);
 		}
-		if(point.y > 450 && point.y < 500)		//´ëÈ­ ¹öÆ°
+		if(point.y > 450 && point.y < 500)		//ëŒ€í™” ë²„íŠ¼
 		{
 			PostMessage(LKPLM_MESSENGER_CLICK);
 		}

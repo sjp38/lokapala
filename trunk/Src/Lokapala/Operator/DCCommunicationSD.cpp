@@ -1,5 +1,5 @@
-/**@file	DCCommunicationSD.cpp
- * @brief	DCMÀÇ CommunicationSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCCommunicationSD.cpp
+ * @brief	DCMì˜ CommunicationSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -7,7 +7,7 @@
 #include "DCCommunicationSD.h"
 
 
-/**@brief	ÇØ´çÇÏ´Â ÁÖ¼ÒÀÇ »ç¿ëÀÚÀÇ ·Î±×ÀÎ Çã¿ë ¸Ş¼¼Áö¸¦ ³¯¸°´Ù.
+/**@brief	í•´ë‹¹í•˜ëŠ” ì£¼ì†Œì˜ ì‚¬ìš©ìì˜ ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDCCommunicationSD::NotifyAccepted(void *a_acceptedData)
 {
@@ -15,63 +15,63 @@ void CDCCommunicationSD::NotifyAccepted(void *a_acceptedData)
 }
 
 
-/**@brief	Æ¯Á¤ À¯ÀúÀÇ ÄÄÇ»ÅÍ¸¦ ²¨¹ö¸°´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ì˜ ì»´í“¨í„°ë¥¼ êº¼ë²„ë¦°ë‹¤.
  */
 void CDCCommunicationSD::SendShutdownInstruction(void *a_argument)
 {
 	CCBFMediator::Instance()->SendShutdownInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯ÀúÀÇ ÄÄÇ»ÅÍ¸¦ ÀçºÎÆÃ ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ì˜ ì»´í“¨í„°ë¥¼ ì¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
  */
 void CDCCommunicationSD::SendRebootInstruction(void *a_argument)
 {
 	CCBFMediator::Instance()->SendRebootInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯Àú¸¦ ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ë¥¼ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CDCCommunicationSD::SendBanUserInstruction(void *a_argument)
 {
 	CCBFMediator::Instance()->SendBanUserInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯Àú¿¡°Ô Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ì—ê²Œ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
  */
 void CDCCommunicationSD::SendExecuteProcessInstruction(void *a_argument)
 {
 	CCBFMediator::Instance()->SendExecuteProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯ÀúÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
  */
 void CDCCommunicationSD::SendKillProcessInstruction(void *a_argument)
 {
 	CCBFMediator::Instance()->SendKillProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯Àú°¡ ½ÇÇàÇÏ°í ÀÖ´Â ¸ğµç ÇÁ·Î¼¼½º¸¦ Á×ÀÎ´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ê°€ ì‹¤í–‰í•˜ê³  ìˆëŠ” ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì£½ì¸ë‹¤.
  */
 void CDCCommunicationSD::SendGenocideProcessInstruction(void *a_argument)
 {
 	CCBFMediator::Instance()->SendGenocideProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ À¯Àú¿¡°Ô °æ°í ¸Ş¼¼Áö¸¦ ³Ñ±ä´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ì—ê²Œ ê²½ê³  ë©”ì„¸ì§€ë¥¼ ë„˜ê¸´ë‹¤.
  */
 void CDCCommunicationSD::SendWarningMessage(void *a_argument)
 {
 	CCBFMediator::Instance()->SendWarningMessage(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô »óÅÂ º¸°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ìƒíƒœ ë³´ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDCCommunicationSD::SendStatusReport(void *a_statusReport)
 {
 	CCBFMediator::Instance()->SendStatusReport(a_statusReport);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®·Î ·¦ÅÍ µ¿ÀÛ ÁßÁö ¸í·ÉÀ» ³¯¸°´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ë¡œ ë©í„° ë™ì‘ ì¤‘ì§€ ëª…ë ¹ì„ ë‚ ë¦°ë‹¤.
  */
 void CDCCommunicationSD::SendRaptorTerminationInstruction(void *a_argument)
 {

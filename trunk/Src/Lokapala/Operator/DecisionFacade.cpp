@@ -1,5 +1,5 @@
-/**@file	DecisionFacade.cpp
- * @brief	DCMÀÇ FacadeÀÇ ¸â¹ö ÇÔ¼ö ±¸Çö
+ï»¿/**@file	DecisionFacade.cpp
+ * @brief	DCMì˜ Facadeì˜ ë©¤ë²„ í•¨ìˆ˜ êµ¬í˜„
  * author	siva
  */
 
@@ -8,22 +8,22 @@
 
 #include "DecisionManager.h"
 
-/**@brief	Á¢¼ÓÇÑ È£½ºÆ®¿¡ ´ëÇÑ Ã³¸®
+/**@brief	ì ‘ì†í•œ í˜¸ìŠ¤íŠ¸ì— ëŒ€í•œ ì²˜ë¦¬
  */
 void CDecisionFacade::HostConnected(void *a_hostData)
 {
 	CDecisionManager::Instance()->HostConnected(a_hostData);
 }
 
-/**@brief	Á¢¼Ó Á¾·áÇÑ È£½ºÆ®¿¡ ´ëÇÑ Ã³¸®
+/**@brief	ì ‘ì† ì¢…ë£Œí•œ í˜¸ìŠ¤íŠ¸ì— ëŒ€í•œ ì²˜ë¦¬
  */
 void CDecisionFacade::HostDisconnected(void *a_hostData)
 {
 	CDecisionManager::Instance()->HostDisconnected(a_hostData);
 }
 
-/**@brief	»ç¿ëÀÚ ·Î±×ÀÎ Ã³¸®. ¿Ã¹Ù¸¥ »ç¿ëÀÚÀÎÁö È®ÀÎÇÑ´Ù.
- * @param	a_loginRequestData	»ç¿ëÀÚ ·Î±×ÀÎ Á¤º¸ÀÇ Æ÷ÀÎÅÍ. ÇØ´ç DTOÀÇ Æ÷ÀÎÅÍÀÌÁö¸¸ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ ÇØ »ç¿ëÇÑ´Ù.
+/**@brief	ì‚¬ìš©ì ë¡œê·¸ì¸ ì²˜ë¦¬. ì˜¬ë°”ë¥¸ ì‚¬ìš©ìì¸ì§€ í™•ì¸í•œë‹¤.
+ * @param	a_loginRequestData	ì‚¬ìš©ì ë¡œê·¸ì¸ ì •ë³´ì˜ í¬ì¸í„°. í•´ë‹¹ DTOì˜ í¬ì¸í„°ì´ì§€ë§Œ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… í•´ ì‚¬ìš©í•œë‹¤.
  */
 void CDecisionFacade::JudgeLoginRequest(void *a_loginRequestData)
 {
@@ -31,7 +31,7 @@ void CDecisionFacade::JudgeLoginRequest(void *a_loginRequestData)
 }
 
 
-/**@brief	»ç¿ëÀÚ ½ÇÇà ÇÁ·Î¼¼½º¿¡ ´ëÇÑ Ã³¸®.
+/**@brief	ì‚¬ìš©ì ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤ì— ëŒ€í•œ ì²˜ë¦¬.
  */
 void CDecisionFacade::JudgeUserExecutedProcess(void *a_executedProcessData)
 {
@@ -39,7 +39,7 @@ void CDecisionFacade::JudgeUserExecutedProcess(void *a_executedProcessData)
 }
 
 
-/**@brief	»õ·Î¿î °íÀå »óÅÂ º¸°í¿¡ ´ëÇÑ Ã³¸®.
+/**@brief	ìƒˆë¡œìš´ ê³ ì¥ ìƒíƒœ ë³´ê³ ì— ëŒ€í•œ ì²˜ë¦¬.
  */
 void CDecisionFacade::PresentStatusReport(void *a_statusReportData)
 {
@@ -47,63 +47,63 @@ void CDecisionFacade::PresentStatusReport(void *a_statusReportData)
 }
 
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ÄÄÇ»ÅÍ¸¦ Á¾·á ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ì»´í“¨í„°ë¥¼ ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::ShutdownHost(void *a_argument)
 {
 	CDecisionManager::Instance()->ShutdownHost(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ÄÄÇ»ÅÍ¸¦ ¸®ºÎÆÃ ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ì»´í“¨í„°ë¥¼ ë¦¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::RebootHost(void *a_argument)
 {
 	CDecisionManager::Instance()->RebootHost(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¸¦ °­Á¦·Î ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìë¥¼ ê°•ì œë¡œ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::BanUser(void *a_argument)
 {
 	CDecisionManager::Instance()->BanUser(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::ExecuteHostProcess(void *a_argument)
 {
 	CDecisionManager::Instance()->ExecuteHostProcess(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::KillHostProcess(void *a_argument)
 {
 	CDecisionManager::Instance()->KillHostProcess(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ¸ğµç ÇÁ·Î¼¼½º¸¦ Á¾·á ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œ ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::GenocideHostProcess(void *a_argument)
 {
 	CDecisionManager::Instance()->GenocideHostProcess(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô °æ°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ê²½ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDecisionFacade::WarnHost(void *a_argument)
 {
 	CDecisionManager::Instance()->WarnHost(a_argument);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô »óÅÂ º¸°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ìƒíƒœ ë³´ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CDecisionFacade::SubmitStatusReportToHost(void *a_statusReport)
 {
 	CDecisionManager::Instance()->SubmitStatusReportToHost(a_statusReport);
 }
 
-/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ·¦ÅÍ¸¦ µ¿ÀÛ ÁßÁö½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ë©í„°ë¥¼ ë™ì‘ ì¤‘ì§€ì‹œí‚¨ë‹¤.
  */
 void CDecisionFacade::TerminateRaptorOnHost(void *a_argument)
 {

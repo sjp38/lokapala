@@ -1,12 +1,12 @@
-/**@file	DharaniServerManager.cpp
- * @brief	CDharaniServerManager ÀÇ ¸â¹ö ÇÔ¼ö¸¦ ±¸Çö
+ï»¿/**@file	DharaniServerManager.cpp
+ * @brief	CDharaniServerManager ì˜ ë©¤ë²„ í•¨ìˆ˜ë¥¼ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include <process.h>
 
-//openssl Çì´õ include
+//openssl í—¤ë” include
 #include <openssl/rsa.h>
 #include <openssl/evp.h>
 #include <openssl/rc4.h>
@@ -14,13 +14,13 @@
 #include "DharaniExternSD.h"
 #include "DharaniServerManager.h"
 
-/**@brief	¸®½¼ ¼ÒÄÏ. AcceptorThread¿Í °øÀ¯ÇÏ±â À§ÇØ »ç¿ëµÇ´Â Àü¿ª º¯¼ö. */
+/**@brief	ë¦¬ìŠ¨ ì†Œì¼“. AcceptorThreadì™€ ê³µìœ í•˜ê¸° ìœ„í•´ ì‚¬ìš©ë˜ëŠ” ì „ì—­ ë³€ìˆ˜. */
 SOCKET hListenSocket;
 
 
-/**@brief	Dharani ÄÄÆ÷³ÍÆ®¸¦ ¼­¹ö ¿ªÇÒ·Î ÃÊ±âÈ­ ½ÃÅ²´Ù.
- *			competion port object¿Í ¿©±â¼­ »ç¿ëÇÒ ¾²·¹µåÀÇ »ı¼º, ¸®½¼ ¼ÒÄÏÀÇ »ı¼º ±îÁö¸¦ ´ã´çÇÏ¸ç,
- *			Áö¼ÓÀûÀ¸·Î ¿¬°á ¿äÃ»À» ¹Ş¾ÆÁÖ¸ç ¿¬°á ¼º°øµÈ ¼ÒÄÏ°ú completion port¸¦ ¿¬°áÇØ ÁÖ´Â ¾²·¹µå¸¦ »ı¼ºÇÑ´Ù.
+/**@brief	Dharani ì»´í¬ë„ŒíŠ¸ë¥¼ ì„œë²„ ì—­í• ë¡œ ì´ˆê¸°í™” ì‹œí‚¨ë‹¤.
+ *			competion port objectì™€ ì—¬ê¸°ì„œ ì‚¬ìš©í•  ì“°ë ˆë“œì˜ ìƒì„±, ë¦¬ìŠ¨ ì†Œì¼“ì˜ ìƒì„± ê¹Œì§€ë¥¼ ë‹´ë‹¹í•˜ë©°,
+ *			ì§€ì†ì ìœ¼ë¡œ ì—°ê²° ìš”ì²­ì„ ë°›ì•„ì£¼ë©° ì—°ê²° ì„±ê³µëœ ì†Œì¼“ê³¼ completion portë¥¼ ì—°ê²°í•´ ì£¼ëŠ” ì“°ë ˆë“œë¥¼ ìƒì„±í•œë‹¤.
  */
 void CDharaniServerManager::Initiallize()
 {
@@ -32,7 +32,7 @@ void CDharaniServerManager::Initiallize()
 		AfxMessageBox(CString(_T("WSAStartup() error!")));
 	}
 
-	//completion port kernel object handle »ı¼º, ¿¬°áÇÒ ¾²·¹µå »ı¼º
+	//completion port kernel object handle ìƒì„±, ì—°ê²°í•  ì“°ë ˆë“œ ìƒì„±
 	m_hCompletionPort = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, CONCURRENT_THREAD_NUM);
 
 	for(int i=0;i<CONCURRENT_THREAD_NUM;i++)
@@ -40,10 +40,10 @@ void CDharaniServerManager::Initiallize()
 		_beginthreadex(NULL,0,&CDharaniServerManager::ReceiverThread,(LPVOID)m_hCompletionPort, 0, NULL);
 	}
 
-	//¸®½¼ ¼ÒÄÏ »ı¼º
+	//ë¦¬ìŠ¨ ì†Œì¼“ ìƒì„±
 	hListenSocket = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
 
-	//¹ÙÀÎµå,¸®½¼
+	//ë°”ì¸ë“œ,ë¦¬ìŠ¨
 	SOCKADDR_IN servAddr;
 	servAddr.sin_family = AF_INET;
 	servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -54,16 +54,16 @@ void CDharaniServerManager::Initiallize()
 	}
 	listen(hListenSocket, 15);
 
-	//accept °úÁ¤°ú ¼ÒÄÏ/completion portÀÇ ¿¬°á °úÁ¤Àº ¾²·¹µå·Î ºĞ¸³½ÃÅ²´Ù.
+	//accept ê³¼ì •ê³¼ ì†Œì¼“/completion portì˜ ì—°ê²° ê³¼ì •ì€ ì“°ë ˆë“œë¡œ ë¶„ë¦½ì‹œí‚¨ë‹¤.
 	_beginthreadex(NULL,0,&CDharaniServerManager::AcceptorThread,(LPVOID)m_hCompletionPort, 0, NULL);
 
-	//deathlord¸¦ ¸¸µç´Ù.
+	//deathlordë¥¼ ë§Œë“ ë‹¤.
 	_beginthreadex(NULL,0,&CDharaniServerManager::DeathLordThread,(LPVOID)m_clientSockets, 0, NULL);
 }
 
 int CDharaniServerManager::m_socketCount = 0;
 
-/**@brief	ÇØ´ç ¼ÒÄÏÀÌ Æ÷ÇÔµÈ Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ µ¥ÀÌÅÍ¿¡ »ı¸í½ÅÈ£¸¦ ¹Ş¾ÒÀ½À» Ã¼Å©ÇÑ´Ù.
+/**@brief	í•´ë‹¹ ì†Œì¼“ì´ í¬í•¨ëœ í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ë°ì´í„°ì— ìƒëª…ì‹ í˜¸ë¥¼ ë°›ì•˜ìŒì„ ì²´í¬í•œë‹¤.
  */
 void CDharaniServerManager::SetLifeSignal(SOCKET a_socket)
 {
@@ -76,7 +76,7 @@ void CDharaniServerManager::SetLifeSignal(SOCKET a_socket)
 	}
 }
 
-/**@brief	ÁÖ±âÀûÀ¸·Î Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍÀÇ »ı¸í ½ÅÈ£¸¦ Ã¼Å©ÇØ, 3È¸ ÀÌ»ó »ı¸í ½ÅÈ£¸¦ º¸³»Áö ¸øÇÑ Å¬¶óÀÌ¾ğÆ®¸¦ ¿¬°á ²÷°å´Ù°í °£ÁÖÇÑ´Ù.
+/**@brief	ì£¼ê¸°ì ìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„°ì˜ ìƒëª… ì‹ í˜¸ë¥¼ ì²´í¬í•´, 3íšŒ ì´ìƒ ìƒëª… ì‹ í˜¸ë¥¼ ë³´ë‚´ì§€ ëª»í•œ í´ë¼ì´ì–¸íŠ¸ë¥¼ ì—°ê²° ëŠê²¼ë‹¤ê³  ê°„ì£¼í•œë‹¤.
  */
 unsigned int WINAPI CDharaniServerManager::DeathLordThread(LPVOID a_clientSockets)
 {
@@ -107,7 +107,7 @@ unsigned int WINAPI CDharaniServerManager::DeathLordThread(LPVOID a_clientSocket
 	return 0;
 }
 
-/**@brief	¸®½¼ ¼ÒÄÏÀ» °¡Áö°í Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍÀÇ ¿¬°á ¿äÃ»À» Çã¶ôÇÏ°í ¿¬°áµÈ ¼ÒÄÏÀ» completion port¿¡ ¿¬°áÇÑ´Ù.
+/**@brief	ë¦¬ìŠ¨ ì†Œì¼“ì„ ê°€ì§€ê³  í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„°ì˜ ì—°ê²° ìš”ì²­ì„ í—ˆë½í•˜ê³  ì—°ê²°ëœ ì†Œì¼“ì„ completion portì— ì—°ê²°í•œë‹¤.
  */
 unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPort)
 {
@@ -122,19 +122,19 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 
 		hClientSocket = accept(hListenSocket, (SOCKADDR *)&clientAddress, &addrLen);
 
-		//Å¬¶óÀÌ¾ğÆ®ÀÇ ·ÎÄÃ ip Á¤º¸(private ipÀÏ ¼ö ÀÖ´Ù)¸¦ ¹Ş´Â´Ù.
+		//í´ë¼ì´ì–¸íŠ¸ì˜ ë¡œì»¬ ip ì •ë³´(private ipì¼ ìˆ˜ ìˆë‹¤)ë¥¼ ë°›ëŠ”ë‹¤.
 		in_addr clientLocalIp;
 		recv(hClientSocket, (char *)((void *)&clientLocalIp), sizeof(in_addr), 0);		
 
-		//¾ÏÈ£È­ Å° »ı¼º
+		//ì•”í˜¸í™” í‚¤ ìƒì„±
 		int passwd = rand();
-		//¾ÏÈ£È­ Å° Àü¼Û
+		//ì•”í˜¸í™” í‚¤ ì „ì†¡
 		WSABUF wsaBuf;
 		wsaBuf.buf = (char *)&passwd;
 		wsaBuf.len = sizeof(int);
 		WSASend(hClientSocket, &wsaBuf, 1, NULL, 0, NULL, NULL);
 		
-		//¼ÒÄÏ µ¥ÀÌÅÍ ¼¼ÆÃ
+		//ì†Œì¼“ ë°ì´í„° ì„¸íŒ…
 		socketData = (PTR_SOCKET_DATA)malloc(sizeof(SOCKET_DATA));
 		socketData->descriptor = hClientSocket;
 		memcpy(&(socketData->addr), &clientAddress, addrLen);
@@ -144,13 +144,13 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 		socketData->lifeSignal = false;
 		socketData->lifeSignalUnchecked = 0;
 		
-		//completion port¿¡ ¼ÒÄÏÀ» ¿¬°á.
+		//completion portì— ì†Œì¼“ì„ ì—°ê²°.
 		CreateIoCompletionPort((HANDLE)hClientSocket, (HANDLE)a_hCompletionPort, (DWORD)socketData, 0);
 		
-		//Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ ¸ñ·Ï¿¡ ¼ÒÄÏ Á¤º¸¸¦ Ãß°¡(Å©¸®Æ¼ÄÃ ¼½¼Ç).
+		//í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ëª©ë¡ì— ì†Œì¼“ ì •ë³´ë¥¼ ì¶”ê°€(í¬ë¦¬í‹°ì»¬ ì„¹ì…˜).
 		CDharaniServerManager::Instance()->AddToClientSockets(socketData);
 
-		//ÇØ´ç ¼ÒÄÏ Àü¿ë ioData¸¦ µ¿Àû ÇÒ´çÇÑ´Ù.
+		//í•´ë‹¹ ì†Œì¼“ ì „ìš© ioDataë¥¼ ë™ì  í• ë‹¹í•œë‹¤.
 		ioData = (PTR_IO_DATA)malloc(sizeof(IO_DATA));
 		memset(&(ioData->overlapped), 0, sizeof(OVERLAPPED));
 		ioData->wsaBuf.len = sizeof(int);
@@ -166,9 +166,9 @@ unsigned int WINAPI CDharaniServerManager::AcceptorThread(LPVOID a_hCompletionPo
 }
 
 
-/**@brief	completion port¿¡¼­ ÀÏÇÏ°Ô µÇ´Â ¾²·¹µå.
- *			completion port¿¡ ¿¬°áµÈ ¼ÒÄÏ¿¡ ÀÔ·ÂµÈ µ¥ÀÌÅÍ°¡ ÀÖÀ» ¶§, SD¸¦ ÅëÇØ Å¬¶óÀÌ¾ğÆ® ÄÚµå ÃøÀ¸·Î µ¥ÀÌÅÍ¸¦ ³Ñ°ÜÁØ´Ù.
- *			ÀÌÈÄ, °è¼ÓÇØ¼­ µ¥ÀÌÅÍ ÀÔ·ÂÀ» ±â´Ù¸°´Ù.
+/**@brief	completion portì—ì„œ ì¼í•˜ê²Œ ë˜ëŠ” ì“°ë ˆë“œ.
+ *			completion portì— ì—°ê²°ëœ ì†Œì¼“ì— ì…ë ¥ëœ ë°ì´í„°ê°€ ìˆì„ ë•Œ, SDë¥¼ í†µí•´ í´ë¼ì´ì–¸íŠ¸ ì½”ë“œ ì¸¡ìœ¼ë¡œ ë°ì´í„°ë¥¼ ë„˜ê²¨ì¤€ë‹¤.
+ *			ì´í›„, ê³„ì†í•´ì„œ ë°ì´í„° ì…ë ¥ì„ ê¸°ë‹¤ë¦°ë‹¤.
  */
 unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPort)
 {
@@ -182,7 +182,7 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 	{
 		GetQueuedCompletionStatus( (HANDLE)a_hCompletionPort, &bytesTransferred, (LPDWORD)&socketData, (LPOVERLAPPED *)&ioData, INFINITE);
 
-		if(bytesTransferred == 0)	//EOF Àü¼Û(¿¬°á ²÷¾îÁü)
+		if(bytesTransferred == 0)	//EOF ì „ì†¡(ì—°ê²° ëŠì–´ì§)
 		{
 			CDharaniServerManager::Instance()->RemoveFromClientSockets(socketData->descriptor);
 			
@@ -198,7 +198,7 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 			size = 0;
 		}		
 
-		//¿¬¼Ó¼º Ã³¸® : µ¥ÀÌÅÍ°¡ ¾ÆÁ÷ ´Ù µé¾î¿ÀÁö ¾Ê¾ÒÀ» ¶§
+		//ì—°ì†ì„± ì²˜ë¦¬ : ë°ì´í„°ê°€ ì•„ì§ ë‹¤ ë“¤ì–´ì˜¤ì§€ ì•Šì•˜ì„ ë•Œ
 		if( size > bytesTransferred + ioData->formerReceivedBytes  ||  size == 0 )
 		{
 			/*USES_CONVERSION;
@@ -217,13 +217,13 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 			AfxMessageBox(_T("flow"));
 		}
 
-		//µ¥ÀÌÅÍ°¡ ¸ğµÎ µé¾î¿ÔÀ» ¶§
-		//CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer, socketData->localIp, socketData->addr.sin_addr);	//º¹È£È­ ÀÌÀü. Å×½ºÆ®
+		//ë°ì´í„°ê°€ ëª¨ë‘ ë“¤ì–´ì™”ì„ ë•Œ
+		//CDharaniExternSD::Instance()->NotifyReceived(ioData->buffer, socketData->localIp, socketData->addr.sin_addr);	//ë³µí˜¸í™” ì´ì „. í…ŒìŠ¤íŠ¸
 
 		char decrypted[BUFSIZE];
 		CDharaniServerManager::Instance()->Decrypt(socketData->passwd, size, decrypted, ioData->buffer+sizeof(size));
 
-		//»ı¸í ½ÅÈ£ Ã³¸®
+		//ìƒëª… ì‹ í˜¸ ì²˜ë¦¬
 		char lifeSignal[] = "tkfdkdlTdma";
 		if( !strcmp(decrypted, lifeSignal) )
 		{
@@ -244,11 +244,11 @@ unsigned int WINAPI CDharaniServerManager::ReceiverThread(void *a_hCompletionPor
 }
 
 
-/**@brief	ÀÔ·Â¹ŞÀº ¸Ş¼¼Áö¸¦ dharani ÇÁ·ÎÅäÄİ¿¡ ¸Â°Ô ÇØ¼®ÇÑ´Ù.\n
-			ÇöÀç ½ÃÁ¡¿¡¼­´Â »ç¿ëµÇÁö ¾ÊÀ¸¸ç, ÃßÈÄ ÆÄÀÏ Àü¼Û ±â´É Ãß°¡ ½Ã, Çì´õ Á¤º¸·Î ÆÄÀÏ/¸Ş¼¼Áö¸¦ ±¸ºĞÇÑ´Ù.\n
-			¸Ş¼¼Áö ±æÀÌ Ã³¸® ¶ÇÇÑ ÀÌÂÊÀ¸·Î ºĞ´ãÇÒ ¼öµµ ÀÖ´Ù.
- * @param	a_receivedMessage	¹ŞÀº ¸Ş¼¼Áö.
- * @param	a_sender			¸Ş¼¼Áö¸¦ º¸³½ »ó´ë¹æÀ¸·ÎÀÇ ¼ÒÄÏ.
+/**@brief	ì…ë ¥ë°›ì€ ë©”ì„¸ì§€ë¥¼ dharani í”„ë¡œí† ì½œì— ë§ê²Œ í•´ì„í•œë‹¤.\n
+			í˜„ì¬ ì‹œì ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•Šìœ¼ë©°, ì¶”í›„ íŒŒì¼ ì „ì†¡ ê¸°ëŠ¥ ì¶”ê°€ ì‹œ, í—¤ë” ì •ë³´ë¡œ íŒŒì¼/ë©”ì„¸ì§€ë¥¼ êµ¬ë¶„í•œë‹¤.\n
+			ë©”ì„¸ì§€ ê¸¸ì´ ì²˜ë¦¬ ë˜í•œ ì´ìª½ìœ¼ë¡œ ë¶„ë‹´í•  ìˆ˜ë„ ìˆë‹¤.
+ * @param	a_receivedMessage	ë°›ì€ ë©”ì„¸ì§€.
+ * @param	a_sender			ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ ìƒëŒ€ë°©ìœ¼ë¡œì˜ ì†Œì¼“.
  */
 void CDharaniServerManager::AnalyzeReceived(char *a_receivedMessage, SOCKET a_sender)
 {
@@ -272,9 +272,9 @@ void CDharaniServerManager::AnalyzeReceived(char *a_receivedMessage, SOCKET a_se
 	}
 }
 
-/**@brief	Æ¯Á¤ ¼ÒÄÏ¿¡°Ô ¸Ş¼¼Áö¸¦ º¸³½´Ù.
- * @param	a_receiver	»ó´ë¹æÀ¸·ÎÀÇ ¼ÒÄÏ
- * @param	a_message	º¸³¾ ¸Ş¼¼Áö
+/**@brief	íŠ¹ì • ì†Œì¼“ì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
+ * @param	a_receiver	ìƒëŒ€ë°©ìœ¼ë¡œì˜ ì†Œì¼“
+ * @param	a_message	ë³´ë‚¼ ë©”ì„¸ì§€
  */
 void CDharaniServerManager::SendMessageTo(PTR_SOCKET_DATA a_receiver, char *a_message)
 {	
@@ -290,9 +290,9 @@ void CDharaniServerManager::SendMessageTo(PTR_SOCKET_DATA a_receiver, char *a_me
 	WSASend(a_receiver->descriptor, &wsaBuf, 1, NULL, 0, NULL, NULL);
 }
 
-/**@brief	Å¬¶óÀÌ¾ğÆ®µé¿¡°Ô ¸Ş¼¼Áö¸¦ »Ñ·ÁÁØ´Ù.
- *			³»ºÎÀûÀ¸·Î SendMessageTo ¸Ş¼Òµå¸¦ »ç¿ëÇÑ´Ù.
- * @param	a_message	¹æ¼ÛÇÏ°íÀÚ ÇÏ´Â ¸Ş¼¼Áö
+/**@brief	í´ë¼ì´ì–¸íŠ¸ë“¤ì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë¿Œë ¤ì¤€ë‹¤.
+ *			ë‚´ë¶€ì ìœ¼ë¡œ SendMessageTo ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•œë‹¤.
+ * @param	a_message	ë°©ì†¡í•˜ê³ ì í•˜ëŠ” ë©”ì„¸ì§€
  */
 void CDharaniServerManager::BroadcastTextMessage(char *a_message)
 {
@@ -302,7 +302,7 @@ void CDharaniServerManager::BroadcastTextMessage(char *a_message)
 	}
 }
 
-/**@brief	Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ ¸ñ·Ï¿¡¼­ Æ¯Á¤ ¼ÒÄÏÀÇ Á¤º¸¸¦ ¾ò¾î¿Â´Ù.
+/**@brief	í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ëª©ë¡ì—ì„œ íŠ¹ì • ì†Œì¼“ì˜ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
  */
 SOCKET_DATA CDharaniServerManager::GetSocketDataFromClientSockets(SOCKET a_socket)
 {
@@ -322,7 +322,7 @@ SOCKET_DATA CDharaniServerManager::GetSocketDataFromClientSockets(SOCKET a_socke
 	return socketData;
 }
 
-/**@brief	Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ ¸ñ·Ï¿¡ ¼ÒÄÏ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ëª©ë¡ì— ì†Œì¼“ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDharaniServerManager::AddToClientSockets(PTR_SOCKET_DATA a_socketData)
 {
@@ -331,7 +331,7 @@ void CDharaniServerManager::AddToClientSockets(PTR_SOCKET_DATA a_socketData)
 	ReleaseMutex(m_hMutex);
 }
 
-/**@brief	Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏ ¸ñ·Ï¿¡¼­ Æ¯Á¤ ¼ÒÄÏÀ» Á¦°ÅÇÏ°í, Á¦°Å ÇßÀ½À» ¾Ë¸°´Ù.
+/**@brief	í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ ëª©ë¡ì—ì„œ íŠ¹ì • ì†Œì¼“ì„ ì œê±°í•˜ê³ , ì œê±° í–ˆìŒì„ ì•Œë¦°ë‹¤.
  */
 void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
 {
@@ -352,10 +352,10 @@ void CDharaniServerManager::RemoveFromClientSockets(SOCKET a_socket)
 }
 
 
-/**@brief	±Û·Î¹ú, ·ÎÄÃ ¾ÆÀÌÇÇ¸¦ °¡Áö°í ÇöÀç ¿¬°áµÈ Å¬¶óÀÌ¾ğÆ® ¸ñ·Ï¿¡¼­ ÇØ´ç Å¬¶óÀÌ¾ğÆ®ÀÇ ¼ÒÄÏÀ» Ã£¾Æ ¼ÒÄÏ µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
- * @param	a_globalIp	Ã£°íÀÚ ÇÏ´Â Å¬¶óÀÌ¾ğÆ®ÀÇ ±Û·Î¹ú ¾ÆÀÌÇÇ
- * @param	a_localIp	Ã£°íÀÚ ÇÏ´Â Å¬¶óÀÌ¾ğÆ®ÀÇ ·ÎÄÃ ¾ÆÀÌÇÇ
- * @return	ÇØ´ç Å¬¶óÀÌ¾ğÆ®ÀÇ ¼ÒÄÏ µ¥ÀÌÅÍ(SOCKET_DATA) Æ÷ÀÎÅÍ. Ã£Áö ¸øÇßÀ» °æ¿ì 0
+/**@brief	ê¸€ë¡œë²Œ, ë¡œì»¬ ì•„ì´í”¼ë¥¼ ê°€ì§€ê³  í˜„ì¬ ì—°ê²°ëœ í´ë¼ì´ì–¸íŠ¸ ëª©ë¡ì—ì„œ í•´ë‹¹ í´ë¼ì´ì–¸íŠ¸ì˜ ì†Œì¼“ì„ ì°¾ì•„ ì†Œì¼“ ë°ì´í„°ë¥¼ ë°˜í™˜í•œë‹¤.
+ * @param	a_globalIp	ì°¾ê³ ì í•˜ëŠ” í´ë¼ì´ì–¸íŠ¸ì˜ ê¸€ë¡œë²Œ ì•„ì´í”¼
+ * @param	a_localIp	ì°¾ê³ ì í•˜ëŠ” í´ë¼ì´ì–¸íŠ¸ì˜ ë¡œì»¬ ì•„ì´í”¼
+ * @return	í•´ë‹¹ í´ë¼ì´ì–¸íŠ¸ì˜ ì†Œì¼“ ë°ì´í„°(SOCKET_DATA) í¬ì¸í„°. ì°¾ì§€ ëª»í–ˆì„ ê²½ìš° 0
  */
 PTR_SOCKET_DATA CDharaniServerManager::GetSocketByAddress(DWORD a_globalIp, DWORD a_localIp)
 {
@@ -370,11 +370,11 @@ PTR_SOCKET_DATA CDharaniServerManager::GetSocketByAddress(DWORD a_globalIp, DWOR
 }
 
 
-/**@brief	Æ¯Á¤ ¹®ÀÚ¿­À» º¹È£È­ ÇÑ´Ù.
- * @param	a_passwd	RC4 ¾Ë°í¸®Áò Å°
- * @param	a_length	º¹È£/¾ÏÈ£È­ ÇÒ ¹®ÀÚ¿­ÀÇ ±æÀÌ
- * @param	a_plainText	º¹È£È­ µÈ ÈÄÀÇ ¹®ÀÚ¿­ÀÇ Æ÷ÀÎÅÍ
- * @param	a_cipherText	º¹È£È­ µÉ, ¾ÏÈ£È­ µÈ ¹®ÀÚ¿­
+/**@brief	íŠ¹ì • ë¬¸ìì—´ì„ ë³µí˜¸í™” í•œë‹¤.
+ * @param	a_passwd	RC4 ì•Œê³ ë¦¬ì¦˜ í‚¤
+ * @param	a_length	ë³µí˜¸/ì•”í˜¸í™” í•  ë¬¸ìì—´ì˜ ê¸¸ì´
+ * @param	a_plainText	ë³µí˜¸í™” ëœ í›„ì˜ ë¬¸ìì—´ì˜ í¬ì¸í„°
+ * @param	a_cipherText	ë³µí˜¸í™” ë , ì•”í˜¸í™” ëœ ë¬¸ìì—´
  */
 void CDharaniServerManager::Decrypt(int a_passwd, size_t a_length, char *a_plainText, char *a_cipherText)
 {
@@ -383,10 +383,10 @@ void CDharaniServerManager::Decrypt(int a_passwd, size_t a_length, char *a_plain
 	RC4(&rc4Key, a_length, (unsigned char *)a_cipherText, (unsigned char *)a_plainText);
 }
 
-/**@brief	Æ¯Á¤ ¹®ÀÚ¿­À» ¾ÏÈ£È­ ÇÑ´Ù.
- * @param	a_key	RC4 ¾Ë°í¸®Áò Å°
- * @param	a_plainText	¾ÏÈ£È­ µÉ ¿À¸®Áö³Î ¹®ÀÚ¿­
- * @param	a_cipherText	¾ÏÈ£È­ µÈ ÈÄÀÇ ¹®ÀÚ¿­ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ë¬¸ìì—´ì„ ì•”í˜¸í™” í•œë‹¤.
+ * @param	a_key	RC4 ì•Œê³ ë¦¬ì¦˜ í‚¤
+ * @param	a_plainText	ì•”í˜¸í™” ë  ì˜¤ë¦¬ì§€ë„ ë¬¸ìì—´
+ * @param	a_cipherText	ì•”í˜¸í™” ëœ í›„ì˜ ë¬¸ìì—´ì˜ í¬ì¸í„°
  */
 void CDharaniServerManager::Encrypt(int a_passwd, char *a_plainText, char *a_cipherText)
 {

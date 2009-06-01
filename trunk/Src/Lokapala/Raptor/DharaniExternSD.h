@@ -1,5 +1,5 @@
-/**@file	DharaniExternSD.h
- * @brief	Dharani ÄÄÆ÷³ÍÆ®·ÎºÎÅÍ ¿ÜºÎ·ÎÀÇ SD¸¦ Á¤ÀÇ.
+ï»¿/**@file	DharaniExternSD.h
+ * @brief	Dharani ì»´í¬ë„ŒíŠ¸ë¡œë¶€í„° ì™¸ë¶€ë¡œì˜ SDë¥¼ ì •ì˜.
  * @author	siva
  */
 
@@ -8,8 +8,8 @@
 
 /**@ingroup	GroupDharani
  * @class	CDharaniExternSD
- * @brief	Dharani ÄÄÆ÷³ÍÆ®·ÎºÎÅÍ ¿ÜºÎ·ÎÀÇ SD. °¢ ¸â¹öÇÔ¼öÀÇ ±¸ÇöÀº Dharani ÄÄÆ÷³ÍÆ®¸¦ »ç¿ëÇÏ´Â Å¬¶óÀÌ¾ðÆ® Ãø¿¡¼­ ¿Ï¼ºÇØ¾ß ÇÑ´Ù.\n
- *			Dharani¿¡¼­ Å¬¶óÀÌ¾ðÆ® ÃøÀ¸·ÎÀÇ Åë½Å ¼ö´ÜÀ¸·Î »ç¿ëµÈ´Ù. ±¸Ã¼ÀûÀ¸·Î´Â ReadÇÑ »çÇ×À» ¾Ë¸± ¶§ »ç¿ëµÈ´Ù.
+ * @brief	Dharani ì»´í¬ë„ŒíŠ¸ë¡œë¶€í„° ì™¸ë¶€ë¡œì˜ SD. ê° ë©¤ë²„í•¨ìˆ˜ì˜ êµ¬í˜„ì€ Dharani ì»´í¬ë„ŒíŠ¸ë¥¼ ì‚¬ìš©í•˜ëŠ” í´ë¼ì´ì–¸íŠ¸ ì¸¡ì—ì„œ ì™„ì„±í•´ì•¼ í•œë‹¤.\n
+ *			Dharaniì—ì„œ í´ë¼ì´ì–¸íŠ¸ ì¸¡ìœ¼ë¡œì˜ í†µì‹  ìˆ˜ë‹¨ìœ¼ë¡œ ì‚¬ìš©ëœë‹¤. êµ¬ì²´ì ìœ¼ë¡œëŠ” Readí•œ ì‚¬í•­ì„ ì•Œë¦´ ë•Œ ì‚¬ìš©ëœë‹¤.
  */
 class CDharaniExternSD
 {

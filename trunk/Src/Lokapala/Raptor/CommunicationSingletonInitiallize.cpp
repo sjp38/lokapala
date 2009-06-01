@@ -1,5 +1,5 @@
-/**@file	CommunicationSingletonInitiallize.cpp
- * @brief	CCMÀÇ ¸ğµç ½Ì±ÛÅæÀÇ ÃÊ±âÈ­¸¦ ÇØÁØ´Ù.
+ï»¿/**@file	CommunicationSingletonInitiallize.cpp
+ * @brief	CCMì˜ ëª¨ë“  ì‹±ê¸€í†¤ì˜ ì´ˆê¸°í™”ë¥¼ í•´ì¤€ë‹¤.
  * @author	siva
  */
 

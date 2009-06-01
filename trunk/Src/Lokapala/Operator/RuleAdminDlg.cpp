@@ -1,4 +1,4 @@
-// RuleAdminDlg.cpp : implementation file
+ï»¿// RuleAdminDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -57,7 +57,7 @@ END_MESSAGE_MAP()
 
 // CRuleAdminDlg message handlers
 
-/**@brief	´ÙÀÌ¾ó·Î±×ÀÇ ÀÔ·Â°ªµéÀ» ÀÐ¾îµéÀÎ´Ù.
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ì˜ ìž…ë ¥ê°’ë“¤ì„ ì½ì–´ë“¤ì¸ë‹¤.
  */
 void CRuleAdminDlg::GetInputVariables(CString *a_processName, CString *a_caption,
 								  CString *a_targetSeat, CString *a_targetUser, int *a_targetLevel,
@@ -76,8 +76,8 @@ void CRuleAdminDlg::GetInputVariables(CString *a_processName, CString *a_caption
 	m_argument.GetWindowTextW(*a_reactionArgument);
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±×ÀÇ ÀÔ·Â Æû¿¡ Æ¯Á¤ ±ÔÄ¢ÀÇ °ªµéÀ» Áý¾î³Ö´Â´Ù.
- * @param	a_pos	RulesDataDTO ³»ÀÇ RuleDataDTO ¹è¿­¿¡¼­ ÀÎµ¦½º °ª.
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ì˜ ìž…ë ¥ í¼ì— íŠ¹ì • ê·œì¹™ì˜ ê°’ë“¤ì„ ì§‘ì–´ë„£ëŠ”ë‹¤.
+ * @param	a_pos	RulesDataDTO ë‚´ì˜ RuleDataDTO ë°°ì—´ì—ì„œ ì¸ë±ìŠ¤ ê°’.
  */
 void CRuleAdminDlg::SetInputVariables(int a_pos)
 {
@@ -96,7 +96,7 @@ void CRuleAdminDlg::SetInputVariables(int a_pos)
 	m_argument.SetWindowTextW(rule.m_reactionArgument);
 }
 
-/**@brief	add ¹öÆ° Å¬¸¯	*/
+/**@brief	add ë²„íŠ¼ í´ë¦­	*/
 void CRuleAdminDlg::OnBnClickedAddRule()
 {
 	// TODO: Add your control notification handler code here
@@ -113,7 +113,7 @@ void CRuleAdminDlg::OnBnClickedAddRule()
 	ShowRules();
 }
 
-/**@brief	delete ¹öÆ° Å¬¸¯	*/
+/**@brief	delete ë²„íŠ¼ í´ë¦­	*/
 void CRuleAdminDlg::OnBnClickedDeleteRule()
 {
 	// TODO: Add your control notification handler code here
@@ -132,7 +132,7 @@ void CRuleAdminDlg::OnBnClickedDeleteRule()
 }
 
 
-/**@brief	¸®¾×¼Ç ÄÞº¸¹Ú½º ÄÁÆ®·Ñ¿¡ ¼±ÅÃ»çÇ×À» Ã¤¿î´Ù.	*/
+/**@brief	ë¦¬ì•¡ì…˜ ì½¤ë³´ë°•ìŠ¤ ì»¨íŠ¸ë¡¤ì— ì„ íƒì‚¬í•­ì„ ì±„ìš´ë‹¤.	*/
 void CRuleAdminDlg::SetRulesOnControl()
 {
 	CComboBox *pcomboBox = (CComboBox *)GetDlgItem(IDC_REACTION);
@@ -146,7 +146,7 @@ void CRuleAdminDlg::SetRulesOnControl()
 }
 
 
-/**@brief	ÇöÀç ·êÀ» ´ÙÀÌ¾ó·Î±×¿¡ º¸¿©ÁØ´Ù.
+/**@brief	í˜„ìž¬ ë£°ì„ ë‹¤ì´ì–¼ë¡œê·¸ì— ë³´ì—¬ì¤€ë‹¤.
  */
 void CRuleAdminDlg::ShowRules()
 {
@@ -164,7 +164,7 @@ void CRuleAdminDlg::ShowRules()
 	}
 }
 
-/**@brief	¸®½ºÆ®¹Ú½º¿¡¼­ ·ê ¼±ÅÃ ½Ã
+/**@brief	ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ë£° ì„ íƒ ì‹œ
  */
 void CRuleAdminDlg::OnLbnSelchangeRulelist()
 {
@@ -182,7 +182,7 @@ void CRuleAdminDlg::OnLbnSelchangeRulelist()
 	SetInputVariables(selected);
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»ö, ½ºÅÂÆ½ ÄÁÆ®·Ñ ¹è°æ»ö Á¶Á¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰, ìŠ¤íƒœí‹± ì»¨íŠ¸ë¡¤ ë°°ê²½ìƒ‰ ì¡°ì •
  */
 HBRUSH CRuleAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -192,7 +192,7 @@ HBRUSH CRuleAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ìž…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));

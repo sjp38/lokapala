@@ -1,5 +1,5 @@
-/**@file	DecisionBI.h
- * @brief	DCMÀÇ Button Interface Á¤ÀÇ
+ï»¿/**@file	DecisionBI.h
+ * @brief	DCMì˜ Button Interface ì •ì˜
  * @author	siva
  */
 #ifndef DECISION_BI_H
@@ -7,42 +7,42 @@
 
 /**@ingroup	GroupDCM
  * @class	CDecisionBI
- * @brief	DCMÀÇ Button Interface.
- * @remarks	ÀÎÅÍÆäÀÌ½ºÀÏ »ÓÀÌ´Ù.
+ * @brief	DCMì˜ Button Interface.
+ * @remarks	ì¸í„°í˜ì´ìŠ¤ì¼ ë¿ì´ë‹¤.
  */
 class CDecisionBI
 {
 public :
-	/**@brief	¿¬°áµÈ È£½ºÆ®¿¡ ´ëÇØ Ã³¸®ÇÑ´Ù.	*/
+	/**@brief	ì—°ê²°ëœ í˜¸ìŠ¤íŠ¸ì— ëŒ€í•´ ì²˜ë¦¬í•œë‹¤.	*/
 	virtual void HostConnected(void *a_hostData) = 0;
-	/**@brief	¿¬°áÀÌ ²÷±ä È£½ºÆ®¿¡ ´ëÇØ Ã³¸®ÇÑ´Ù.	*/
+	/**@brief	ì—°ê²°ì´ ëŠê¸´ í˜¸ìŠ¤íŠ¸ì— ëŒ€í•´ ì²˜ë¦¬í•œë‹¤.	*/
 	virtual void HostDisconnected(void *a_hostData) = 0;
-	/**@brief	»ç¿ëÀÚ ·Î±×ÀÎ Ã³¸®. ¿Ã¹Ù¸¥ »ç¿ëÀÚÀÎÁö È®ÀÎÇÑ´Ù.
-	 * @param	a_loginRequestData	»ç¿ëÀÚ ·Î±×ÀÎ Á¤º¸ÀÇ Æ÷ÀÎÅÍ. ÇØ´ç DTOÀÇ Æ÷ÀÎÅÍÀÌÁö¸¸ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃ ÇØ »ç¿ëÇÑ´Ù.
+	/**@brief	ì‚¬ìš©ì ë¡œê·¸ì¸ ì²˜ë¦¬. ì˜¬ë°”ë¥¸ ì‚¬ìš©ìì¸ì§€ í™•ì¸í•œë‹¤.
+	 * @param	a_loginRequestData	ì‚¬ìš©ì ë¡œê·¸ì¸ ì •ë³´ì˜ í¬ì¸í„°. í•´ë‹¹ DTOì˜ í¬ì¸í„°ì´ì§€ë§Œ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ… í•´ ì‚¬ìš©í•œë‹¤.
 	 */
 	virtual void JudgeLoginRequest(void *a_loginRequestData) = 0;
 
-	/**@brief	»ç¿ëÀÚ°¡ ½ÇÇàÇÑ ÇÁ·Î¼¼½ºÀÇ º¸°í¿¡ ´ëÇÑ Ã³¸®.	*/
+	/**@brief	ì‚¬ìš©ìê°€ ì‹¤í–‰í•œ í”„ë¡œì„¸ìŠ¤ì˜ ë³´ê³ ì— ëŒ€í•œ ì²˜ë¦¬.	*/
 	virtual void JudgeUserExecutedProcess(void *a_executedProcessData) = 0;
-	/**@brief	»õ·Î¿î °íÀå »óÅÂ º¸°í¿¡ ´ëÇÑ Ã³¸®	*/
+	/**@brief	ìƒˆë¡œìš´ ê³ ì¥ ìƒíƒœ ë³´ê³ ì— ëŒ€í•œ ì²˜ë¦¬	*/
 	virtual void PresentStatusReport(void *a_statusReportData) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ÄÄÇ»ÅÍ¸¦ Á¾·á½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ì»´í“¨í„°ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.	*/
 	virtual void ShutdownHost(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ÄÄÇ»ÅÍ¸¦ ¸®ºÎÆÃ½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ì»´í“¨í„°ë¥¼ ë¦¬ë¶€íŒ…ì‹œí‚¨ë‹¤.	*/
 	virtual void RebootHost(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ »ç¿ëÀÚ¸¦ °­Á¦·Î ·Î±×¾Æ¿ô ½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • ì‚¬ìš©ìë¥¼ ê°•ì œë¡œ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.	*/
 	virtual void BanUser(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.	*/
 	virtual void ExecuteHostProcess(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.	*/
 	virtual void KillHostProcess(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ¸ğµç ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.	*/
 	virtual void GenocideHostProcess(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô °æ°í¸¦ ÇÑ´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ê²½ê³ ë¥¼ í•œë‹¤.	*/
 	virtual void WarnHost(void *a_argument) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®¿¡°Ô »óÅÂ º¸°í¸¦ ÇÑ´Ù	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì—ê²Œ ìƒíƒœ ë³´ê³ ë¥¼ í•œë‹¤	*/
 	virtual void SubmitStatusReportToHost(void *a_statusReport) = 0;
-	/**@brief	Æ¯Á¤ È£½ºÆ®ÀÇ ·¦ÅÍÀÇ µ¿ÀÛÀ» ÁßÁö½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • í˜¸ìŠ¤íŠ¸ì˜ ë©í„°ì˜ ë™ì‘ì„ ì¤‘ì§€ì‹œí‚¨ë‹¤.	*/
 	virtual void TerminateRaptorOnHost(void *a_argument) = 0;
 };
 

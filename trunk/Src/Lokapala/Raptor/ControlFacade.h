@@ -1,5 +1,5 @@
-/**@file	ControlFacade.h
- * @brief	Control ManagerÀÇ Facade Á¤ÀÇ.
+ï»¿/**@file	ControlFacade.h
+ * @brief	Control Managerì˜ Facade ì •ì˜.
  * author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup GroupCTM
  * @class	CControlFacade
- * @brief	CTMÀÇ Facade.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	CTMì˜ Facade.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CControlFacade : public CControlBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CControlFacade *Instance()
 	{
@@ -44,9 +44,9 @@ public :
 	virtual void ExecuteProcess(void *a_processName);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CControlFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CControlFacade(){}
 private :
 	/**@brief	singleton	*/

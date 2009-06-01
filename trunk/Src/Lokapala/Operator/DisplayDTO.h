@@ -1,5 +1,5 @@
-/**@file	DisplayDTO.h
- * @brief	CDisplayDTO Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	DisplayDTO.h
+ * @brief	CDisplayDTO í´ëž˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -10,8 +10,8 @@ enum DisplayState {LOGIN, LOGOUT, HW, SW, HWSW, FINE, CRIMINAL, INNOCENT, SEATRE
 
 /**@ingroup	GroupMediator
  * @class	CDisplayDTO
- * @brief	CBFMediator¿¡¼­ UI·Î Æ¯Á¤ À¯ÀúÀÇ »óÅÂ º¯È­¿¡ ´ëÇÑ Ãâ·ÂÀ» ¿ä±¸ ÇÒ ¶§,
- *			ÇØ´ç À¯ÀúÀÇ »óÅÂ¿¡ ´ëÇÑ µ¥ÀÌÅÍ¸¦ °®´Â Á¤º¸Ã¼
+ * @brief	CBFMediatorì—ì„œ UIë¡œ íŠ¹ì • ìœ ì €ì˜ ìƒíƒœ ë³€í™”ì— ëŒ€í•œ ì¶œë ¥ì„ ìš”êµ¬ í•  ë•Œ,
+ *			í•´ë‹¹ ìœ ì €ì˜ ìƒíƒœì— ëŒ€í•œ ë°ì´í„°ë¥¼ ê°–ëŠ” ì •ë³´ì²´
  */
 class CDisplayDTO
 {

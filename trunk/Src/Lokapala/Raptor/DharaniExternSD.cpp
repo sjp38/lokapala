@@ -1,5 +1,5 @@
-/**@file	DharaniExternSD.cpp
- * @brief	DharaniExternSD¸¦ ±¸Çö
+ï»¿/**@file	DharaniExternSD.cpp
+ * @brief	DharaniExternSDë¥¼ êµ¬í˜„
  * @author	siva
  */
 
@@ -10,9 +10,9 @@
 
 #include "CommunicationManager.h"
 
-/**@brief	Dharani°¡ °ü¸®ÇÏ°Ô µÇ´Â Å¬¶óÀÌ¾ðÆ®°¡ µ¥ÀÌÅÍ¸¦ ¹ÞÀº °æ¿ì, Å¬¶óÀÌ¾ðÆ® ÄÚµå Ãø¿¡ ÀÌ »ç½Ç°ú ¹ÞÀº ³»¿ëÀ» ¾Ë¸°´Ù.
- * @param	a_receivedMessage		Àü¼Û¹ÞÀº ¸Þ¼¼Áö
- * @remarks	Å¬¶óÀÌ¾ðÆ® Àü¿ë ÇÔ¼öÀÌ´Ù.
+/**@brief	Dharaniê°€ ê´€ë¦¬í•˜ê²Œ ë˜ëŠ” í´ë¼ì´ì–¸íŠ¸ê°€ ë°ì´í„°ë¥¼ ë°›ì€ ê²½ìš°, í´ë¼ì´ì–¸íŠ¸ ì½”ë“œ ì¸¡ì— ì´ ì‚¬ì‹¤ê³¼ ë°›ì€ ë‚´ìš©ì„ ì•Œë¦°ë‹¤.
+ * @param	a_receivedMessage		ì „ì†¡ë°›ì€ ë©”ì„¸ì§€
+ * @remarks	í´ë¼ì´ì–¸íŠ¸ ì „ìš© í•¨ìˆ˜ì´ë‹¤.
  */
 void CDharaniExternSD::NotifyReceived(char *a_receivedMessage)
 {
@@ -22,19 +22,19 @@ void CDharaniExternSD::NotifyReceived(char *a_receivedMessage)
 	CCommunicationManager::Instance()->NotifyReceived(message);
 }
 
-/**@brief	Dharani°¡ °ü¸®ÇÏ°Ô µÇ´Â Å¬¶óÀÌ¾ðÆ®°¡ µ¥ÀÌÅÍ¸¦ ¹ÞÀº °æ¿ì, Å¬¶óÀÌ¾ðÆ® ÄÚµå Ãø¿¡ ÀÌ »ç½Ç°ú ¹ÞÀº ³»¿ëÀ» ¾Ë¸°´Ù.
- *			Àü¼ÛÇÑ ÃøÀÇ ÁÖ¼Ò°¡ ÇÊ¿äÇÑ, Áï ¼­¹ö·Î »ç¿ëÇÒ °æ¿ì »ç¿ëµÇ´Â ¿À¹ö·Îµå ÇÔ¼ö.
- * @param	a_message		Àü¼Û¹ÞÀº ¸Þ¼¼Áö
- * @param	a_localIp		¸Þ¼¼Áö¸¦ Àü¼ÛÇÑ Å¬¶óÀÌ¾ðÆ®ÀÇ ·ÎÄÃ ÁÖ¼Ò
- * @param	a_globalIp		¸Þ¼¼Áö¸¦ Àü¼ÛÇÑ Å¬¶óÀÌ¾ðÆ®ÀÇ ±Û·Î¹ú ÁÖ¼Ò
- * @remarks	¼­¹ö Àü¿ë ÇÔ¼öÀÌ¹Ç·Î ·¦ÅÍ¿¡¼­´Â ±¸ÇöÇÏÁö ¾Ê´Â´Ù.
+/**@brief	Dharaniê°€ ê´€ë¦¬í•˜ê²Œ ë˜ëŠ” í´ë¼ì´ì–¸íŠ¸ê°€ ë°ì´í„°ë¥¼ ë°›ì€ ê²½ìš°, í´ë¼ì´ì–¸íŠ¸ ì½”ë“œ ì¸¡ì— ì´ ì‚¬ì‹¤ê³¼ ë°›ì€ ë‚´ìš©ì„ ì•Œë¦°ë‹¤.
+ *			ì „ì†¡í•œ ì¸¡ì˜ ì£¼ì†Œê°€ í•„ìš”í•œ, ì¦‰ ì„œë²„ë¡œ ì‚¬ìš©í•  ê²½ìš° ì‚¬ìš©ë˜ëŠ” ì˜¤ë²„ë¡œë“œ í•¨ìˆ˜.
+ * @param	a_message		ì „ì†¡ë°›ì€ ë©”ì„¸ì§€
+ * @param	a_localIp		ë©”ì„¸ì§€ë¥¼ ì „ì†¡í•œ í´ë¼ì´ì–¸íŠ¸ì˜ ë¡œì»¬ ì£¼ì†Œ
+ * @param	a_globalIp		ë©”ì„¸ì§€ë¥¼ ì „ì†¡í•œ í´ë¼ì´ì–¸íŠ¸ì˜ ê¸€ë¡œë²Œ ì£¼ì†Œ
+ * @remarks	ì„œë²„ ì „ìš© í•¨ìˆ˜ì´ë¯€ë¡œ ëž©í„°ì—ì„œëŠ” êµ¬í˜„í•˜ì§€ ì•ŠëŠ”ë‹¤.
  */
 void CDharaniExternSD::NotifyReceived(char *a_receivedMessage, in_addr a_localIp, in_addr a_globalIp)
 {
 }
 
-/**@brief	¼­¹ö¿Í ¿¬°á¿¡ ¼º°øÇßÀ½À» ¾Ë¸°´Ù.
- * @remarks	Å¬¶óÀÌ¾ðÆ® Àü¿ë ÇÔ¼ö´Ù.
+/**@brief	ì„œë²„ì™€ ì—°ê²°ì— ì„±ê³µí–ˆìŒì„ ì•Œë¦°ë‹¤.
+ * @remarks	í´ë¼ì´ì–¸íŠ¸ ì „ìš© í•¨ìˆ˜ë‹¤.
  */
 void CDharaniExternSD::NotifyConnected()
 {
@@ -42,29 +42,29 @@ void CDharaniExternSD::NotifyConnected()
 }
 
 
-/**@brief	¼­¹ö¿ÍÀÇ ¿¬°áÀÌ ²÷°åÀ½À» ¾Ë¸°´Ù.
- * @remarks	Å¬¶óÀÌ¾ðÆ® Àü¿ë ÇÔ¼ö´Ù.
+/**@brief	ì„œë²„ì™€ì˜ ì—°ê²°ì´ ëŠê²¼ìŒì„ ì•Œë¦°ë‹¤.
+ * @remarks	í´ë¼ì´ì–¸íŠ¸ ì „ìš© í•¨ìˆ˜ë‹¤.
  */
 void CDharaniExternSD::NotifyDisconnected()
 {
 	CCommunicationManager::Instance()->Disconnected();
 }
 
-/**@brief	Å¬¶óÀÌ¾ðÆ®·ÎºÎÅÍÀÇ ¿¬°áÀÌ ¼º»çµÇ¾úÀ½À» ¾Ë¸°´Ù.
- *			³»ºÎÀûÀ¸·Î´Â ¿¬°áµÈ Å¬¶óÀÌ¾ðÆ®ÀÇ ÁÖ¼Ò Á¤º¸¸¦ Ç¥½Ã ÇØ ¾Ë·ÁÁÙ »ÓÀÌ´Ù.
- * @param	a_globalIp	¿¬°áµÈ Å¬¶óÀÌ¾ðÆ®ÀÇ global ip
- * @param	a_localIp	¿¬°áµÈ Å¬¶óÀÌ¾ðÆ®ÀÇ local ip
- * @remarks	¼­¹ö Àü¿ë ÇÔ¼öÀÌ¹Ç·Î ·¦ÅÍ¿¡¼­´Â ±¸ÇöÇÏÁö ¾Ê´Â´Ù.
+/**@brief	í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„°ì˜ ì—°ê²°ì´ ì„±ì‚¬ë˜ì—ˆìŒì„ ì•Œë¦°ë‹¤.
+ *			ë‚´ë¶€ì ìœ¼ë¡œëŠ” ì—°ê²°ëœ í´ë¼ì´ì–¸íŠ¸ì˜ ì£¼ì†Œ ì •ë³´ë¥¼ í‘œì‹œ í•´ ì•Œë ¤ì¤„ ë¿ì´ë‹¤.
+ * @param	a_globalIp	ì—°ê²°ëœ í´ë¼ì´ì–¸íŠ¸ì˜ global ip
+ * @param	a_localIp	ì—°ê²°ëœ í´ë¼ì´ì–¸íŠ¸ì˜ local ip
+ * @remarks	ì„œë²„ ì „ìš© í•¨ìˆ˜ì´ë¯€ë¡œ ëž©í„°ì—ì„œëŠ” êµ¬í˜„í•˜ì§€ ì•ŠëŠ”ë‹¤.
  */
 void CDharaniExternSD::NotifyAccepted(in_addr *a_globalIp, in_addr *a_localIp)
 {
 }
 
-/**@brief	Æ¯Á¤ Å¬¶óÀÌ¾ðÆ®°¡ Á¢¼Ó ÇØÁ¦ ÇßÀ½À» ¾Ë¸°´Ù.
- *			³»ºÎÀûÀ¸·Î´Â ÇØ´ç ip¸¦ ¸®½ºÆ®¹Ú½º¿¡¼­ ¸ñ·Ï Á¦°Å ÇÒ »ÓÀÌ´Ù.
- * @param	a_globalIp	Á¢¼Ó ÇØÁ¦ÇÑ Å¬¶óÀÌ¾ðÆ®ÀÇ global ip
- * @param	a_localIp	Á¢¼Ó ÇØÁ¦ÇÑ Å¬¶óÀÌ¾ðÆ®ÀÇ local Ip
- * @remarks	¼­¹ö Àü¿ë ÇÔ¼öÀÌ¹Ç·Î ·¦ÅÍ¿¡¼­´Â ±¸ÇöÇÏÁö ¾Ê´Â´Ù.
+/**@brief	íŠ¹ì • í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì† í•´ì œ í–ˆìŒì„ ì•Œë¦°ë‹¤.
+ *			ë‚´ë¶€ì ìœ¼ë¡œëŠ” í•´ë‹¹ ipë¥¼ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ëª©ë¡ ì œê±° í•  ë¿ì´ë‹¤.
+ * @param	a_globalIp	ì ‘ì† í•´ì œí•œ í´ë¼ì´ì–¸íŠ¸ì˜ global ip
+ * @param	a_localIp	ì ‘ì† í•´ì œí•œ í´ë¼ì´ì–¸íŠ¸ì˜ local Ip
+ * @remarks	ì„œë²„ ì „ìš© í•¨ìˆ˜ì´ë¯€ë¡œ ëž©í„°ì—ì„œëŠ” êµ¬í˜„í•˜ì§€ ì•ŠëŠ”ë‹¤.
  */
 void CDharaniExternSD::NotifyLeft(in_addr *a_globalIp, in_addr *a_localIp)
 {

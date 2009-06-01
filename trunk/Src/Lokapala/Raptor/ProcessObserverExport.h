@@ -1,5 +1,5 @@
-/**@file	ProcessObserverExport.h
- * @brief	½ÇÇà ÇÁ·Î¼¼½º °¨½Ã¸¦ À§ÇÑ ÇÔ¼öÀÇ import¸¦ À§ÇØ »ç¿ëµÈ´Ù.
+ï»¿/**@file	ProcessObserverExport.h
+ * @brief	ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤ ê°ì‹œë¥¼ ìœ„í•œ í•¨ìˆ˜ì˜ importë¥¼ ìœ„í•´ ì‚¬ìš©ëœë‹¤.
  * @author	siva
  */
 

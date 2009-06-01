@@ -1,5 +1,5 @@
-/**@file	UserDTO.cpp
- * @brief	CUserDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	UserDTO.cpp
+ * @brief	CUserDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -24,7 +24,7 @@ CUserDTO::CUserDTO(CString a_name, CString a_lowLevelPassword, CString a_highLev
 	m_level = a_level;
 };
 
-/**@brief	sha1 ¾Ë°í¸®ÁòÀ¸·Î ¸Ş¼¼Áö¸¦ ÇØ½ÌÇÑ´Ù.
+/**@brief	sha1 ì•Œê³ ë¦¬ì¦˜ìœ¼ë¡œ ë©”ì„¸ì§€ë¥¼ í•´ì‹±í•œë‹¤.
  */
 CString CUserDTO::HashMessage(CString a_message)
 {

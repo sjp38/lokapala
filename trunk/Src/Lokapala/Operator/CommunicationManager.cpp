@@ -1,5 +1,5 @@
-/**@file	CommunicationManager.cpp
- * @brief	CCommunicationManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	CommunicationManager.cpp
+ * @brief	CCommunicationManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -20,7 +20,7 @@
 #include "ConnectedHostDTO.h"
 
 
-/**@brief	¼­¹ö·Î½áÀÇ Åë½ÅÀ» À§ÇÑ ÃÊ±âÈ­¸¦ ÇÑ´Ù.
+/**@brief	ì„œë²„ë¡œì¨ì˜ í†µì‹ ì„ ìœ„í•œ ì´ˆê¸°í™”ë¥¼ í•œë‹¤.
  */
 void CCommunicationManager::InitiallizeAsServer()
 {
@@ -29,9 +29,9 @@ void CCommunicationManager::InitiallizeAsServer()
 	dharaniInterface->DharaniServerInitiallize();
 }
 
-/**@brief	Æ¯Á¤ ÁÖ¼ÒÀÇ raptor¿¡°Ô ¹®ÀÚ¿­À» º¸³½´Ù.
- * @param	a_targetAddress	¹®ÀÚ¿­À» ¹ŞÀ» raptorÀÇ ip ÁÖ¼Ò. {±Û·Î¹ú ip}/{·ÎÄÃ ip}ÀÇ ±¸Á¶·Î µÇ¾î ÀÖ´Ù.
- * @param	a_message	º¸³¾ ¹®ÀÚ¿­ ¸Ş¼¼Áö.
+/**@brief	íŠ¹ì • ì£¼ì†Œì˜ raptorì—ê²Œ ë¬¸ìì—´ì„ ë³´ë‚¸ë‹¤.
+ * @param	a_targetAddress	ë¬¸ìì—´ì„ ë°›ì„ raptorì˜ ip ì£¼ì†Œ. {ê¸€ë¡œë²Œ ip}/{ë¡œì»¬ ip}ì˜ êµ¬ì¡°ë¡œ ë˜ì–´ ìˆë‹¤.
+ * @param	a_message	ë³´ë‚¼ ë¬¸ìì—´ ë©”ì„¸ì§€.
  */
 void CCommunicationManager::SendTextMessageTo(CString a_targetAddress, CString a_message)
 {
@@ -47,8 +47,8 @@ void CCommunicationManager::SendTextMessageTo(CString a_targetAddress, CString a
 	dharaniInterface->DharaniSendTextMessageTo(&message);
 }
 
-/**@brief	¿¬°áµÇ¾î ÀÖ´Â ¸ğµç raptor¿¡°Ô ¹®ÀÚ¸¦ º¸³½´Ù.
- * @param	a_message	º¸³¾ ¹®ÀÚ¿­ ¸Ş¼¼Áö.
+/**@brief	ì—°ê²°ë˜ì–´ ìˆëŠ” ëª¨ë“  raptorì—ê²Œ ë¬¸ìë¥¼ ë³´ë‚¸ë‹¤.
+ * @param	a_message	ë³´ë‚¼ ë¬¸ìì—´ ë©”ì„¸ì§€.
  */
 void CCommunicationManager::BroadcastTextMessage(CString a_message)
 {
@@ -66,7 +66,7 @@ void CCommunicationManager::BroadcastTextMessage(CString a_message)
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Dharani -> CCM
 
-/**@brief	´Ù¶ó´Ï ÄÄÆ÷³ÍÆ®·ÎºÎÅÍ »õ·Î¿î ·¦ÅÍÀÇ ¿¬°áÀ» ¾Ë¸°´Ù.
+/**@brief	ë‹¤ë¼ë‹ˆ ì»´í¬ë„ŒíŠ¸ë¡œë¶€í„° ìƒˆë¡œìš´ ë©í„°ì˜ ì—°ê²°ì„ ì•Œë¦°ë‹¤.
  */
 void CCommunicationManager::RaptorAccepted(CString a_address)
 {
@@ -75,7 +75,7 @@ void CCommunicationManager::RaptorAccepted(CString a_address)
 }
 
 
-/**@brief	´Ù¶ó´Ï ÄÄÆ÷³ÍÆ®·ÎºÎÅÍ Æ¯Á¤ ·¦ÅÍ·ÎºÎÅÍÀÇ ¿¬°áÀÌ ²÷¾îÁ³À½À» ¾Ë¸°´Ù.
+/**@brief	ë‹¤ë¼ë‹ˆ ì»´í¬ë„ŒíŠ¸ë¡œë¶€í„° íŠ¹ì • ë©í„°ë¡œë¶€í„°ì˜ ì—°ê²°ì´ ëŠì–´ì¡ŒìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
 {
@@ -85,11 +85,11 @@ void CCommunicationManager::RaptorLeaved(CString a_globalIp, CString a_localIp)
 }
 
 
-/**@brief	´Ù¶ó´Ï ÄÄÆ÷³ÍÆ®·ÎºÎÅÍ Àü¼Û¹ŞÀº ¸Ş¼¼Áö¸¦ ¹Ş´Â´Ù.
+/**@brief	ë‹¤ë¼ë‹ˆ ì»´í¬ë„ŒíŠ¸ë¡œë¶€í„° ì „ì†¡ë°›ì€ ë©”ì„¸ì§€ë¥¼ ë°›ëŠ”ë‹¤.
  */
 void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp, CString a_globalIp)
 {
-	//CCBFMediator::Instance()->Notify(&a_message);	//Å×½ºÆ®¿ë. ÁöÀúºĞÇÏ´Ï ÃÖÁ¾¿¡´Â Áö¿ìµµ·Ï.
+	//CCBFMediator::Instance()->Notify(&a_message);	//í…ŒìŠ¤íŠ¸ìš©. ì§€ì €ë¶„í•˜ë‹ˆ ìµœì¢…ì—ëŠ” ì§€ìš°ë„ë¡.
 	USES_CONVERSION;
 	TiXmlDocument doc;
 	doc.Parse(W2A(a_message));
@@ -124,7 +124,7 @@ void CCommunicationManager::NotifyReceived(CString a_message, CString a_localIp,
 //////////////////////////////////////////////////////////////////////////////////////
 //	Operator -> Raptpr
 
-/**@brief	·Î±×ÀÎ ¼º°øÇß´Ù´Â °É ¾Ë·ÁÁØ´Ù.
+/**@brief	ë¡œê·¸ì¸ ì„±ê³µí–ˆë‹¤ëŠ” ê±¸ ì•Œë ¤ì¤€ë‹¤.
  */
 void CCommunicationManager::SendLoginAcceptedNotifyMessage(void *a_acceptedData)
 {
@@ -147,7 +147,7 @@ void CCommunicationManager::SendLoginAcceptedNotifyMessage(void *a_acceptedData)
 	SendTextMessageTo(destinationHostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ ÄÄÇ»ÅÍ¸¦ ²ö´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ ì»´í“¨í„°ë¥¼ ëˆë‹¤.
  */
 void CCommunicationManager::SendShutdownInstruction(void *a_argument)
 {
@@ -169,7 +169,7 @@ void CCommunicationManager::SendShutdownInstruction(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ ÄÄÇ»ÅÍ¸¦ ÀçºÎÆÃ ½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ ì»´í“¨í„°ë¥¼ ì¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
  */
 void CCommunicationManager::SendRebootInstruction(void *a_argument)
 {
@@ -191,7 +191,7 @@ void CCommunicationManager::SendRebootInstruction(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¸¦ ·Î±×¾Æ¿ô½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìë¥¼ ë¡œê·¸ì•„ì›ƒì‹œí‚¨ë‹¤.
  */
 void CCommunicationManager::SendBanUserInstruction(void *a_argument)
 {
@@ -213,7 +213,7 @@ void CCommunicationManager::SendBanUserInstruction(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
  */
 void CCommunicationManager::SendExecuteProcessInstruction(void *a_argument)
 {
@@ -256,7 +256,7 @@ void CCommunicationManager::SendKillProcessInstruction(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ ½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
  */
 void CCommunicationManager::SendGenocideProcessInstruction(void *a_argument)
 {
@@ -278,7 +278,7 @@ void CCommunicationManager::SendGenocideProcessInstruction(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô °æ°í ¸Ş¼¼Áö¸¦ ¶ç¿î´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ê²½ê³  ë©”ì„¸ì§€ë¥¼ ë„ìš´ë‹¤.
  */
 void CCommunicationManager::SendWarningMessage(void *a_argument)
 {
@@ -301,7 +301,7 @@ void CCommunicationManager::SendWarningMessage(void *a_argument)
 }
 
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô »óÅÂ º¸°í¸¦ ³¯¸°´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ìƒíƒœ ë³´ê³ ë¥¼ ë‚ ë¦°ë‹¤.
  */
 void CCommunicationManager::SendStatusReport(void *a_statusReport)
 {
@@ -325,7 +325,7 @@ void CCommunicationManager::SendStatusReport(void *a_statusReport)
 	SendTextMessageTo(statusReport->m_hostAddress, A2W(packet));
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô ·¦ÅÍ µ¿ÀÛ ÁßÁö ¸í·ÉÀ» ³¯¸°´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ë©í„° ë™ì‘ ì¤‘ì§€ ëª…ë ¹ì„ ë‚ ë¦°ë‹¤.
  */
 void CCommunicationManager::SendRaptorTerminationInstruction(void *a_argument)
 {
@@ -347,8 +347,8 @@ void CCommunicationManager::SendRaptorTerminationInstruction(void *a_argument)
 	SendTextMessageTo(targetHostAddress, A2W(packet));
 }
 
-/**@brief	¸Ş½ÅÀú¸¦ ÀÌ¿ëÇÑ ¸Ş¼¼Áö¸¦ Àü¼ÛÇÑ´Ù.
- * @remarks	¸Ş¼¼Áö´Â ÅØ½ºÆ®, ÆÄÀÏÀÌ µÉ ¼ö ÀÖÀ¸¸ç, ÇöÀç ¹öÀü¿¡¼­´Â ÆÄÀÏÀº ±¸ÇöÇÏÁö ¾Ê´Â´Ù.
+/**@brief	ë©”ì‹ ì €ë¥¼ ì´ìš©í•œ ë©”ì„¸ì§€ë¥¼ ì „ì†¡í•œë‹¤.
+ * @remarks	ë©”ì„¸ì§€ëŠ” í…ìŠ¤íŠ¸, íŒŒì¼ì´ ë  ìˆ˜ ìˆìœ¼ë©°, í˜„ì¬ ë²„ì „ì—ì„œëŠ” íŒŒì¼ì€ êµ¬í˜„í•˜ì§€ ì•ŠëŠ”ë‹¤.
  */
 void CCommunicationManager::SendTextMessageToRaptor(void *a_message)
 {
@@ -373,7 +373,7 @@ void CCommunicationManager::SendTextMessageToRaptor(void *a_message)
 
 
 
-/**@brief	¹®ÀÚ¿­À» xml Çü½ÄÀ¸·Î ÆÄ½ÌÇÏ°í packet ¿¤·¹¸ÕÆ®ÀÇ Æ÷ÀÎÆ®¸¦ ¹İÈ¯ÇÑ´Ù.
+/**@brief	ë¬¸ìì—´ì„ xml í˜•ì‹ìœ¼ë¡œ íŒŒì‹±í•˜ê³  packet ì—˜ë ˆë¨¼íŠ¸ì˜ í¬ì¸íŠ¸ë¥¼ ë°˜í™˜í•œë‹¤.
  */
 TiXmlElement *CCommunicationManager::GetXmlParsedPacketElement(CString *a_packet)
 {
@@ -391,7 +391,7 @@ TiXmlElement *CCommunicationManager::GetXmlParsedPacketElement(CString *a_packet
 //////////////////////////////////////////////////////////////////////////////////////
 //	Raptor -> Operator
 
-/**@brief	·Î±×ÀÎ¿¡ ¿äÃ»¿¡ ´ëÇÑ Ã³¸®¸¦ ÇØÁØ´Ù.
+/**@brief	ë¡œê·¸ì¸ì— ìš”ì²­ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•´ì¤€ë‹¤.
  */
 void CCommunicationManager::LoginRequestReceived(CString *a_message, CString *a_hostAddress)
 {	
@@ -415,7 +415,7 @@ void CCommunicationManager::LoginRequestReceived(CString *a_message, CString *a_
 }
 
 
-/**@brief	·¦ÅÍ·ÎºÎÅÍ º¸°íµÈ ½ÇÇà ÇÁ·Î¼¼½º¿¡ ´ëÇÑ Ã³¸®.
+/**@brief	ë©í„°ë¡œë¶€í„° ë³´ê³ ëœ ì‹¤í–‰ í”„ë¡œì„¸ìŠ¤ì— ëŒ€í•œ ì²˜ë¦¬.
  */
 void CCommunicationManager::UserExecutedProcessReceived(CString *a_message, CString *a_hostAddress)
 {
@@ -434,7 +434,7 @@ void CCommunicationManager::UserExecutedProcessReceived(CString *a_message, CStr
 	CCCDecisionSD::Instance()->JudgeUserExecutedProcess(&executedProcessData);
 }
 
-/**@brief	·¦ÅÍ·ÎºÎÅÍ µé¾î¿Â °íÀå »óÈ² º¸°í¿¡ ´ëÇÑ Ã³¸®.
+/**@brief	ë©í„°ë¡œë¶€í„° ë“¤ì–´ì˜¨ ê³ ì¥ ìƒí™© ë³´ê³ ì— ëŒ€í•œ ì²˜ë¦¬.
  */
 void CCommunicationManager::StatusReportReceived(CString *a_message, CString *a_hostAddress)
 {
@@ -457,7 +457,7 @@ void CCommunicationManager::StatusReportReceived(CString *a_message, CString *a_
 	CCCDecisionSD::Instance()->PresentStatusReport(&statusReportData);
 }
 
-/**@brief	·¦ÅÍ·ÎºÎÅÍ ¸Ş½ÅÀú¸¦ ÅëÇØ µé¾î¿Â ¸Ş¼¼Áö¿¡ ´ëÇÑ Ã³¸®.
+/**@brief	ë©í„°ë¡œë¶€í„° ë©”ì‹ ì €ë¥¼ í†µí•´ ë“¤ì–´ì˜¨ ë©”ì„¸ì§€ì— ëŒ€í•œ ì²˜ë¦¬.
  */
 void CCommunicationManager::MessageReceived(CString *a_message, CString *a_hostAddress)
 {

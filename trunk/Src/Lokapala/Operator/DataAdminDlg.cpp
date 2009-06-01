@@ -1,4 +1,4 @@
-// DataAdminDlg.cpp : implementation file
+ï»¿// DataAdminDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 
 // CDataAdminDlg message handlers
 
-/**@brief	¼¼ÀÌºê ¹öÆ° Å¬¸¯
+/**@brief	ì„¸ì´ë¸Œ ë²„íŠ¼ í´ë¦­
  */
 void CDataAdminDlg::OnBnClickedSave()
 {
@@ -58,7 +58,7 @@ void CDataAdminDlg::OnBnClickedSave()
    } 
 }
 
-/**@brief	·Îµå ¹öÆ° Å¬¸¯
+/**@brief	ë¡œë“œ ë²„íŠ¼ í´ë¦­
  */
 void CDataAdminDlg::OnBnClickedLoad()
 {
@@ -81,7 +81,7 @@ void CDataAdminDlg::OnBnClickedLoad()
 }
 
 
-/**@brief	ÅÇ ÄÁÆ®·ÑÀ» ÃÊ±âÈ­ÇÑ´Ù.	*/
+/**@brief	íƒ­ ì»¨íŠ¸ë¡¤ì„ ì´ˆê¸°í™”í•œë‹¤.	*/
 BOOL CDataAdminDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -97,7 +97,7 @@ BOOL CDataAdminDlg::OnInitDialog()
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/**@brief	ÅÇ ÀÌµ¿ Áß. ±âÁ¸¿¡ ¼±ÅÃµÇ¾ú´ø ´ÙÀÌ¾ó·Î±×¸¦ º¸ÀÌÁö ¾Ê°Ô ÇÑ´Ù.	*/
+/**@brief	íƒ­ ì´ë™ ì¤‘. ê¸°ì¡´ì— ì„ íƒë˜ì—ˆë˜ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ë³´ì´ì§€ ì•Šê²Œ í•œë‹¤.	*/
 void CDataAdminDlg::OnTcnSelchangingDataAdminTab(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// TODO: Add your control notification handler code here
@@ -120,7 +120,7 @@ void CDataAdminDlg::OnTcnSelchangingDataAdminTab(NMHDR *pNMHDR, LRESULT *pResult
 	*pResult = 0;
 }
 
-/**@brief	ÅÇ ÀÌµ¿ ÈÄ. ¼±ÅÃµÈ ´ÙÀÌ¾ó·Î±×¸¦ Ç¥½ÃÇÑ´Ù.	*/
+/**@brief	íƒ­ ì´ë™ í›„. ì„ íƒëœ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ í‘œì‹œí•œë‹¤.	*/
 void CDataAdminDlg::OnTcnSelchangeDataAdminTab(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// TODO: Add your control notification handler code here
@@ -144,7 +144,7 @@ void CDataAdminDlg::OnTcnSelchangeDataAdminTab(NMHDR *pNMHDR, LRESULT *pResult)
 }
 
 
-/**@brief	ÅÇ ÄÁÆ®·ÑÀÇ ÅÇÀ» ÃÊ±âÈ­ÇÑ´Ù(ÅÇ ÀÌ¸§ ¹× °ª ¼³Á¤).	*/
+/**@brief	íƒ­ ì»¨íŠ¸ë¡¤ì˜ íƒ­ì„ ì´ˆê¸°í™”í•œë‹¤(íƒ­ ì´ë¦„ ë° ê°’ ì„¤ì •).	*/
 void CDataAdminDlg::InitTabControl()
 {
 	TCITEM item;
@@ -157,7 +157,7 @@ void CDataAdminDlg::InitTabControl()
 	m_tabCtrl.InsertItem(2, &item);
 }
 
-/**@brief	½ÇÁ¦ °ªÀ» Á¶Á¤ÇÏ´Â ¼­ºê ´ÙÀÌ¾ó·Î±×µéÀ» NULL·Î ÃÊ±âÈ­ÇÑ´Ù.
+/**@brief	ì‹¤ì œ ê°’ì„ ì¡°ì •í•˜ëŠ” ì„œë¸Œ ë‹¤ì´ì–¼ë¡œê·¸ë“¤ì„ NULLë¡œ ì´ˆê¸°í™”í•œë‹¤.
  */
 void CDataAdminDlg::InitSubDialog()
 {
@@ -167,7 +167,7 @@ void CDataAdminDlg::InitSubDialog()
 }
 
 
-/**@brief	½ÇÁ¦ °ªÀ» Á¶Á¤ÇÏ´Â ¼­ºê ´ÙÀÌ¾ó·Î±×µéÀ» »ı¼ºÇÑ´Ù.
+/**@brief	ì‹¤ì œ ê°’ì„ ì¡°ì •í•˜ëŠ” ì„œë¸Œ ë‹¤ì´ì–¼ë¡œê·¸ë“¤ì„ ìƒì„±í•œë‹¤.
  */
 void CDataAdminDlg::CreateSubDialog()
 {
@@ -192,7 +192,7 @@ void CDataAdminDlg::CreateSubDialog()
 }
 
 
-/**@brief	ÅÇ ÄÁÆ®·ÑÀÇ Ã¹¹øÂ° ÅÇÀ» °¡¸®Å°°í Ç¥½ÃÇÏ°Ô ÇÑ´Ù.
+/**@brief	íƒ­ ì»¨íŠ¸ë¡¤ì˜ ì²«ë²ˆì§¸ íƒ­ì„ ê°€ë¦¬í‚¤ê³  í‘œì‹œí•˜ê²Œ í•œë‹¤.
  */
 void CDataAdminDlg::InitTabCursor()
 {
@@ -201,7 +201,7 @@ void CDataAdminDlg::InitTabCursor()
 }
 
 
-/**@brief	½ÇÁ¦ °ªÀ» Á¶Á¤ÇÏ´Â ¼­ºê ´ÙÀÌ¾ó·Î±×µéÀ» ¸Ş¸ğ¸® ÇØÁ¦ÇÏ°í NULL·Î ¸¸µé¾î ¹ö¸°´Ù.
+/**@brief	ì‹¤ì œ ê°’ì„ ì¡°ì •í•˜ëŠ” ì„œë¸Œ ë‹¤ì´ì–¼ë¡œê·¸ë“¤ì„ ë©”ëª¨ë¦¬ í•´ì œí•˜ê³  NULLë¡œ ë§Œë“¤ì–´ ë²„ë¦°ë‹¤.
  */
 void CDataAdminDlg::TerminateSubDialog()
 {
@@ -219,7 +219,7 @@ void CDataAdminDlg::TerminateSubDialog()
 	}
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»ö, ½ºÅÂÆ½ ÄÁÆ®·Ñ ¹è°æ»ö Á¶Á¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰, ìŠ¤íƒœí‹± ì»¨íŠ¸ë¡¤ ë°°ê²½ìƒ‰ ì¡°ì •
  */
 HBRUSH CDataAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -229,7 +229,7 @@ HBRUSH CDataAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(255,255,255) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ì…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));
@@ -241,7 +241,7 @@ HBRUSH CDataAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-/**@brief	Å¸ÀÌÆ²¹Ù ¾øÀÌ ¿òÁ÷ÀÌ±â
+/**@brief	íƒ€ì´í‹€ë°” ì—†ì´ ì›€ì§ì´ê¸°
  */
 void CDataAdminDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {

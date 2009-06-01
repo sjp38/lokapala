@@ -1,12 +1,12 @@
-/**@file	DCNeverDieSD.cpp
- * @brief	DCMÀÇ NeverDieSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCNeverDieSD.cpp
+ * @brief	DCMì˜ NeverDieSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "DCNeverDieSD.h"
 
-/**@brief	³×¹ö´ÙÀÌ ¸ğµå¸¦ Á¾·áÇÑ´Ù.
+/**@brief	ë„¤ë²„ë‹¤ì´ ëª¨ë“œë¥¼ ì¢…ë£Œí•œë‹¤.
  */
 void CDCNeverDieSD::StopNeverDie()
 {

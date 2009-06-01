@@ -1,12 +1,12 @@
-/**@file	StatusReportDTO.cpp
- * @brief	CStatusReportDTO Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	StatusReportDTO.cpp
+ * @brief	CStatusReportDTO í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "StatusReportDTO.h"
 
-/**@brief	»ı¼ºÀÚ. ·¦ÅÍ¿¡¼± ÀÌ°É ¾²Áø ¾Ê´Â´Ù.	*/
+/**@brief	ìƒì„±ì. ë©í„°ì—ì„  ì´ê±¸ ì“°ì§„ ì•ŠëŠ”ë‹¤.	*/
 CStatusReportDTO::CStatusReportDTO(CString a_hostAddress, State a_state, CString a_date, CString a_comment)
 {
 	m_hostAddress = a_hostAddress;
@@ -15,7 +15,7 @@ CStatusReportDTO::CStatusReportDTO(CString a_hostAddress, State a_state, CString
 	m_comment = a_comment;
 }
 
-/**@brief	»ı¼ºÀÚ. ·¦ÅÍ¿¡¼± ÀÌ°É ¾²°Ô µÈ´Ù.	*/
+/**@brief	ìƒì„±ì. ë©í„°ì—ì„  ì´ê±¸ ì“°ê²Œ ëœë‹¤.	*/
 CStatusReportDTO::CStatusReportDTO(State a_state, CString a_date, CString a_comment)
 {
 	m_hostAddress = _T("");

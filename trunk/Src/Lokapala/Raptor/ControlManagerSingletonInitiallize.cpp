@@ -1,5 +1,5 @@
-/**@file	ControlManagerSingletonInitiallize.cpp
- * @brief	Control Manager ÄÄÆ÷³ÍÆ®ÀÇ ¸ğµç ½Ì±ÛÅæÀ» ÃÊ±âÈ­ÇÑ´Ù.
+ï»¿/**@file	ControlManagerSingletonInitiallize.cpp
+ * @brief	Control Manager ì»´í¬ë„ŒíŠ¸ì˜ ëª¨ë“  ì‹±ê¸€í†¤ì„ ì´ˆê¸°í™”í•œë‹¤.
  * @author	siva
  */
 

@@ -1,5 +1,5 @@
-/**@file	DecisionManager.cpp
- * @brief	CDecisionManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	DecisionManager.cpp
+ * @brief	CDecisionManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -13,8 +13,8 @@
 
 #include "StatusReportsDTO.h"
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿Í ¿¬°á µÇ¾úÀ» ¶§.
- *			ÇöÀç ÀÚ½ÅÀÌ °¡Áö°í ÀÖ´Â »óÅÂ Á¤º¸¸¦ º¸³½´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ ì—°ê²° ë˜ì—ˆì„ ë•Œ.
+ *			í˜„ì¬ ìì‹ ì´ ê°€ì§€ê³  ìˆëŠ” ìƒíƒœ ì •ë³´ë¥¼ ë³´ë‚¸ë‹¤.
  */
 void CDecisionManager::Connected()
 {
@@ -27,23 +27,23 @@ void CDecisionManager::Connected()
 	}
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿Í ¿¬°áÀÌ ²÷°åÀ» ¶§.
- *			ÀÚ±â ÀÚ½ÅÀ» Á×ÀÎ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ ì—°ê²°ì´ ëŠê²¼ì„ ë•Œ.
+ *			ìê¸° ìì‹ ì„ ì£½ì¸ë‹¤.
  */
 void CDecisionManager::Disconnected()
 {
 	AfxMessageBox(_T("disconnected!"));
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ·Î±×ÀÎ ¿äÃ»À» ÇÑ´Ù.	*/
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ì„ í•œë‹¤.	*/
 void CDecisionManager::LoginRequest(void *a_userInfo)
 {
 	CDCDataAdminSD::Instance()->RegistUser(a_userInfo);
 	CDCCommunicationSD::Instance()->LoginRequest(a_userInfo);
 }
 
-/**@brief	·Î±×ÀÎ Çã¿ë ¸Ş¼¼Áö¸¦ ¹Ş¾ÒÀ» ¶§.
- *			»ç¿ëÀÚ ¹æÇØ ÇàÀ§¸¦ Áß´ÜÇÏ°í, »ç¿ëÀÚ ·¹º§ Á¤º¸ µîÀ» ±â¾ïÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ë¥¼ ë°›ì•˜ì„ ë•Œ.
+ *			ì‚¬ìš©ì ë°©í•´ í–‰ìœ„ë¥¼ ì¤‘ë‹¨í•˜ê³ , ì‚¬ìš©ì ë ˆë²¨ ì •ë³´ ë“±ì„ ê¸°ì–µí•œë‹¤.
  */
 void CDecisionManager::LoginAccepted(int a_level)
 {
@@ -52,63 +52,63 @@ void CDecisionManager::LoginAccepted(int a_level)
 	//AfxMessageBox(_T("login!!!"));
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ·Î±×ÀÎ ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ë¡œê·¸ì¸ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::LoginOrderReceived(void *a_message)
 {
 	CDCControlSD::Instance()->Login(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ·Î±×¾Æ¿ô ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ë¡œê·¸ì•„ì›ƒ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::LogoutOrderReceived(void *a_message)
 {
 	CDCControlSD::Instance()->Logout(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ÄÄÇ»ÅÍ Á¾·á ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ì»´í“¨í„° ì¢…ë£Œ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::ShutdownOrderReceived(void *a_message)
 {
 	CDCControlSD::Instance()->Shutdown(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ °­Á¦ ÄÄÇ»ÅÍ ¸®ºÎÆÃ ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ê°•ì œ ì»´í“¨í„° ë¦¬ë¶€íŒ… ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::RebootOrderReceived(void *a_message)
 {
 	CDCControlSD::Instance()->Reboot(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ ½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º Á¾·á ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::GenocideProcessesOrderReceived(void *a_message)
 {
 	CDCControlSD::Instance()->GenocideProcesses(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º Á¾·á ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::KillProcessOrderReceived(void *a_processName)
 {
 	CDCControlSD::Instance()->KillProcess(a_processName);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà ¸í·É¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ëª…ë ¹ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
  */
 void CDecisionManager::ExecuteProcessOrderReceived(void *a_processName)
 {
 	CDCControlSD::Instance()->ExecuteProcess(a_processName);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ »óÅÂ Á¤º¸¸¦ ¹Ş¾ÒÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ìƒíƒœ ì •ë³´ë¥¼ ë°›ì•˜ì„ ë•Œ.
  */
 void CDecisionManager::StatusReportReceived(void *a_statusReport)
 {
 	CDCDataAdminSD::Instance()->AddStatusReport(a_statusReport);	
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ·¦ÅÍ µ¿ÀÛ Á¾·á ¸í·ÉÀ» ¹Ş¾ÒÀ» ¶§. ³×¹ö´ÙÀÌ ¸ğµå¸¦ Ç®°í, Á×´Â´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ë©í„° ë™ì‘ ì¢…ë£Œ ëª…ë ¹ì„ ë°›ì•˜ì„ ë•Œ. ë„¤ë²„ë‹¤ì´ ëª¨ë“œë¥¼ í’€ê³ , ì£½ëŠ”ë‹¤.
  */
 void CDecisionManager::RaptorTerminationOrderReceived()
 {
@@ -119,8 +119,8 @@ void CDecisionManager::RaptorTerminationOrderReceived()
 
 
 
-/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» º¸°í ¹Ş´Â´Ù.
- *			CCMÀ» ÀÌ¿ëÇØ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô º¸°íÇÑ´Ù.
+/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ë³´ê³  ë°›ëŠ”ë‹¤.
+ *			CCMì„ ì´ìš©í•´ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë³´ê³ í•œë‹¤.
  */
 void CDecisionManager::ReportExecutedProcess(CString *a_executedProcess)
 {
@@ -132,8 +132,8 @@ void CDecisionManager::ReportStatus(void *a_status)
 	CDCCommunicationSD::Instance()->ReportStatus(a_status);
 }
 
-/**@brief	»ç¿ëÀÚ°¡ ÇÁ·Î±×·¥À» Á¾·á ÇÏ°íÀÚ ÇÑ °æ¿ì.
- *			Á¾·á¿¡ ´ëÇÑ Ã³¸®´Â ´ÙÀÌ¾ó·Î±×¿¡¼­ ÇÑ´Ù. ¿©±â¼±, ÇöÀç °íÀå »óÅÂ(state reports)¸¦ ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìê°€ í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œ í•˜ê³ ì í•œ ê²½ìš°.
+ *			ì¢…ë£Œì— ëŒ€í•œ ì²˜ë¦¬ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ì—ì„œ í•œë‹¤. ì—¬ê¸°ì„ , í˜„ì¬ ê³ ì¥ ìƒíƒœ(state reports)ë¥¼ íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
  */
 void CDecisionManager::UserTryingToKillMe()
 {

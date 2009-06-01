@@ -1,5 +1,5 @@
-/**@file	UserDataDTO.h
- * @brief	À¯Àú °³ÀÎÀÇ Á¤º¸¸¦ ´ã´Â DTO¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	UserDataDTO.h
+ * @brief	ìœ ì € ê°œì¸ì˜ ì •ë³´ë¥¼ ë‹´ëŠ” DTOë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -8,18 +8,18 @@
 
 /**@ingroup	GroupDAM
  * @class	CUserDataDTO
- * @brief	À¯Àú °³ÀÎÀÇ Á¤º¸¸¦ ´ã´Â´Ù.\n
- * @remarks	ºñ¹Ğ¹øÈ£´Â ¸ğµÎ ´Ü¹æÇâ ÇØ½ÌÀ» °ÅÄ£ °ªµéÀ» °®´Â´Ù.\n
- *			À¯Àú id´Â ´ç¹æÇâ ÇØ½Ì ÈÄÀÇ ·Î¿ì·¹º§ ÆĞ½º¿öµå(ÇĞ¹ø)´Ù.
+ * @brief	ìœ ì € ê°œì¸ì˜ ì •ë³´ë¥¼ ë‹´ëŠ”ë‹¤.\n
+ * @remarks	ë¹„ë°€ë²ˆí˜¸ëŠ” ëª¨ë‘ ë‹¨ë°©í–¥ í•´ì‹±ì„ ê±°ì¹œ ê°’ë“¤ì„ ê°–ëŠ”ë‹¤.\n
+ *			ìœ ì € idëŠ” ë‹¹ë°©í–¥ í•´ì‹± í›„ì˜ ë¡œìš°ë ˆë²¨ íŒ¨ìŠ¤ì›Œë“œ(í•™ë²ˆ)ë‹¤.
  */
 class CUserDataDTO
 {
 public :
-	/**@brief	¿©±â¼± ´Ü¼øÈ÷ ÇØ´ç À¯ÀúÀÇ low level password¸¦ »ç¿ëÇÑ´Ù.	*/
+	/**@brief	ì—¬ê¸°ì„  ë‹¨ìˆœíˆ í•´ë‹¹ ìœ ì €ì˜ low level passwordë¥¼ ì‚¬ìš©í•œë‹¤.	*/
 	CString m_userId;
 	CString m_name;
 	CString m_lowLevelPassword;
-	/**@brief	sha1À¸·Î ÇØ½ÌµÈ digest message¸¦ °®´Â´Ù.	*/
+	/**@brief	sha1ìœ¼ë¡œ í•´ì‹±ëœ digest messageë¥¼ ê°–ëŠ”ë‹¤.	*/
 	CString m_highLevelPassword;
 	int m_level;
 	

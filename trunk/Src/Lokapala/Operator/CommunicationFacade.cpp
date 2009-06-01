@@ -1,5 +1,5 @@
-/**@file	CommunicationFacade.cpp
- * @brief	CCMÀÇ FacadeÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	CommunicationFacade.cpp
+ * @brief	CCMì˜ Facadeì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -9,72 +9,72 @@
 
 #include "CommunicationManager.h"
 
-/**@brief	¼­¹ö·Î½áÀÇ Åë½ÅÀ» À§ÇÑ ÃÊ±âÈ­¸¦ ÇÑ´Ù.
+/**@brief	ì„œë²„ë¡œì¨ì˜ í†µì‹ ì„ ìœ„í•œ ì´ˆê¸°í™”ë¥¼ í•œë‹¤.
  */
 void CCommunicationFacade::InitiallizeAsServer()
 {
 	CCommunicationManager::Instance()->InitiallizeAsServer();
 }
 
-/**@brief	Æ¯Á¤ ÁÖ¼ÒÀÇ raptor¿¡°Ô ¹®ÀÚ¿­À» º¸³½´Ù.
- * @param	a_targetAddress	¹®ÀÚ¿­À» ¹ŞÀ» raptorÀÇ ip ÁÖ¼Ò
- * @param	a_message	º¸³¾ ¹®ÀÚ¿­ ¸Ş¼¼Áö.
+/**@brief	íŠ¹ì • ì£¼ì†Œì˜ raptorì—ê²Œ ë¬¸ìì—´ì„ ë³´ë‚¸ë‹¤.
+ * @param	a_targetAddress	ë¬¸ìì—´ì„ ë°›ì„ raptorì˜ ip ì£¼ì†Œ
+ * @param	a_message	ë³´ë‚¼ ë¬¸ìì—´ ë©”ì„¸ì§€.
  */
 void CCommunicationFacade::SendTextMessageTo(CString a_targetAddress, CString a_message)
 {
 	CCommunicationManager::Instance()->SendTextMessageTo(a_targetAddress, a_message);
 }
 
-/**@brief	¿¬°áµÇ¾î ÀÖ´Â ¸ğµç raptor¿¡°Ô ¹®ÀÚ¸¦ º¸³½´Ù.
- * @param	a_message	º¸³¾ ¹®ÀÚ¿­ ¸Ş¼¼Áö.
+/**@brief	ì—°ê²°ë˜ì–´ ìˆëŠ” ëª¨ë“  raptorì—ê²Œ ë¬¸ìë¥¼ ë³´ë‚¸ë‹¤.
+ * @param	a_message	ë³´ë‚¼ ë¬¸ìì—´ ë©”ì„¸ì§€.
  */
 void CCommunicationFacade::BroadcastTextMessage(CString a_message)
 {	
 	CCommunicationManager::Instance()->BroadcastTextMessage(a_message);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô ·Î±×ÀÎ Çã¿ë ¸Ş¼¼Áö¸¦ Àü¼ÛÇÑ´Ù.
- * @param	a_acceptedData	·Î±×ÀÎ Çã¿ëµÈ »ç¿ëÀÚÀÇ ÁÖ¼Ò ¹× ·¹º§ µîÀÇ µ¥ÀÌÅÍ¸¦ ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ë¡œê·¸ì¸ í—ˆìš© ë©”ì„¸ì§€ë¥¼ ì „ì†¡í•œë‹¤.
+ * @param	a_acceptedData	ë¡œê·¸ì¸ í—ˆìš©ëœ ì‚¬ìš©ìì˜ ì£¼ì†Œ ë° ë ˆë²¨ ë“±ì˜ ë°ì´í„°ë¥¼ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendLoginAcceptedNotifyMessage(void *a_acceptedData)
 {
 	CCommunicationManager::Instance()->SendLoginAcceptedNotifyMessage(a_acceptedData);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ ÄÄÇ»ÅÍ¸¦ ²¨¹ö¸°´Ù.
- * @param	a_argment	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ ì»´í“¨í„°ë¥¼ êº¼ë²„ë¦°ë‹¤.
+ * @param	a_argment	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendShutdownInstruction(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendShutdownInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ ÄÄÇ»ÅÍ¸¦ ÀçºÎÆÃ ½ÃÅ²´Ù.
- * @param	a_argment	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ ì»´í“¨í„°ë¥¼ ì¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
+ * @param	a_argment	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendRebootInstruction(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendRebootInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¸¦ °­Á¦ ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
- * @param	a_argment	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìë¥¼ ê°•ì œ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
+ * @param	a_argment	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendBanUserInstruction(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendBanUserInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ ½ÇÇà ½ÃÅ²´Ù.
- * @param	a_argment	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ ì‹œí‚¨ë‹¤.
+ * @param	a_argment	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendExecuteProcessInstruction(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendExecuteProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ Æ¯Á¤ ÇÁ·Î¼¼½º¸¦ Á¾·á½ÃÅ²´Ù.
- * @param	a_argument	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ë¥¼ ì¢…ë£Œì‹œí‚¨ë‹¤.
+ * @param	a_argument	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendKillProcessInstruction(void *a_argument)
 {
@@ -82,39 +82,39 @@ void CCommunicationFacade::SendKillProcessInstruction(void *a_argument)
 }
 
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚÀÇ ½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º¸¦ Á×ÀÎ´Ù.
- * @param	a_argment	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì˜ ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ë¥¼ ì£½ì¸ë‹¤.
+ * @param	a_argment	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendGenocideProcessInstruction(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendGenocideProcessInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô °æ°í ¸Ş¼¼Áö¸¦ ³¯¸°´Ù.
- * @param	a_argment	¸ñÇ¥ »ç¿ëÀÚÀÇ À§Ä¡, µ¿ÀÛ ½ÃÀÇ Ãß°¡ Çàµ¿ µîÀ» ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ê²½ê³  ë©”ì„¸ì§€ë¥¼ ë‚ ë¦°ë‹¤.
+ * @param	a_argment	ëª©í‘œ ì‚¬ìš©ìì˜ ìœ„ì¹˜, ë™ì‘ ì‹œì˜ ì¶”ê°€ í–‰ë™ ë“±ì„ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°
  */
 void CCommunicationFacade::SendWarningMessage(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendWarningMessage(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô »óÅÂ º¸°í¸¦ ³¯¸°´Ù.
- * @param	a_statusReport	»óÅÂ º¸°í Á¤º¸¸¦ ´ãÀº Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ìƒíƒœ ë³´ê³ ë¥¼ ë‚ ë¦°ë‹¤.
+ * @param	a_statusReport	ìƒíƒœ ë³´ê³  ì •ë³´ë¥¼ ë‹´ì€ ì •ë³´ì²´ì˜ í¬ì¸í„°.
  */
 void CCommunicationFacade::SendStatusReport(void *a_statusReport)
 {
 	CCommunicationManager::Instance()->SendStatusReport(a_statusReport);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô ·¦ÅÍ ÁßÁö ¸í·ÉÀ» ³¯¸°´Ù.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ë©í„° ì¤‘ì§€ ëª…ë ¹ì„ ë‚ ë¦°ë‹¤.
  */
 void CCommunicationFacade::SendRaptorTerminationInstruction(void *a_argument)
 {
 	CCommunicationManager::Instance()->SendRaptorTerminationInstruction(a_argument);
 }
 
-/**@brief	Æ¯Á¤ »ç¿ëÀÚ¿¡°Ô ¸Ş½ÅÀú ±â´ÉÀ» ÀÌ¿ëÇÑ ¸Ş¼¼Áö¸¦ º¸³½´Ù.
- * @remarks	´Ü¼øÈ÷ ¹®ÀÚ¿­À» ±×¸ğ¾ç ±×´ë·Î ³Ñ±â´Â SendTextMessageTo ¿Í Çò°¥¸®Áö ¾Êµµ·Ï.
+/**@brief	íŠ¹ì • ì‚¬ìš©ìì—ê²Œ ë©”ì‹ ì € ê¸°ëŠ¥ì„ ì´ìš©í•œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
+ * @remarks	ë‹¨ìˆœíˆ ë¬¸ìì—´ì„ ê·¸ëª¨ì–‘ ê·¸ëŒ€ë¡œ ë„˜ê¸°ëŠ” SendTextMessageTo ì™€ í—·ê°ˆë¦¬ì§€ ì•Šë„ë¡.
  */
 void CCommunicationFacade::SendTextMessageToRaptor(void *a_message)
 {

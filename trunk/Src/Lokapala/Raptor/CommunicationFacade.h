@@ -1,5 +1,5 @@
-/**@file	CommunicationFacade.h
- * @brief	CCMÀÇ Facade Á¤ÀÇ.
+ï»¿/**@file	CommunicationFacade.h
+ * @brief	CCMì˜ Facade ì •ì˜.
  * @author	siva
  */
 
@@ -9,16 +9,16 @@
 #include "CommunicationBI.h"
 /**@ingroup	GroupCCM
  * @class	CCommunicationFacade
- * @brief	CCMÀÇ Facade.\n
-			½ÇÁúÀûÀÎ CCM À¸·ÎÀÇ ÀÔ±¸. Button Interface¸¦ »ó¼ÓÇÏ¸ç, ³»ºÎ ÄÄÆ÷³ÍÆ® ³»ºÎ Å¬·¡½ºµéÀ» »ç¿ëÇØ BI¿¡¼­ Á¤ÀÇµÈ ÀÎÅÍÆäÀÌ½º ÇÔ¼öµéÀ» ±¸ÇöÇÑ´Ù.
- * @remarks	SingleTonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	CCMì˜ Facade.\n
+			ì‹¤ì§ˆì ì¸ CCM ìœ¼ë¡œì˜ ì…êµ¬. Button Interfaceë¥¼ ìƒì†í•˜ë©°, ë‚´ë¶€ ì»´í¬ë„ŒíŠ¸ ë‚´ë¶€ í´ë˜ìŠ¤ë“¤ì„ ì‚¬ìš©í•´ BIì—ì„œ ì •ì˜ëœ ì¸í„°í˜ì´ìŠ¤ í•¨ìˆ˜ë“¤ì„ êµ¬í˜„í•œë‹¤.
+ * @remarks	SingleTonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CCommunicationFacade : public CCommunicationBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CCommunicationFacade *Instance()
 	{
@@ -37,9 +37,9 @@ public :
 	virtual void SendStatusReport(void *a_statusReport);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CCommunicationFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CCommunicationFacade(){}
 private :
 	/**@brief	singleton.	*/

@@ -1,5 +1,5 @@
-/**@file	RuleDataDTO.h
- * @brief	½ÇÇà ±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ Á¤º¸¸¦ ´ã´Â DTO¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	RuleDataDTO.h
+ * @brief	ì‹¤í–‰ ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ ì •ë³´ë¥¼ ë‹´ëŠ” DTOë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -10,21 +10,21 @@ enum Reactions {SHUTDOWN, REBOOT, LOGOUT, EXECUTE, KILL, GENOCIDEPROCESSES, WARN
 
 /**@ingroup GroupDAM
  * @class	CRuleDataDTO
- * @brief	½ÇÇà ±ÝÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢¿¡ ´ëÇÑ Á¤º¸¸¦ ´ã´Â´Ù.
+ * @brief	ì‹¤í–‰ ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ì— ëŒ€í•œ ì •ë³´ë¥¼ ë‹´ëŠ”ë‹¤.
  */
 class CRuleDataDTO
 {
 public :
 	CString m_processName;
 	CString m_caption;
-	/**@brief	±ÔÄ¢À» Àû¿ëÇÒ ÁÂ¼®ÀÇ id(ÁÂ¼®º°·Î ±ÔÄ¢ Àû¿ë °¡´É)	*/
+	/**@brief	ê·œì¹™ì„ ì ìš©í•  ì¢Œì„ì˜ id(ì¢Œì„ë³„ë¡œ ê·œì¹™ ì ìš© ê°€ëŠ¥)	*/
 	CString m_targetSeatId;
-	/**@brief	±ÔÄ¢À» Àû¿ëÇÒ À¯Àú id(À¯Àúº°·Î ±ÔÄ¢ Àû¿ë °¡´É)	*/
+	/**@brief	ê·œì¹™ì„ ì ìš©í•  ìœ ì € id(ìœ ì €ë³„ë¡œ ê·œì¹™ ì ìš© ê°€ëŠ¥)	*/
 	CString m_targetUserId;
-	/**@brief	±ÔÄ¢À» Àû¿ëÇÒ À¯ÀúÀÇ ÃÖ´ë ·¹º§	*/
+	/**@brief	ê·œì¹™ì„ ì ìš©í•  ìœ ì €ì˜ ìµœëŒ€ ë ˆë²¨	*/
 	int m_targetLevel;
 	enum Reactions m_reaction;
-	/**@brief	¸®¾×¼Ç ½Ã »ç¿ëÀÚ¿¡°Ô Àü¼ÛÇÒ ¸Þ¼¼Áö. ¸®¾×¼ÇÀÌ EXECUTE ¶ó¸é ½ÇÇàÇÒ ÇÁ·Î¼¼½ºÀÇ °æ·Î¸¦ ÀÇ¹ÌÇÑ´Ù.	*/
+	/**@brief	ë¦¬ì•¡ì…˜ ì‹œ ì‚¬ìš©ìžì—ê²Œ ì „ì†¡í•  ë©”ì„¸ì§€. ë¦¬ì•¡ì…˜ì´ EXECUTE ë¼ë©´ ì‹¤í–‰í•  í”„ë¡œì„¸ìŠ¤ì˜ ê²½ë¡œë¥¼ ì˜ë¯¸í•œë‹¤.	*/
 	CString m_reactionArgument;
 
 	CRuleDataDTO(CString a_processName, CString a_caption, 

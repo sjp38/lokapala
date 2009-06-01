@@ -1,5 +1,5 @@
-/**@file	SingletonInitiallize.cpp
- * @brief	Dharani ÄÄÆ÷³ÍÆ®¿¡¼­ »ç¿ëµÇ´Â ½Ì±ÛÅæµéÀ» NULL·Î ÃÊ±âÈ­ÇÑ´Ù.
+ï»¿/**@file	SingletonInitiallize.cpp
+ * @brief	Dharani ì»´í¬ë„ŒíŠ¸ì—ì„œ ì‚¬ìš©ë˜ëŠ” ì‹±ê¸€í†¤ë“¤ì„ NULLë¡œ ì´ˆê¸°í™”í•œë‹¤.
  * @author	siva
  */
 

@@ -1,5 +1,5 @@
-/**@file	DecisionSingletonInitiallize.cpp
- * @brief	DCMÀÇ ¸ğµç ½Ì±ÛÅæÀ» ÃÊ±âÈ­ÇÑ´Ù.
+ï»¿/**@file	DecisionSingletonInitiallize.cpp
+ * @brief	DCMì˜ ëª¨ë“  ì‹±ê¸€í†¤ì„ ì´ˆê¸°í™”í•œë‹¤.
  */
 
 #include "stdafx.h"

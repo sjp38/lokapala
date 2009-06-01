@@ -1,5 +1,5 @@
-/**@file	AutoExecuteManager.h
- * @brief	ÄÄÇ»ÅÍ ºÎÆÃ ½Ã ÀÚµ¿ ½ÇÇà¿¡ °üÇÑ »çÇ×À» Ã¥ÀÓÁø´Ù.
+ï»¿/**@file	AutoExecuteManager.h
+ * @brief	ì»´í“¨í„° ë¶€íŒ… ì‹œ ìë™ ì‹¤í–‰ì— ê´€í•œ ì‚¬í•­ì„ ì±…ì„ì§„ë‹¤.
  * @author	siva
  */
 
@@ -9,14 +9,14 @@
 
 /**@ingroup	GroupNDM
  * @class	CAutoExecuteManager
- * @brief	ÄÄÇ»ÅÍ ºÎÆÃ ½Ã ÀÚµ¿ ½ÇÇà¿¡ °üÇÑ »çÇ×À» Ã¥ÀÓÁø´Ù.
+ * @brief	ì»´í“¨í„° ë¶€íŒ… ì‹œ ìë™ ì‹¤í–‰ì— ê´€í•œ ì‚¬í•­ì„ ì±…ì„ì§„ë‹¤.
  */
 class CAutoExecuteManager
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CAutoExecuteManager *Instance()
 	{
@@ -39,8 +39,8 @@ private :
 	void SetRegEditAvailable();
 	void SetRegEditDisable();
 
-	HKEY m_hautoExec;			//ÀÚµ¿ ½ÇÇà °ª ÀúÀå ·¹Áö½ºÆ®¸® Å°
-	HKEY m_hregeditEnable;	//regedit ±İÁö ·¹Áö½ºÆ®¸® Å°
+	HKEY m_hautoExec;			//ìë™ ì‹¤í–‰ ê°’ ì €ì¥ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤
+	HKEY m_hregeditEnable;	//regedit ê¸ˆì§€ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤
 	static CAutoExecuteManager *m_instance;
 };
 

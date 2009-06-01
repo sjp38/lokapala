@@ -1,5 +1,5 @@
-/**@file	OSDecisionSD.cpp
- * @brief	OSMÀÇ DecisionSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	OSDecisionSD.cpp
+ * @brief	OSMì˜ DecisionSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -8,9 +8,9 @@
 
 #include "Resource.h"
 
-/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º¸¦ ¾Ë¸°´Ù.\n
- *			Å×½ºÆ®¿¡¼­´Â ´Ü¼øÈ÷ ¸®½ºÆ®¹Ú½º¿¡ ±× ÀÌ¸§¸¸ Ç¥½ÃÇÑ´Ù.
- * @param	a_executedProcess	½ÇÇàµÈ ÇÁ·Î¼¼½ºÀÇ ÀÌ¸§
+/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ë¥¼ ì•Œë¦°ë‹¤.\n
+ *			í…ŒìŠ¤íŠ¸ì—ì„œëŠ” ë‹¨ìˆœížˆ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì— ê·¸ ì´ë¦„ë§Œ í‘œì‹œí•œë‹¤.
+ * @param	a_executedProcess	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ì˜ ì´ë¦„
  */
 void COSDecisionSD::NotifyExecutedProcess(CString a_executedProcess)
 {

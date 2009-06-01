@@ -1,5 +1,5 @@
-/**@file	ControlBI.h
- * @brief	CTMÀÇ Button Interface Á¤ÀÇ
+ï»¿/**@file	ControlBI.h
+ * @brief	CTMì˜ Button Interface ì •ì˜
  * @author	siva
  */
 
@@ -8,38 +8,38 @@
 
 /**@ingroup GroupCTM
  * @class	CControlBI
- * @brief	Control ManagerÀÇ Button Interface.\n
-			Mediator¿¡°Ô ÀÚ½ÅÀ» ³ëÃâÇÏ¿© Mediator·ÎºÎÅÍ CCMÀ¸·ÎÀÇ ÀÎÅÍÆäÀÌ½º¸¦ °ø°³ÇÑ´Ù.
- * @remarks	ÀÎÅÍÆäÀÌ½ºÀÏ »ÓÀ¸·Î, Facade°¡ »ó¼ÓÇÑ´Ù.
+ * @brief	Control Managerì˜ Button Interface.\n
+			Mediatorì—ê²Œ ìì‹ ì„ ë…¸ì¶œí•˜ì—¬ Mediatorë¡œë¶€í„° CCMìœ¼ë¡œì˜ ì¸í„°í˜ì´ìŠ¤ë¥¼ ê³µê°œí•œë‹¤.
+ * @remarks	ì¸í„°í˜ì´ìŠ¤ì¼ ë¿ìœ¼ë¡œ, Facadeê°€ ìƒì†í•œë‹¤.
  */
 class CControlBI
 {
 public :
-	/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀûÀÎ ÄÄÇ»ÅÍ »ç¿ëÀ» Á¦ÇÑÇÑ´Ù.	*/
+	/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì ì¸ ì»´í“¨í„° ì‚¬ìš©ì„ ì œí•œí•œë‹¤.	*/
 	virtual void RestraintUser() = 0;
 
-	/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀûÀÎ ÄÄÇ»ÅÍ »ç¿ëÀ» Çã¶ôÇÑ´Ù.	*/
+	/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì ì¸ ì»´í“¨í„° ì‚¬ìš©ì„ í—ˆë½í•œë‹¤.	*/
 	virtual void ReleaseUser() = 0;
 
-	/**@brief	°­Á¦·Î »ç¿ëÀÚÀÇ ·Î±×ÀÎÀ» ÇØÁØ´Ù.	*/
+	/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìì˜ ë¡œê·¸ì¸ì„ í•´ì¤€ë‹¤.	*/
 	virtual void Login(void *a_userInfo) = 0;
 
-	/**@brief	°­Á¦·Î »ç¿ëÀÚ¸¦ ·Î±×¾Æ¿ô ½ÃÅ²´Ù.	*/
+	/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìë¥¼ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.	*/
 	virtual void Logout(void *a_message) = 0;
 
-	/**@brief	ÄÄÇ»ÅÍ¸¦ ²¨¹ö¸°´Ù.	*/
+	/**@brief	ì»´í“¨í„°ë¥¼ êº¼ë²„ë¦°ë‹¤.	*/
 	virtual void Shutdown(void *a_message) = 0;
 
-	/**@brief	ÄÄÇ»ÅÍ¸¦ ÀçºÎÆÃ ½ÃÅ²´Ù.	*/
+	/**@brief	ì»´í“¨í„°ë¥¼ ì¬ë¶€íŒ… ì‹œí‚¨ë‹¤.	*/
 	virtual void Reboot(void *a_message) = 0;
 
-	/**@brief	½ÇÇà ÁßÀÎ ÇÁ·Î¼¼½º¸¦ ¸ğÁ¶¸® Á×¿©¹ö¸°´Ù.	*/
+	/**@brief	ì‹¤í–‰ ì¤‘ì¸ í”„ë¡œì„¸ìŠ¤ë¥¼ ëª¨ì¡°ë¦¬ ì£½ì—¬ë²„ë¦°ë‹¤.	*/
 	virtual void GenocideProcesses(void *a_message) = 0;
 
-	/**@brief	Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·Î¼¼½º¸¦ Á×ÀÎ´Ù.	*/
+	/**@brief	íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œì„¸ìŠ¤ë¥¼ ì£½ì¸ë‹¤.	*/
 	virtual void KillProcess(void *a_processName) = 0;
 
-	/**@brief	Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.	*/
+	/**@brief	íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.	*/
 	virtual void ExecuteProcess(void *a_processName) = 0;
 };
 

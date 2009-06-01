@@ -1,5 +1,5 @@
-/**@file	DCControlSD.h
- * @brief	DCM¿¡¼­ CTMÀ¸·ÎÀÇ Service Delegate Á¤ÀÇ.
+ï»¿/**@file	DCControlSD.h
+ * @brief	DCMì—ì„œ CTMìœ¼ë¡œì˜ Service Delegate ì •ì˜.
  * @author	siva
  */
 
@@ -8,15 +8,15 @@
 
 /**@ingroup GroupDCM
  * @class	CDCControlSD
- * @brief	DCM¿¡¼­ CTMÀ¸·ÎÀÇ Service Delegate.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	DCMì—ì„œ CTMìœ¼ë¡œì˜ Service Delegate.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDCControlSD
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDCControlSD *Instance()
 	{
@@ -38,9 +38,9 @@ public :
 	void ExecuteProcess(void *a_processName);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDCControlSD(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDCControlSD(){}
 private :
 	/**@brief	singleton.	*/

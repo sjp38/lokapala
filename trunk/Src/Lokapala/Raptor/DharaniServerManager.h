@@ -1,5 +1,5 @@
-/**@file	DharaniServerManager
- * @brief	CDharaniServerManager¸¦ Á¤ÀÇÇÑ´Ù.
+ï»¿/**@file	DharaniServerManager
+ * @brief	CDharaniServerManagerë¥¼ ì •ì˜í•œë‹¤.
  * @author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup	GroupDharani
  * @class	CDharaniServerManager
- * @brief	Dharani ÄÄÆ÷³ÍÆ®¿¡¼­ ¼­¹ö ¿ªÇÒÀ» ´ã´çÇÑ´Ù.
- * @remarks	singletonÀ» »ç¿ëÇÑ´Ù.
+ * @brief	Dharani ì»´í¬ë„ŒíŠ¸ì—ì„œ ì„œë²„ ì—­í• ì„ ë‹´ë‹¹í•œë‹¤.
+ * @remarks	singletonì„ ì‚¬ìš©í•œë‹¤.
  */
 class CDharaniServerManager
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CDharaniServerManager *Instance()
 	{
@@ -33,9 +33,9 @@ public :
 	void BroadcastTextMessage(char *a_message);
 	PTR_SOCKET_DATA GetSocketByAddress(DWORD a_globalIp, DWORD a_localIp);
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CDharaniServerManager(){m_socketCount = 0;}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CDharaniServerManager(){}
 
 private :	
@@ -51,10 +51,10 @@ private :
 	/**@brief	completion port kernel object	*/
 	HANDLE	m_hCompletionPort;
 	SOCKET	m_hListenSocket;
-	SOCKET_DATA m_clientSockets[MAXCLIENT];	//Å¬¶óÀÌ¾ğÆ® ¼ÒÄÏµé
+	SOCKET_DATA m_clientSockets[MAXCLIENT];	//í´ë¼ì´ì–¸íŠ¸ ì†Œì¼“ë“¤
 	int m_socketCount;
 
-	HANDLE m_hMutex;		//¹ÂÅØ½º ÇÚµé	
+	HANDLE m_hMutex;		//ë®¤í…ìŠ¤ í•¸ë“¤	
 
 	/**@brief	singleton	*/
 	static CDharaniServerManager *m_instance;

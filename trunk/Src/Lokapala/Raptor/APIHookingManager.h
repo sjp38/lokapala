@@ -1,5 +1,5 @@
-/**@file	APIHookingManager.h
- * @brief	API ÈÄÅ·¿¡ °üÇÑ »çÇ×À» Ã¥ÀÓÁø´Ù.
+ï»¿/**@file	APIHookingManager.h
+ * @brief	API í›„í‚¹ì— ê´€í•œ ì‚¬í•­ì„ ì±…ì„ì§„ë‹¤.
  * @author	siva
  */
 
@@ -9,14 +9,14 @@
 
 /**@ingroup	GroupNDM
  * @class	CAPIHookingManager
- * @brief	global API ÈÄÅ·À» ÅëÇØ TerminateProcess¸¦ ÅëÁ¦ÇÑ´Ù.
+ * @brief	global API í›„í‚¹ì„ í†µí•´ TerminateProcessë¥¼ í†µì œí•œë‹¤.
  */
 class CAPIHookingManager
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CAPIHookingManager *Instance()
 	{

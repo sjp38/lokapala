@@ -1,4 +1,4 @@
-// SeatAdminDlg.cpp : implementation file
+ï»¿// SeatAdminDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 
 // CSeatAdminDlg message handlers
 
-/**@brief	ÁÂ¼® Á¤º¸ÀÇ ÃÖ´ë Å©±â¸¦ ´Ù½Ã ¼³Á¤ÇÑ´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ì˜ ìµœëŒ€ í¬ê¸°ë¥¼ ë‹¤ì‹œ ì„¤ì •í•œë‹¤.
  */
 void CSeatAdminDlg::SetSeats()
 {
@@ -58,7 +58,7 @@ void CSeatAdminDlg::SetSeats()
 	}
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±×¿¡ ÀÔ·ÂµÈ °ªµéÀ» ÀÐ´Â´Ù.
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ì— ìž…ë ¥ëœ ê°’ë“¤ì„ ì½ëŠ”ë‹¤.
  */
 void CSeatAdminDlg::GetInputVariables(CString *a_globalIp, CString *a_localIp, int *a_x, int *a_y, CString *a_nickname)
 {
@@ -74,7 +74,7 @@ void CSeatAdminDlg::GetInputVariables(CString *a_globalIp, CString *a_localIp, i
 	m_nickname.GetWindowTextW(*a_nickname);
 }
 
-/**@brief	Æ¯Á¤ ÁÂ¼® Á¤º¸¸¦ ÀÔ·Â Ã¢¿¡ »Ñ¸°´Ù.
+/**@brief	íŠ¹ì • ì¢Œì„ ì •ë³´ë¥¼ ìž…ë ¥ ì°½ì— ë¿Œë¦°ë‹¤.
  */
 void CSeatAdminDlg::SetInputVariables(CSeatDataDTO *a_seat)
 {
@@ -93,7 +93,7 @@ void CSeatAdminDlg::SetInputVariables(CSeatDataDTO *a_seat)
 	m_nickname.SetWindowTextW(a_seat->m_nickname);
 }
 
-/**@brief	Add ¹öÆ°À» Å¬¸¯	*/
+/**@brief	Add ë²„íŠ¼ì„ í´ë¦­	*/
 void CSeatAdminDlg::OnBnClickedAdd()
 {
 	// TODO: Add your control notification handler code here
@@ -110,7 +110,7 @@ void CSeatAdminDlg::OnBnClickedAdd()
 	ShowSeats();
 }
 
-/**@brief	Delete ¹öÆ°À» Å¬¸¯	*/
+/**@brief	Delete ë²„íŠ¼ì„ í´ë¦­	*/
 void CSeatAdminDlg::OnBnClickedDelete()
 {
 	// TODO: Add your control notification handler code here
@@ -130,7 +130,7 @@ void CSeatAdminDlg::OnBnClickedDelete()
 	ShowSeats();
 }
 
-/**@brief	ÇöÀç ÁÂ¼® Á¤º¸¸¦ º¸¿© ÁØ´Ù.	*/
+/**@brief	í˜„ìž¬ ì¢Œì„ ì •ë³´ë¥¼ ë³´ì—¬ ì¤€ë‹¤.	*/
 void CSeatAdminDlg::ShowSeats()
 {
 	m_seatList.ResetContent();
@@ -165,7 +165,7 @@ BOOL CSeatAdminDlg::OnInitDialog()
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/**@brief	ÁÂ¼® ¸®½ºÆ®¿¡¼­ ÁÂ¼®À» ¼±ÅÃÇßÀ» ¶§.
+/**@brief	ì¢Œì„ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì¢Œì„ì„ ì„ íƒí–ˆì„ ë•Œ.
  */
 void CSeatAdminDlg::OnLbnSelchangeSeatlist()
 {
@@ -190,7 +190,7 @@ void CSeatAdminDlg::OnLbnSelchangeSeatlist()
 	SetInputVariables(seat);
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»ö, ½ºÅÂÆ½ ÄÁÆ®·Ñ ¹è°æ»ö Á¶Á¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰, ìŠ¤íƒœí‹± ì»¨íŠ¸ë¡¤ ë°°ê²½ìƒ‰ ì¡°ì •
  */
 HBRUSH CSeatAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -200,7 +200,7 @@ HBRUSH CSeatAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ìž…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));

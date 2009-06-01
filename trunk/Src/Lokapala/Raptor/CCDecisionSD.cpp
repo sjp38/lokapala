@@ -1,76 +1,76 @@
-/**@file	CCDecisionSD.cpp
- * @brief	CCMÀÇ DecisionSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	CCDecisionSD.cpp
+ * @brief	CCMì˜ DecisionSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
 #include "stdafx.h"
 #include "CCDecisionSD.h"
 
-/**@brief	·Î±×ÀÎ µÇ¾úÀ½À» ¾Ë¸®¸ç ±×¿¡ µû¸¥ ¼­ºñ½º¸¦ ¿äÃ»ÇÑ´Ù.
- * @param	a_level	·Î±×ÀÎ Çã¿ëµÈ »ç¿ëÀÚÀÇ ·¹º§.
+/**@brief	ë¡œê·¸ì¸ ë˜ì—ˆìŒì„ ì•Œë¦¬ë©° ê·¸ì— ë”°ë¥¸ ì„œë¹„ìŠ¤ë¥¼ ìš”ì²­í•œë‹¤.
+ * @param	a_level	ë¡œê·¸ì¸ í—ˆìš©ëœ ì‚¬ìš©ìì˜ ë ˆë²¨.
  */
 void CCCDecisionSD::LoginAccepted(int a_level)
 {
 	CCBFMediator::Instance()->LoginAccepted(a_level);
 }
 
-/**@brief	°­Á¦ ·Î±×ÀÎ ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	ê°•ì œ ë¡œê·¸ì¸ ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::Login(void *a_message)
 {
 	CCBFMediator::Instance()->LoginOrderReceived(a_message);
 }
 
-/**@brief	°­Á¦ ·Î±×¾Æ¿ô ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	ê°•ì œ ë¡œê·¸ì•„ì›ƒ ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::Logout(void *a_message)
 {
 	CCBFMediator::Instance()->LogoutOrderReceived(a_message);
 }
 
-/**@brief	°­Á¦ ÄÄÇ»ÅÍ Á¾·á ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	ê°•ì œ ì»´í“¨í„° ì¢…ë£Œ ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::Shutdown(void *a_message)
 {
 	CCBFMediator::Instance()->ShutdownOrderReceived(a_message);
 }
 
-/**@brief	°­Á¦ ÀçºÎÆÃ ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	ê°•ì œ ì¬ë¶€íŒ… ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::Reboot(void *a_message)
 {
 	CCBFMediator::Instance()->RebootOrderReceived(a_message);
 }
 
-/**@brief	½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º Á¾·á ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::GenocideProcesses(void *a_processName)
 {
 	CCBFMediator::Instance()->GenocideProcessesOrderReceived(a_processName);
 }
 
-/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º Á¾·á ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::KillProcess(void *a_processName)
 {
 	CCBFMediator::Instance()->KillProcessOrderReceived(a_processName);
 }
 
-/**@brief	Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà ¸í·ÉÀÌ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ëª…ë ¹ì´ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::ExecuteProcess(void *a_processName)
 {
 	CCBFMediator::Instance()->ExecuteProcessOrderReceived(a_processName);
 }
 
-/**@brief	»óÅÂ Á¤º¸°¡ µé¾î¿ÔÀ½À» ¾Ë¸°´Ù.
+/**@brief	ìƒíƒœ ì •ë³´ê°€ ë“¤ì–´ì™”ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::StatusReportReceived(void *a_statusReport)
 {
 	CCBFMediator::Instance()->StatusReportReceived(a_statusReport);
 }
 
-/**@brief	·¦ÅÍ µ¿ÀÛ ÁßÁö ¸í·ÉÀ» ¹Ş¾ÒÀ½À» ¾Ë¸°´Ù.
+/**@brief	ë©í„° ë™ì‘ ì¤‘ì§€ ëª…ë ¹ì„ ë°›ì•˜ìŒì„ ì•Œë¦°ë‹¤.
  */
 void CCCDecisionSD::TerminateRaptor()
 {

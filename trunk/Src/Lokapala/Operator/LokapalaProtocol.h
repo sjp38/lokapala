@@ -1,15 +1,15 @@
-/**@file	LokapalaProtocol.h
- * @brief	·ÎÄ«ÆÄ¶ó¿¡¼­ »ç¿ëµÇ´Â ÇÁ·ÎÅäÄİ¿¡ °üÇÑ »ó¼ö°ª µîÀ» Àâ´Â´Ù.
+ï»¿/**@file	LokapalaProtocol.h
+ * @brief	ë¡œì¹´íŒŒë¼ì—ì„œ ì‚¬ìš©ë˜ëŠ” í”„ë¡œí† ì½œì— ê´€í•œ ìƒìˆ˜ê°’ ë“±ì„ ì¡ëŠ”ë‹¤.
  * @author	siva
  */
 
-//·¦ÅÍ -> ¿ÀÆÛ·¹ÀÌÅÍ Çì´õ
+//ë©í„° -> ì˜¤í¼ë ˆì´í„° í—¤ë”
 #define LOGIN_REQUEST		1
 #define PROCESS_EXECUTED	2
 #define MESSAGE				3
 #define STATUS_CHANGED		4
 
-//¿ÀÆÛ·¹ÀÌÅÍ -> ·¦ÅÍ Çì´õ
+//ì˜¤í¼ë ˆì´í„° -> ë©í„° í—¤ë”
 #define LOGIN_ACCEPT		5
 #define LOGIN				6
 #define LOGOUT				7

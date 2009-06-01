@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
 Module:  CmnHdr.h
 Notices: Copyright (c) 2000 Jeffrey Richter
 Purpose: Common header file containing handy macros and definitions

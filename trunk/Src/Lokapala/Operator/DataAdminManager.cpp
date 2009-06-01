@@ -1,5 +1,5 @@
-/**@file	DataAdminManager.cpp
- * @brief	CDataAdminManager Å¬·¡½ºÀÇ ¸â¹öÇÔ¼ö¸¦ ±¸ÇöÇÑ´Ù.
+ï»¿/**@file	DataAdminManager.cpp
+ * @brief	CDataAdminManager í´ë˜ìŠ¤ì˜ ë©¤ë²„í•¨ìˆ˜ë¥¼ êµ¬í˜„í•œë‹¤.
  * @author	siva
  */
 
@@ -9,9 +9,9 @@
 
 #include "tinyxml.h"
 
-/**@brief	Æ¯Á¤ ÆÄÀÏ·ÎºÎÅÍ »ç¿ëÀÚ µ¥ÀÌÅÍ¸¦ ÀĞ´Â´Ù.
- *			ÇöÀç±îÁö´Â xml ÆÄÀÏ¸¸ Áö¿øÇÑ´Ù.
- * @param	a_xmlRoot	xml ÆÄÀÏÀÇ ·çÆ® ¿¤·¹¸ÕÆ®ÀÇ Æ÷ÀÎÅÍ. void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃÇØ »ç¿ëµÈ´Ù.
+/**@brief	íŠ¹ì • íŒŒì¼ë¡œë¶€í„° ì‚¬ìš©ì ë°ì´í„°ë¥¼ ì½ëŠ”ë‹¤.
+ *			í˜„ì¬ê¹Œì§€ëŠ” xml íŒŒì¼ë§Œ ì§€ì›í•œë‹¤.
+ * @param	a_xmlRoot	xml íŒŒì¼ì˜ ë£¨íŠ¸ ì—˜ë ˆë¨¼íŠ¸ì˜ í¬ì¸í„°. void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ…í•´ ì‚¬ìš©ëœë‹¤.
  */
 void CDataAdminManager::LoadUserDataFrom(void *a_xmlRoot)
 {
@@ -33,7 +33,7 @@ void CDataAdminManager::LoadUserDataFrom(void *a_xmlRoot)
 	}	
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ ÁÂ¼® Á¤º¸¸¦ ÀĞ´Â´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° ì¢Œì„ ì •ë³´ë¥¼ ì½ëŠ”ë‹¤.
  */
 void CDataAdminManager::LoadSeatDataFrom(void *a_xmlRoot)
 {
@@ -59,7 +59,7 @@ void CDataAdminManager::LoadSeatDataFrom(void *a_xmlRoot)
 	}
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ ±İÁöÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ Á¤º¸¸¦ ÀĞ¾îµéÀÎ´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° ê¸ˆì§€í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ ì •ë³´ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.
  */
 void CDataAdminManager::LoadRuleDataFrom(void *a_xmlRoot)
 {
@@ -87,7 +87,7 @@ void CDataAdminManager::LoadRuleDataFrom(void *a_xmlRoot)
 	}
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ °íÀå »óÅÂ µ¥ÀÌÅÍ¸¦ ÀĞ¾îµéÀÎ´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° ê³ ì¥ ìƒíƒœ ë°ì´í„°ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.
  */
 void CDataAdminManager::LoadStatusReportsFrom(void *a_xmlRoot)
 {
@@ -110,7 +110,7 @@ void CDataAdminManager::LoadStatusReportsFrom(void *a_xmlRoot)
 
 }
 
-/**@brief	ÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ÀĞ´Â´Ù.
+/**@brief	íŒŒì¼ë¡œë¶€í„° ë°ì´í„°ë¥¼ ì½ëŠ”ë‹¤.
  */
 void CDataAdminManager::LoadFromFile(CString *a_filePath)
 {	
@@ -131,8 +131,8 @@ void CDataAdminManager::LoadFromFile(CString *a_filePath)
 	LoadStatusReportsFrom(root);
 }
 
-/**@brief	»ç¿ëÀÚ Á¤º¸¸¦ Æ¯Á¤ ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù.
- * @param	a_xmlRoot	xmlÀÇ ·çÆ® ¿¤·¹¸ÕÆ® Æ÷ÀÎÅÍ.
+/**@brief	ì‚¬ìš©ì ì •ë³´ë¥¼ íŠ¹ì • íŒŒì¼ì— ì €ì¥í•œë‹¤.
+ * @param	a_xmlRoot	xmlì˜ ë£¨íŠ¸ ì—˜ë ˆë¨¼íŠ¸ í¬ì¸í„°.
  */
 void CDataAdminManager::SaveUserDataTo(void *a_xmlRoot)
 {
@@ -162,7 +162,7 @@ void CDataAdminManager::SaveUserDataTo(void *a_xmlRoot)
 	}
 }
 
-/**@file	ÁÂ¼® Á¤º¸¸¦ Æ¯Á¤ ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù.
+/**@file	ì¢Œì„ ì •ë³´ë¥¼ íŠ¹ì • íŒŒì¼ì— ì €ì¥í•œë‹¤.
  */
 void CDataAdminManager::SaveSeatDataTo(void *a_xmlRoot)
 {
@@ -194,7 +194,7 @@ void CDataAdminManager::SaveSeatDataTo(void *a_xmlRoot)
 	}
 }
 
-/**@file	±İÁö ÇÁ·Î¼¼½º ±ÔÄ¢ Á¤º¸¸¦ Æ¯Á¤ ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù.
+/**@file	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê·œì¹™ ì •ë³´ë¥¼ íŠ¹ì • íŒŒì¼ì— ì €ì¥í•œë‹¤.
  */
 void CDataAdminManager::SaveRuleDataTo(void *a_xmlRoot)
 {
@@ -244,7 +244,7 @@ void CDataAdminManager::SaveStatusReportsTo(void *a_xmlRoot)
 	}
 }
 
-/**@file	ÇöÀç µ¥ÀÌÅÍ¸¦ ÆÄÀÏ·Î ÀúÀåÇÑ´Ù. ÀÏ´Ü xml Æ÷¸Ë¸¸À» Áö¿øÇÑ´Ù.
+/**@file	í˜„ì¬ ë°ì´í„°ë¥¼ íŒŒì¼ë¡œ ì €ì¥í•œë‹¤. ì¼ë‹¨ xml í¬ë§·ë§Œì„ ì§€ì›í•œë‹¤.
  */
 void CDataAdminManager::SaveToFile(CString *a_filePath)
 {
@@ -265,24 +265,24 @@ void CDataAdminManager::SaveToFile(CString *a_filePath)
 	doc.SaveFile(W2A(*a_filePath));
 }
 
-/**@brief	À¯Àú ÇÏ³ªÀÇ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
- * @param	a_user	À¯Àú Á¤º¸Ã¼(DTO).\n
- *					¾Æ±Ô¸ÕÆ® Àü´Ş ¿À¹öÇìµå¸¦ ÁÙÀÌ±â À§ÇØ Æ÷ÀÎÅÍ¸¦ »ç¿ëÇÏ¸ç, ³ëÃâ¼ºÀ» ÁÙÀÌ±â À§ÇØ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃÇØ ¹Ş´Â´Ù.
+/**@brief	ìœ ì € í•˜ë‚˜ì˜ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
+ * @param	a_user	ìœ ì € ì •ë³´ì²´(DTO).\n
+ *					ì•„ê·œë¨¼íŠ¸ ì „ë‹¬ ì˜¤ë²„í—¤ë“œë¥¼ ì¤„ì´ê¸° ìœ„í•´ í¬ì¸í„°ë¥¼ ì‚¬ìš©í•˜ë©°, ë…¸ì¶œì„±ì„ ì¤„ì´ê¸° ìœ„í•´ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ…í•´ ë°›ëŠ”ë‹¤.
  */
 void CDataAdminManager::AddUser(void *a_user)
 {
 	m_usersData.AddUser((CUserDataDTO *)a_user);
 }
 
-/**@brief	À¯Àú ÇÏ³ª¸¦ »èÁ¦ÇÑ´Ù.
+/**@brief	ìœ ì € í•˜ë‚˜ë¥¼ ì‚­ì œí•œë‹¤.
  */
 void CDataAdminManager::DeleteUser(CString *a_id)
 {
 	m_usersData.DeleteUser(a_id);
 }
 
-/**@brief	À¯Àú ÀüÃ¼ Á¤º¸ DTOÀÇ Æ÷ÀÎÅÍ¸¦ ¾Ë·ÁÁØ´Ù.
- * @return	½ÇÁ¦ µ¥ÀÌÅÍ °ü¸®¿¡ »ç¿ëÇÏ´Â UsersDataDTOÀÇ Æ÷ÀÎÅÍ.
+/**@brief	ìœ ì € ì „ì²´ ì •ë³´ DTOì˜ í¬ì¸í„°ë¥¼ ì•Œë ¤ì¤€ë‹¤.
+ * @return	ì‹¤ì œ ë°ì´í„° ê´€ë¦¬ì— ì‚¬ìš©í•˜ëŠ” UsersDataDTOì˜ í¬ì¸í„°.
  */
 CUsersDataDTO *CDataAdminManager::GetUsers()
 {
@@ -292,30 +292,30 @@ CUsersDataDTO *CDataAdminManager::GetUsers()
 
 
 
-/**@brief	ÁÂ¼® ÀüÃ¼ Å©±â ¼³Á¤
+/**@brief	ì¢Œì„ ì „ì²´ í¬ê¸° ì„¤ì •
  */
 void CDataAdminManager::SetSeats(int a_x, int a_y)
 {
 	m_seatsData.SetSeats(a_x, a_y);
 }
 
-/**@brief	ÁÂ¼® Á¤º¸ Ãß°¡
- * @param	a_seat	ÁÂ¼® Á¤º¸Ã¼(DTO).\n
- *					¾Æ±Ô¸ÕÆ® Àü´Ş ¿À¹öÇìµå¸¦ ÁÙÀÌ±â À§ÇØ Æ÷ÀÎÅÍ¸¦ »ç¿ëÇÏ¸ç, ³ëÃâ¼ºÀ» ÁÙÀÌ±â À§ÇØ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃÇØ ¹Ş´Â´Ù.
+/**@brief	ì¢Œì„ ì •ë³´ ì¶”ê°€
+ * @param	a_seat	ì¢Œì„ ì •ë³´ì²´(DTO).\n
+ *					ì•„ê·œë¨¼íŠ¸ ì „ë‹¬ ì˜¤ë²„í—¤ë“œë¥¼ ì¤„ì´ê¸° ìœ„í•´ í¬ì¸í„°ë¥¼ ì‚¬ìš©í•˜ë©°, ë…¸ì¶œì„±ì„ ì¤„ì´ê¸° ìœ„í•´ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ…í•´ ë°›ëŠ”ë‹¤.
  */
 void CDataAdminManager::AddSeat(void *a_seat)
 {
 	m_seatsData.AddSeat((CSeatDataDTO *)a_seat);
 }
 
-/**@brief	ÁÂ¼® Á¤º¸ »èÁ¦
+/**@brief	ì¢Œì„ ì •ë³´ ì‚­ì œ
  */
 void CDataAdminManager::DeleteSeat(void *a_seatId)
 {
 	m_seatsData.DeleteSeat((CString *)a_seatId);
 }
 
-/**@brief	ÀüÃ¼ ÁÂ¼® Á¤º¸¸¦ ³Ñ°ÜÁØ´Ù.
+/**@brief	ì „ì²´ ì¢Œì„ ì •ë³´ë¥¼ ë„˜ê²¨ì¤€ë‹¤.
  */
 CSeatsDataDTO *CDataAdminManager::GetSeats()
 {
@@ -325,9 +325,9 @@ CSeatsDataDTO *CDataAdminManager::GetSeats()
 
 
 
-/**@brief	±İÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ Ãß°¡ÇÑ´Ù.
- * @param	a_rule	±ÔÄ¢ Á¤º¸Ã¼(DTO).\n
- *					¾Æ±Ô¸ÕÆ® Àü´Ş ¿À¹öÇìµå¸¦ ÁÙÀÌ±â À§ÇØ Æ÷ÀÎÅÍ¸¦ »ç¿ëÇÏ¸ç, ³ëÃâ¼ºÀ» ÁÙÀÌ±â À§ÇØ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃÇØ ¹Ş´Â´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì¶”ê°€í•œë‹¤.
+ * @param	a_rule	ê·œì¹™ ì •ë³´ì²´(DTO).\n
+ *					ì•„ê·œë¨¼íŠ¸ ì „ë‹¬ ì˜¤ë²„í—¤ë“œë¥¼ ì¤„ì´ê¸° ìœ„í•´ í¬ì¸í„°ë¥¼ ì‚¬ìš©í•˜ë©°, ë…¸ì¶œì„±ì„ ì¤„ì´ê¸° ìœ„í•´ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ…í•´ ë°›ëŠ”ë‹¤.
  */
 void CDataAdminManager::AddRule(void *a_rule)
 {
@@ -335,16 +335,16 @@ void CDataAdminManager::AddRule(void *a_rule)
 }
 
 
-/**@brief	±İÁö ÇÁ·Î¼¼½º °ü·Ã ±ÔÄ¢ ÇÏ³ª¸¦ »èÁ¦ÇÑ´Ù.
- * @param	a_rule	±ÔÄ¢ Á¤º¸Ã¼(DTO).\n
- *					¾Æ±Ô¸ÕÆ® Àü´Ş ¿À¹öÇìµå¸¦ ÁÙÀÌ±â À§ÇØ Æ÷ÀÎÅÍ¸¦ »ç¿ëÇÏ¸ç, ³ëÃâ¼ºÀ» ÁÙÀÌ±â À§ÇØ void Æ÷ÀÎÅÍ·Î Ä³½ºÆÃÇØ ¹Ş´Â´Ù.
+/**@brief	ê¸ˆì§€ í”„ë¡œì„¸ìŠ¤ ê´€ë ¨ ê·œì¹™ í•˜ë‚˜ë¥¼ ì‚­ì œí•œë‹¤.
+ * @param	a_rule	ê·œì¹™ ì •ë³´ì²´(DTO).\n
+ *					ì•„ê·œë¨¼íŠ¸ ì „ë‹¬ ì˜¤ë²„í—¤ë“œë¥¼ ì¤„ì´ê¸° ìœ„í•´ í¬ì¸í„°ë¥¼ ì‚¬ìš©í•˜ë©°, ë…¸ì¶œì„±ì„ ì¤„ì´ê¸° ìœ„í•´ void í¬ì¸í„°ë¡œ ìºìŠ¤íŒ…í•´ ë°›ëŠ”ë‹¤.
  */
 void CDataAdminManager::DeleteRule(void *a_rule)
 {
 	m_rulesData.DeleteRule((CRuleDataDTO *)a_rule);
 }
 
-/**@brief	ÀüÃ¼ ±ÔÄ¢À» ³Ñ±ä´Ù.
+/**@brief	ì „ì²´ ê·œì¹™ì„ ë„˜ê¸´ë‹¤.
  */
 CRulesDataDTO *CDataAdminManager::GetRules()
 {
@@ -352,7 +352,7 @@ CRulesDataDTO *CDataAdminManager::GetRules()
 }
 
 
-/**@brief	ÀüÃ¼ °íÀå »óÅÂ º¸°í¸¦ ³Ñ±ä´Ù.
+/**@brief	ì „ì²´ ê³ ì¥ ìƒíƒœ ë³´ê³ ë¥¼ ë„˜ê¸´ë‹¤.
  */
 CStatusReportsDTO *CDataAdminManager::GetStatusReports()
 {
@@ -361,7 +361,7 @@ CStatusReportsDTO *CDataAdminManager::GetStatusReports()
 
 
 
-/**@brief	Á¢¼ÓµÈ »ç¿ëÀÚ Á¤º¸¸¦ ³Ñ±ä´Ù.
+/**@brief	ì ‘ì†ëœ ì‚¬ìš©ì ì •ë³´ë¥¼ ë„˜ê¸´ë‹¤.
  */
 CConnectedHostsDTO *CDataAdminManager::GetConnectedHosts()
 {

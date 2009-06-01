@@ -1,5 +1,5 @@
-/**@file	DCDataAdminSD.cpp
- * @brief	DCMÀÇ AdminSDÀÇ ¸â¹öÇÔ¼ö ±¸Çö
+ï»¿/**@file	DCDataAdminSD.cpp
+ * @brief	DCMì˜ AdminSDì˜ ë©¤ë²„í•¨ìˆ˜ êµ¬í˜„
  * @author	siva
  */
 
@@ -7,35 +7,35 @@
 #include "DCDataAdminSD.h"
 
 
-/**@brief	DAMÀ¸·ÎºÎÅÍ ÇöÀçÀÇ »óÅÂ Á¤º¸ Á¤º¸Ã¼¸¦ ¾ò¾î¿Â´Ù.
+/**@brief	DAMìœ¼ë¡œë¶€í„° í˜„ì¬ì˜ ìƒíƒœ ì •ë³´ ì •ë³´ì²´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
  */
 void *CDCDataAdminSD::GetStatusReportsDTO()
 {
 	return CCBFMediator::Instance()->GetStatusReports();
 }
 
-/**@brief	DAM¿¡ ÇöÀç ·¦ÅÍ¸¦ »ç¿ëÇÏ´Â »ç¿ëÀÚ Á¤º¸¸¦ µî·ÏÇÑ´Ù.
+/**@brief	DAMì— í˜„ì¬ ë©í„°ë¥¼ ì‚¬ìš©í•˜ëŠ” ì‚¬ìš©ì ì •ë³´ë¥¼ ë“±ë¡í•œë‹¤.
  */
 void CDCDataAdminSD::RegistUser(void *a_userInfo)
 {
 	CCBFMediator::Instance()->RegistUser(a_userInfo);
 }
 
-/**@brief	ÇöÀç ·¦ÅÍ¸¦ »ç¿ëÇÏ´Â »ç¿ëÀÚ Á¤º¸¿¡ ·¹º§À» µî·ÏÇÑ´Ù.
+/**@brief	í˜„ì¬ ë©í„°ë¥¼ ì‚¬ìš©í•˜ëŠ” ì‚¬ìš©ì ì •ë³´ì— ë ˆë²¨ì„ ë“±ë¡í•œë‹¤.
  */
 void CDCDataAdminSD::RegistUserLevel(int a_level)
 {
 	CCBFMediator::Instance()->RegistUserLevel(a_level);
 }
 
-/**@brief	»óÅÂ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ìƒíƒœ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CDCDataAdminSD::AddStatusReport(void *a_statusReport)
 {
 	CCBFMediator::Instance()->AddStatusReport(a_statusReport);
 }
 
-/**@brief	ÇöÀç °íÀå »óÅÂ Á¤º¸¸¦ ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
+/**@brief	í˜„ì¬ ê³ ì¥ ìƒíƒœ ì •ë³´ë¥¼ íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
  */
 void CDCDataAdminSD::SaveStatusReportsToFile()
 {

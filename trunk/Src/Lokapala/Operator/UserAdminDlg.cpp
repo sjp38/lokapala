@@ -1,4 +1,4 @@
-// UserAdmin.cpp : implementation file
+ï»¿// UserAdmin.cpp : implementation file
 //
 
 #include "stdafx.h"
@@ -43,7 +43,7 @@ END_MESSAGE_MAP()
 
 // CUserAdminDlg message handlers
 
-/**@brief	´ÙÀÌ¾ó·Î±×·ÎºÎÅÍ ÀÔ·Â°ªÀ» ÀÐ¾îµéÀÎ´Ù.
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ë¡œë¶€í„° ìž…ë ¥ê°’ì„ ì½ì–´ë“¤ì¸ë‹¤.
  */
  void CUserAdminDlg::GetInputVariables(CString *a_name, CString *a_lowPassword, CString *a_highPassword, int *a_level)
 {
@@ -56,7 +56,7 @@ END_MESSAGE_MAP()
 }
 
 
-/**@brief	Æ¯Á¤ À¯ÀúÀÇ Á¤º¸¸¦ ÀÔ·ÂÃ¢¿¡ ¶ç¿î´Ù.
+/**@brief	íŠ¹ì • ìœ ì €ì˜ ì •ë³´ë¥¼ ìž…ë ¥ì°½ì— ë„ìš´ë‹¤.
  */
 void CUserAdminDlg::SetInputVariables(void *a_user)
 {
@@ -68,7 +68,7 @@ void CUserAdminDlg::SetInputVariables(void *a_user)
 	m_level.SetWindowTextW(value);
 }
 
-/**@brief	À¯Àú Ãß°¡ ¹öÆ° Å¬¸¯	*/
+/**@brief	ìœ ì € ì¶”ê°€ ë²„íŠ¼ í´ë¦­	*/
 void CUserAdminDlg::OnBnClickedUserAdd()
 {
 	// TODO: Add your control notification handler code here
@@ -82,7 +82,7 @@ void CUserAdminDlg::OnBnClickedUserAdd()
 	ShowUsers();
 }
 
-/**@brief	À¯Àú »èÁ¦ ¹öÆ° Å¬¸¯	*/
+/**@brief	ìœ ì € ì‚­ì œ ë²„íŠ¼ í´ë¦­	*/
 void CUserAdminDlg::OnBnClickedUserDelete()
 {
 	// TODO: Add your control notification handler code here
@@ -102,7 +102,7 @@ void CUserAdminDlg::OnBnClickedUserDelete()
 	ShowUsers();
 }
 
-/**@brief	ÇöÀç À¯Àú ¸ñ·ÏÀ» Ç¥½Ã
+/**@brief	í˜„ìž¬ ìœ ì € ëª©ë¡ì„ í‘œì‹œ
  */
 void CUserAdminDlg::ShowUsers()
 {
@@ -134,7 +134,7 @@ BOOL CUserAdminDlg::OnInitDialog()
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/**@brief	¸®½ºÆ®¹Ú½º¿¡¼­ À¯Àú¸¦ ¼±ÅÃÇßÀ» ¶§.
+/**@brief	ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì—ì„œ ìœ ì €ë¥¼ ì„ íƒí–ˆì„ ë•Œ.
  */
 void CUserAdminDlg::OnLbnSelchangeUserlist()
 {
@@ -159,7 +159,7 @@ void CUserAdminDlg::OnLbnSelchangeUserlist()
 	SetInputVariables((void *)user);	
 }
 
-/**@brief	´ÙÀÌ¾ó·Î±× ¹è°æ»ö, ½ºÅÂÆ½ ÄÁÆ®·Ñ ¹è°æ»ö Á¶Á¤
+/**@brief	ë‹¤ì´ì–¼ë¡œê·¸ ë°°ê²½ìƒ‰, ìŠ¤íƒœí‹± ì»¨íŠ¸ë¡¤ ë°°ê²½ìƒ‰ ì¡°ì •
  */
 HBRUSH CUserAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -169,7 +169,7 @@ HBRUSH CUserAdminDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	switch( nCtlColor ) 
 	{
 	case CTLCOLOR_DLG :
-		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // ¿øÇÏ´Â »ö»óÄÚµå¸¦ ÀÔ·ÂÇÑ´Ù.
+		return (HBRUSH)CreateSolidBrush( RGB(244,243,238) ); // ì›í•˜ëŠ” ìƒ‰ìƒì½”ë“œë¥¼ ìž…ë ¥í•œë‹¤.
 		break;
 	case CTLCOLOR_STATIC :
 		pDC->SetTextColor(RGB(0,0,0));

@@ -1,5 +1,5 @@
-/**@file	MessengerFacade.h
- * @brief	Messenger ManagerÀÇ Facade Á¤ÀÇ
+ï»¿/**@file	MessengerFacade.h
+ * @brief	Messenger Managerì˜ Facade ì •ì˜
  * @author	siva
  */
 
@@ -10,15 +10,15 @@
 
 /**@ingroup GroupMSM
  * @class	CMessengerFacade
- * @brief	Messenger ManagerÀÇ Facade Á¤ÀÇ
- * @remarks	SingleTon »ç¿ë
+ * @brief	Messenger Managerì˜ Facade ì •ì˜
+ * @remarks	SingleTon ì‚¬ìš©
  */
 class CMessengerFacade : public CMessengerBI
 {
 public :
-	/**@brief	singletonÀ» »ı¼º, ¹İÈ¯ÇÑ´Ù.
+	/**@brief	singletonì„ ìƒì„±, ë°˜í™˜í•œë‹¤.
 	 * @return	singleton
-	 * @remarks	static ÇÔ¼öÀÌ¹Ç·Î ¾îµğ¼­µç È£Ãâ ÇÒ ¼ö ÀÖ´Ù.
+	 * @remarks	static í•¨ìˆ˜ì´ë¯€ë¡œ ì–´ë””ì„œë“  í˜¸ì¶œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	static CMessengerFacade *Instance()
 	{
@@ -33,9 +33,9 @@ public :
 	virtual void ReceiveTextMessageFromOperator(CString *a_message);
 
 protected :
-	/**@brief	»ı¼ºÀÚ	*/
+	/**@brief	ìƒì„±ì	*/
 	CMessengerFacade(){}
-	/**@brief	¼Ò¸êÀÚ	*/
+	/**@brief	ì†Œë©¸ì	*/
 	~CMessengerFacade(){}
 private :
 	/**@brief	SingleTon	*/

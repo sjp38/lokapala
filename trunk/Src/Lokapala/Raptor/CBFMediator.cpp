@@ -1,4 +1,4 @@
-/**@file	CBFMediator.cpp
+ï»¿/**@file	CBFMediator.cpp
  * @brief	Common Buisiness Framework Mediator.
  * @author	siva
  */
@@ -11,8 +11,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // DAM
 
-/**@brief	ÇöÀç »ç¿ëÀÚ Á¤º¸¸¦ µî·ÏÇÑ´Ù.
- *			·Î±×ÀÎ ¿äÃ» ½Ã ÀÌ¸§, ºñ¹Ğ ¹øÈ£ µîÀ» ±â·ÏÇÏ¸ç, ÀÌÈÄ ·Î±×ÀÎ Çã¶ô ½Ã ·¹º§Àº RegistUserLevel·Î Ãß°¡ ±â·ÏÇÑ´Ù.
+/**@brief	í˜„ì¬ ì‚¬ìš©ì ì •ë³´ë¥¼ ë“±ë¡í•œë‹¤.
+ *			ë¡œê·¸ì¸ ìš”ì²­ ì‹œ ì´ë¦„, ë¹„ë°€ ë²ˆí˜¸ ë“±ì„ ê¸°ë¡í•˜ë©°, ì´í›„ ë¡œê·¸ì¸ í—ˆë½ ì‹œ ë ˆë²¨ì€ RegistUserLevelë¡œ ì¶”ê°€ ê¸°ë¡í•œë‹¤.
  */
 void CCBFMediator::RegistUser(void *a_userInfo)
 {
@@ -20,7 +20,7 @@ void CCBFMediator::RegistUser(void *a_userInfo)
 	_interface->RegistUser(a_userInfo);
 }
 
-/**@brief	·Î±×ÀÎÀÌ Çã¶ôµÇ¾úÀ» ¶§, ÇöÀç »ç¿ëÀÚÀÇ ·¹º§À» ±â·ÏÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸ì´ í—ˆë½ë˜ì—ˆì„ ë•Œ, í˜„ì¬ ì‚¬ìš©ìì˜ ë ˆë²¨ì„ ê¸°ë¡í•œë‹¤.
  */
 void CCBFMediator::RegistUserLevel(int a_level)
 {
@@ -28,8 +28,8 @@ void CCBFMediator::RegistUserLevel(int a_level)
 	_interface->RegistUserLevel(a_level);
 }
 
-/**@brief	ÇöÀç °ü¸®ÇÏ°í ÀÖ´Â »óÈ² Á¤º¸Ã¼¸¦ °¡Á®¿Â´Ù.
- * @return	»óÈ² Á¤º¸Ã¼ÀÇ Æ÷ÀÎÅÍ.
+/**@brief	í˜„ì¬ ê´€ë¦¬í•˜ê³  ìˆëŠ” ìƒí™© ì •ë³´ì²´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+ * @return	ìƒí™© ì •ë³´ì²´ì˜ í¬ì¸í„°.
  */
 void *CCBFMediator::GetStatusReports()
 {
@@ -37,7 +37,7 @@ void *CCBFMediator::GetStatusReports()
 	return _interface->GetStatusReports();
 }
 
-/**@brief	»óÅÂ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+/**@brief	ìƒíƒœ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
  */
 void CCBFMediator::AddStatusReport(void *a_statusReport)
 {
@@ -45,8 +45,8 @@ void CCBFMediator::AddStatusReport(void *a_statusReport)
 	_interface->AddStatusReport(a_statusReport);
 }
 
-/**@brief	ÇöÀç »óÅÂ Á¤º¸¸¦ ÆÄÀÏ(xml Æ÷¸Ë)·Î ÀúÀåÇÑ´Ù.
- * @param	a_fileName	ÆÄÀÏ ÀÌ¸§.
+/**@brief	í˜„ì¬ ìƒíƒœ ì •ë³´ë¥¼ íŒŒì¼(xml í¬ë§·)ë¡œ ì €ì¥í•œë‹¤.
+ * @param	a_fileName	íŒŒì¼ ì´ë¦„.
  */
 void CCBFMediator::SaveStatusReportsToFile(CString a_filePath)
 {
@@ -54,8 +54,8 @@ void CCBFMediator::SaveStatusReportsToFile(CString a_filePath)
 	_interface->SaveStatusReportsToFile(a_filePath);
 }
 
-/**@brief	Æ¯Á¤ ÆÄÀÏ(xml Æ÷¸Ë)·ÎºÎÅÍ ÇöÀç »óÅÂ Á¤º¸¸¦ ºÒ·¯¿Â´Ù.
- * @param	a_fileName	ÆÄÀÏ ÀÌ¸§.
+/**@brief	íŠ¹ì • íŒŒì¼(xml í¬ë§·)ë¡œë¶€í„° í˜„ì¬ ìƒíƒœ ì •ë³´ë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤.
+ * @param	a_fileName	íŒŒì¼ ì´ë¦„.
  */
 void CCBFMediator::LoadStatusReportsFromFile(CString a_filePath)
 {
@@ -69,7 +69,7 @@ void CCBFMediator::LoadStatusReportsFromFile(CString a_filePath)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // DCM
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿Í ¿¬°áÀÌ µÇ¾úÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ ì—°ê²°ì´ ë˜ì—ˆì„ ë•Œ.
  */
 void CCBFMediator::Connected()
 {
@@ -77,7 +77,7 @@ void CCBFMediator::Connected()
 	_interface->Connected();
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿ÍÀÇ ¿¬°áÀÌ ²÷°åÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ì˜ ì—°ê²°ì´ ëŠê²¼ì„ ë•Œ.
  */
 void CCBFMediator::Disconnected()
 {
@@ -85,7 +85,7 @@ void CCBFMediator::Disconnected()
 	_interface->Disconnected();
 }
 
-/**@brief	·Î±×ÀÎ. DCM¿¡°Ô ·Î±×ÀÎ ºÎÅ¹À» ÇÏµµ·Ï ¸í·ÉÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸. DCMì—ê²Œ ë¡œê·¸ì¸ ë¶€íƒì„ í•˜ë„ë¡ ëª…ë ¹í•œë‹¤.
  */
 void CCBFMediator::LoginRequest(void *a_userInfo)
 {
@@ -93,7 +93,7 @@ void CCBFMediator::LoginRequest(void *a_userInfo)
 	_interface->LoginRequest(a_userInfo);
 }
 
-/**@brief	·Î±×ÀÎÀÌ Çã¿ëµÇ¾úÀ» ¶§. »ç¿ëÀÚ ¹æÇØ¸¦ ¸ØÃß°í »ç¿ëÀÚ ·¹º§À» ÀúÀåÇÑ´Ù.
+/**@brief	ë¡œê·¸ì¸ì´ í—ˆìš©ë˜ì—ˆì„ ë•Œ. ì‚¬ìš©ì ë°©í•´ë¥¼ ë©ˆì¶”ê³  ì‚¬ìš©ì ë ˆë²¨ì„ ì €ì¥í•œë‹¤.
  */
 void CCBFMediator::LoginAccepted(int a_level)
 {
@@ -101,7 +101,7 @@ void CCBFMediator::LoginAccepted(int a_level)
 	_interface->LoginAccepted(a_level);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ °­Á¦ ·Î±×ÀÎ ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ê°•ì œ ë¡œê·¸ì¸ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::LoginOrderReceived(void *a_userInfo)
 {
@@ -109,7 +109,7 @@ void CCBFMediator::LoginOrderReceived(void *a_userInfo)
 	_interface->LoginOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ °­Á¦ ·Î±×¾Æ¿ô ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ê°•ì œ ë¡œê·¸ì•„ì›ƒ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::LogoutOrderReceived(void *a_userInfo)
 {
@@ -117,7 +117,7 @@ void CCBFMediator::LogoutOrderReceived(void *a_userInfo)
 	_interface->LogoutOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ °­Á¦ ÄÄÇ»ÅÍ Á¾·á ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ê°•ì œ ì»´í“¨í„° ì¢…ë£Œ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::ShutdownOrderReceived(void *a_userInfo)
 {
@@ -125,7 +125,7 @@ void CCBFMediator::ShutdownOrderReceived(void *a_userInfo)
 	_interface->ShutdownOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ °­Á¦ ÄÄÇ»ÅÍ ÀçºÎÆÃ ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ê°•ì œ ì»´í“¨í„° ì¬ë¶€íŒ… ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::RebootOrderReceived(void *a_userInfo)
 {
@@ -133,7 +133,7 @@ void CCBFMediator::RebootOrderReceived(void *a_userInfo)
 	_interface->RebootOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ½ÇÇàÁßÀÎ ¸ğµç ÇÁ·Î¼¼½º Á¾·á ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ì‹¤í–‰ì¤‘ì¸ ëª¨ë“  í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::GenocideProcessesOrderReceived(void *a_userInfo)
 {
@@ -141,7 +141,7 @@ void CCBFMediator::GenocideProcessesOrderReceived(void *a_userInfo)
 	_interface->GenocideProcessesOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ½ÇÇàÁßÀÎ Æ¯Á¤ ÇÁ·Î¼¼½º Á¾·á ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ì‹¤í–‰ì¤‘ì¸ íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::KillProcessOrderReceived(void *a_userInfo)
 {
@@ -149,7 +149,7 @@ void CCBFMediator::KillProcessOrderReceived(void *a_userInfo)
 	_interface->KillProcessOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ Æ¯Á¤ ÇÁ·Î¼¼½º ½ÇÇà ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° íŠ¹ì • í”„ë¡œì„¸ìŠ¤ ì‹¤í–‰ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::ExecuteProcessOrderReceived(void *a_userInfo)
 {
@@ -157,7 +157,7 @@ void CCBFMediator::ExecuteProcessOrderReceived(void *a_userInfo)
 	_interface->ExecuteProcessOrderReceived(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ »óÅÂ º¸°í°¡ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ìƒíƒœ ë³´ê³ ê°€ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::StatusReportReceived(void *a_statusReport)
 {
@@ -165,7 +165,7 @@ void CCBFMediator::StatusReportReceived(void *a_statusReport)
 	_interface->StatusReportReceived(a_statusReport);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ µ¿ÀÛ Á¤Áö ¸í·ÉÀÌ ³»·Á¿ÔÀ» ¶§.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° ë™ì‘ ì •ì§€ ëª…ë ¹ì´ ë‚´ë ¤ì™”ì„ ë•Œ.
  */
 void CCBFMediator::RaptorTerminationOrderReceived()
 {
@@ -173,7 +173,7 @@ void CCBFMediator::RaptorTerminationOrderReceived()
 	_interface->RaptorTerminationOrderReceived();
 }
 
-/**@brief	½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» º¸°í¹Ş´Â´Ù.
+/**@brief	ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ë³´ê³ ë°›ëŠ”ë‹¤.
  */
 void CCBFMediator::ReportExecutedProcess(CString *a_executedProcess)
 {
@@ -181,7 +181,7 @@ void CCBFMediator::ReportExecutedProcess(CString *a_executedProcess)
 	_interface->ReportExecutedProcess(a_executedProcess);
 }
 
-/**@brief	»ç¿ëÀÚ°¡, ¶Ç´Â ¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍÀÇ »óÈ² º¯È­ ÀÔ·ÂÀÌ ÀÖ¾úÀ» ¶§, »óÈ²¸¦ ÀúÀåÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìê°€, ë˜ëŠ” ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„°ì˜ ìƒí™© ë³€í™” ì…ë ¥ì´ ìˆì—ˆì„ ë•Œ, ìƒí™©ë¥¼ ì €ì¥í•œë‹¤.
  */
 void CCBFMediator::ReportStatus(void *a_status)
 {
@@ -189,7 +189,7 @@ void CCBFMediator::ReportStatus(void *a_status)
 	_interface->ReportStatus(a_status);
 }
 
-/**@brief	»ç¿ëÀÚ°¡ ÇÁ·Î±×·¥À» Á¾·á½ÃÅ°·Á ÇÒ ¶§.
+/**@brief	ì‚¬ìš©ìê°€ í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œì‹œí‚¤ë ¤ í•  ë•Œ.
  */
 void CCBFMediator::UserTryingToKillMe()
 {
@@ -203,8 +203,8 @@ void CCBFMediator::UserTryingToKillMe()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CCM
 
-/**@brief	CCMÀÇ Åë½Å ÃÊ±âÈ­. Å¬¶óÀÌ¾ğÆ® ±¸Á¶¸¦ ¸¸µé±â À§ÇØ ¼ÒÄÏÀ» »ı¼ºÇÏ°í ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô connect ÇÑ´Ù.
- * @remarks	´Ù¶ó´Ï ÄÄÆ÷³ÍÆ® Å×½ºÆ® ¿ë.
+/**@brief	CCMì˜ í†µì‹  ì´ˆê¸°í™”. í´ë¼ì´ì–¸íŠ¸ êµ¬ì¡°ë¥¼ ë§Œë“¤ê¸° ìœ„í•´ ì†Œì¼“ì„ ìƒì„±í•˜ê³  ì˜¤í¼ë ˆì´í„°ì—ê²Œ connect í•œë‹¤.
+ * @remarks	ë‹¤ë¼ë‹ˆ ì»´í¬ë„ŒíŠ¸ í…ŒìŠ¤íŠ¸ ìš©.
  */
 void CCBFMediator::InitiallizeCommunication(DWORD a_ServerAddress)
 {
@@ -212,7 +212,7 @@ void CCBFMediator::InitiallizeCommunication(DWORD a_ServerAddress)
 	_interface->Initiallize(a_ServerAddress);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿ÍÀÇ ¿¬°áÀ» ²÷´Â´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì™€ì˜ ì—°ê²°ì„ ëŠëŠ”ë‹¤.
  */
 void CCBFMediator::CloseConnection()
 {
@@ -220,7 +220,7 @@ void CCBFMediator::CloseConnection()
 	_interface->CloseConnection();
 }
 
-/**@brief	Æ¯Á¤ ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Àü´ŞÇÑ´Ù.
+/**@brief	íŠ¹ì • ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì „ë‹¬í•œë‹¤.
  */
 void CCBFMediator::SendTextMessageToOperator(CString *a_message)
 {
@@ -228,7 +228,7 @@ void CCBFMediator::SendTextMessageToOperator(CString *a_message)
 	_interface->SendTextMessageToOperator(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ·Î±×ÀÎ ¿äÃ»À» ÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë¡œê·¸ì¸ ìš”ì²­ì„ í•œë‹¤.
  */
 void CCBFMediator::SendLoginRequest(void *a_userInfo)
 {
@@ -236,7 +236,7 @@ void CCBFMediator::SendLoginRequest(void *a_userInfo)
 	_interface->SendLoginRequest(a_userInfo);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô ½ÇÇàµÈ ÇÁ·Î¼¼½º º¸°í¸¦ Àü´ŞÇÑ´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ë³´ê³ ë¥¼ ì „ë‹¬í•œë‹¤.
  */
 void CCBFMediator::SendExecutedProcessReport(CString *a_executedProcess)
 {
@@ -244,7 +244,7 @@ void CCBFMediator::SendExecutedProcessReport(CString *a_executedProcess)
 	_interface->SendExecutedProcessReport(a_executedProcess);
 }
 
-/**@brief	»óÈ² º¯È­ º¸°í¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô Àü¼ÛÇÑ´Ù.
+/**@brief	ìƒí™© ë³€í™” ë³´ê³ ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ì „ì†¡í•œë‹¤.
  */
 void CCBFMediator::SendStatusReport(void *a_statusReport)
 {
@@ -255,9 +255,9 @@ void CCBFMediator::SendStatusReport(void *a_statusReport)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// °øÅë ¼­ºñ½º
+// ê³µí†µ ì„œë¹„ìŠ¤
 
-/**@brief	MSMÀ» ÀÌ¿ëÇØ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¿ÀÆÛ·¹ÀÌÅÍ¿¡°Ô º¸³½´Ù.
+/**@brief	MSMì„ ì´ìš©í•´ í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ì˜¤í¼ë ˆì´í„°ì—ê²Œ ë³´ë‚¸ë‹¤.
  */
 void CCBFMediator::PostTextMessageToOperator(CString *a_message)
 {
@@ -265,7 +265,7 @@ void CCBFMediator::PostTextMessageToOperator(CString *a_message)
 	_interface->PostTextMessageToOperator(a_message);
 }
 
-/**@brief	¿ÀÆÛ·¹ÀÌÅÍ·ÎºÎÅÍ ÅØ½ºÆ® ¸Ş¼¼Áö¸¦ ¹Ş¾ÒÀ½À» MSM¿¡°Ô ¾Ë¸°´Ù.
+/**@brief	ì˜¤í¼ë ˆì´í„°ë¡œë¶€í„° í…ìŠ¤íŠ¸ ë©”ì„¸ì§€ë¥¼ ë°›ì•˜ìŒì„ MSMì—ê²Œ ì•Œë¦°ë‹¤.
  */
 void CCBFMediator::ReceiveTextMessageFromOperator(CString *a_message)
 {
@@ -279,30 +279,30 @@ void CCBFMediator::ReceiveTextMessageFromOperator(CString *a_message)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// °øÅë ¼­ºñ½º
+// ê³µí†µ ì„œë¹„ìŠ¤
 
-/**@brief	¸ŞÀÎ ´ÙÀÌ¾ó·Î±×ÀÇ Æ÷ÀÎÅÍ¸¦ ÀúÀå
+/**@brief	ë©”ì¸ ë‹¤ì´ì–¼ë¡œê·¸ì˜ í¬ì¸í„°ë¥¼ ì €ì¥
  */
 void CCBFMediator::SetMainDlg(CDialog *a_pDlg)
 {
 	m_mainDlg = a_pDlg;
 }
 
-/**@brief	¸ŞÀÎ ´ÙÀÌ¾ó·Î±×ÀÇ Æ÷ÀÎÅÍ¸¦ È¹µæ
+/**@brief	ë©”ì¸ ë‹¤ì´ì–¼ë¡œê·¸ì˜ í¬ì¸í„°ë¥¼ íšë“
  */
 CDialog *CCBFMediator::GetMainDlg()
 {
 	return m_mainDlg;
 }
 
-/**@brief	·Î±×ÀÎ ´ÙÀÌ¾ó·Î±×ÀÇ Æ÷ÀÎÅÍ¸¦ ÀúÀå
+/**@brief	ë¡œê·¸ì¸ ë‹¤ì´ì–¼ë¡œê·¸ì˜ í¬ì¸í„°ë¥¼ ì €ì¥
  */
 void CCBFMediator::SetLoginDlg(CDialog *a_pDlg)
 {
 	m_loginDlg = a_pDlg;
 }
 
-/**@brief	·Î±×ÀÎ ´ÙÀÌ¾ó·Î±×ÀÇ Æ÷ÀÎÅÍ¸¦ È¹µæ
+/**@brief	ë¡œê·¸ì¸ ë‹¤ì´ì–¼ë¡œê·¸ì˜ í¬ì¸í„°ë¥¼ íšë“
  */
 CDialog *CCBFMediator::GetLoginDlg()
 {
@@ -314,7 +314,7 @@ CDialog *CCBFMediator::GetLoginDlg()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NDM
 
-/**@brief	ÇÁ·Î¼¼½º°¡ Àı´ë Á×Áö ¾Ê°Ô²û ÇÑ´Ù.
+/**@brief	í”„ë¡œì„¸ìŠ¤ê°€ ì ˆëŒ€ ì£½ì§€ ì•Šê²Œë” í•œë‹¤.
  */
 void CCBFMediator::StartNeverDie()
 {
@@ -323,7 +323,7 @@ void CCBFMediator::StartNeverDie()
 }
 
 
-/**@brief	ÇÁ·Î¼¼½º°¡ Á×À» ¼ö ÀÖ°Ô²û ÇÑ´Ù.
+/**@brief	í”„ë¡œì„¸ìŠ¤ê°€ ì£½ì„ ìˆ˜ ìˆê²Œë” í•œë‹¤.
  */
 void CCBFMediator::StopNeverDie()
 {
@@ -331,8 +331,8 @@ void CCBFMediator::StopNeverDie()
 	_interface->StopNeverDie();
 }
 
-/**@brief	ÇöÀç ÇÁ·Î¼¼½º°¡ Á×¾îµµ µÇ´ÂÁö Á×À¸¸é ¾ÈµÇ´ÂÁö¸¦ ¾Ë·ÁÁØ´Ù.
- * @return	Á×¾îµµ µÈ´Ù¸é FALSE, Á×¾î¼± ¾ÈµÈ´Ù¸é TRUE
+/**@brief	í˜„ì¬ í”„ë¡œì„¸ìŠ¤ê°€ ì£½ì–´ë„ ë˜ëŠ”ì§€ ì£½ìœ¼ë©´ ì•ˆë˜ëŠ”ì§€ë¥¼ ì•Œë ¤ì¤€ë‹¤.
+ * @return	ì£½ì–´ë„ ëœë‹¤ë©´ FALSE, ì£½ì–´ì„  ì•ˆëœë‹¤ë©´ TRUE
  */
 bool CCBFMediator::GetNeverDieState()
 {
@@ -345,7 +345,7 @@ bool CCBFMediator::GetNeverDieState()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // OSM
 
-/**@brief	½ÇÇàµÇ´Â ÇÁ·Î¼¼½º °¨½Ã¸¦ ½ÃÀÛÇÑ´Ù.
+/**@brief	ì‹¤í–‰ë˜ëŠ” í”„ë¡œì„¸ìŠ¤ ê°ì‹œë¥¼ ì‹œì‘í•œë‹¤.
  */
 void CCBFMediator::StartProcessObservation()
 {
@@ -353,7 +353,7 @@ void CCBFMediator::StartProcessObservation()
 	_interface->StartProcessObservation();
 }
 
-/**@brief	½ÇÇàµÇ´Â ÇÁ·Î¼¼½º °¨½Ã¸¦ ÁßÁöÇÑ´Ù.
+/**@brief	ì‹¤í–‰ë˜ëŠ” í”„ë¡œì„¸ìŠ¤ ê°ì‹œë¥¼ ì¤‘ì§€í•œë‹¤.
  */
 void CCBFMediator::StopProcessObservation()
 {
@@ -361,8 +361,8 @@ void CCBFMediator::StopProcessObservation()
 	_interface->StopProcessObservation();
 }
 
-/**@brief	OSM¿¡°Ô ÇöÀç ½ÇÇàµÈ ÇÁ·Î¼¼½º ÀÌ¸§À» ¾Ë¸°´Ù.
- * @param	a_executedProcess	ÇöÀç ½ÇÇàµÈ ÇÁ·Î¼¼½ºÀÇ ÀÌ¸§
+/**@brief	OSMì—ê²Œ í˜„ì¬ ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ì•Œë¦°ë‹¤.
+ * @param	a_executedProcess	í˜„ì¬ ì‹¤í–‰ëœ í”„ë¡œì„¸ìŠ¤ì˜ ì´ë¦„
  */
 void CCBFMediator::ReceiveExecutedProcess(CString a_executedProcess)
 {
@@ -377,7 +377,7 @@ void CCBFMediator::ReceiveExecutedProcess(CString a_executedProcess)
 ////////////////////////////////////////////////////////////////////////////////////////////
 // CTM
 
-/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀûÀÎ ÄÄÇ»ÅÍ »ç¿ëÀ» ¹æÇØÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì ì¸ ì»´í“¨í„° ì‚¬ìš©ì„ ë°©í•´í•œë‹¤.
  */
 void CCBFMediator::RestraintUser()
 {
@@ -385,7 +385,7 @@ void CCBFMediator::RestraintUser()
 	_interface->RestraintUser();
 }
 
-/**@brief	»ç¿ëÀÚÀÇ Á¤»óÀûÀÎ ÄÄÇ»ÅÍ »ç¿ëÀ» Çã¶ôÇÑ´Ù.
+/**@brief	ì‚¬ìš©ìì˜ ì •ìƒì ì¸ ì»´í“¨í„° ì‚¬ìš©ì„ í—ˆë½í•œë‹¤.
  */
 void CCBFMediator::ReleaseUser()
 {
@@ -393,7 +393,7 @@ void CCBFMediator::ReleaseUser()
 	_interface->ReleaseUser();
 }
 
-/**@brief	°­Á¦·Î »ç¿ëÀÚÀÇ ·Î±×ÀÎÀ» ÇØÁØ´Ù.
+/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìì˜ ë¡œê·¸ì¸ì„ í•´ì¤€ë‹¤.
  */
 void CCBFMediator::Login(void *a_userInfo)
 {
@@ -401,7 +401,7 @@ void CCBFMediator::Login(void *a_userInfo)
 	_interface->Login(a_userInfo);
 }
 
-/**@brief	°­Á¦·Î »ç¿ëÀÚ¸¦ ·Î±×¾Æ¿ô ½ÃÅ²´Ù.
+/**@brief	ê°•ì œë¡œ ì‚¬ìš©ìë¥¼ ë¡œê·¸ì•„ì›ƒ ì‹œí‚¨ë‹¤.
  */
 void CCBFMediator::Logout(void *a_message)
 {
@@ -409,7 +409,7 @@ void CCBFMediator::Logout(void *a_message)
 	_interface->Logout(a_message);
 }
 
-/**@brief	ÄÄÇ»ÅÍ¸¦ ²¨¹ö¸°´Ù.
+/**@brief	ì»´í“¨í„°ë¥¼ êº¼ë²„ë¦°ë‹¤.
  */
 void CCBFMediator::Shutdown(void *a_message)
 {
@@ -417,7 +417,7 @@ void CCBFMediator::Shutdown(void *a_message)
 	_interface->Shutdown(a_message);
 }
 
-/**@brief	ÄÄÇ»ÅÍ¸¦ ÀçºÎÆÃ ½ÃÅ²´Ù.
+/**@brief	ì»´í“¨í„°ë¥¼ ì¬ë¶€íŒ… ì‹œí‚¨ë‹¤.
  */
 void CCBFMediator::Reboot(void *a_message)
 {
@@ -425,7 +425,7 @@ void CCBFMediator::Reboot(void *a_message)
 	_interface->Reboot(a_message);
 }
 
-/**@brief	½ÇÇà ÁßÀÎ ÇÁ·Î¼¼½º¸¦ ¸ğÁ¶¸® Á×¿©¹ö¸°´Ù.
+/**@brief	ì‹¤í–‰ ì¤‘ì¸ í”„ë¡œì„¸ìŠ¤ë¥¼ ëª¨ì¡°ë¦¬ ì£½ì—¬ë²„ë¦°ë‹¤.
  */
 void CCBFMediator::GenocideProcesses(void *a_message)
 {
@@ -433,7 +433,7 @@ void CCBFMediator::GenocideProcesses(void *a_message)
 	_interface->GenocideProcesses(a_message);
 }
 
-/**@brief	Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·Î¼¼½º¸¦ Á×ÀÎ´Ù.
+/**@brief	íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œì„¸ìŠ¤ë¥¼ ì£½ì¸ë‹¤.
  */
 void CCBFMediator::KillProcess(void *a_processName)
 {
@@ -441,7 +441,7 @@ void CCBFMediator::KillProcess(void *a_processName)
 	_interface->KillProcess(a_processName);
 }
 
-/**@brief	Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·Î¼¼½º¸¦ ½ÇÇà½ÃÅ²´Ù.
+/**@brief	íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œì„¸ìŠ¤ë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
  */
 void CCBFMediator::ExecuteProcess(void *a_processName)
 {
@@ -454,7 +454,7 @@ void CCBFMediator::ExecuteProcess(void *a_processName)
 ///////////////////////////////////////////////////////////////////////////////
 //common
 
-/**@brief	Æ¯Á¤ Á¤º¸¸¦ ¸ŞÀÎ ¸®½ºÆ®¹Ú½º¸¦ ÅëÇØ Ç¥½ÃÇÑ´Ù.
+/**@brief	íŠ¹ì • ì •ë³´ë¥¼ ë©”ì¸ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ë¥¼ í†µí•´ í‘œì‹œí•œë‹¤.
  */
 void CCBFMediator::Notify(CString *a_message)
 {
@@ -463,7 +463,7 @@ void CCBFMediator::Notify(CString *a_message)
 }
 
 
-/**@brief	½º½º·Î¿¡°Ô WM_CLOSE ¸Ş¼¼Áö¸¦ ´øÁø´Ù.
+/**@brief	ìŠ¤ìŠ¤ë¡œì—ê²Œ WM_CLOSE ë©”ì„¸ì§€ë¥¼ ë˜ì§„ë‹¤.
  */
 void CCBFMediator::TrySuicide()
 {
@@ -471,7 +471,7 @@ void CCBFMediator::TrySuicide()
 }
 
 
-/**@brief	»óÈ² º¸°í¸¦ ¹Ş¾ÒÀ½À» ¾Ë¸°´Ù. ·Î±×ÀÎ ´ÙÀÌ¾ó·Î±×¿¡ ÀÌ¸¦ Ç¥½ÃÇÑ´Ù.
+/**@brief	ìƒí™© ë³´ê³ ë¥¼ ë°›ì•˜ìŒì„ ì•Œë¦°ë‹¤. ë¡œê·¸ì¸ ë‹¤ì´ì–¼ë¡œê·¸ì— ì´ë¥¼ í‘œì‹œí•œë‹¤.
  */
 void CCBFMediator::NotifyStatusReceived(void *a_statusReport)
 {
